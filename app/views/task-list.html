@@ -11,32 +11,32 @@
     <ul class="app-task-list__items">
       <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="#" aria-describedby="eligibility-completed">
+                    <a href="/home-office-details" aria-describedby="home-office-details-completed">
                       Your Home Office details
                     </a>
                   </span>
         {% if appealData.yourDetails.homeOffice.completed %}
-          <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+          <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
         {% endif %}
       </li>
       <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="#" aria-describedby="read-declaration-completed">
+                    <a href="#" aria-describedby="personal-details-completed">
                       Your personal details
                     </a>
                   </span>
         {% if appealData.yourDetails.personalDetails.completed %}
-          <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+          <strong class="govuk-tag app-task-list__task-completed" id="personal-details-completed">Completed</strong>
         {% endif %}
       </li>
       <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="#" aria-describedby="read-declaration-completed">
+                    <a href="#" aria-describedby="contact-details-completed">
                       Your contact details
                     </a>
                   </span>
         {% if appealData.yourDetails.contactDetails.completed %}
-          <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+          <strong class="govuk-tag app-task-list__task-completed" id="contact-details-completed">Completed</strong>
         {% endif %}
       </li>
     </ul>
@@ -48,22 +48,22 @@
     <ul class="app-task-list__items">
       <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="#" aria-describedby="company-information-completed">
+                    <a href="#" aria-describedby="type-of-appeal-completed">
                       Type of appeal
                     </a>
                   </span>
         {% if appealData.appealDetails.typeOfAppeal.completed %}
-          <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+          <strong class="govuk-tag app-task-list__task-completed" id="type-of-appeal-completed">Completed</strong>
         {% endif %}
       </li>
       <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="#" aria-describedby="contact-details-completed">
+                    <a href="#" aria-describedby="reasons-for-appeal-completed">
                       Reasons for appeal
                     </a>
                   </span>
         {% if appealData.appealDetails.reasonsForAppeal.completed %}
-          <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+          <strong class="govuk-tag app-task-list__task-completed" id=reasons-for-appeal-completed">Completed</strong>
         {% endif %}
       </li>
     </ul>

@@ -13,6 +13,7 @@ const session = require('express-session');
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 const config = require('config');
+const bodyParser = require('body-parser');
 
 const logger = Logger.getLogger('server.js');
 
@@ -32,6 +33,10 @@ function create(options) {
   redisClient.on('error', error => {
     logger.error(`Redis error: ${error}`);
   });
+
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
   const sessionUrl = config.get('session.redis.url');
   const ttlInSeconds = config.get('session.redis.ttlInSeconds');
