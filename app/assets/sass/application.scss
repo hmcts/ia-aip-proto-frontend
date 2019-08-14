@@ -4,3 +4,4 @@ $govuk-global-styles: true;
 $govuk-assets-path: '/assets/';
 
 @import "node_modules/govuk-frontend/govuk/all";
+@import "app/assets/sass/task-list";

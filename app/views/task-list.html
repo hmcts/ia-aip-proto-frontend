@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 class="govuk-heading-xl">{{ i18n.taskList.header }}</h1>
+
+    <ol class="app-task-list">
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">1. </span> Your details
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="#" aria-describedby="eligibility-completed">
+                      Your Home Office details
+                    </a>
+                  </span>
+                    <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+                </li>
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="#" aria-describedby="read-declaration-completed">
+                      Your personal details
+                    </a>
+                  </span>
+                    <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+                </li>
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="#" aria-describedby="read-declaration-completed">
+                      Your contact details
+                    </a>
+                  </span>
+                    <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">2. </span> Appeal details
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="#" aria-describedby="company-information-completed">
+                      Type of appeal
+                    </a>
+                  </span>
+                    <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+                </li>
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="#" aria-describedby="contact-details-completed">
+                      Reasons for appeal
+                    </a>
+                  </span>
+                    <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">3. </span> Review and submit
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="#">
+                      Review and submit your appeal
+                    </a>
+                  </span>
+                </li>
+            </ul>
+        </li>
+    </ol>
+
+{% endblock %}
