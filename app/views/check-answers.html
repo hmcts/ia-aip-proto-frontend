@@ -2,6 +2,8 @@
 
 {% from "components/summary-list/macro.njk" import govukSummaryList %}
 {% from "components/button/macro.njk" import govukButton %}
+{% from "components/checkboxes/macro.njk" import govukCheckboxes %}
+
 
 {% block content %}
     <div class="govuk-grid-row">
@@ -52,6 +54,19 @@
             }) }}
 
             <form action="/check-answers" method="post" novalidate>
+                <div class="govuk-form-group">
+                    <fieldset class="govuk-fieldset">
+                        <div class="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox"
+                                       value="carcasses">
+                                <label class="govuk-label govuk-checkboxes__label" for="confirm">
+                                    I believe the facts stated in this appeal form are true
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
 
                 {{ govukButton({
                     text: "Submit appeal"
