@@ -1,3 +1,5 @@
 module.exports = (req, res) => {
-  res.render('task-list.html');
+  const appealData = req.session.appealData;
+
+  res.render('task-list.html', { appealData });
 };

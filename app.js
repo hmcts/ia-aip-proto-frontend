@@ -1,4 +1,5 @@
 const { Express } = require('@hmcts/nodejs-logging');
+const { Logger } = require('@hmcts/nodejs-logging');
 
 const appInsights = require('./app-insights');
 const express = require('express');
@@ -7,6 +8,14 @@ const security = require('./security');
 
 const locale = require('./app/locale/en.json');
 const routes = require('./app/routes');
+
+const session = require('express-session');
+const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
+const config = require('config');
+
+const logger = Logger.getLogger('server.js');
+
 
 const notFoundHandler = require('./app/middleware/errors/404-not-found');
 const internalServerErrorHandler = require('./app/middleware/errors/500-internal-server-error');
@@ -18,6 +27,23 @@ function create(options) {
   }
 
   const app = express();
+
+  const redisClient = redis.createClient();
+  redisClient.on('error', error => {
+    logger.error(`Redis error: ${error}`);
+  });
+
+  const sessionUrl = config.get('session.redis.url');
+  const ttlInSeconds = config.get('session.redis.ttlInSeconds');
+  const sessionSecret = config.get('session.redis.secret');
+  app.use(session({
+    secret: sessionSecret,
+    name: 'ia-aip-frontend',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+    store: new RedisStore({ url: sessionUrl, client: redisClient, ttl: ttlInSeconds })
+  }));
 
   security.apply(app);
 
