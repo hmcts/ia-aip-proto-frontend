@@ -14,6 +14,7 @@ const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 const config = require('config');
 const bodyParser = require('body-parser');
+const createModel = require('./app/middleware/create-model');
 
 const logger = Logger.getLogger('server.js');
 
@@ -62,7 +63,7 @@ function create(options) {
   });
 
   app.use(Express.accessLogger());
-
+  app.use(createModel);
   app.use('/assets', express.static('./public/govuk-frontend/assets'));
   app.use('/public', express.static('./public'));
   app.use('/', routes);

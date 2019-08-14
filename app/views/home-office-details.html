@@ -5,33 +5,68 @@
 {% from "components/date-input/macro.njk" import govukDateInput %}
 
 {% block content %}
-
     <h1 class="govuk-heading-xl">What is your Home Office reference number and send date?</h1>
+
+    {%  if errors %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    {% for error in errors.errors %}
+                        <li>
+                            <a href="#{{ error.param }}">{{ error.msg }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+
     <p>Look for the reference number and the date the letter was sent on the Home Office decision letter.</p>
     <img src="/public/images/home_office_letter.png" alt="where to find reference and data issued"/>
 
     <form action="/home-office-details" method="post">
         {{ govukInput({
             label: {
-            text: "Home Office reference number"
+                text: "Home Office reference number"
             },
             id: "home-office-ref-number",
             name: "home-office-ref-number",
-            classes: "govuk-input--width-20"
+            classes: "govuk-input--width-20",
+            value: homeOfficeAppealData.refNumber
         }) }}
 
         {{ govukDateInput({
             id: "date-letter-sent",
             namePrefix: "date-letter-sent",
             fieldset: {
-            legend: {
-            text: "Date letter sent",
-            isPageHeading: false
-            }
+                legend: {
+                    text: "Date letter sent",
+                    isPageHeading: false
+                }
             },
             hint: {
-            text: "For example, 27 3 2007"
-            }
+                text: "For example, 27 3 2007"
+            },
+            items: [
+                {
+                    classes: "govuk-input--width-2",
+                    name: "day",
+                    value: homeOfficeAppealData.letterDate.day
+                },
+                {
+                    classes: "govuk-input--width-2",
+                    name: "month",
+                    value: homeOfficeAppealData.letterDate.month
+                },
+                {
+                    classes: "govuk-input--width-4",
+                    name: "year",
+                    value: homeOfficeAppealData.letterDate.year
+                }
+            ]
         }) }}
 
         {{ govukButton({
