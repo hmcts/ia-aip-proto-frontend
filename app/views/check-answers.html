@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% from "components/summary-list/macro.njk" import govukSummaryList %}
+{% from "components/button/macro.njk" import govukButton %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds-from-desktop">
+
+            <h1 class="govuk-heading-xl">Check your answers before submitting your appeal</h1>
+
+            <h2 class="govuk-heading-m">Personal details</h2>
+
+            {{ govukSummaryList({
+                classes: 'govuk-!-margin-bottom-9',
+                rows: [
+                    {
+                        key: {
+                        text: "Home Office reference number"
+                    },
+                        value: {
+                        text: appealData.yourDetails.homeOffice.refNumber
+                    },
+                        actions: {
+                        items: [
+                            {
+                                href: "/home-office-details",
+                                text: "Change",
+                                visuallyHiddenText: "home office reference number"
+                            }
+                        ]
+                    }
+                    },
+                    {
+                        key: {
+                        text: "Date letter sent"
+                    },
+                        value: {
+                        text: appealData.yourDetails.homeOffice.letterDate.day + ' ' + appealData.yourDetails.homeOffice.letterDate.month + ' ' + appealData.yourDetails.homeOffice.letterDate.year
+                    },
+                        actions: {
+                        items: [
+                            {
+                                href: "/home-office-details",
+                                text: "Change",
+                                visuallyHiddenText: "date home office letter sent"
+                            }
+                        ]
+                    }
+                    }
+                ]
+            }) }}
+
+            <form action="/check-answers" method="post" novalidate>
+
+                {{ govukButton({
+                    text: "Submit appeal"
+                }) }}
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

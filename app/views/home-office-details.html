@@ -3,14 +3,8 @@
 {% from "components/button/macro.njk" import govukButton %}
 {% from "components/input/macro.njk" import govukInput %}
 {% from "components/date-input/macro.njk" import govukDateInput %}
-{% from "components/back-link/macro.njk" import govukBackLink %}
 
 {% block content %}
-
-    {{ govukBackLink({
-        text: "Back",
-        href: "/task-list"
-    }) }}
 
     <h1 class="govuk-heading-xl">What is your Home Office reference number and send date?</h1>
     <p>Look for the reference number and the date the letter was sent on the Home Office decision letter.</p>

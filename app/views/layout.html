@@ -1,11 +1,22 @@
 {% extends "template.njk" %}
 
+{% from "components/back-link/macro.njk" import govukBackLink %}
+
 {% block pageTitle %}
     {{ i18n.pageTitle }}
 {% endblock %}
 
 {% block head %}
     {% include "includes/head.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+    {% if not hideBackLink %}
+        {{ govukBackLink({
+            text: "Back",
+            href: "/task-list"
+        }) }}
+    {% endif %}
 {% endblock %}
 
 {% block bodyEnd %}

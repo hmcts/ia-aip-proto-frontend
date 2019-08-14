@@ -8,6 +8,7 @@ const router = express.Router({});
 router.use(paths.taskList, require('./middleware/task-list'));
 router.get(paths.homeOfficeDetails, require('./middleware/home-office-details').get);
 router.post(paths.homeOfficeDetails, require('./middleware/home-office-details').post);
+router.use(paths.checkAnswers, require('./middleware/check-answers'));
 router.use(paths.health, require('./middleware/health'));
 router.use(paths.robots, require('./middleware/robots'));
 router.use(paths.index, require('./middleware/start'));
