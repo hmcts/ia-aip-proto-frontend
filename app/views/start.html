@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% from "components/button/macro.njk" import govukButton %}
+
+{% block content %}
+<h1 class="govuk-heading-xl">{{ i18n.start.header }}</h1>
+<p>{{ i18n.start.weNeedToAsk }}</p>
+<p>{{ i18n.start.decisionLetter }}</p>
+
+{{ govukButton({
+text: "Start now",
+href: "#",
+isStartButton: true
+}) }}
+{% endblock %}

@@ -1,0 +1,17 @@
+{
+  "pageTitle": "Immigration & Asylum",
+  "start": {
+    "header": "Start your appeal",
+    "weNeedToAsk": "We need to ask you a few questions before you can submit your appeal. It will only take a few minutes.",
+    "decisionLetter": "You will need to have the decision letter that you received from the Home Office with you to answer some of the questions."
+  },
+  "error": {
+    "error404": {
+      "header": "Sorry, this page could not be found"
+    },
+    "error500": {
+      "header": "Sorry, we're experiencing technical difficulties",
+      "content": "Please try again in a few minutes."
+    }
+  }
+}
