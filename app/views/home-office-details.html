@@ -4,6 +4,7 @@
 {% from "components/input/macro.njk" import govukInput %}
 {% from "components/date-input/macro.njk" import govukDateInput %}
 {% from "components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "components/details/macro.njk" import govukDetails %}
 
 {% block content %}
     <h1 class="govuk-heading-xl">What is your Home Office reference number and send date?</h1>
@@ -66,5 +67,11 @@
             text: "Next"
         }) }}
     </form>
+
+    {{ govukDetails({
+        summaryText: "Contact us for help",
+        text: "Need some contact us content to go in this space here."
+    }) }}
+
 
 {% endblock %}
