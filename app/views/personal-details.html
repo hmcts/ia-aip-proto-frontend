@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% from "components/button/macro.njk" import govukButton %}
+{% from "components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "components/input/macro.njk" import govukInput %}
+{% from "components/button/macro.njk" import govukButton %}
+
+{% block content %}
+    <h1 class="govuk-heading-xl">What is your name?</h1>
+
+    {{ errorSummary(errors) }}
+
+    <form action="/personal-details" method="post">
+        {{ input("Title", "title", formData.title) }}
+
+        {{ input("Given names", "given-names", formData.givenNames) }}
+
+        {{ input("Family name", "family-name", formData.familyName) }}
+
+        {{ govukButton({
+            text: "Next"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

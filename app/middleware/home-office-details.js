@@ -1,10 +1,12 @@
-const paths = require('../paths');
-const { check, validationResult } = require('express-validator');
+const { check } = require('express-validator');
+const { formController } = require('./form-controller');
 
-function get(req, res) {
-  const homeOfficeAppealData = req.session.appealData.yourDetails.homeOffice;
+function extractDataFromSession(req) {
+  return req.session.appealData.yourDetails.homeOffice;
+}
 
-  res.render('home-office-details.html', { homeOfficeAppealData });
+function setDataToSession(req, formData) {
+  req.session.appealData.yourDetails.homeOffice = formData;
 }
 
 function validation() {
@@ -28,44 +30,20 @@ function extractBody(req) {
   };
 }
 
-function post(req, res) {
-  const errors = validationResult(req);
+function extraFieldErrors(fieldErrors) {
+  fieldErrors['date-letter-sent'] = {
+    ...fieldErrors['date-letter-sent-day'],
+    ...fieldErrors['date-letter-sent-month'],
+    ...fieldErrors['date-letter-sent-year']
+  };
+}
 
-  const homeOfficeAppealData = extractBody(req);
-  if (!errors.isEmpty()) {
-    const fieldErrors = {};
-    const errorList = errors.formatWith(({ msg, param }) => {
-      fieldErrors[param] = {
-        text: msg,
-        class: ' govuk-input--error'
-      };
-      return {
-        text: msg,
-        href: `#${param}`
-      };
-    }).array();
-
-    fieldErrors['date-letter-sent'] = {
-      ...fieldErrors['date-letter-sent-day'],
-      ...fieldErrors['date-letter-sent-month'],
-      ...fieldErrors['date-letter-sent-year']
-    };
-
-    res.render('home-office-details.html', { homeOfficeAppealData, errors: {
-      errorList,
-      fieldErrors
-    } });
-    return;
-  }
-
-  req.session.appealData.yourDetails.homeOffice = homeOfficeAppealData;
-  req.session.appealData.yourDetails.homeOffice.completed = true;
-
-  res.redirect(paths.taskList);
+function createFormController() {
+  return formController(
+    'home-office-details.html', extractDataFromSession, setDataToSession, validation, extractBody, extraFieldErrors
+  );
 }
 
 module.exports = {
-  get,
-  validation,
-  post
+  createFormController
 };

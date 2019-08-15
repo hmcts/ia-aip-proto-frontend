@@ -4,32 +4,17 @@
 {% from "components/input/macro.njk" import govukInput %}
 {% from "components/date-input/macro.njk" import govukDateInput %}
 {% from "components/error-summary/macro.njk" import govukErrorSummary %}
-{% from "components/details/macro.njk" import govukDetails %}
 
 {% block content %}
     <h1 class="govuk-heading-xl">What is your Home Office reference number and send date?</h1>
 
-    {%  if errors %}
-        {{ govukErrorSummary({
-            titleText: "There is a problem",
-            errorList: errors.errorList
-        }) }}
-    {% endif %}
+    {{ errorSummary(errors) }}
 
     <p>Look for the reference number and the date the letter was sent on the Home Office decision letter.</p>
     <img src="/public/images/home_office_letter.png" alt="where to find reference and data issued"/>
 
     <form action="/home-office-details" method="post">
-        {{ govukInput({
-            label: {
-                text: "Home Office reference number"
-            },
-            id: "home-office-ref-number",
-            name: "home-office-ref-number",
-            classes: "govuk-input--width-20",
-            value: homeOfficeAppealData.refNumber,
-            errorMessage: errors.fieldErrors['home-office-ref-number']
-        }) }}
+        {{ input("Home Office reference number", "home-office-ref-number", formData.refNumber) }}
 
         {{ govukDateInput({
             id: "date-letter-sent",
@@ -48,17 +33,17 @@
                 {
                     classes: "govuk-input--width-2 " + errors.fieldErrors['date-letter-sent-day'].class,
                     name: "day",
-                    value: homeOfficeAppealData.letterDate.day
+                    value: formData.letterDate.day
                 },
                 {
                     classes: "govuk-input--width-2 "  + errors.fieldErrors['date-letter-sent-month'].class,
                     name: "month",
-                    value: homeOfficeAppealData.letterDate.month
+                    value: formData.letterDate.month
                 },
                 {
                     classes: "govuk-input--width-4 " + errors.fieldErrors['date-letter-sent-year'].class,
                     name: "year",
-                    value: homeOfficeAppealData.letterDate.year
+                    value: formData.letterDate.year
                 }
             ]
         }) }}
@@ -68,10 +53,6 @@
         }) }}
     </form>
 
-    {{ govukDetails({
-        summaryText: "Contact us for help",
-        text: "Need some contact us content to go in this space here."
-    }) }}
-
+    {{ contactUs() }}
 
 {% endblock %}
