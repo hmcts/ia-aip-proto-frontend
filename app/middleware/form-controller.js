@@ -2,11 +2,11 @@ const paths = require('../paths');
 const { validationResult } = require('express-validator');
 
 function formController(
-  template, extractDataFromSession, setDataToSession, validateMethod, extractBodyMethod, extraFieldErrors
+  template, sessionFieldName, validateMethod, extractBodyMethod, extraFieldErrors
 ) {
   return {
     get(req, res) {
-      const formData = extractDataFromSession(req);
+      const formData = req.session.appealData.yourDetails[sessionFieldName];
 
       res.render(template, { formData });
     },
@@ -45,7 +45,7 @@ function formController(
       }
 
       formData.completed = true;
-      setDataToSession(req, formData);
+      req.session.appealData.yourDetails[sessionFieldName] = formData;
 
       res.redirect(paths.taskList);
     }

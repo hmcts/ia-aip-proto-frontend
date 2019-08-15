@@ -1,14 +1,6 @@
 const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 
-function extractDataFromSession(req) {
-  return req.session.appealData.yourDetails.homeOffice;
-}
-
-function setDataToSession(req, formData) {
-  req.session.appealData.yourDetails.homeOffice = formData;
-}
-
 function validation() {
   return [
     check('home-office-ref-number').not().isEmpty().withMessage('Must set home office ref number')
@@ -40,7 +32,7 @@ function extraFieldErrors(fieldErrors) {
 
 function createFormController() {
   return formController(
-    'home-office-details.html', extractDataFromSession, setDataToSession, validation, extractBody, extraFieldErrors
+    'home-office-details.html', 'homeOffice', validation, extractBody, extraFieldErrors
   );
 }
 

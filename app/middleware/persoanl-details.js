@@ -1,14 +1,6 @@
 const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 
-function extractDataFromSession(req) {
-  return req.session.appealData.yourDetails.personalDetails;
-}
-
-function setDataToSession(req, formData) {
-  req.session.appealData.yourDetails.personalDetails = formData;
-}
-
 function validation() {
   return [
     check('title').not().isEmpty().withMessage('Must enter title'),
@@ -27,7 +19,7 @@ function extractBody(req) {
 
 function createFormController() {
   return formController(
-    'personal-details.html', extractDataFromSession, setDataToSession, validation, extractBody
+    'personal-details.html', 'personalDetails', validation, extractBody
   );
 }
 
