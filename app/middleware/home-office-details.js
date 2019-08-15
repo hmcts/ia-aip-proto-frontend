@@ -13,7 +13,7 @@ function validation() {
       .isNumeric().withMessage('Invalid home office ref'),
     check('date-letter-sent-day').not().isEmpty().withMessage('Must set date letter sent'),
     check('date-letter-sent-month').not().isEmpty().withMessage('Must set date letter sent'),
-    check('date-letter-sent-year').not().isEmpty().withMessage('Must set year letter sent')
+    check('date-letter-sent-year').not().isEmpty().withMessage('Must set date letter sent')
   ];
 }
 
@@ -33,7 +33,28 @@ function post(req, res) {
 
   const homeOfficeAppealData = extractBody(req);
   if (!errors.isEmpty()) {
-    res.render('home-office-details.html', { homeOfficeAppealData, errors });
+    const fieldErrors = {};
+    const errorList = errors.formatWith(({ msg, param }) => {
+      fieldErrors[param] = {
+        text: msg,
+        class: ' govuk-input--error'
+      };
+      return {
+        text: msg,
+        href: `#${param}`
+      };
+    }).array();
+
+    fieldErrors['date-letter-sent'] = {
+      ...fieldErrors['date-letter-sent-day'],
+      ...fieldErrors['date-letter-sent-month'],
+      ...fieldErrors['date-letter-sent-year']
+    };
+
+    res.render('home-office-details.html', { homeOfficeAppealData, errors: {
+      errorList,
+      fieldErrors
+    } });
     return;
   }
 
