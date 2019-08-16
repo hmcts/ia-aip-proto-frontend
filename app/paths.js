@@ -5,6 +5,7 @@ module.exports = {
   personalDetails: '/personal-details',
   contactDetails: '/your-contact-details',
   typeOfAppeal: '/type-of-appeal',
+  reasonsForAppeal: '/reasons-for-appeal',
   checkAnswers: '/check-answers',
   health: '/health',
   robots: '/robots.txt',

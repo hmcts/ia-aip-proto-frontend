@@ -5,6 +5,7 @@ const homeOfficeController = require('./middleware/home-office-details');
 const personalDetailsController = require('./middleware/persoanl-details');
 const contactDetailsController = require('./middleware/contact-details');
 const typeOfAppealController = require('./middleware/type-of-appeal');
+const reasonsForAppealController = require('./middleware/reasons-for-appeal');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -22,6 +23,7 @@ setupFormController(paths.homeOfficeDetails, homeOfficeController);
 setupFormController(paths.personalDetails, personalDetailsController);
 setupFormController(paths.contactDetails, contactDetailsController);
 setupFormController(paths.typeOfAppeal, typeOfAppealController);
+setupFormController(paths.reasonsForAppeal, reasonsForAppealController);
 
 router.use(paths.checkAnswers, require('./middleware/check-answers'));
 router.use(paths.health, require('./middleware/health'));
