@@ -45,14 +45,15 @@ function formController(
           extraFieldErrors(fieldErrors);
         }
 
-        res.render(template, {
+        const extraData = extraModelData ? extraModelData(req, res) : {};
+        res.render(template, Object.assign({
           formData,
           previousPage,
           errors: {
             errorList,
             fieldErrors
           }
-        });
+        }, extraData));
         return;
       }
 
