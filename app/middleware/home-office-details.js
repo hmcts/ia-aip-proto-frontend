@@ -23,11 +23,15 @@ function extractBody(req) {
 }
 
 function extraFieldErrors(fieldErrors) {
-  fieldErrors['date-letter-sent'] = {
-    ...fieldErrors['date-letter-sent-day'],
-    ...fieldErrors['date-letter-sent-month'],
-    ...fieldErrors['date-letter-sent-year']
-  };
+  if (fieldErrors['date-letter-sent-day'] ||
+    fieldErrors['date-letter-sent-month'] ||
+    fieldErrors['date-letter-sent-year']) {
+    fieldErrors['date-letter-sent'] = {
+      ...fieldErrors['date-letter-sent-day'],
+      ...fieldErrors['date-letter-sent-month'],
+      ...fieldErrors['date-letter-sent-year']
+    };
+  }
 }
 
 function createFormController() {
