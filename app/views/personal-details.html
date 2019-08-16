@@ -2,9 +2,9 @@
 {% from "components/button/macro.njk" import govukButton %}
 
 {% block content %}
-    <h1 class="govuk-heading-xl">What is your name?</h1>
-
     {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">What is your name?</h1>
 
     <form action="/personal-details" method="post">
         {{ input("Title", "title", formData.title) }}

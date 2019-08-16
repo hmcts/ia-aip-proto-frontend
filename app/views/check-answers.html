@@ -5,6 +5,8 @@
 {% from "components/checkboxes/macro.njk" import govukCheckboxes %}
 
 {% block content %}
+    {{ errorSummary(errors) }}
+
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds-from-desktop">
 
