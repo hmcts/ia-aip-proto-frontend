@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% from "components/button/macro.njk" import govukButton %}
+{% from "components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <form action="/type-of-appeal" method="post">
+        {{ govukCheckboxes({
+            idPrefix: "appealType",
+            name: "appealType",
+            fieldset: {
+                legend: {
+                    text: "What type of appeal will you make?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--xl"
+                }
+            },
+            hint: {
+                text: "Select at least one of the options below"
+            },
+            items: [
+                {
+                    value: "protection",
+                    text: "Protection",
+                    checked: formData.protection,
+                    hint: {
+                        text: "You will be persecuted or harmed in some way if you are removed from the UK"
+                    }
+                },
+                {
+                    value: "humanRights",
+                    text: "Human Rights",
+                    checked: formData.humanRights,
+                    hint: {
+                        text: "You have a family and/or private life in the UK, or a serious medical condition"
+                    }
+                },
+                {
+                    value: "eea",
+                    text: "European Economic Area (EEA)",
+                    checked: formData.eea,
+                    hint: {
+                        text: "You are, or a family member is, an EEA/Swiss national"
+                    }
+                },
+                {
+                    value: "revocationOfProtection",
+                    text: "Revocation of Protection Status",
+                    checked: formData.revocationOfProtection,
+                    hint: {
+                        text: "Your protection status was taken away"
+                    }
+                },
+                {
+                    value: "deprivationOfCitizenship",
+                    text: "Deprivation of Citizenship",
+                    checked: formData.deprivationOfCitizenship,
+                    hint: {
+                        text: "Your British citizenship was taken away"
+                    }
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Next"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

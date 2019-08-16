@@ -4,6 +4,7 @@ module.exports = {
   homeOfficeDetails: '/home-office-details',
   personalDetails: '/personal-details',
   contactDetails: '/your-contact-details',
+  typeOfAppeal: '/type-of-appeal',
   checkAnswers: '/check-answers',
   health: '/health',
   robots: '/robots.txt',

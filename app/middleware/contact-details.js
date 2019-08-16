@@ -23,7 +23,7 @@ function extractBody(req) {
 
 function createFormController() {
   return formController(
-    'your-contact-details.html', 'contactDetails', validation, extractBody
+    'your-contact-details.html', 'yourDetails', 'contactDetails', validation, extractBody
   );
 }
 

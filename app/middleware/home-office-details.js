@@ -32,7 +32,7 @@ function extraFieldErrors(fieldErrors) {
 
 function createFormController() {
   return formController(
-    'home-office-details.html', 'homeOffice', validation, extractBody, extraFieldErrors
+    'home-office-details.html', 'yourDetails', 'homeOffice', validation, extractBody, extraFieldErrors
   );
 }
 
