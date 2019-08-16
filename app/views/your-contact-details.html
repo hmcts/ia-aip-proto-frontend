@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% from "components/button/macro.njk" import govukButton %}
+{% from "components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% from "components/input/macro.njk" import govukInput %}
+
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <form action="/your-contact-details" method="post">
+        {% set emailHtml %}
+            {{ govukInput({
+                id: "contact-by-email",
+                name: "contact-by-email",
+                type: "email",
+                classes: "govuk-!-width-one-third",
+                label: {
+                    text: "Email address"
+                },
+                attributes: {
+                    spellcheck: "false"
+                },
+                value: formData.email.emailAddress
+            }) }}
+        {% endset -%}
+
+        {% set textHtml %}
+            {{ govukInput({
+                id: "contact-by-text",
+                name: "contact-by-text",
+                type: "tel",
+                classes: "govuk-!-width-one-third",
+                label: {
+                    text: "Mobile phone number"
+                },
+                value: formData.text.phoneNumber
+            }) }}
+        {% endset -%}
+
+        {{ govukCheckboxes({
+            idPrefix: "contact",
+            name: "contact",
+            fieldset: {
+                legend: {
+                    text: "How do you want us to contact you?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--xl"
+                }
+            },
+            hint: {
+                text: "Select at least one of the options below"
+            },
+            items: [
+                {
+                    value: "email",
+                    text: "Email",
+                    checked: formData.email.selected,
+                    conditional: {
+                        html: emailHtml
+                    }
+                },
+                {
+                    value: "text",
+                    text: "Text message",
+                    checked: formData.text.selected,
+                    conditional: {
+                        html: textHtml
+                    }
+                },
+                {
+                    value: "post",
+                    text: "Post",
+                    checked: formData.post.selected
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Next"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}
+
+
