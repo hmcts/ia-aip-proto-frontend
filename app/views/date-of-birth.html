@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% from "components/button/macro.njk" import govukButton %}
+{% from "components/date-input/macro.njk" import govukDateInput %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <form action="/date-of-birth" method="post">
+        {{ govukDateInput({
+            id: "date-of-birth",
+            namePrefix: "date-of-birth",
+            fieldset: {
+                legend: {
+                    text: "What is your date of birth?",
+                    isPageHeading: true
+                }
+            },
+            hint: {
+                text: "For example, 31 3 1980"
+            },
+            errorMessage: errors.fieldErrors['date-of-birth'],
+            items: [
+                {
+                    classes: "govuk-input--width-2 " + errors.fieldErrors['date-of-birth-day'].class,
+                    name: "day",
+                    value: formData.dateOfBirth.day
+                },
+                {
+                    classes: "govuk-input--width-2 "  + errors.fieldErrors['date-of-birth-month'].class,
+                    name: "month",
+                    value: formData.dateOfBirth.month
+                },
+                {
+                    classes: "govuk-input--width-4 " + errors.fieldErrors['date-of-birth-year'].class,
+                    name: "year",
+                    value: formData.dateOfBirth.year
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Next"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

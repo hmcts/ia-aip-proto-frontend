@@ -3,6 +3,7 @@ module.exports = {
   taskList: '/task-list',
   homeOfficeDetails: '/home-office-details',
   personalDetails: '/personal-details',
+  dateOfBirth: '/date-of-birth',
   contactDetails: '/your-contact-details',
   typeOfAppeal: '/type-of-appeal',
   reasonsForAppeal: '/reasons-for-appeal',

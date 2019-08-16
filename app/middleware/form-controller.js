@@ -2,13 +2,20 @@ const paths = require('../paths');
 const { validationResult } = require('express-validator');
 
 function formController(
-  template, sessionGroupName, sessionFieldName, validateMethod, extractBodyMethod, extraFieldErrors
+  template,
+  sessionGroupName,
+  sessionFieldName,
+  validateMethod,
+  extractBodyMethod,
+  extraFieldErrors,
+  nextPage = paths.taskList,
+  previousPage = paths.taskList
 ) {
   return {
     get(req, res) {
       const formData = req.session.appealData[sessionGroupName][sessionFieldName];
 
-      res.render(template, { formData });
+      res.render(template, { formData, previousPage });
     },
 
     validation: validateMethod,
@@ -44,10 +51,12 @@ function formController(
         return;
       }
 
-      formData.completed = true;
-      req.session.appealData[sessionGroupName][sessionFieldName] = formData;
+      if (nextPage === paths.taskList) {
+        formData.completed = true;
+      }
+      Object.assign(req.session.appealData[sessionGroupName][sessionFieldName], formData);
 
-      res.redirect(paths.taskList);
+      res.redirect(nextPage);
     }
   };
 }
