@@ -1,7 +1,11 @@
 const { formController } = require('./form-controller');
+const { check } = require('express-validator');
 
 function validation() {
-  return [];
+  return [
+    check('why').isLength({ min: 1 }).withMessage('Must enter a reason for your appeal')
+      .isLength({ max: 250 }).withMessage('Reason for appeal too long')
+  ];
 }
 
 function extractBody(req) {
