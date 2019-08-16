@@ -11,41 +11,154 @@
 
             <h1 class="govuk-heading-xl">Check your answers before submitting your appeal</h1>
 
-            <h2 class="govuk-heading-m">Personal details</h2>
+            {% set contactDetails %}
+                {% if appealData.yourDetails.contactDetails.email.selected %}
+                    {{ appealData.yourDetails.contactDetails.email.emailAddress  }}<br />
+                {% endif %}
+                {% if appealData.yourDetails.contactDetails.text.selected %}
+                    {{ appealData.yourDetails.contactDetails.text.phoneNumber }}<br />
+                {% endif %}
+                {% if appealData.yourDetails.contactDetails.post.selected %}
+                    By post
+                {% endif %}
+            {% endset %}
+
+            {% set decisionType %}
+                {% if appealData.appealDetails.typeOfAppeal.protection %}
+                    Protection<br />
+                {% endif %}
+                {% if appealData.appealDetails.typeOfAppeal.humanRights %}
+                    Human Rights<br />
+                {% endif %}
+                {% if appealData.appealDetails.typeOfAppeal.eea %}
+                    European Economic Area (EEA)<br />
+                {% endif %}
+                {% if appealData.appealDetails.typeOfAppeal.revocationOfProtection %}
+                    Revocation of Protection Status<br />
+                {% endif %}
+                {% if appealData.appealDetails.typeOfAppeal.deprivationOfCitizenship %}
+                    Deprivation of Citizenship<br />
+                {% endif %}
+            {% endset %}
 
             {{ govukSummaryList({
                 classes: 'govuk-!-margin-bottom-9',
                 rows: [
                     {
                         key: {
-                        text: "Home Office reference number"
-                    },
-                        value: {
-                        text: appealData.yourDetails.homeOffice.refNumber
-                    },
-                        actions: {
-                        items: [
-                            {
-                                href: "/home-office-details",
-                                text: "Change",
-                                visuallyHiddenText: "home office reference number"
-                            }
-                        ]
-                    }
+                            text: "Home Office reference number"
+                        },
+                            value: {
+                            text: appealData.yourDetails.homeOffice.refNumber
+                        },
+                            actions: {
+                            items: [
+                                {
+                                    href: "/home-office-details",
+                                    text: "Change",
+                                    visuallyHiddenText: "Change home office reference number"
+                                }
+                            ]
+                        }
                     },
                     {
                         key: {
-                        text: "Date letter sent"
+                            text: "Date letter sent"
+                        },
+                            value: {
+                            text: appealData.yourDetails.homeOffice.letterDate.day + ' ' + appealData.yourDetails.homeOffice.letterDate.month + ' ' + appealData.yourDetails.homeOffice.letterDate.year
+                        },
+                            actions: {
+                            items: [
+                                {
+                                    href: "/home-office-details",
+                                    text: "Change",
+                                    visuallyHiddenText: "Change date home office letter sent"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                        text: "Name"
                     },
                         value: {
-                        text: appealData.yourDetails.homeOffice.letterDate.day + ' ' + appealData.yourDetails.homeOffice.letterDate.month + ' ' + appealData.yourDetails.homeOffice.letterDate.year
+                        text: appealData.yourDetails.personalDetails.title + ' ' + appealData.yourDetails.personalDetails.givenNames + ' ' + appealData.yourDetails.personalDetails.familyName
+                    },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/personal-details",
+                                    text: "Change",
+                                    visuallyHiddenText: "Change name"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                        text: "Date of birth"
+                    },
+                        value: {
+                        text: appealData.yourDetails.personalDetails.dateOfBirth.day + ' ' + appealData.yourDetails.personalDetails.dateOfBirth.month + ' ' + appealData.yourDetails.personalDetails.dateOfBirth.year
+                    },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/date-of-borth",
+                                    text: "Change",
+                                    visuallyHiddenText: "Change date of birth"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                        text: "Contact details"
+                    },
+                        value: {
+                            html: contactDetails
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/your-contact-details",
+                                    text: "Change",
+                                    visuallyHiddenText: "Change contact details"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                        text: "Appeal decision type"
+                    },
+                        value: {
+                        html: decisionType
+                    },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/type-of-appeal",
+                                    text: "Change",
+                                    visuallyHiddenText: "Change type of appeal"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                        text: "Reasons for appeal"
+                    },
+                        value: {
+                        text: appealData.appealDetails.reasonsForAppeal.why
                     },
                         actions: {
                         items: [
                             {
-                                href: "/home-office-details",
+                                href: "/reasons-for-appeal",
                                 text: "Change",
-                                visuallyHiddenText: "date home office letter sent"
+                                visuallyHiddenText: "Change reasons for apeal"
                             }
                         ]
                     }
