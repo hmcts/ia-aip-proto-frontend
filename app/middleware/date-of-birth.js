@@ -1,8 +1,13 @@
+const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 const paths = require('../paths');
 
 function validation() {
-  return [];
+  return [
+    check('date-of-birth-day').not().isEmpty().withMessage('Must set date of birth'),
+    check('date-of-birth-month').not().isEmpty().withMessage('Must set date of birth'),
+    check('date-of-birth-year').not().isEmpty().withMessage('Must set date of birth')
+  ];
 }
 
 function extractBody(req) {
@@ -15,6 +20,18 @@ function extractBody(req) {
   };
 }
 
+function extraFieldErrors(fieldErrors) {
+  if (fieldErrors['date-of-birth-day'] ||
+    fieldErrors['date-of-birth-month'] ||
+    fieldErrors['date-of-birth-year']) {
+    fieldErrors['date-of-birth'] = {
+      ...fieldErrors['date-of-birth-day'],
+      ...fieldErrors['date-of-birth-month'],
+      ...fieldErrors['date-of-birth-year']
+    };
+  }
+}
+
 function createFormController() {
   return formController(
     'date-of-birth.html',
@@ -22,7 +39,7 @@ function createFormController() {
     'personalDetails',
     validation,
     extractBody,
-    false,
+    extraFieldErrors,
     false,
     paths.taskList,
     paths.personalDetails

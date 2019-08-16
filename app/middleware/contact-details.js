@@ -1,7 +1,8 @@
 const { formController } = require('./form-controller');
+const { check } = require('express-validator');
 
 function validation() {
-  return [];
+  return [ check('contact').not().isEmpty().withMessage('Must select a contact option') ];
 }
 
 function extractBody(req) {
