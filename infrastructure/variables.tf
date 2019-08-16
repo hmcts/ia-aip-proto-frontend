@@ -20,6 +20,11 @@ variable "env" {
   type = "string"
 }
 
+variable "secure_session" {
+  description = "Whether a secure session is required"
+  default     = "true"
+}
+
 variable "infrastructure_env" {
   default     = "dev"
   description = "Infrastructure environment to point to"

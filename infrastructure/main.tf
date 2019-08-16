@@ -22,12 +22,7 @@ data "azurerm_key_vault" "ia_key_vault" {
   resource_group_name = "${local.key_vault_name}"
 }
 
-data "azurerm_key_vault_secret" "ia_case_api_url" {
-  name      = "ia-case-api-url"
-  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
-}
-
-module "ia_appeal_frontend" {
+module "ia_aip_frontend" {
   source               = "git@github.com:hmcts/cnp-module-webapp?ref=master"
   product              = "${var.product}-${var.component}"
   location             = "${var.location}"
@@ -48,5 +43,17 @@ module "ia_appeal_frontend" {
     WEBSITE_NODE_DEFAULT_VERSION = "8.11.1"
     NODE_ENV                     = "${var.infrastructure_env}"
     IA_CASE_API_URL              = "${data.azurerm_key_vault_secret.ia_case_api_url.value}"
+    REDIS_URL                    = "redis://ignore:${urlencode(module.redis-cache.access_key)}@${module.redis-cache.host_name}:${module.redis-cache.redis_port}?tls=true"
+    SESSION_SECRET               = "${module.redis-cache.access_key}"
+    SECURE_SESSION               = "${var.secure_session}"
   }
+}
+
+module "redis-cache" {
+  source      = "git@github.com:contino/moj-module-redis?ref=master"
+  product     = "${var.product}-redis"
+  location    = "${var.location}"
+  env         = "${var.env}"
+  subnetid    = "${data.terraform_remote_state.core_apps_infrastructure.subnet_ids[1]}"
+  common_tags = "${var.common_tags}"
 }
