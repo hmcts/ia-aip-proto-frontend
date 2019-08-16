@@ -19,6 +19,11 @@ module.exports = (req, res, next) => {
         reasonsForAppeal: {
           completed: false
         }
+      },
+      checkAnswers: {
+        checkAnswers: {
+          completed: false
+        }
       }
     };
   }

@@ -7,6 +7,7 @@ const dateOfBirthController = require('./middleware/date-of-birth');
 const contactDetailsController = require('./middleware/contact-details');
 const typeOfAppealController = require('./middleware/type-of-appeal');
 const reasonsForAppealController = require('./middleware/reasons-for-appeal');
+const checkAnswersController = require('./middleware/check-answers');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -26,8 +27,9 @@ setupFormController(paths.dateOfBirth, dateOfBirthController);
 setupFormController(paths.contactDetails, contactDetailsController);
 setupFormController(paths.typeOfAppeal, typeOfAppealController);
 setupFormController(paths.reasonsForAppeal, reasonsForAppealController);
+setupFormController(paths.checkAnswers, checkAnswersController);
 
-router.use(paths.checkAnswers, require('./middleware/check-answers'));
+router.use(paths.appealSubmitted, require('./middleware/appeal-submitted'));
 router.use(paths.health, require('./middleware/health'));
 router.use(paths.robots, require('./middleware/robots'));
 router.use(paths.endSession, require('./middleware/end-session'));

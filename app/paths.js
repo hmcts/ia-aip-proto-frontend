@@ -8,6 +8,7 @@ module.exports = {
   typeOfAppeal: '/type-of-appeal',
   reasonsForAppeal: '/reasons-for-appeal',
   checkAnswers: '/check-answers',
+  appealSubmitted: '/appeal-submitted',
   health: '/health',
   robots: '/robots.txt',
   endSession: '/end-session'

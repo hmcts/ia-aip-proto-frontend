@@ -4,7 +4,6 @@
 {% from "components/button/macro.njk" import govukButton %}
 {% from "components/checkboxes/macro.njk" import govukCheckboxes %}
 
-
 {% block content %}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds-from-desktop">
@@ -167,19 +166,22 @@
             }) }}
 
             <form action="/check-answers" method="post" novalidate>
-                <div class="govuk-form-group">
-                    <fieldset class="govuk-fieldset">
-                        <div class="govuk-checkboxes">
-                            <div class="govuk-checkboxes__item">
-                                <input class="govuk-checkboxes__input" id="confirm" name="confirm" type="checkbox"
-                                       value="carcasses">
-                                <label class="govuk-label govuk-checkboxes__label" for="confirm">
-                                    I believe the facts stated in this appeal form are true
-                                </label>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
+                {{ govukCheckboxes({
+                    idPrefix: "confirm",
+                    name: "confirm",
+                    fieldset: {
+                        legend: {
+                            isPageHeading: false
+                        }
+                    },
+                    errorMessage: errors.fieldErrors['confirm'],
+                    items: [
+                        {
+                            value: "confirm",
+                            text: "I believe the facts stated in this appeal form are true"
+                        }
+                    ]
+                }) }}
 
                 {{ govukButton({
                     text: "Submit appeal"

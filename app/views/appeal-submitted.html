@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% from "components/button/macro.njk" import govukButton %}
+{% from "components/panel/macro.njk" import govukPanel %}
+
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            {{ govukPanel({
+                titleText: "Your appeal application has been submitted"
+            }) }}
+            <h2 class="govuk-heading-m">What happens next</h2>
+            <p class="govuk-body">You will receive a notification to confirm that the tribunal has received your appeal application</p>
+            <p class="govuk-body">A case worker will read yourt application and check yopu have the right to appeal</p>
+            <p class="govuk-body">A case worker will then get in touch within 14 days to tell you to start builkding your appeal argument</p>
+
+            <h2 class="govuk-heading-m">Things you can do</h2>
+            <p class="govuk-body">Read our guide to b uilding your appeal argument</p>
+            <p class="govuk-body">Find organisations that can help you with your appeal</p>
+            <p class="govuk-body">Call 0330 123 1234 or email support@hmcts.net if you have any questions about your appeal</p>
+        </div>
+    </div>
+{% endblock %}

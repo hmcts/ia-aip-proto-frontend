@@ -8,14 +8,18 @@ function formController(
   validateMethod,
   extractBodyMethod,
   extraFieldErrors,
+  extraModelData,
   nextPage = paths.taskList,
   previousPage = paths.taskList
 ) {
   return {
     get(req, res) {
       const formData = req.session.appealData[sessionGroupName][sessionFieldName];
+      const extraData = extraModelData ? extraModelData(req, res) : {};
 
-      res.render(template, { formData, previousPage });
+      const model = Object.assign({ formData, previousPage }, extraData);
+
+      res.render(template, model);
     },
 
     validation: validateMethod,
@@ -43,6 +47,7 @@ function formController(
 
         res.render(template, {
           formData,
+          previousPage,
           errors: {
             errorList,
             fieldErrors

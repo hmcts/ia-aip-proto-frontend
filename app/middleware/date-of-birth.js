@@ -23,6 +23,7 @@ function createFormController() {
     validation,
     extractBody,
     false,
+    false,
     paths.taskList,
     paths.personalDetails
   );

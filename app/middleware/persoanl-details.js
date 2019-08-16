@@ -20,7 +20,7 @@ function extractBody(req) {
 
 function createFormController() {
   return formController(
-    'personal-details.html', 'yourDetails', 'personalDetails', validation, extractBody, false, paths.dateOfBirth
+    'personal-details.html', 'yourDetails', 'personalDetails', validation, extractBody, false, false, paths.dateOfBirth
   );
 }
 
