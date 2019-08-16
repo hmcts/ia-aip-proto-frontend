@@ -1,0 +1,18 @@
+#!groovy
+properties(
+        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ia-aip-frontend'],
+         pipelineTriggers([[$class: 'GitHubPushTrigger']])]
+)
+
+@Library("Infrastructure")
+
+def product = "is-aip"
+def component = "frontend"
+
+withPipeline("nodejs", product, component) {
+    after('checkout') {sh 'yarn cache clean'}
+    after('build') {sh 'yarn build'}
+//    enableDockerBuild()
+//    installCharts()
+//    before('securitychecks') { sh 'yarn test:audit' }
+}
