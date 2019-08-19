@@ -10,6 +10,7 @@ module.exports = {
   checkAnswers: '/check-answers',
   appealSubmitted: '/appeal-submitted',
   health: '/health',
+  readiness: '/readiness',
   robots: '/robots.txt',
   endSession: '/end-session'
 };
