@@ -4,18 +4,15 @@
 
 {% block content %}
     {{ errorSummary(errors) }}
+    <h1 class="govuk-heading-xl">Why do you think the Home Office decision is wrong?</h1>
 
     <form action="/reasons-for-appeal" method="post">
-
         {{ govukCharacterCount({
             name: "why",
             id: "why",
             maxlength: 250,
             value: formData.why,
             errorMessage: errors.fieldErrors["why"],
-            label: {
-                text: "Why do you think the Home Office decision is wrong"
-            },
             hint: {
                 text: "You can change or add to this information later"
             }
