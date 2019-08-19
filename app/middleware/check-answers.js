@@ -2,8 +2,8 @@ const paths = require('../paths');
 const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 
-function validation() {
-  return [ check('confirm').equals('confirm').withMessage('Confirm to continue') ];
+function validation(locale) {
+  return [ check('confirm').equals('confirm').withMessage(locale.checkAnswers.errors.notChecked) ];
 }
 
 function extractBody() {

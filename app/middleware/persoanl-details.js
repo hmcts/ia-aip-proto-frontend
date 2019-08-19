@@ -2,11 +2,12 @@ const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 const paths = require('../paths');
 
-function validation() {
+function validation(locale) {
+  const errors = locale.personalDetails.errors;
   return [
-    check('title').not().isEmpty().withMessage('Must enter title'),
-    check('given-names').not().isEmpty().withMessage('Must enter given names'),
-    check('family-name').not().isEmpty().withMessage('Must enter family name')
+    check('title').not().isEmpty().withMessage(errors.title),
+    check('given-names').not().isEmpty().withMessage(errors.givenName),
+    check('family-name').not().isEmpty().withMessage(errors.familyName)
   ];
 }
 

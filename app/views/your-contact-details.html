@@ -22,7 +22,8 @@
                 attributes: {
                     spellcheck: "false"
                 },
-                value: formData.email.emailAddress
+                value: formData.email.emailAddress,
+                errorMessage: errors.fieldErrors["contact-by-email"]
             }) }}
         {% endset -%}
 
@@ -35,7 +36,8 @@
                 label: {
                     text: "Mobile phone number"
                 },
-                value: formData.text.phoneNumber
+                value: formData.text.phoneNumber,
+                errorMessage: errors.fieldErrors["contact-by-text"]
             }) }}
         {% endset -%}
 

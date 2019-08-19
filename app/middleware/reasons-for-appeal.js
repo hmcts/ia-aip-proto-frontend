@@ -1,10 +1,10 @@
 const { formController } = require('./form-controller');
 const { check } = require('express-validator');
 
-function validation() {
+function validation(locale) {
   return [
-    check('why').isLength({ min: 1 }).withMessage('Must enter a reason for your appeal')
-      .isLength({ max: 250 }).withMessage('Reason for appeal too long')
+    check('why').isLength({ min: 1 }).withMessage(locale.reasonsForAppeal.errors.tooShort)
+      .isLength({ max: 250 }).withMessage(locale.reasonsForAppeal.errors.tooLong)
   ];
 }
 

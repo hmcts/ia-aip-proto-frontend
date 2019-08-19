@@ -1,8 +1,8 @@
 const { formController } = require('./form-controller');
 const { check } = require('express-validator');
 
-function validation() {
-  return [ check('appealType').not().isEmpty().withMessage('Must select an appeal type') ];
+function validation(locale) {
+  return [ check('appealType').not().isEmpty().withMessage(locale.typeOfAppeal.errors.selectOne) ];
 }
 
 function extractBody(req) {

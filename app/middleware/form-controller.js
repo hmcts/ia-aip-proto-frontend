@@ -28,8 +28,10 @@ function formController(
       const errors = validationResult(req);
 
       const formData = extractBodyMethod(req);
+
       if (!errors.isEmpty()) {
         const fieldErrors = {};
+        const fileErrorMessage = [];
         const errorList = errors.formatWith(({ msg, param }) => {
           fieldErrors[param] = {
             text: msg,
@@ -39,7 +41,11 @@ function formController(
             text: msg,
             href: `#${param}`
           };
-        }).array();
+        }).array().filter(v => {
+          const alreadySeen = fileErrorMessage.indexOf(v.text) === -1;
+          fileErrorMessage.push(v.text);
+          return alreadySeen;
+        });
 
         if (extraFieldErrors) {
           extraFieldErrors(fieldErrors);

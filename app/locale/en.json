@@ -5,6 +5,43 @@
     "weNeedToAsk": "We need to ask you a few questions before you can submit your appeal. It will only take a few minutes.",
     "decisionLetter": "You will need to have the decision letter that you received from the Home Office with you to answer some of the questions."
   },
+  "homeOfficeDetails": {
+    "errors": {
+      "invalidReference": "Home office reference number does not match correct pattern",
+      "dateLetterSent": "Must set date letter sent"
+    }
+  },
+  "personalDetails": {
+    "errors": {
+      "title": "Must enter title",
+      "givenName": "Must enter given names",
+      "familyName": "Must enter family name",
+      "dateOfBirth": "Must set date of birth"
+    }
+  },
+  "contactDetails": {
+    "errors": {
+      "selectAnOption": "Must select a contact option",
+      "email": "Email must be valid",
+      "text": "Telephone number must be valid"
+    }
+  },
+  "typeOfAppeal": {
+    "errors": {
+      "selectOne": "Must select an appeal type"
+    }
+  },
+  "reasonsForAppeal": {
+    "errors": {
+      "tooShort": "Must enter a reason for your appeal",
+      "tooLong": "Reason for appeal too long"
+    }
+  },
+  "checkAnswers": {
+    "errors": {
+      "notChecked": "Confirm to continue"
+    }
+  },
   "taskList": {
     "header": "Start your appeal"
   },

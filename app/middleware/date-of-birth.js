@@ -2,11 +2,12 @@ const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 const paths = require('../paths');
 
-function validation() {
+function validation(locale) {
+  const dateOfBirthError = locale.personalDetails.errors.dateOfBirth;
   return [
-    check('date-of-birth-day').not().isEmpty().withMessage('Must set date of birth'),
-    check('date-of-birth-month').not().isEmpty().withMessage('Must set date of birth'),
-    check('date-of-birth-year').not().isEmpty().withMessage('Must set date of birth')
+    check('date-of-birth-day').isInt({ min: 1, max: 31 }).withMessage(dateOfBirthError),
+    check('date-of-birth-month').isInt({ min: 1, max: 12 }).withMessage(dateOfBirthError),
+    check('date-of-birth-year').isInt({ min: 1000, max: 9999 }).withMessage(dateOfBirthError)
   ];
 }
 

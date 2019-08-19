@@ -1,12 +1,14 @@
 const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 
-function validation() {
+function validation(locale) {
+  const dateLetterSentError = locale.homeOfficeDetails.errors.dateLetterSent;
   return [
-    check('home-office-ref-number').not().isEmpty().withMessage('Must set home office ref number'),
-    check('date-letter-sent-day').not().isEmpty().withMessage('Must set date letter sent'),
-    check('date-letter-sent-month').not().isEmpty().withMessage('Must set date letter sent'),
-    check('date-letter-sent-year').not().isEmpty().withMessage('Must set date letter sent')
+    check('home-office-ref-number').matches(/^[A-Za-z][0-9]{6}[0-9]?(|\/[0-9][0-9]?[0-9]?)$/)
+      .withMessage(locale.homeOfficeDetails.errors.invalidReference),
+    check('date-letter-sent-day').isInt({ min: 1, max: 31 }).withMessage(dateLetterSentError),
+    check('date-letter-sent-month').isInt({ min: 1, max: 12 }).withMessage(dateLetterSentError),
+    check('date-letter-sent-year').isInt({ min: 1000, max: 9999 }).withMessage(dateLetterSentError)
   ];
 }
 

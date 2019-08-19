@@ -1,5 +1,6 @@
 const express = require('express');
 const paths = require('./paths');
+const locale = require('./locale/en.json');
 
 const homeOfficeController = require('./middleware/home-office-details');
 const personalDetailsController = require('./middleware/persoanl-details');
@@ -16,7 +17,7 @@ const router = express.Router({});
 function setupFormController(path, formController) {
   const formControllerInstance = formController.createFormController();
   router.get(path, formControllerInstance.get);
-  router.post(path, formControllerInstance.validation(), formControllerInstance.post);
+  router.post(path, formControllerInstance.validation(locale), formControllerInstance.post);
 }
 
 router.use(paths.taskList, require('./middleware/task-list'));
