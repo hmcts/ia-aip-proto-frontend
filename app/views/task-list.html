@@ -75,9 +75,13 @@
     <ul class="app-task-list__items">
       <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="/check-answers">
-                      Review and submit your appeal
-                    </a>
+                    {% if hasAnsweredAllQuestion %}
+                        <a href="/check-answers">
+                            Review and submit your appeal
+                        </a>
+                    {% else %}
+                        Review and submit your appeal
+                    {% endif %}
                   </span>
       </li>
     </ul>
