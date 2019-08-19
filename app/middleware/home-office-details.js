@@ -3,8 +3,7 @@ const { formController } = require('./form-controller');
 
 function validation() {
   return [
-    check('home-office-ref-number').not().isEmpty().withMessage('Must set home office ref number')
-      .isNumeric().withMessage('Invalid home office ref'),
+    check('home-office-ref-number').not().isEmpty().withMessage('Must set home office ref number'),
     check('date-letter-sent-day').not().isEmpty().withMessage('Must set date letter sent'),
     check('date-letter-sent-month').not().isEmpty().withMessage('Must set date letter sent'),
     check('date-letter-sent-year').not().isEmpty().withMessage('Must set date letter sent')

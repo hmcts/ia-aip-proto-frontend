@@ -1,5 +1,5 @@
 const { Express } = require('@hmcts/nodejs-logging');
-const { Logger } = require('@hmcts/nodejs-logging');
+// const { Logger } = require('@hmcts/nodejs-logging');
 
 const appInsights = require('./app-insights');
 const express = require('express');
@@ -10,13 +10,13 @@ const locale = require('./app/locale/en.json');
 const routes = require('./app/routes');
 
 const session = require('express-session');
-const redis = require('redis');
-const RedisStore = require('connect-redis')(session);
+// const redis = require('redis');
+// const RedisStore = require('connect-redis')(session);
 const config = require('config');
 const bodyParser = require('body-parser');
 const createModel = require('./app/middleware/create-model');
 
-const logger = Logger.getLogger('server.js');
+// const logger = Logger.getLogger('server.js');
 
 
 const notFoundHandler = require('./app/middleware/errors/404-not-found');
@@ -30,25 +30,32 @@ function create(options) {
 
   const app = express();
 
-  const redisClient = redis.createClient();
-  redisClient.on('error', error => {
-    logger.error(`Redis error: ${error}`);
-  });
+  // const redisClient = redis.createClient();
+  // redisClient.on('error', error => {
+  //   logger.error(`Redis error: ${error}`);
+  // });
 
   app.use(bodyParser.urlencoded({
     extended: true
   }));
 
-  const sessionUrl = config.get('session.redis.url');
-  const ttlInSeconds = config.get('session.redis.ttlInSeconds');
+  // const sessionUrl = config.get('session.redis.url');
+  // const ttlInSeconds = config.get('session.redis.ttlInSeconds');
   const sessionSecret = config.get('session.redis.secret');
+  // app.use(session({
+  //   secret: sessionSecret,
+  //   name: 'ia-aip-frontend',
+  //   resave: false,
+  //   saveUninitialized: true,
+  //   cookie: { secure: false },
+  //   store: new RedisStore({ url: sessionUrl, client: redisClient, ttl: ttlInSeconds })
+  // }));
+
   app.use(session({
     secret: sessionSecret,
-    name: 'ia-aip-frontend',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },
-    store: new RedisStore({ url: sessionUrl, client: redisClient, ttl: ttlInSeconds })
+    cookie: { secure: false }
   }));
 
   security.apply(app);
