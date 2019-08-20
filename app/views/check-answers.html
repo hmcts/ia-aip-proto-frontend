@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 
-{% from "components/summary-list/macro.njk" import govukSummaryList %}
-{% from "components/button/macro.njk" import govukButton %}
-{% from "components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
 {% block content %}
     {{ errorSummary(errors) }}

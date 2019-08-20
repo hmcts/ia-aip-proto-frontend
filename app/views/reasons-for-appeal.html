@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
-{% from "components/button/macro.njk" import govukButton %}
-{% from "components/character-count/macro.njk" import govukCharacterCount %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
 
 {% block content %}
     {{ errorSummary(errors) }}

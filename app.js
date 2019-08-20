@@ -62,7 +62,7 @@ function create(options) {
 
   nunjucks.configure([
     './app/views',
-    './node_modules/govuk-frontend/govuk/',
+    './node_modules/govuk-frontend/',
     './node_modules/govuk-frontend/govuk/components/'
   ], {
     autoescape: true,
