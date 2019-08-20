@@ -11,6 +11,7 @@ module.exports = {
   appealSubmitted: '/appeal-submitted',
   health: '/health',
   readiness: '/readiness',
+  liveness: '/liveness',
   robots: '/robots.txt',
   endSession: '/end-session'
 };
