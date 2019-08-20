@@ -1,5 +1,6 @@
 module.exports = {
-  index: '/start',
+  index: '/',
+  start: '/start',
   taskList: '/task-list',
   homeOfficeDetails: '/home-office-details',
   personalDetails: '/personal-details',
