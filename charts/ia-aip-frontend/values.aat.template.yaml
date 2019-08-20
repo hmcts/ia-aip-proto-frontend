@@ -1,0 +1,4 @@
+nodejs:
+  environment:
+    NODE_ENV: preview
+    HTTP_PROTOCOL: http

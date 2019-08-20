@@ -13,7 +13,7 @@ withPipeline("nodejs", product, component) {
     after('checkout') {sh 'yarn cache clean'}
     after('build') {sh 'yarn build'}
     enableDockerBuild()
-    enableDeployToAKS()
+    installCharts()
 //    installCharts()
 //    before('securitychecks') { sh 'yarn test:audit' }
 
