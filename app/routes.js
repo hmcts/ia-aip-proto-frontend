@@ -32,6 +32,8 @@ setupFormController(paths.checkAnswers, checkAnswersController);
 
 router.use(paths.appealSubmitted, require('./middleware/appeal-submitted'));
 router.use(paths.health, require('./middleware/health'));
+router.use(paths.readiness, (req, res) => res.json({}));
+router.use(paths.liveness, (req, res) => res.json({}));
 router.use(paths.robots, require('./middleware/robots'));
 router.use(paths.endSession, require('./middleware/end-session'));
 router.use(paths.index, require('./middleware/start'));

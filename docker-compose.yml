@@ -1,14 +1,9 @@
-version: '2.1'
-
+version: '3'
 services:
-  ia-aip-frontend:
-    build:
-      context: .
-      args:
-        - http_proxy
-        - https_proxy
-        - no_proxy
-    image: hmcts/ia-aip-frontend
-    container_name: ia-aip-frontend
+  frontend:
+    build: .
     ports:
-      - ${PORT:-3000}:${PORT:-3000}
+      - "3000:3000"
+    volumes:
+      - "./"
+    command: "yarn dev"
