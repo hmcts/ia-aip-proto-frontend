@@ -10,7 +10,7 @@
         {{ govukCharacterCount({
             name: "why",
             id: "why",
-            maxlength: 250,
+            maxwords: 250,
             value: formData.why,
             errorMessage: errors.fieldErrors["why"],
             hint: {
