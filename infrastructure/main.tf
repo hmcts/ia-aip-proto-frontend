@@ -22,6 +22,26 @@ data "azurerm_key_vault" "ia_key_vault" {
   resource_group_name = "${local.key_vault_name}"
 }
 
+data "azurerm_key_vault_secret" "system_username" {
+  name      = "system-username"
+  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
+}
+
+data "azurerm_key_vault_secret" "system_password" {
+  name      = "system-password"
+  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
+}
+
+data "azurerm_key_vault_secret" "s2s_secret" {
+  name      = "s2s-secret"
+  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
+}
+
+data "azurerm_key_vault_secret" "idam_client_id" {
+  name      = "idam-client-id"
+  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
+}
+
 module "ia_aip_frontend" {
   source               = "git@github.com:hmcts/cnp-module-webapp?ref=master"
   product              = "${var.product}-${var.component}"
@@ -43,5 +63,13 @@ module "ia_aip_frontend" {
     WEBSITE_NODE_DEFAULT_VERSION = "8.11.1"
     NODE_ENV                     = "${var.infrastructure_env}"
     SECURE_SESSION               = "${var.secure_session}"
+    CCD_URL                      = "${var.ccd_url}"
+    S2S_SECRET                   = "${data.azurerm_key_vault_secret.s2s_secret.value}"
+    S2S_URL                      = "${var.s2s_url}"
+    IDAM_URL                     = "${var.idam_url}"
+    IDAM_SYSTEMUPDATE_USER       = "${data.azurerm_key_vault_secret.system_username.value}"
+    IDAM_SYSTEMUPDATE_PASSWORD   = "${data.azurerm_key_vault_secret.system_password.value}"
+    IDAM_CLIENT_SECRET           = "${data.azurerm_key_vault_secret.idam_client_id.value}"
+    IDAM_REDIRECT_URL            = "${var.idam_redirect_url}"
   }
 }
