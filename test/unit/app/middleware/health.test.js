@@ -29,11 +29,4 @@ describe('middleware/health', () => {
 
     expect(res.json).to.have.been.calledOnce.calledWith({ status: 'UP' });
   });
-
-  it('returns health DOWN as JSON when modules are not OK', () => {
-    execSync.throws(1);
-    health(req, res);
-
-    expect(res.json).to.have.been.calledOnce.calledWith({ status: 'DOWN' });
-  });
 });
