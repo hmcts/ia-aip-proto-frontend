@@ -37,8 +37,8 @@ data "azurerm_key_vault_secret" "s2s_secret" {
   vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
 }
 
-data "azurerm_key_vault_secret" "idam_client_id" {
-  name      = "idam-client-id"
+data "azurerm_key_vault_secret" "idam-secret" {
+  name      = "idam-secret"
   vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
 }
 
@@ -69,7 +69,7 @@ module "ia_aip_frontend" {
     IDAM_URL                     = "${var.idam_url}"
     IDAM_SYSTEMUPDATE_USER       = "${data.azurerm_key_vault_secret.system_username.value}"
     IDAM_SYSTEMUPDATE_PASSWORD   = "${data.azurerm_key_vault_secret.system_password.value}"
-    IDAM_CLIENT_SECRET           = "${data.azurerm_key_vault_secret.idam_client_id.value}"
+    IDAM_CLIENT_SECRET           = "${data.azurerm_key_vault_secret.idam-secret.value}"
     IDAM_REDIRECT_URL            = "${var.idam_redirect_url}"
   }
 }
