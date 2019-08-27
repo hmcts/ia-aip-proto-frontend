@@ -51,3 +51,18 @@ variable "instance_size" {
 variable "additional_hostname" {
   default = "ia-apfr.sandbox.platform.hmcts.net"
 }
+
+variable "s2s_url" {
+}
+
+variable "idam_url" {
+}
+
+variable "idam_systemupdate_user" {
+}
+
+variable "ccd_url" {
+}
+
+variable "idam_redirect_url" {
+}

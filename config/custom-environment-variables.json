@@ -30,5 +30,19 @@
       "maxAgeInMs": "SESSION_COOKIE_MAX_AGE",
       "secure": "SECURE_SESSION"
     }
+  },
+  "ccd": {
+    "url": "CCD_URL"
+  },
+  "s2s": {
+    "secret": "S2S_SECRET",
+    "url": "S2S_URL"
+  },
+  "idam": {
+    "url": "IDAM_URL",
+    "user": "IDAM_SYSTEMUPDATE_USER",
+    "password": "IDAM_SYSTEMUPDATE_PASSWORD",
+    "clientSecret": "IDAM_CLIENT_SECRET",
+    "redirectUrl": "IDAM_REDIRECT_URL"
   }
 }

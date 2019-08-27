@@ -26,5 +26,22 @@
       "maxAgeInMs": 1200000,
       "secure": "false"
     }
+  },
+  "ccd": {
+    "url": "http://localhost",
+    "jurisdictionId": "IA",
+    "caseType": "Asylum"
+  },
+  "microservice": "iac",
+  "s2s": {
+    "secret": "AAAAAAAAAAAAAAAA",
+    "url": "http://locahost"
+  },
+  "idam": {
+    "url": "http://localhost",
+    "user": "user@example.com",
+    "password": "changeme",
+    "clientSecret": "password",
+    "redirectUrl": "http://localhost"
   }
 }
