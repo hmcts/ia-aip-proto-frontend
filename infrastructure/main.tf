@@ -23,12 +23,12 @@ data "azurerm_key_vault" "ia_key_vault" {
 }
 
 data "azurerm_key_vault_secret" "system_username" {
-  name      = "system-username"
+  name      = "test-law-firm-a-username"
   vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
 }
 
 data "azurerm_key_vault_secret" "system_password" {
-  name      = "system-password"
+  name      = "test-law-firm-a-password"
   vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
 }
 
