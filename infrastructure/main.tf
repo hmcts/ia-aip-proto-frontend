@@ -42,7 +42,7 @@ data "azurerm_key_vault_secret" "system_password" {
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
-  name      = "s2s-secret"
+  name      = "sscs-s2s-secret"
   vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
 
