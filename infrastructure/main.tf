@@ -9,10 +9,6 @@ locals {
   preview_vault_name              = "${var.raw_product}-aat"
   non_preview_vault_name          = "${var.raw_product}-${var.env}"
   key_vault_name                  = "${var.env == "preview" || var.env == "spreview" ? local.preview_vault_name : local.non_preview_vault_name}"
-
-  sscs_preview_vault_name              = "sscs-aat"
-  sscs_non_preview_vault_name          = "sscs-${var.env}"
-  sscs_key_vault_name                  = "${var.env == "preview" || var.env == "spreview" ? local.sscs_preview_vault_name : local.sscs_non_preview_vault_name}"
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -36,9 +32,9 @@ data "azurerm_key_vault_secret" "system_password" {
   vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
 }
 
-data "azurerm_key_vault_secret" "sscs_s2s_secret" {
-  name      = "sscs-s2s-secret"
-  vault_uri = "https://sscs-aat.vault.azure.net/"
+data "azurerm_key_vault_secret" "s2s_secret" {
+  name      = "s2s-secret"
+  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
 }
 
 data "azurerm_key_vault_secret" "idam-secret" {
@@ -68,7 +64,7 @@ module "ia_aip_frontend" {
     NODE_ENV                     = "${var.infrastructure_env}"
     SECURE_SESSION               = "${var.secure_session}"
     CCD_URL                      = "${var.ccd_url}"
-    S2S_SECRET                   = "${data.azurerm_key_vault_secret.sscs_s2s_secret.value}"
+    S2S_SECRET                   = "${data.azurerm_key_vault_secret.s2s_secret.value}"
     S2S_URL                      = "${var.s2s_url}"
     IDAM_URL                     = "${var.idam_url}"
     IDAM_SYSTEMUPDATE_USER       = "${data.azurerm_key_vault_secret.system_username.value}"
