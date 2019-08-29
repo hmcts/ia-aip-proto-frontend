@@ -41,7 +41,7 @@ data "azurerm_key_vault_secret" "system_password" {
   vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
 }
 
-data "azurerm_key_vault_secret" "s2s_secret" {
+data "azurerm_key_vault_secret" "sscs_s2s_secret" {
   name      = "sscs-s2s-secret"
   vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
@@ -73,7 +73,7 @@ module "ia_aip_frontend" {
     NODE_ENV                     = "${var.infrastructure_env}"
     SECURE_SESSION               = "${var.secure_session}"
     CCD_URL                      = "${var.ccd_url}"
-    S2S_SECRET                   = "${data.azurerm_key_vault_secret.s2s_secret.value}"
+    S2S_SECRET                   = "${data.azurerm_key_vault_secret.sscs_s2s_secret.value}"
     S2S_URL                      = "${var.s2s_url}"
     IDAM_URL                     = "${var.idam_url}"
     IDAM_SYSTEMUPDATE_USER       = "${data.azurerm_key_vault_secret.system_username.value}"
