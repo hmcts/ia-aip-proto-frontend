@@ -26,11 +26,6 @@ data "azurerm_key_vault" "ia_key_vault" {
   resource_group_name = "${local.key_vault_name}"
 }
 
-data "azurerm_key_vault" "sscs_key_vault" {
-  name                = "${local.sscs_key_vault_name}"
-  resource_group_name = "${local.sscs_key_vault_name}"
-}
-
 data "azurerm_key_vault_secret" "system_username" {
   name      = "test-law-firm-a-username"
   vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
@@ -43,7 +38,7 @@ data "azurerm_key_vault_secret" "system_password" {
 
 data "azurerm_key_vault_secret" "sscs_s2s_secret" {
   name      = "sscs-s2s-secret"
-  vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
+  vault_uri = "https://sscs-aat.vault.azure.net/"
 }
 
 data "azurerm_key_vault_secret" "idam-secret" {
