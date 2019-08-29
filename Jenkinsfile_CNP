@@ -34,7 +34,6 @@ withPipeline("nodejs", product, component) {
     after('build') {sh 'yarn build'}
     enableDockerBuild()
     installCharts()
-
     loadVaultSecrets(secrets)
 
     before('buildinfra:prod') {
