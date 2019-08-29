@@ -14,9 +14,6 @@ def secrets = [
                 secret('test-law-firm-a-username', 'IDAM_SYSTEMUPDATE_USER'),
                 secret('test-law-firm-a-password', 'IDAM_SYSTEMUPDATE_PASSWORD'),
                 secret('idam-secret', 'IDAM_CLIENT_SECRET'),
-        ],
-        'sscs-${env}': [
-                secret('sscs-s2s-secret', 'S2S_SECRET')
         ]
 ]
 
