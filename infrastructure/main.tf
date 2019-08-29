@@ -33,8 +33,8 @@ data "azurerm_key_vault_secret" "system_password" {
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
-  name      = "s2s-secret"
-  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
+  name      = "sscs-s2s-secret"
+  vault_uri = "https://sscs-aat.vault.azure.net/"
 }
 
 data "azurerm_key_vault_secret" "idam-secret" {
