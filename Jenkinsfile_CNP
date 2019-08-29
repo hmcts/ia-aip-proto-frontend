@@ -14,12 +14,9 @@ def secrets = [
                 secret('test-law-firm-a-username', 'IDAM_SYSTEMUPDATE_USER'),
                 secret('test-law-firm-a-password', 'IDAM_SYSTEMUPDATE_PASSWORD'),
                 secret('idam-secret', 'IDAM_CLIENT_SECRET')
-        ]
-]
-
-def sscs_secrets = [
+        ],
         'sscs-${env}': [
-                secret('sscs-s2s-secret', 'S2S_SECRET')
+            secret('sscs-s2s-secret', 'S2S_SECRET')
         ]
 ]
 
@@ -39,7 +36,6 @@ withPipeline("nodejs", product, component) {
     installCharts()
 
     loadVaultSecrets(secrets)
-    loadVaultSecrets(sscs_secrets)
 
     before('buildinfra:prod') {
         currentBuild.result = 'Success'
