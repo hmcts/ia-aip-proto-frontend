@@ -9,6 +9,10 @@ locals {
   preview_vault_name              = "${var.raw_product}-aat"
   non_preview_vault_name          = "${var.raw_product}-${var.env}"
   key_vault_name                  = "${var.env == "preview" || var.env == "spreview" ? local.preview_vault_name : local.non_preview_vault_name}"
+
+  sscs_preview_vault_name              = "sscs-aat"
+  sscs_non_preview_vault_name          = "sscs-${var.env}"
+  sscs_key_vault_name                  = "${var.env == "preview" || var.env == "spreview" ? local.sscs_preview_vault_name : local.sscs_non_preview_vault_name}"
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -20,6 +24,11 @@ resource "azurerm_resource_group" "rg" {
 data "azurerm_key_vault" "ia_key_vault" {
   name                = "${local.key_vault_name}"
   resource_group_name = "${local.key_vault_name}"
+}
+
+data "azurerm_key_vault" "sscs_key_vault" {
+  name                = "${local.sscs_key_vault_name}"
+  resource_group_name = "${local.sscs_key_vault_name}"
 }
 
 data "azurerm_key_vault_secret" "system_username" {
@@ -34,7 +43,7 @@ data "azurerm_key_vault_secret" "system_password" {
 
 data "azurerm_key_vault_secret" "s2s_secret" {
   name      = "s2s-secret"
-  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
+  vault_uri = "${data.azurerm_key_vault.sscs_key_vault.vault_uri}"
 }
 
 data "azurerm_key_vault_secret" "idam-secret" {
