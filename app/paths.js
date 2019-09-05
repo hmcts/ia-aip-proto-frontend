@@ -16,5 +16,6 @@ module.exports = {
   robots: '/robots.txt',
   endSession: '/end-session',
   signIn: '/sign-in',
-  caseBuildingOverview: '/case-building/overview'
+  caseBuildingOverview: '/case-building/overview',
+  whyAppealingDescription: '/case-building/why-appealing-description'
 };

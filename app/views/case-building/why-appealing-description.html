@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+    <h1 class="govuk-heading-xl">Tell us why you're appealing</h1>
+    <h2 class="govuk-heading-m">Before you start</h2>
+    <p class="govuk-body">It will help if you:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>Creafully read your Home Office decision letter</li>
+        <li>Try to understand the parts of your claim the Home Office disagrees with</li>
+        <li>Respond to some or all the things the Home Office disagrees with</li>
+        <li>Include evidence where you can</li>
+    </ul>
+    <p class="govuk-body">You might also want to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>Tell us about anything <b>new</b> that will affect your case since you made your appeal</li>
+        <li>Include evidence where you can</li>
+    </ul>
+    <p>If you need help understanding the Home Office decision letter or with any other part of your appeal you should:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>Try to find legal advice</li>
+        <li><a href="#" class="govuk-link">Find organisations that can support you</a></li>
+        <li>
+            Call the Tribunal on 0300 123 1711 oe email
+            <a href="mailto:customer.service@justice.gov.uk" class="govuk-link">customer.service@justice.gov.uk</a>
+        </li>
+    </ul>
+
+    {{ govukButton({
+        text: "Next",
+        href: "#",
+        isStartButton: false
+    }) }}
+{% endblock %}
