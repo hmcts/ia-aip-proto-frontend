@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+    <h1 class="govuk-heading-xl">Sign in or create an account</h1>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half column--bordered">
+            <h2 class="govuk-heading-l">Sign in</h2>
+
+            {{ input("Email address", "email") }}
+
+            {{ input("Password", "password") }}
+
+            <p>
+                <a href="#" class="govuk-link" aria-describedby="Forgotten-password">Forgotten password?</a>
+            </p>
+
+            {{ govukButton({
+                text: "Sign in",
+                href: "/foo",
+                isStartButton: false
+            }) }}
+
+        </div>
+        <div class="govuk-grid-column-one-half">
+            <h2 class="govuk-heading-l">Create an account</h2>
+            <p>You need to <a href="#" class="govuk-link" aria-describedby="create-account">create an account</a> to use this service</p>
+        </div>
+
+    </div>
+
+{% endblock %}

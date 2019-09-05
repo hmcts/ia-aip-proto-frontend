@@ -36,6 +36,7 @@ router.use(paths.readiness, (req, res) => res.json({}));
 router.use(paths.liveness, (req, res) => res.json({}));
 router.use(paths.robots, require('./middleware/robots'));
 router.use(paths.endSession, require('./middleware/end-session'));
+router.use(paths.signIn, require('./middleware/idam/sign-in'));
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));
 

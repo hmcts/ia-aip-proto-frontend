@@ -14,5 +14,6 @@ module.exports = {
   readiness: '/readiness',
   liveness: '/liveness',
   robots: '/robots.txt',
-  endSession: '/end-session'
+  endSession: '/end-session',
+  signIn: '/sign-in'
 };
