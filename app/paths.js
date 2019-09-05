@@ -15,5 +15,6 @@ module.exports = {
   liveness: '/liveness',
   robots: '/robots.txt',
   endSession: '/end-session',
-  signIn: '/sign-in'
+  signIn: '/sign-in',
+  caseBuildingOverview: '/case-building/overview'
 };

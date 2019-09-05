@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+
+{% block content %}
+    <h1 class="govuk-heading-xl" style="margin-bottom: 10px">{{ appealData.yourDetails.personalDetails.givenNames }} {{ appealData.yourDetails.personalDetails.familyName }}</h1>
+    <p class="govuk-body">Appeal reference: {{ appealData.yourDetails.homeOffice.refNumber }}</p>
+
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+    {% set overview %}
+        <h2 class="govuk-heading-m">Current progress of the case</h2>
+
+        <h2 class="govuk-heading-m">Do this next</h2>
+        <p class="govuk-body">We are now going to ask you why you're appealing against the Home Office's decision.</p>
+        <p class="govuk-body">What you'll need</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>
+                The Home Office decision letter, which you can access within the Home office bundle in the
+                <a href="#" class="govuk-link" aria-describedby="documents-tab">documents tab</a>
+            </li>
+            <li>Any evidence that will support your appeal</li>
+        </ul>
+        {{ govukButton({
+            text: "Tell us why you're appealing",
+            href: "#",
+            isStartButton: false
+        }) }}
+        <p>
+            You need to respond by XX XXXXXXXX XXXX.
+            <a href="#" class="govuk-link" aria-describedby="ask-for-more-time">Ask for more time</a>
+        </p>
+    {% endset -%}
+
+    {% set appeal %}
+        Appeal
+    {% endset -%}
+
+    {{ govukTabs({
+        items: [
+            {
+                label: "Overview",
+                id: "overview",
+                panel: {
+                html: overview
+            }
+            },
+            {
+                label: "Appeal",
+                id: "appeal",
+                panel: {
+                html: appeal
+            }
+            },
+            {
+                label: "Documents",
+                id: "documents",
+                panel: {
+                html: "documents"
+            }
+            },
+            {
+                label: "Messages",
+                id: "messages",
+                panel: {
+                html: "message"
+            }
+            }
+        ]
+    }) }}
+{% endblock %}
