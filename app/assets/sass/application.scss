@@ -9,3 +9,15 @@ $govuk-assets-path: '/assets/';
 .column--bordered {
   border-right: 3px solid #a1acb2;
 }
+
+.button-link {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: "GDS Transport",Arial,sans-serif;
+  font-size: 19px;
+}

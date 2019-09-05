@@ -7,7 +7,7 @@ const personalDetailsController = require('./middleware/persoanl-details');
 const dateOfBirthController = require('./middleware/date-of-birth');
 const contactDetailsController = require('./middleware/contact-details');
 const typeOfAppealController = require('./middleware/type-of-appeal');
-const reasonsForAppealController = require('./middleware/reasons-for-appeal');
+const reasonsForAppealController = require('./middleware/case-building/reasons-for-appeal');
 const checkAnswersController = require('./middleware/check-answers');
 
 /* eslint-disable new-cap */
@@ -27,8 +27,10 @@ setupFormController(paths.personalDetails, personalDetailsController);
 setupFormController(paths.dateOfBirth, dateOfBirthController);
 setupFormController(paths.contactDetails, contactDetailsController);
 setupFormController(paths.typeOfAppeal, typeOfAppealController);
-setupFormController(paths.reasonsForAppeal, reasonsForAppealController);
 setupFormController(paths.checkAnswers, checkAnswersController);
+
+router.get(paths.reasonsForAppeal, reasonsForAppealController.get);
+router.post(paths.reasonsForAppeal, reasonsForAppealController.validation(locale), reasonsForAppealController.post);
 
 router.use(paths.appealSubmitted, require('./middleware/appeal-submitted'));
 router.use(paths.health, require('./middleware/health'));

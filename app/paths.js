@@ -7,7 +7,6 @@ module.exports = {
   dateOfBirth: '/date-of-birth',
   contactDetails: '/your-contact-details',
   typeOfAppeal: '/type-of-appeal',
-  reasonsForAppeal: '/reasons-for-appeal',
   checkAnswers: '/check-answers',
   appealSubmitted: '/appeal-submitted',
   health: '/health',
@@ -17,5 +16,6 @@ module.exports = {
   endSession: '/end-session',
   signIn: '/sign-in',
   caseBuildingOverview: '/case-building/overview',
-  whyAppealingDescription: '/case-building/why-appealing-description'
+  whyAppealingDescription: '/case-building/why-appealing-description',
+  reasonsForAppeal: '/case-building/reasons-for-appeal'
 };

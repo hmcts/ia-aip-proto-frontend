@@ -1,0 +1,80 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+
+{% block content %}
+    {{ errorSummary(errors) }}
+    <h1 class="govuk-heading-xl">Why do you think the Home Office decision is wrong?</h1>
+    <p class="govuk-body">
+        Tell us the reason or reasons you think the Home Office was wrong to refuse your aslum or immigration claim.
+    </p>
+
+    <form action="/case-building/reasons-for-appeal" method="post">
+        {{ govukTextarea({
+            name: "why",
+            id: "why",
+            value: formData.why,
+            errorMessage: errors.fieldErrors["why"],
+            rows: 12,
+            hint: {
+                html: "<b>Tell us in your own words</b> - you don't have to have perfect English."
+            }
+        }) }}
+
+        {% set fileUpload %}
+            <p>
+                You can upload evidence to support your answer such as letters, photos and documents. If you are taking
+                a picture of a letter, place it on a flat surface and take the picture from above.
+            </p>
+            {{ govukFileUpload({
+                id: "evidenceUpload",
+                name: "evidenceUpload"
+            }) }}
+            {{ govukButton({
+                text: "Upload Evidence",
+                classes: "govuk-button--secondary",
+                name: "upload",
+                value: "upload"
+            }) }}
+
+            {% set evidenceArray = [] %}
+            {% for evidence in formData.evidence %}
+                {% set evidenceArray = (evidenceArray.push([
+                    {
+                        text: evidence
+                    },
+                    {
+                        html: "<button type='submit' name='delete' value='" + loop.index0 + "' class='button-link gov-details'>Delete</button>",
+                        format: "numeric"
+                    }
+                ]), evidenceArray) %}
+            {% endfor %}
+
+            {{ govukTable({
+                caption: "Uploaded files",
+                firstCellIsHeader: false,
+                rows: evidenceArray
+            }) }}
+
+            {{ govukDetails({
+                summaryText: "You can also post evidence to the tribunal",
+                text: "Some content to post evidence"
+            }) }}
+        {% endset -%}
+
+        {{ govukDetails({
+            summaryText: "I want to provide evidence",
+            html: fileUpload,
+            open: formData.evidence
+        }) }}
+
+        {{ govukButton({
+            text: "Next"
+        }) }}
+    </form>
+
+{% endblock %}
