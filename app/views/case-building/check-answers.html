@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+
+        <h1 class="govuk-heading-xl">Carefully check your answer below before clicking submit.</h1>
+
+
+        {{ govukSummaryList({
+            classes: 'govuk-!-margin-bottom-9',
+            rows: [
+                {
+                    key: {
+                        text: "Why do you think the Home Office decision is wrong?"
+                    },
+                    value: {
+                        text: appealData.appealDetails.reasonsForAppeal.why
+                    },
+                    actions: {
+                        items: [
+                            {
+                                href: "/case-building/reasons-for-appeal",
+                                text: "Change",
+                                visuallyHiddenText: "Change why you think the Home Office decision is wrong"
+                            }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                        text: "Document"
+                    },
+                    value: {
+                        html: appealData.appealDetails.reasonsForAppeal.evidence | join("<br />")
+                    }
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Submit",
+            href: "#",
+            isStartButton: false
+        }) }}
+
+    </div>
+{% endblock %}

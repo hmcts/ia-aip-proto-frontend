@@ -69,7 +69,7 @@
         {{ govukDetails({
             summaryText: "I want to provide evidence",
             html: fileUpload,
-            open: formData.evidence
+            open: formData.evidence and formData.evidence.length > 0
         }) }}
 
         {{ govukButton({

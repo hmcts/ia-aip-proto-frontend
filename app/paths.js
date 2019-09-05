@@ -17,5 +17,6 @@ module.exports = {
   signIn: '/sign-in',
   caseBuildingOverview: '/case-building/overview',
   whyAppealingDescription: '/case-building/why-appealing-description',
-  reasonsForAppeal: '/case-building/reasons-for-appeal'
+  reasonsForAppeal: '/case-building/reasons-for-appeal',
+  caseBuildingCheckAnswers: '/case-building/check-answers'
 };

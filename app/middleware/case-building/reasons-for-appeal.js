@@ -25,6 +25,9 @@ function get(req, res) {
 }
 
 function post(req, res) {
+  if (!req.session.appealData.appealDetails.reasonsForAppeal.evidence) {
+    req.session.appealData.appealDetails.reasonsForAppeal.evidence = [];
+  }
   if (req.body.delete && req.session.appealData.appealDetails.reasonsForAppeal.evidence) {
     const submittedFormData = extractBody(req);
     Object.assign(req.session.appealData.appealDetails.reasonsForAppeal, submittedFormData);
@@ -36,9 +39,6 @@ function post(req, res) {
   } else if (req.body.upload) {
     const fileName = req.body.evidenceUpload;
     if (fileName) {
-      if (!req.session.appealData.appealDetails.reasonsForAppeal.evidence) {
-        req.session.appealData.appealDetails.reasonsForAppeal.evidence = [];
-      }
       req.session.appealData.appealDetails.reasonsForAppeal.evidence.push(fileName);
     }
     const formData = extractBody(req);
@@ -81,7 +81,7 @@ function post(req, res) {
 
     Object.assign(req.session.appealData.appealDetails.reasonsForAppeal, formData);
 
-    res.redirect('/tbc');
+    res.redirect(paths.caseBuildingCheckAnswers);
   }
 }
 
