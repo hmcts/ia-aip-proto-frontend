@@ -49,6 +49,7 @@ function post(req, res) {
     const errors = validationResult(req);
 
     const formData = extractBody(req);
+    formData.evidence = req.session.appealData.appealDetails.reasonsForAppeal.evidence;
 
     if (!errors.isEmpty()) {
       const fieldErrors = {};
