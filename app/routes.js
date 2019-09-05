@@ -42,6 +42,7 @@ router.use(paths.signIn, require('./middleware/idam/sign-in'));
 router.use(paths.caseBuildingOverview, require('./middleware/case-building/overview'));
 router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
 router.use(paths.caseBuildingCheckAnswers, require('./middleware/case-building/check-answers'));
+router.use(paths.caseBuildingSubmitted, require('./middleware/case-building/submitted'));
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));
 
