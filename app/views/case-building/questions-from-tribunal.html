@@ -19,7 +19,7 @@
                 {% for question in appealData.questions %}
                     <li class="app-task-list__item">
                         <span class="app-task-list__task-name">
-                            <a href="/home-office-details" aria-describedby="home-office-details-completed">
+                            <a href="/case-building/question?index={{ loop.index0  }}" aria-describedby="home-office-details-completed">
                                 {{ question.title }}
                             </a>
                         </span>

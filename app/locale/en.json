@@ -42,6 +42,11 @@
       "notChecked": "Confirm to continue"
     }
   },
+  "questions": {
+    "errors": {
+      "tooShort": "Must answer the question"
+    }
+  },
   "taskList": {
     "header": "Start your appeal"
   },

@@ -9,6 +9,7 @@ const contactDetailsController = require('./middleware/contact-details');
 const typeOfAppealController = require('./middleware/type-of-appeal');
 const reasonsForAppealController = require('./middleware/case-building/reasons-for-appeal');
 const checkAnswersController = require('./middleware/check-answers');
+const questionsController = require('./middleware/case-building/question');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -31,6 +32,9 @@ setupFormController(paths.checkAnswers, checkAnswersController);
 
 router.get(paths.reasonsForAppeal, reasonsForAppealController.get);
 router.post(paths.reasonsForAppeal, reasonsForAppealController.validation(locale), reasonsForAppealController.post);
+
+router.get(paths.question, questionsController.get);
+router.post(paths.question, questionsController.validation(locale), questionsController.post);
 
 router.use(paths.appealSubmitted, require('./middleware/appeal-submitted'));
 router.use(paths.health, require('./middleware/health'));

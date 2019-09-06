@@ -21,6 +21,7 @@ module.exports = {
   checkYourEmail: '/check-your-email',
   caseBuildingOverview: '/case-building/overview',
   questionsFromTribunal: '/case-building/questions-from-tribunal',
+  question: '/case-building/question',
   whyAppealingDescription: '/case-building/why-appealing-description',
   reasonsForAppeal: '/case-building/reasons-for-appeal',
   caseBuildingCheckAnswers: '/case-building/check-answers',

@@ -31,3 +31,11 @@ $govuk-assets-path: '/assets/';
 #appeal-details h2 {
   margin-bottom: 0;
 }
+
+.remove-bottom-margin {
+  margin-bottom: 0;
+}
+
+.rich-text {
+  white-space: pre-line;
+}

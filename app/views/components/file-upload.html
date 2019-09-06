@@ -1,0 +1,52 @@
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{%  macro fileUpload(uploadedEvidence) %}
+    {% set fileUpload %}
+        <p>
+            You can upload evidence to support your answer such as letters, photos and documents. If you are taking
+            a picture of a letter, place it on a flat surface and take the picture from above.
+        </p>
+        {{ govukFileUpload({
+            id: "evidenceUpload",
+            name: "evidenceUpload"
+        }) }}
+        {{ govukButton({
+            text: "Upload Evidence",
+            classes: "govuk-button--secondary",
+            name: "upload",
+            value: "upload"
+        }) }}
+
+        {% set evidenceArray = [] %}
+        {% for evidence in uploadedEvidence %}
+            {% set evidenceArray = (evidenceArray.push([
+                {
+                    text: evidence
+                },
+                {
+                    html: "<button type='submit' name='delete' value='" + loop.index0 + "' class='button-link gov-details'>Delete</button>",
+                    format: "numeric"
+                }
+            ]), evidenceArray) %}
+        {% endfor %}
+
+        {{ govukTable({
+            caption: "Uploaded files",
+            firstCellIsHeader: false,
+            rows: evidenceArray
+        }) }}
+
+        {{ govukDetails({
+            summaryText: "You can also post evidence to the tribunal",
+            text: "Some content to post evidence"
+        }) }}
+    {% endset -%}
+
+    {{ govukDetails({
+        summaryText: "I want to provide evidence",
+        html: fileUpload,
+        open: uploadedEvidence and uploadedEvidence.length > 0
+    }) }}
+{% endmacro %}

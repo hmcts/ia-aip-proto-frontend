@@ -1,0 +1,31 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "components/file-upload.html" import fileUpload with context %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+    <h1 class="govuk-heading-xl remove-bottom-margin">{{ question.title }}</h1>
+    <p class="govuk-body rich-text">
+        {{ question.description }}
+    </p>
+
+    <form action="/case-building/question?index={{ questionIndex }}" method="post">
+        {{ govukTextarea({
+            name: "answer",
+            id: "answer",
+            value: question.answer,
+            errorMessage: errors.fieldErrors["answer"],
+            rows: 12
+        }) }}
+
+        {{ fileUpload(question.evidence) }}
+
+        {{ govukButton({
+            text: "Next"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

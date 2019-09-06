@@ -39,6 +39,7 @@ module.exports = (req, res, next) => {
         },
         {
           title: 'Some pages from the country report you submitted as evidence are missing',
+          description: 'Pages 5 to 7 from the country report are missing.\n\nPlease provide the missing pages below.',
           completed: false
         }
       ],
