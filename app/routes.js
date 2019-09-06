@@ -41,6 +41,8 @@ router.use(paths.endSession, require('./middleware/end-session'));
 router.use(paths.signIn, require('./middleware/idam/sign-in'));
 router.use(paths.register, require('./middleware/idam/register'));
 router.use(paths.checkYourEmail, require('./middleware/idam/check-your-email'));
+router.use(paths.createPassword, require('./middleware/idam/create-password'));
+router.use(paths.accountCreated, require('./middleware/idam/account-created'));
 router.use(paths.caseBuildingOverview, require('./middleware/case-building/overview'));
 router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
 router.use(paths.caseBuildingCheckAnswers, require('./middleware/case-building/check-answers'));

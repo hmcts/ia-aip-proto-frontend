@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+    <h1 class="govuk-heading-l">Account created</h1>
+    <p>
+        You can now sign in to your account
+    </p>
+    {{ govukButton({
+        text: "Continue",
+        href: "/sign-in",
+        isStartButton: false
+    }) }}
+
+{% endblock %}

@@ -16,6 +16,8 @@ module.exports = {
   endSession: '/end-session',
   signIn: '/sign-in',
   register: '/register',
+  createPassword: '/create-password',
+  accountCreated: '/account-created',
   checkYourEmail: '/check-your-email',
   caseBuildingOverview: '/case-building/overview',
   whyAppealingDescription: '/case-building/why-appealing-description',
