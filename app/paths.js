@@ -22,6 +22,7 @@ module.exports = {
   caseBuildingOverview: '/case-building/overview',
   questionsFromTribunal: '/case-building/questions-from-tribunal',
   question: '/case-building/question',
+  questionCheckAnswers: '/case-building/questions-check-answers',
   whyAppealingDescription: '/case-building/why-appealing-description',
   reasonsForAppeal: '/case-building/reasons-for-appeal',
   caseBuildingCheckAnswers: '/case-building/check-answers',

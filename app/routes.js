@@ -49,6 +49,7 @@ router.use(paths.createPassword, require('./middleware/idam/create-password'));
 router.use(paths.accountCreated, require('./middleware/idam/account-created'));
 router.use(paths.caseBuildingOverview, require('./middleware/case-building/overview'));
 router.use(paths.questionsFromTribunal, require('./middleware/case-building/questions-from-tribunal'));
+router.use(paths.questionCheckAnswers, require('./middleware/case-building/questions-check-answers'));
 router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
 router.use(paths.caseBuildingCheckAnswers, require('./middleware/case-building/check-answers'));
 router.use(paths.caseBuildingSubmitted, require('./middleware/case-building/submitted'));

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Carefully check your answer below before clicking submit.</h1>
+
+    {% set questionsArray = [] %}
+    {% for question in appealData.questions %}
+        {% set questionsArray = (questionsArray.push({
+            key: {
+                text: question.title
+            },
+            value: {
+                text: question.answer
+            },
+            actions: {
+                items: [
+                    {
+                        href: "/case-building/question?index=" + loop.index0,
+                        text: "Change"
+                    }
+                ]
+            }
+        }), questionsArray) %}
+        {% if question.evidence and question.evidence.length > 0 %}
+            {% set questionsArray = (questionsArray.push({
+                key: {
+                    text: "Uploaded filed"
+                },
+                value: {
+                    html: question.evidence | join("<br />")
+                }
+            }), questionsArray) %}
+        {% endif %}
+    {% endfor %}
+
+    {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: questionsArray
+    }) }}
+
+    {{ govukButton({
+        text: "Submit",
+        href: "/case-building/submitted",
+        isStartButton: false
+    }) }}
+
+    {{ contactUs() }}
+{% endblock %}
