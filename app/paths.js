@@ -20,6 +20,7 @@ module.exports = {
   accountCreated: '/account-created',
   checkYourEmail: '/check-your-email',
   caseBuildingOverview: '/case-building/overview',
+  questionsFromTribunal: '/case-building/questions-from-tribunal',
   whyAppealingDescription: '/case-building/why-appealing-description',
   reasonsForAppeal: '/case-building/reasons-for-appeal',
   caseBuildingCheckAnswers: '/case-building/check-answers',

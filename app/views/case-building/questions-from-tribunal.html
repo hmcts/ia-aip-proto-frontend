@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Questions from the tribunal</h1>
+    <p class="govuk-body">
+        You need to respond by {{ appealData.respondByDate }}.
+        <a href="#" class="govuk-link" aria-describedby="ask-for-more-time">Ask for more time</a>
+    </p>
+
+    <ol class="app-task-list">
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">1. </span> Questions
+            </h2>
+            <ul class="app-task-list__items">
+                {% for question in appealData.questions %}
+                    <li class="app-task-list__item">
+                        <span class="app-task-list__task-name">
+                            <a href="/home-office-details" aria-describedby="home-office-details-completed">
+                                {{ question.title }}
+                            </a>
+                        </span>
+                        {% if question.completed %}
+                            <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">2. </span> Review and submit
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    {% if hasAnsweredAllQuestion %}
+                        <a href="/check-answers">
+                            Review and submit your appeal
+                        </a>
+                    {% else %}
+                        Review and submit your appeal
+                    {% endif %}
+                  </span>
+                </li>
+            </ul>
+        </li>
+    </ol>
+{% endblock %}

@@ -1,10 +1,5 @@
-const moment = require('moment');
-
 module.exports = (req, res) => {
   const reasonsForAppealCompleted = req.session.appealData.appealDetails.reasonsForAppeal.completed;
-
-  // eslint-disable-next-line no-magic-numbers
-  const respondByDate = moment.utc().add(1, 'weeks').format('D MMMM YYYY');
 
   res.render('case-building/overview.html', {
     hideBackLink: true,
@@ -50,7 +45,6 @@ module.exports = (req, res) => {
         ticked: false
       }
     ],
-    respondByDate,
     reasonsForAppealCompleted,
     appealData: req.session.appealData
   });

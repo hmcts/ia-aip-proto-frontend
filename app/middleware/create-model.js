@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = (req, res, next) => {
   if (!req.session.appealData) {
     req.session.appealData = {
@@ -24,7 +26,24 @@ module.exports = (req, res, next) => {
         checkAnswers: {
           completed: false
         }
-      }
+      },
+      questions: [
+        {
+          title: 'Tell us more about your children',
+          description: 'You said you had three children in your appeal. ' +
+            'Please can you give us some more information about them:\n\n' +
+            '* What are their names?\n' +
+            '* What are their ages?\n' +
+            '* How long have they lived in the UK?',
+          completed: false
+        },
+        {
+          title: 'Some pages from the country report you submitted as evidence are missing',
+          completed: false
+        }
+      ],
+      // eslint-disable-next-line no-magic-numbers
+      respondByDate: moment.utc().add(1, 'weeks').format('D MMMM YYYY')
     };
   }
 
