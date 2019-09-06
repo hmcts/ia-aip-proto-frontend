@@ -17,11 +17,11 @@ module.exports = (req, res) => {
       {
         title: 'Building your case',
         active: true,
-        ticked: reasonsForAppealCompleted
+        ticked: false
       },
       {
         title: 'Home Office review',
-        active: reasonsForAppealCompleted,
+        active: false,
         ticked: false
       },
       {
@@ -51,6 +51,7 @@ module.exports = (req, res) => {
       }
     ],
     respondByDate,
+    reasonsForAppealCompleted,
     appealData: req.session.appealData
   });
 };
