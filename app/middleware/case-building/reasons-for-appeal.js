@@ -81,6 +81,7 @@ function post(req, res) {
     }
 
     Object.assign(req.session.appealData.appealDetails.reasonsForAppeal, formData);
+    req.session.appealData.appealDetails.reasonsForAppeal.completed = true;
 
     res.redirect(paths.caseBuildingCheckAnswers);
   }

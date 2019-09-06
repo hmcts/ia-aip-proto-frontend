@@ -76,9 +76,7 @@ module.exports = (req, res, next) => {
           deprivationOfCitizenship: false
         },
         reasonsForAppeal: {
-          completed: true,
-          // eslint-disable-next-line max-len
-          why: 'This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so te lar.This is a reason for the appeal.Foo bar so.'
+          completed: false
         }
       },
       checkAnswers: {
