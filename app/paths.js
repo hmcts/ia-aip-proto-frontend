@@ -15,6 +15,8 @@ module.exports = {
   robots: '/robots.txt',
   endSession: '/end-session',
   signIn: '/sign-in',
+  register: '/register',
+  checkYourEmail: '/check-your-email',
   caseBuildingOverview: '/case-building/overview',
   whyAppealingDescription: '/case-building/why-appealing-description',
   reasonsForAppeal: '/case-building/reasons-for-appeal',
