@@ -5,13 +5,11 @@
 {% from "components/status-bar.html" import statusBar with context %}
 
 {% block content %}
-    <div class="govuk-grid-row">
         <div id="appeal-details">
             <h2 class="govuk-heading-m">{{ appealData.yourDetails.personalDetails.givenNames }} {{ appealData.yourDetails.personalDetails.familyName }}</h2>
             <p class="govuk-body">Appeal reference: {{ appealData.yourDetails.homeOffice.refNumber }}</p>
         </div>
         <div class="divider"></div>
-    </div>
 
     {% set overview %}
             <h2 class="govuk-heading-m">Current progress of the case</h2>
@@ -43,7 +41,6 @@
         Appeal
     {% endset -%}
 
-    <div class="govuk-grid-row">
         {{ govukTabs({
             items: [
                 {
@@ -76,5 +73,4 @@
                 }
             ]
         }) }}
-    </div>
 {% endblock %}
