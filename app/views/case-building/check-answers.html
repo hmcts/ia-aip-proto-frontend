@@ -8,36 +8,40 @@
 
     <h1 class="govuk-heading-xl">Carefully check your answer below before clicking submit.</h1>
 
+    {% set questionsArray = [] %}
+    {% set questionsArray = (questionsArray.push({
+        key: {
+            text: "Why do you think the Home Office decision is wrong?"
+        },
+        value: {
+            text: appealData.appealDetails.reasonsForAppeal.why
+        },
+        actions: {
+            items: [
+                {
+                    href: "/case-building/reasons-for-appeal",
+                    text: "Change",
+                    visuallyHiddenText: "Change why you think the Home Office decision is wrong"
+                }
+            ]
+        }
+    }), questionsArray) %}
+
+    {% if appealData.appealDetails.reasonsForAppeal.evidence and appealData.appealDetails.reasonsForAppeal.evidence.length > 0 %}
+        {% set questionsArray = (questionsArray.push({
+            key: {
+                text: "Document"
+            },
+            value: {
+                html: appealData.appealDetails.reasonsForAppeal.evidence | join("<br />")
+            }
+        }), questionsArray) %}
+    {% endif %}
+
 
     {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: [
-            {
-                key: {
-                    text: "Why do you think the Home Office decision is wrong?"
-                },
-                value: {
-                    text: appealData.appealDetails.reasonsForAppeal.why
-                },
-                actions: {
-                    items: [
-                        {
-                            href: "/case-building/reasons-for-appeal",
-                            text: "Change",
-                            visuallyHiddenText: "Change why you think the Home Office decision is wrong"
-                        }
-                    ]
-                }
-            },
-            {
-                key: {
-                    text: "Document"
-                },
-                value: {
-                    html: appealData.appealDetails.reasonsForAppeal.evidence | join("<br />")
-                }
-            }
-        ]
+        classes: 'govuk-!-margin-bottom-9 govuk-summary-list--no-border',
+        rows: questionsArray
     }) }}
 
     {{ govukButton({
