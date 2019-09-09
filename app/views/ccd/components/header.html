@@ -1,0 +1,21 @@
+{% macro header(title) %}
+  <header class="ccd-header">
+    <div class="ccd-header__content">
+        <h1 class="govuk-heading-m">{{ title }}</h1>
+        <nav>
+          <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link link-disabled" href="#">
+                Case Officer
+              </a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="#2">
+                Sign Out
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>  
+  </header>
+{% endmacro %}

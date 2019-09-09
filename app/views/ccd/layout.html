@@ -1,0 +1,69 @@
+{% extends "govuk/template.njk" %}
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "ccd/components/header.html" import header %}
+{% from "ccd/components/navigation.html" import navigation %}
+
+{% macro errorSummary(errors) %}
+    {%  if errors %}
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errors.errorList
+        }) }}
+    {% endif %}
+{% endmacro %}
+
+{% macro input(label, id, value='') %}
+    {{ govukInput({
+        label: {
+            text: label
+        },
+        id: id,
+        name: id,
+        classes: "govuk-input--width-20",
+        value: value,
+        errorMessage: errors.fieldErrors[id]
+    }) }}
+{% endmacro %}
+
+{%  macro contactUs() %}
+    {{ govukDetails({
+        summaryText: "Contact us for help",
+        html: "<div><h2>Telephone</h2><p>0330 123 1234</p><h2>Email</h2><p>support@hmcts.net</p></div>"
+    }) }}
+{% endmacro %}
+
+{% set bodyClasses = "ccd-body body--padding" %}
+{% set mainClasses = "ccd__main" %}
+
+{% block pageTitle %}
+    {{ i18n.pageTitle }}
+{% endblock %}
+
+{% block head %}
+    {{ govukPhaseBanner({
+        tag: { text: "beta" },
+        html: i18n.phaseBanner.new +  '<a class="govuk-link" href="'+ i18n.general.exitLink + pageHeader  +'">' + i18n.phaseBanner.report + '</a> ' + i18n.phaseBanner.improve,
+        classes: "phase-banner--padding"
+    }) }}
+    {% include "includes/head.html" %}
+{% endblock %}
+
+{% block header %}
+  {{ header('Immigration & Asylum', '') }}
+  {{ navigation() }}
+{% endblock %}
+
+{% block beforeContent %}
+    
+{% endblock %}
+
+{% block bodyEnd %}
+    <script src="/public/govuk-frontend/js/all.js"></script>
+    <script>window.GOVUKFrontend.initAll()</script>
+{% endblock %}
