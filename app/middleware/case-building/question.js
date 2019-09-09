@@ -83,7 +83,11 @@ function post(req, res) {
     }
 
     Object.assign(req.session.appealData.questions[req.query.index], formData);
-    req.session.appealData.questions[req.query.index].completed = true;
+    if (req.body.saveForLater) {
+      req.session.appealData.questions[req.query.index].draft = true;
+    } else {
+      req.session.appealData.questions[req.query.index].completed = true;
+    }
 
     res.redirect(paths.questionsFromTribunal);
   }

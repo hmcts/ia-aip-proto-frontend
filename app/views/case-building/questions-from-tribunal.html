@@ -25,6 +25,8 @@
                         </span>
                         {% if question.completed %}
                             <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
+                        {% elseif question.draft %}
+                            <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>
                         {% endif %}
                     </li>
                 {% endfor %}
