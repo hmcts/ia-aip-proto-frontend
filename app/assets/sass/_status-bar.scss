@@ -3,24 +3,28 @@
 }
 
 .status-bar {
+    padding-bottom: 2rem;
     @include for-tablet-portrait-up {
         display: flex;
         padding: 1rem 0.5rem;
         padding-bottom: 6.250rem;
     }
     &__stage {
+        position: relative;
         display: flex;
         @include for-tablet-portrait-up {
-            position: relative;
             flex-direction: column;
             &:not(:first-child) {
                 width: 100%;
             }
         }
         h4 {
+            position: absolute;
+            bottom: 0;
+            left: 2.5rem;
+            line-height: 2.5rem;
             margin: 0;
             margin-left: .5rem;
-            //line-height: 2.75rem;
             font-weight: 400;
             text-align: center;
             @include for-tablet-portrait-up {
@@ -28,7 +32,17 @@
                 position: absolute;
                 top: 3rem;
                 right: 0;
+                left: 0;
+                line-height: 1.5625rem;
                 transform:translateX(30%);
+            }
+        }
+
+        &:first-child {
+            h4 {
+                @include for-tablet-portrait-up {
+                    left: -2.5rem;
+                }
             }
         }
 
