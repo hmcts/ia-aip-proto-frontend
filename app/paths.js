@@ -32,5 +32,6 @@ module.exports = {
   ccdListCase: '/list/case',
   emailQuestions: '/email/questions',
   emailReasonsForAppeal: '/email/reasons-for-appeal',
-  emailRegister: '/email/register'
+  emailRegister: '/email/register',
+  flow: '/flow'
 };

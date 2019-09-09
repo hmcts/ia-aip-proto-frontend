@@ -4,8 +4,7 @@ module.exports = (req, res) => {
   const hasAnsweredAllQuestion = req.session.appealData.yourDetails.homeOffice.completed &&
     req.session.appealData.yourDetails.personalDetails.completed &&
     req.session.appealData.yourDetails.contactDetails.completed &&
-    req.session.appealData.appealDetails.typeOfAppeal.completed &&
-    req.session.appealData.appealDetails.reasonsForAppeal.completed;
+    req.session.appealData.appealDetails.typeOfAppeal.completed;
 
   res.render('task-list.html', {
     appealData,

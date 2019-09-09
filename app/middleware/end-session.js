@@ -1,5 +1,7 @@
+const paths = require('../paths');
+
 module.exports = (req, res) => {
   req.session.destroy();
 
-  res.send('Session ended');
+  res.redirect(paths.flow);
 };

@@ -61,6 +61,7 @@ router.use(paths.caseBuildingSubmitted, require('./middleware/case-building/subm
 router.use(paths.emailQuestions, require('./middleware/email/questions'));
 router.use(paths.emailReasonsForAppeal, require('./middleware/email/reasons-for-appeal'));
 router.use(paths.emailRegister, require('./middleware/email/regsiter'));
+router.use(paths.flow, require('./middleware/flow'));
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));
 
