@@ -1,0 +1,26 @@
+{% extends "email/email-layout.html" %}
+
+{% block subject %}
+    Your immigration and asylum appeal: Tell us why you're appealing
+{% endblock %}
+
+{% block from %}
+    Immigration and asylum tribunal (I&Atribunal@justice.gov.uk)
+{% endblock %}
+
+{% block content %}
+    <p>
+        A case worker has looked your applea application and decided <b>you have the right to appeal</b> the Home Office
+        decision to refuse your claim.
+    </p>
+    <p>This means you can now start to build your appeal.</p>
+
+    <h2 class="govuk-heading-m">What you need to do next</h2>
+    <p><a href="/sign-in">Go to your appeal</a> to tell us why you're appealing the Home Office decision.</p>
+    <p>You have until {{ appealData.respondByDate }} to give us this information.</p>
+    <p>It will help if you have:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>Your Home Office decision letter</li>
+        <li>Any evidence that will support your appeal</li>
+    </ul>
+{% endblock %}

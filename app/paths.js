@@ -30,6 +30,6 @@ module.exports = {
   caseBuildingSubmitted: '/case-building/submitted',
   ccd: '/ccd',
   ccdListCase: '/list/case',
-  caseBuildingSubmitted: '/case-building/submitted',
-  emailCaseBuildingReasonsForAppeal: '/email/reasons-for-appeal'
+  emailQuestions: '/email/questions',
+  emailReasonsForAppeal: '/email/reasons-for-appeal'
 };
