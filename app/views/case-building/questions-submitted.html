@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% block content %}
+    {{ govukPanel({
+        titleText: "You have answered the tribunal's questions"
+    }) }}
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>
+            A case worker will review your answer.
+        </li>
+        <li>You'll get another email by {{ appealData.respondByDate }} which will explain what you need to do next</li>
+    </ul>
+    <p class="govuk-body">
+        If you have any questions, call the Tribunal on 0300 123 1711 or email
+        <a href="mailto:customer.service@justice.gov.uk" class="govuk-link">customer.service@justice.gov.uk</a>
+    </p>
+
+    {{ govukButton({
+        text: "Back to appeal",
+        href: "/case-building/overview",
+        isStartButton: false
+    }) }}
+{% endblock %}
