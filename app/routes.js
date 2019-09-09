@@ -10,6 +10,7 @@ const typeOfAppealController = require('./middleware/type-of-appeal');
 const reasonsForAppealController = require('./middleware/case-building/reasons-for-appeal');
 const checkAnswersController = require('./middleware/check-answers');
 const questionsController = require('./middleware/case-building/question');
+const ccdController = require('./ccd-routes');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -21,6 +22,8 @@ function setupFormController(path, formController) {
   router.post(path, formControllerInstance.validation(locale), formControllerInstance.post);
 }
 
+// CCD Routes
+router.use(paths.ccd, ccdController);
 router.use(paths.taskList, require('./middleware/task-list'));
 
 setupFormController(paths.homeOfficeDetails, homeOfficeController);

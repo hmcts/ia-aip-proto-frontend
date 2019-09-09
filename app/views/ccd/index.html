@@ -1,0 +1,105 @@
+{% extends "ccd/layout.html" %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+  <div class="govuk-grid-row full-width">
+    <div class="govuk-grid-column-one-quarter --border-right --padding-top">
+        <h2 class="govuk-heading-m">Filters</h2>
+        {{ govukSelect({
+          id: "jurisdiction",
+          name: "jurisdiction",
+          classes: "ccd-select",
+          label: {
+            text: "Jurisdiction",
+            classes: "ccd-select__label"
+          },
+          items: [
+            {
+              value: "Immigration & Asylum",
+              text: "Immigration & Asylum"
+            }
+          ]
+        }) }}
+
+        {{ govukSelect({
+          id: "caseType",
+          name: "caseType",
+          classes: "ccd-select",
+          label: {
+            text: "Case Type",
+            classes: "ccd-select__label"
+          },
+          items: [
+            {
+              value: "IA Asylum Case 0.75",
+              text: "IA Asylum Case 0.75"
+            }
+          ]
+        }) }}
+        
+        {{ govukSelect({
+          id: "state",
+          name: "state",
+          classes: "ccd-select",
+          label: {
+            text: "State",
+            classes: "ccd-select__label"
+          },
+          items: [
+            {
+              value: "Any",
+              text: "Any"
+            },
+            {
+              value: "Appeal submitted",
+              text: "Appeal submitted"
+            },
+            {
+              value: "Awaiting respondent evidence",
+              text: "Awaiting respondent evidence"
+            },
+            {
+              value: "Case building",
+              text: "Case building"
+            }
+          ]
+        }) }}
+    </div>
+    <div class="govuk-grid-column-three-quarters --padding-top">
+        <div class="column-header">
+            <h2 class="govuk-heading-m">Case List</h2>
+            {{ govukButton({
+              text: "Create new case"
+            }) }}
+        </div>
+
+        <p>Displaying 1 - 2 out of 2 results</p>
+
+        <table class="ccd-table">
+          <thead>
+            <tr>
+              <th>Reference number</th>
+              <th>Appellant name</th>
+              <th>Status</th>
+              <th>Appeal start date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#" class="govuk-link">1546-8835-2675-1282</a></td>
+              <td>Jose Gonzalo</td>
+              <td>Appeal submitted</td>
+              <td>7 Jan 2019, 5:52:06 PM</td>
+            </tr>
+            <tr>
+              <td><a href="#" class="govuk-link">1546-8835-2675-1282</a></td>
+              <td>Jose Gonzalo</td>
+              <td>Appeal submitted</td>
+              <td>7 Jan 2019, 5:52:06 PM</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+{% endblock %}

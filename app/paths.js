@@ -27,5 +27,7 @@ module.exports = {
   whyAppealingDescription: '/case-building/why-appealing-description',
   reasonsForAppeal: '/case-building/reasons-for-appeal',
   caseBuildingCheckAnswers: '/case-building/check-answers',
-  caseBuildingSubmitted: '/case-building/submitted'
+  caseBuildingSubmitted: '/case-building/submitted',
+  ccd: '/ccd',
+  ccdListCase: '/list/case'
 };

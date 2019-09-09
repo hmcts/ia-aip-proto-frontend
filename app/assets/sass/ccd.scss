@@ -1,0 +1,109 @@
+.ccd-body {
+  font-size: 1rem;
+  line-height: 1.1875rem;
+}
+
+.phase-banner--padding {
+  padding: 10px 15px;
+}
+
+.ccd-header {
+  background-color: #0b0c0c;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 15px;
+
+    h1 {
+      color: white;
+      margin: 0;
+      line-height: 36px;
+    }
+  }
+}
+
+.ccd-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid #bfc1c3;
+  }
+
+  td, th {
+    text-align: left;
+    height: 2.4375rem;
+    border-bottom: 1px solid #bfc1c3;
+  }
+}
+
+.navigation {
+  background-color: #005ea5;
+  padding: 0 15px;
+  height: 55px;
+
+  &__content {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    line-height: 27px;
+  }
+}
+
+.link-disabled {
+    pointer-events: none;
+}
+
+.ccd__main {
+  position: relative;
+  left: calc(-49vw + 50%);
+  width: 98vw;
+  padding: 0;
+  p {
+    font-size: 1rem;
+  }
+}
+
+.ccd-select {
+  height: 1.9375rem;
+  height: 1.9375rem;
+  border-width: 1px;
+  width: 100%;
+
+  font-size: 1rem;
+  line-height: 1.1875rem;
+
+  &__label {
+    font-size: 1rem;
+    line-height: 1.1875rem;
+  }
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.--border-right {
+  border-right: 1px solid #bfc1c3;
+}
+
+.--padding-top {
+  padding-top: 1rem;
+}
+
+.govuk-grid-column-three-quarters {
+  width: 75%;
+  float: left;
+}
