@@ -8,8 +8,8 @@
 
     <h1 class="govuk-heading-xl">Carefully check your answer below before clicking submit.</h1>
 
-    {% set questionsArray = [] %}
     {% for question in appealData.questions %}
+        {% set questionsArray = [] %}
         {% set questionsArray = (questionsArray.push({
             key: {
                 text: question.title
@@ -36,12 +36,19 @@
                 }
             }), questionsArray) %}
         {% endif %}
+
+        {{ govukSummaryList({
+            classes: 'govuk-!-margin-bottom-9 govuk-summary-list--no-border remove-bottom-margin',
+            rows: questionsArray
+        }) }}
+
+        {% if not loop.last %}
+            <hr class="govuk-section-break govuk-section-break--visible">
+        {% endif %}
+
     {% endfor %}
 
-    {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: questionsArray
-    }) }}
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
     {{ govukButton({
         text: "Submit",

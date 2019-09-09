@@ -33,7 +33,7 @@ $govuk-assets-path: '/assets/';
 }
 
 .remove-bottom-margin {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .rich-text {
