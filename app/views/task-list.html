@@ -1,81 +1,98 @@
 {% extends "layout.html" %}
 
-{% block content %}
-<h1 class="govuk-heading-xl">{{ i18n.taskList.header }}</h1>
+{% macro enabledLink(enabled, content, link) %}
+    {% if enabled %}
+    <a href="{{ link }}">
+        {{ content }}
+    </a>
+    {% else %}
+        {{ content }}
+    {% endif %}
+{% endmacro %}
 
-<ol class="app-task-list">
-  <li>
-    <h2 class="app-task-list__section">
-      <span class="app-task-list__section-number">1. </span> Your details
-    </h2>
-    <ul class="app-task-list__items">
-      <li class="app-task-list__item">
+{% block content %}
+    <h1 class="govuk-heading-xl">{{ i18n.taskList.header }}</h1>
+
+    {% set accountCreated = appealData.accountCreated.completed %}
+
+    <ol class="app-task-list">
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">1. </span> Create Account
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="/home-office-details" aria-describedby="home-office-details-completed">
-                      Your Home Office details
+                    <a href="/register" aria-describedby="home-office-details-completed">
+                        Create an HMCTS account
                     </a>
                   </span>
-        {% if appealData.yourDetails.homeOffice.completed %}
-          <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
-        {% endif %}
-      </li>
-      <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/personal-details" aria-describedby="personal-details-completed">
-                      Your personal details
-                    </a>
-                  </span>
-        {% if appealData.yourDetails.personalDetails.completed %}
-          <strong class="govuk-tag app-task-list__task-completed" id="personal-details-completed">Completed</strong>
-        {% endif %}
-      </li>
-      <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/your-contact-details" aria-describedby="contact-details-completed">
-                      Your contact details
-                    </a>
-                  </span>
-        {% if appealData.yourDetails.contactDetails.completed %}
-          <strong class="govuk-tag app-task-list__task-completed" id="contact-details-completed">Completed</strong>
-        {% endif %}
-      </li>
-    </ul>
-  </li>
-  <li>
-    <h2 class="app-task-list__section">
-      <span class="app-task-list__section-number">2. </span> Appeal details
-    </h2>
-    <ul class="app-task-list__items">
-      <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/type-of-appeal" aria-describedby="type-of-appeal-completed">
-                      Type of appeal
-                    </a>
-                  </span>
-        {% if appealData.appealDetails.typeOfAppeal.completed %}
-          <strong class="govuk-tag app-task-list__task-completed" id="type-of-appeal-completed">Completed</strong>
-        {% endif %}
-      </li>
-    </ul>
-  </li>
-  <li>
-    <h2 class="app-task-list__section">
-      <span class="app-task-list__section-number">3. </span> Review and submit
-    </h2>
-    <ul class="app-task-list__items">
-      <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    {% if hasAnsweredAllQuestion %}
-                        <a href="/check-answers">
-                            Review and submit your appeal
-                        </a>
-                    {% else %}
-                        Review and submit your appeal
+                    {% if accountCreated %}
+                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
                     {% endif %}
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">2. </span> Your details
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    {{ enabledLink(accountCreated, 'Your Home Office details', '/home-office-details') }}
                   </span>
-      </li>
-    </ul>
-  </li>
-</ol>
+                    {% if appealData.yourDetails.homeOffice.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
+                    {% endif %}
+                </li>
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    {{ enabledLink(accountCreated, 'Your personal details', '/personal-details') }}
+                  </span>
+                    {% if appealData.yourDetails.personalDetails.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed" id="personal-details-completed">Completed</strong>
+                    {% endif %}
+                </li>
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    {{ enabledLink(accountCreated, 'Your contact details', '/your-contact-details') }}
+                  </span>
+                    {% if appealData.yourDetails.contactDetails.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed"
+                                id="contact-details-completed">Completed</strong>
+                    {% endif %}
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">3. </span> Appeal details
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    {{ enabledLink(accountCreated, 'Type of appeal', '/type-of-appeal') }}
+                  </span>
+                    {% if appealData.appealDetails.typeOfAppeal.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed"
+                                id="type-of-appeal-completed">Completed</strong>
+                    {% endif %}
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">4. </span> Review and submit
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                      {{ enabledLink(hasAnsweredAllQuestion, 'Review and submit your appeal', '/check-answers') }}
+                  </span>
+                </li>
+            </ul>
+        </li>
+    </ol>
 
 {% endblock %}

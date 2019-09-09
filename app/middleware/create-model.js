@@ -3,6 +3,9 @@ const moment = require('moment');
 module.exports = (req, res, next) => {
   if (!req.session.appealData) {
     req.session.appealData = {
+      accountCreated: {
+        completed: false
+      },
       yourDetails: {
         homeOffice: {
           completed: false
