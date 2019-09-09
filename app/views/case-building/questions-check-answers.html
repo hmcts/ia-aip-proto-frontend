@@ -32,7 +32,7 @@
                     text: "Uploaded filed"
                 },
                 value: {
-                    html: question.evidence | join("<br />")
+                    html:  "<a href='#'>" + (question.evidence | join("</a><br /><a href='#'>")) + "</a>"
                 }
             }), questionsArray) %}
         {% endif %}

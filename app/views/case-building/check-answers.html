@@ -33,7 +33,7 @@
                 text: "Document"
             },
             value: {
-                html: appealData.appealDetails.reasonsForAppeal.evidence | join("<br />")
+                html: "<a href='#'>" + (appealData.appealDetails.reasonsForAppeal.evidence | join("</a><br /><a href='#'>")) + "</a>"
             }
         }), questionsArray) %}
     {% endif %}
