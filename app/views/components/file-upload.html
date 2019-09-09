@@ -1,6 +1,9 @@
 {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
 {% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
 
 {%  macro fileUpload(uploadedEvidence) %}
     {% set fileUpload %}
@@ -44,9 +47,34 @@
         }) }}
     {% endset -%}
 
-    {{ govukDetails({
-        summaryText: "I want to provide evidence",
-        html: fileUpload,
-        open: uploadedEvidence and uploadedEvidence.length > 0
+    {{ govukCheckboxes({
+        idPrefix: "uploadEvidence",
+        name: "uploadEvidence",
+        items: [
+            {
+                value: "uploadEvidence",
+                text: "I want to provide evidence",
+                checked: uploadedEvidence and uploadedEvidence.length > 0
+            }
+        ]
     }) }}
+    <div id="uploadContent">
+    {{ govukInsetText({
+        html: fileUpload
+    }) }}
+    </div>
+
+    <script>
+      function hideShowUploadEvidence() {
+        if (document.getElementById('uploadEvidence').checked) {
+          document.getElementById('uploadContent').style.display = 'block';
+        } else {
+          document.getElementById('uploadContent').style.display = 'none';
+        }
+      }
+
+      hideShowUploadEvidence();
+
+      document.getElementById('uploadEvidence').addEventListener("click", hideShowUploadEvidence);
+    </script>
 {% endmacro %}
