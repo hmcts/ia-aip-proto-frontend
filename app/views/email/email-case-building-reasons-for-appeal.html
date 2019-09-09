@@ -1,0 +1,24 @@
+{% extends "email/email-layout.html" %}
+
+{% block subject %}
+    Your immigration and asylum appeal: Questions from the Tribunal
+{% endblock %}
+
+{% block from %}
+    Immigration and asylum tribunal (I&Atribunal@justice.gov.uk)
+{% endblock %}
+
+{% block content %}
+    <p>A case worker has looked at the information you gave us about why you're appealing the Home Office decision.</p>
+    <p>The case worker needs to ask some more questions about your appeal.</p>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+    <p><a href="/case-building/overview">Go to your appeal</a> to answer the case worker's questions.</p>
+    <p>You have until {{ appealData.respondByDate }} to do this.</p>
+    <p>It will help if you have:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>Your Home Office decision letter</li>
+        <li>Any evidence you submitted to the Tribunal</li>
+        <li>Any other evidence that supports your appeal</li>
+    </ul>
+{% endblock %}

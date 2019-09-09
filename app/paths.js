@@ -29,5 +29,7 @@ module.exports = {
   caseBuildingCheckAnswers: '/case-building/check-answers',
   caseBuildingSubmitted: '/case-building/submitted',
   ccd: '/ccd',
-  ccdListCase: '/list/case'
+  ccdListCase: '/list/case',
+  caseBuildingSubmitted: '/case-building/submitted',
+  emailCaseBuildingReasonsForAppeal: '/email/reasons-for-appeal'
 };

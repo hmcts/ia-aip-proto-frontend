@@ -1,0 +1,50 @@
+<html>
+<head>
+    <link href="/public/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+</head>
+<body class="govuk-body">
+<main id="content" role="main" class="govuk-main-wrapper email-main">
+
+    <p style="padding-top: 30px; font-size: 16px;">
+        <strong style="font-weight: bold;">Subject: </strong>{% block subject %}{% endblock %}<br>
+        <strong style="font-weight: bold;">From: </strong>{% block from %}{% endblock %}<br>
+        <!--	<strong style="font-weight: bold;">Date: </strong>14/02/2018 <br/>
+        </p> -->
+    </p><div class="email-border">
+        <!--<div style="margin-bottom: 15px;"> <img src="/public/images/notify-email-header.png" alt="GOV.UK"></div>-->
+        <div class="email-margin">
+            <div class="email-image"> <img src="/public/images/hmcts-logo.png" alt="Her Majesty's Court and Tribunal Service logo"></div>
+
+            <div class="panel panel-border-wide">
+                <p class="remove-bottom-margin">Appeal reference number: {{ appealData.yourDetails.homeOffice.refNumber }}</p>
+            </div>
+            <br>
+            <p>Dear {{  appealData.yourDetails.personalDetails.givenNames }} {{ appealData.yourDetails.personalDetails.familyName }}</p>
+
+            {% block content %}{% endblock %}
+
+            <h2 class="govuk-heading-m">Contact the Tribunal if your have any questions</h2>
+            <p>
+                Telephone: 0300 123 1711<br />
+                Monday to Friday 8:30am to 5pm<br />
+                Find out about call charges: <a href="#">https://www.gov.uk/call-charges</a><br />
+                Email: <a href="#">customer.services@justice.gov.uk</a>
+            </p>
+
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+            <p>If you're unsure an email is from HM Courts & Tribunals Service:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Do niot reply to it or click any links.</li>
+                <li>
+                    Report the suspicious email to HM Courts and Tribunals Service - find out how to report
+                    internet scams and phishing
+                    <a href="#">https://www/gov.uk/report-suspicious-emails-websites-phishing</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</main>
+</body>
+</html>

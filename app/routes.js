@@ -57,6 +57,8 @@ router.use(paths.questionSubmitted, require('./middleware/case-building/question
 router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
 router.use(paths.caseBuildingCheckAnswers, require('./middleware/case-building/check-answers'));
 router.use(paths.caseBuildingSubmitted, require('./middleware/case-building/submitted'));
+// eslint-disable-next-line max-len
+router.use(paths.emailCaseBuildingReasonsForAppeal, require('./middleware/email/email-case-building-reasons-fro-appeal'));
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));
 
