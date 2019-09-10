@@ -71,21 +71,16 @@
                 <li>Any evidence you submitted to the Tribunal</li>
                 <li>Any evidence that will support your appeal</li>
             </ul>
+            {{ govukWarningText({
+                html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
+                iconFallbackText: "Warning"
+            }) }}
+
             {{ govukButton({
                 text: "Questions from the Tribunal",
                 href: "/case-building/questions-from-tribunal",
                 isStartButton: false
             }) }}
-            <p class="govuk-body">
-                You need to respond by {{ appealData.respondByDate }}.
-                <a href="#" class="govuk-link" aria-describedby="ask-for-more-time">Ask for more time</a>
-            </p>
-
-            <h2 class="govuk-heading-m">Providing additional evidence</h2>
-            <p class="govuk-body">
-                If you have any additional information that is relevant to your appeal, you can
-                <a href="#" class="govuk-link">Submit it to the tribunal</a>.
-            </p>
         {% endif %}
     {% endset -%}
 

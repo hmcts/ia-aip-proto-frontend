@@ -1,14 +1,11 @@
 {% extends "layout.html" %}
 
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "components/enable-link.html" import enabledLink with context %}
 
 {% block content %}
 
     <h1 class="govuk-heading-xl">Questions from the tribunal</h1>
-    <p class="govuk-body">
-        You need to respond by {{ appealData.respondByDate }}.
-        <a href="#" class="govuk-link" aria-describedby="ask-for-more-time">Ask for more time</a>
-    </p>
 
     <ol class="app-task-list">
         <li>
@@ -19,9 +16,8 @@
                 {% for question in appealData.questions %}
                     <li class="app-task-list__item">
                         <span class="app-task-list__task-name">
-                            <a href="/case-building/question?index={{ loop.index0  }}" aria-describedby="home-office-details-completed">
-                                {{ question.title }}
-                            </a>
+                            {% set enabledQuestionLink = loop.index0 === 0 or appealData.questions[loop.index0 -1].completed === true  %}
+                            {{ enabledLink(enabledQuestionLink, question.title, '/case-building/question?index=' + loop.index0) }}
                         </span>
                         {% if question.completed %}
                             <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
@@ -34,18 +30,24 @@
         </li>
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">2. </span> Review and submit
+                <span class="app-task-list__section-number">2. </span> Do you have anything else to add
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    {% if hasAnsweredAllQuestion %}
-                        <a href="/case-building/questions-check-answers">
-                            Review and submit your appeal
-                        </a>
-                    {% else %}
-                        Review and submit your appeal
-                    {% endif %}
+                      {{ enabledLink(hasAnsweredAllQuestion, 'Submit additional information (if you have any) that is relevant to your appeal', '/case-building/questions-check-answers') }}
+                  </span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">3. </span> Review and submit
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                      {{ enabledLink(hasAnsweredAllQuestion, 'Review and submit your appeal', '/case-building/questions-check-answers') }}
                   </span>
                 </li>
             </ul>

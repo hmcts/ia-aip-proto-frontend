@@ -1,14 +1,5 @@
 {% extends "layout.html" %}
-
-{% macro enabledLink(enabled, content, link) %}
-    {% if enabled %}
-    <a href="{{ link }}">
-        {{ content }}
-    </a>
-    {% else %}
-        {{ content }}
-    {% endif %}
-{% endmacro %}
+{% from "components/enable-link.html" import enabledLink with context %}
 
 {% block content %}
     <h1 class="govuk-heading-xl">{{ i18n.taskList.header }}</h1>

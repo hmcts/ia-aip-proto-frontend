@@ -1,0 +1,9 @@
+{% macro enabledLink(enabled, content, link) %}
+    {% if enabled %}
+        <a href="{{ link }}">
+            {{ content }}
+        </a>
+    {% else %}
+        {{ content }}
+    {% endif %}
+{% endmacro %}
