@@ -1,0 +1,42 @@
+{% extends "../layout.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "components/file-upload.html" import fileUpload with context %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+    <h1 class="govuk-heading-xl remove-bottom-margin">Do you have anything else to add?</h1>
+    <p class="govuk-body">
+        Submit additional information (if you have any) that is relevant to your appeal
+    </p>
+
+    <form action="/case-building/anything-else-to-add-question" method="post">
+        {{ govukTextarea({
+            name: "answer",
+            id: "answer",
+            value: formData.answer,
+            errorMessage: errors.fieldErrors["answer"],
+            rows: 12,
+            hint: {
+                html: "<b>Tell us in your own words</b> - you don't have to have perfect English."
+            }
+        }) }}
+
+        {{ fileUpload(formData.evidence) }}
+
+        {{ govukButton({
+            text: "Next"
+        }) }}
+
+        {{ govukButton({
+            text: "Save for later",
+            name: "saveForLater",
+            value: "saveForLater",
+            classes: "govuk-button--secondary"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

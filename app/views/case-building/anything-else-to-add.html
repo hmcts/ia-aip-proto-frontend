@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">What is your name?</h1>
+
+    <form action="/case-building/anything-else-to-add" method="post">
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            idPrefix: "anythingElseToAdd",
+            name: "anythingElseToAdd",
+            fieldset: {
+                legend: {
+                    text: "Do you have anything else to add?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                }
+            },
+            hint: {
+                text: "Submit additional information (if you have any) that is relevant to your appeal"
+            },
+            items: [
+                {
+                    value: "yes",
+                    text: "Yes",
+                    checked: true
+                },
+                {
+                    value: "no",
+                    text: "No"
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Save and continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

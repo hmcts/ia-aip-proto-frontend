@@ -11,6 +11,8 @@ const reasonsForAppealController = require('./middleware/case-building/reasons-f
 const checkAnswersController = require('./middleware/check-answers');
 const questionsController = require('./middleware/case-building/question');
 const ccdController = require('./ccd-routes');
+const anythingElseToAddController = require('./middleware/case-building/anything-else-to-add');
+const anythingElseToAddQuestionController = require('./middleware/case-building/anything-else-to-add-question');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -57,6 +59,11 @@ router.use(paths.questionSubmitted, require('./middleware/case-building/question
 router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
 router.use(paths.caseBuildingCheckAnswers, require('./middleware/case-building/check-answers'));
 router.use(paths.caseBuildingSubmitted, require('./middleware/case-building/submitted'));
+router.get(paths.anythingElseToAdd, anythingElseToAddController.get);
+router.post(paths.anythingElseToAdd, anythingElseToAddController.post);
+router.get(paths.anythingElseToAddQuestion, anythingElseToAddQuestionController.get);
+// eslint-disable-next-line max-len
+router.post(paths.anythingElseToAddQuestion, anythingElseToAddQuestionController.validation(locale), anythingElseToAddQuestionController.post);
 // eslint-disable-next-line max-len
 router.use(paths.emailQuestions, require('./middleware/email/questions'));
 router.use(paths.emailReasonsForAppeal, require('./middleware/email/reasons-for-appeal'));

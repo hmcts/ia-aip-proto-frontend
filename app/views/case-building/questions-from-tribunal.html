@@ -36,8 +36,13 @@
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(hasAnsweredAllQuestion, 'Submit additional information (if you have any) that is relevant to your appeal', '/case-building/questions-check-answers') }}
+                      {{ enabledLink(hasAnsweredAllQuestion, 'Submit additional information (if you have any) that is relevant to your appeal', '/case-building/anything-else-to-add') }}
                   </span>
+                  {% if appealData.anythingElseToAdd.completed %}
+                      <strong class="govuk-tag app-task-list__task-completed">Completed</strong>
+                  {% elseif appealData.anythingElseToAdd.draft %}
+                      <strong class="govuk-tag app-task-list__task-draft">Saved</strong>
+                  {% endif %}
                 </li>
             </ul>
         </li>
@@ -48,7 +53,7 @@
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(hasAnsweredAllQuestion, 'Review and submit your appeal', '/case-building/questions-check-answers') }}
+                      {{ enabledLink(appealData.anythingElseToAdd.completed, 'Review and submit your appeal', '/case-building/questions-check-answers') }}
                   </span>
                 </li>
             </ul>
