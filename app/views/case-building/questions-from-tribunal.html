@@ -31,12 +31,12 @@
         </li>
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">2. </span> Do you have anything else to add
+                <span class="app-task-list__section-number">2. </span> Other information
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(hasAnsweredAllQuestion, 'Submit additional information (if you have any) that is relevant to your appeal', '/case-building/anything-else-to-add') }}
+                      {{ enabledLink(hasAnsweredAllQuestion, 'Do you want to tell us anything else about your case?', '/case-building/anything-else-to-add') }}
                   </span>
                   {% if appealData.anythingElseToAdd.completed %}
                       <strong class="govuk-tag app-task-list__task-completed">Completed</strong>

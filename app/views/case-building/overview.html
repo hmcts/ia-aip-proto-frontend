@@ -35,7 +35,7 @@
             {% if appealData.appealDetails.reasonsForAppeal.draft %}
                 <p></p>
                 {{ govukInsetText({
-                    text: "A draft of your response has been saved"
+                    text: "Your answer has been saved"
                 }) }}
             {% endif %}
 
@@ -46,7 +46,7 @@
 
             {% if appealData.appealDetails.reasonsForAppeal.draft %}
                 {{ govukButton({
-                    text: "Complete response",
+                    text: "Continue",
                     href: "/case-building/reasons-for-appeal",
                     isStartButton: false
                 }) }}
@@ -59,7 +59,7 @@
             {% endif %}
 
         {% elseif not appealData.questions %}
-            <p>A case officer is now checking your response. You will receive an email soon of what to do next.</p>
+            <p>A case officer is looking at your answer. They will contact you soon to tell you what to do next.</p>
         {% elseif not appealData.caseBuilding.completed %}
             <p class="govuk-body">We need some more information from you so we can complete your appeal.</p>
             <p class="govuk-body">What you'll need</p>
@@ -81,7 +81,7 @@
             {% if hasAnsweredSomeQuestion %}
                 <p></p>
                 {{ govukInsetText({
-                    text: "A draft of your response has been saved"
+                    text: "Your answer has been saved"
                 }) }}
             {% endif %}
 
@@ -91,7 +91,7 @@
             }) }}
 
             {% if hasAnsweredSomeQuestion %}
-                {% set questionButtonText = 'Complete response' %}
+                {% set questionButtonText = 'Continue' %}
             {% else %}
                 {% set questionButtonText = 'Questions from the Tribunal' %}
             {% endif %}
@@ -101,7 +101,7 @@
                 isStartButton: false
             }) }}
         {% else %}
-            <p>A case office is now checking your response. You will receive an eamil soon of what to do next.</p>
+            <p>A case worker is looking at your answer. They will contact you soon to tell you what to do next.</p>
         {% endif %}
     {% endset -%}
 
