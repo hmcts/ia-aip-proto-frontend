@@ -53,6 +53,9 @@ module.exports = (req, res, next) => {
 
   if (req.query.createData) {
     Object.assign(req.session.appealData, {
+      accountCreated: {
+        completed: true
+      },
       yourDetails: {
         homeOffice: {
           completed: true,
