@@ -50,10 +50,6 @@
             {% endfor %}
         {% endif %}
 
-
-
-
-
         {{ govukSummaryList({
             classes: 'govuk-!-margin-bottom-9 govuk-summary-list--no-border remove-bottom-margin',
             rows: questionsArray
@@ -64,6 +60,57 @@
         {% endif %}
 
     {% endfor %}
+
+    {% if appealData.anythingElseToAdd.answer %}
+        <hr class="govuk-section-break govuk-section-break--visible">
+        {% set additionalInformationArray = [] %}
+        {% set additionalInformationArray = (additionalInformationArray.push({
+            key: {
+                text: 'Addition information'
+            },
+            value: {
+                text: appealData.anythingElseToAdd.answer
+            },
+            actions: {
+                items: [
+                    {
+                        href: "/case-building/anything-else-to-add-question",
+                        text: "Change"
+                    }
+                ]
+            }
+        }), additionalInformationArray) %}
+
+        {% if appealData.anythingElseToAdd.evidence and appealData.anythingElseToAdd.evidence.length > 0 %}
+
+            {% for evidence in appealData.anythingElseToAdd.evidence %}
+                {% set additionalInformationArray = (additionalInformationArray.push({
+                    key: {
+                        text: "Document"
+                    },
+                    value: {
+                        html: "<a href='#'>" + evidence.fileName + "</a>"
+                    }
+                }), additionalInformationArray) %}
+                {% if evidence.description %}
+                    {% set additionalInformationArray = (additionalInformationArray.push({
+                        key: {
+                            text: "Description"
+                        },
+                        value: {
+                            text: evidence.description
+                        }
+                    }), additionalInformationArray) %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+
+        {{ govukSummaryList({
+            classes: 'govuk-!-margin-bottom-9 govuk-summary-list--no-border remove-bottom-margin',
+            rows: additionalInformationArray
+        }) }}
+    {% endif %}
 
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
