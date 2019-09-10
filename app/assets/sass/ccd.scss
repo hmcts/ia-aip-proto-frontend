@@ -1,6 +1,16 @@
 .ccd-body {
   font-size: 1rem;
   line-height: 1.1875rem;
+
+  .govuk-tabs__tab, .govuk-summary-list * {
+    font-size: 1rem;
+  }
+}
+
+.status-bar {
+  h4 {
+    font-size: 0.875rem;
+  }
 }
 
 .phase-banner--padding {
@@ -106,4 +116,12 @@
 .govuk-grid-column-three-quarters {
   width: 75%;
   float: left;
+}
+
+.ccd-full-width {
+  margin: 0 auto;
+}
+
+.--font-weight-normal {
+  font-weight: normal;
 }
