@@ -9,6 +9,7 @@
     <p class="govuk-body">
         Tell us the reason or reasons you think the Home Office was wrong to refuse your aslum or immigration claim.
     </p>
+    <p>As reference, you can view the <a href="#">Home Office Bundle</a> here.</p>
 
     <form action="/case-building/reasons-for-appeal" method="post">
         {{ govukTextarea({
@@ -25,7 +26,14 @@
         {{ fileUpload(formData.evidence) }}
 
         {{ govukButton({
-            text: "Next"
+            text: "Save and contiunue"
+        }) }}
+
+        {{ govukButton({
+            text: "Save for later",
+            name: "saveForLater",
+            value: "saveForLater",
+            classes: "govuk-button--secondary"
         }) }}
     </form>
 

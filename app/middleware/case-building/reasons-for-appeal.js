@@ -81,9 +81,13 @@ function post(req, res) {
     }
 
     Object.assign(req.session.appealData.appealDetails.reasonsForAppeal, formData);
-    req.session.appealData.appealDetails.reasonsForAppeal.completed = true;
-
-    res.redirect(paths.caseBuildingCheckAnswers);
+    if (req.body.saveForLater) {
+      req.session.appealData.appealDetails.reasonsForAppeal.draft = true;
+      res.redirect(paths.caseBuildingOverview);
+    } else {
+      req.session.appealData.appealDetails.reasonsForAppeal.completed = true;
+      res.redirect(paths.caseBuildingCheckAnswers);
+    }
   }
 }
 
