@@ -60,7 +60,7 @@
 
         {% elseif not appealData.questions %}
             <p>A case officer is now checking your response. You will receive an email soon of what to do next.</p>
-        {% else %}
+        {% elseif not appealData.caseBuilding.completed %}
             <p class="govuk-body">We need some more information from you so we can complete your appeal.</p>
             <p class="govuk-body">What you'll need</p>
             <ul class="govuk-list govuk-list--bullet">
@@ -100,7 +100,8 @@
                 href: "/case-building/questions-from-tribunal",
                 isStartButton: false
             }) }}
-
+        {% else %}
+            <p>A case office is now checking your response. You will receive an eamil soon of what to do next.</p>
         {% endif %}
     {% endset -%}
 
