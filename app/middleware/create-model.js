@@ -164,5 +164,16 @@ module.exports = (req, res, next) => {
     });
   }
 
+  if (req.query.additionalInformation) {
+    Object.assign(req.session.appealData, {
+      anythingElseToAdd: {
+        completed: true,
+        answer: 'Need content',
+        evidence: [ { fileName: 'extra evidence.txt', description: 'describe my evidence' }]
+      }
+    });
+  }
+
+
   next();
 };
