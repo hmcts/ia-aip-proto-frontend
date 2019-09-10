@@ -6,8 +6,6 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">What is your name?</h1>
-
     <form action="/case-building/anything-else-to-add" method="post">
         {{ govukRadios({
             classes: "govuk-radios--inline",
