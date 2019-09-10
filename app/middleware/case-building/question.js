@@ -39,7 +39,9 @@ function post(req, res) {
   } else if (req.body.upload) {
     const fileName = req.body.evidenceUpload;
     if (fileName) {
-      req.session.appealData.questions[req.query.index].evidence.push(fileName);
+      const description = req.body.evidenceDescription;
+      const evidence = { fileName, description };
+      req.session.appealData.questions[req.query.index].evidence.push(evidence);
     }
     const formData = extractBody(req);
     Object.assign(req.session.appealData.questions[req.query.index], formData);

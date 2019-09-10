@@ -147,7 +147,7 @@ module.exports = (req, res, next) => {
           completed: true,
           // eslint-disable-next-line max-len
           answer: 'My children\'s names are Ali, Umid and Ghulam. Ali is 8, Umiod is 6 and Ghulam is 2. They have lived in the UK since they were born.',
-          evidence: [{ fileName: 'evidence.txt' }]
+          evidence: [{ fileName: 'evidence.txt', description: 'description of the evidence' }]
         },
         {
           title: 'Some pages from the country report you submitted as evidence are missing',

@@ -26,16 +26,33 @@
                 ]
             }
         }), questionsArray) %}
+
         {% if question.evidence and question.evidence.length > 0 %}
-            {% set questionsArray = (questionsArray.push({
-                key: {
-                    text: "Uploaded filed"
-                },
-                value: {
-                    html:  "<a href='#'>" + (question.evidence | join("</a><br /><a href='#'>")) + "</a>"
-                }
-            }), questionsArray) %}
+            {% for evidence in question.evidence %}
+                {% set questionsArray = (questionsArray.push({
+                    key: {
+                        text: "Document"
+                    },
+                    value: {
+                        html: "<a href='#'>" + evidence.fileName + "</a>"
+                    }
+                }), questionsArray) %}
+                {% if evidence.description %}
+                    {% set questionsArray = (questionsArray.push({
+                        key: {
+                            text: "Description"
+                        },
+                        value: {
+                            text: evidence.description
+                        }
+                    }), questionsArray) %}
+                {% endif %}
+            {% endfor %}
         {% endif %}
+
+
+
+
 
         {{ govukSummaryList({
             classes: 'govuk-!-margin-bottom-9 govuk-summary-list--no-border remove-bottom-margin',
