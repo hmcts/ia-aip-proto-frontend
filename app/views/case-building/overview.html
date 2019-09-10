@@ -71,16 +71,36 @@
                 <li>Any evidence you submitted to the Tribunal</li>
                 <li>Any evidence that will support your appeal</li>
             </ul>
+
+            {% set hasAnsweredSomeQuestion = false %}
+            {% set hasAnsweredAllQuestion = true %}
+            {% for question in appealData.questions %}
+                {% set hasAnsweredSomeQuestion = hasAnsweredSomeQuestion or question.completed or question.draft%}
+                {% set hasAnsweredAllQuestion = hasAnsweredAllQuestion and question.completed %}
+            {% endfor %}
+            {% if hasAnsweredSomeQuestion %}
+                <p></p>
+                {{ govukInsetText({
+                    text: "Reasons for appeal is draft"
+                }) }}
+            {% endif %}
+
             {{ govukWarningText({
                 html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
                 iconFallbackText: "Warning"
             }) }}
 
+            {% if hasAnsweredSomeQuestion %}
+                {% set questionButtonText = 'Complete response' %}
+            {% else %}
+                {% set questionButtonText = 'Questions from the Tribunal' %}
+            {% endif %}
             {{ govukButton({
-                text: "Questions from the Tribunal",
+                text: questionButtonText,
                 href: "/case-building/questions-from-tribunal",
                 isStartButton: false
             }) }}
+
         {% endif %}
     {% endset -%}
 

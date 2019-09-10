@@ -2,6 +2,7 @@
 
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "components/enable-link.html" import enabledLink with context %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block content %}
 
@@ -53,4 +54,11 @@
             </ul>
         </li>
     </ol>
+
+    {{ govukButton({
+        text: "Save and exit",
+        href: "/case-building/overview",
+        isStartButton: false,
+        classes: "govuk-button--secondary"
+    }) }}
 {% endblock %}
