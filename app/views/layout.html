@@ -43,6 +43,29 @@
     {% include "includes/head.html" %}
 {% endblock %}
 
+{% block header %}
+    {% if not hideSignOut %}
+        {{ govukHeader({
+            homepageUrl: "#",
+            containerClasses: "govuk-width-container",
+            navigationClasses: "sign-out",
+            navigation: [
+                {
+                    href: "#",
+                    text: "Sign out",
+                    active: true
+                }
+            ]
+        }) }}
+    {% else %}
+        {{ govukHeader({
+            homepageUrl: "#",
+            containerClasses: "govuk-width-container"
+        }) }}
+    {% endif %}
+
+{% endblock %}
+
 {% block beforeContent %}
     {% if not hideBackLink %}
         {{ govukBackLink({
