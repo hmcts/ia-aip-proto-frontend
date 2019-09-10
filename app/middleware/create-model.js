@@ -120,17 +120,42 @@ module.exports = (req, res, next) => {
             '* What are their names?\n' +
             '* What are their ages?\n' +
             '* How long have they lived in the UK?',
+          completed: false
+        },
+        {
+          title: 'Some pages from the country report you submitted as evidence are missing',
+          description: 'Pages 5 to 7 from the country report are missing.\n\nPlease provide the missing pages below.',
+          completed: false
+        }
+      ]
+    });
+  }
+
+  if (req.query.answerQuestions) {
+    Object.assign(req.session.appealData, {
+      questions: [
+        {
+          title: 'Tell us more about your children',
+          description: 'You said you had three children in your appeal. ' +
+            'Please can you give us some more information about them:\n\n' +
+            '* What are their names?\n' +
+            '* What are their ages?\n' +
+            '* How long have they lived in the UK?',
           completed: true,
           // eslint-disable-next-line max-len
           answer: 'My children\'s names are Ali, Umid and Ghulam. Ali is 8, Umiod is 6 and Ghulam is 2. They have lived in the UK since they were born.',
-          evidence: ['evidence.txt']
+          evidence: [{ fileName: 'evidence.txt' }]
         },
         {
           title: 'Some pages from the country report you submitted as evidence are missing',
           description: 'Pages 5 to 7 from the country report are missing.\n\nPlease provide the missing pages below.',
           completed: true,
           answer: 'I have attached the missing pages',
-          evidence: ['page5.png', 'page6.png', 'page7.png']
+          evidence: [
+            { fileName: 'page5.png', description: 'Page 5 of country report' },
+            { fileName: 'page6.png', description: 'Page 6 of country report' },
+            { fileName: 'page7.png', description: 'Page 7 of country report' }
+          ]
         }
       ]
     });
