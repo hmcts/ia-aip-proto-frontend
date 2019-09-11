@@ -52,4 +52,10 @@ body {
 
 .sign-out {
   float: right;
+  li {
+    a.govuk-header__link {
+      color: white;
+      text-decoration: underline;
+    }
+  }
 }
