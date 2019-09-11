@@ -6,10 +6,7 @@
 
 {% block content %}
     {{ errorSummary(errors) }}
-    <h1 class="govuk-heading-xl remove-bottom-margin">Do you have anything else to add?</h1>
-    <p class="govuk-body">
-        Submit additional information (if you have any) that is relevant to your appeal
-    </p>
+    <h1 class="govuk-heading-xl">Do you want to tell us anything else about your case?</h1>
 
     <form action="/case-building/anything-else-to-add-question" method="post">
         {{ govukTextarea({
@@ -25,16 +22,18 @@
 
         {{ fileUpload(formData.evidence) }}
 
-        {{ govukButton({
-            text: "Save and continue"
-        }) }}
+        <div class="buttons__container">
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
 
-        {{ govukButton({
-            text: "Save for later",
-            name: "saveForLater",
-            value: "saveForLater",
-            classes: "govuk-button--secondary"
-        }) }}
+            {{ govukButton({
+                text: "Save for later",
+                name: "saveForLater",
+                value: "saveForLater",
+                classes: "govuk-button--secondary"
+            }) }}
+        </div>
     </form>
 
     {{ contactUs() }}

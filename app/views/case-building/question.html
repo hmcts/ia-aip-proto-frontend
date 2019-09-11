@@ -21,16 +21,18 @@
 
         {{ fileUpload(question.evidence) }}
 
-        {{ govukButton({
-            text: "Save and continue"
-        }) }}
+        <div class="buttons__container">
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
 
-        {{ govukButton({
-            text: "Save for later",
-            name: "saveForLater",
-            value: "saveForLater",
-            classes: "govuk-button--secondary"
-        }) }}
+            {{ govukButton({
+                text: "Save for later",
+                name: "saveForLater",
+                value: "saveForLater",
+                classes: "govuk-button--secondary"
+            }) }}
+        </div>
     </form>
 
     {{ contactUs() }}

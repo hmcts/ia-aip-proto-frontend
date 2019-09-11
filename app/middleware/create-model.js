@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
         }
       },
       // eslint-disable-next-line no-magic-numbers
-      respondByDate: moment.utc().add(1, 'weeks').format('D MMMM YYYY')
+      respondByDate: moment.utc().add(4, 'weeks').format('D MMMM YYYY')
     };
   }
 
@@ -53,8 +53,8 @@ module.exports = (req, res, next) => {
         personalDetails: {
           completed: true,
           title: 'Mr',
-          givenNames: 'Chris',
-          familyName: 'Grimble',
+          givenNames: 'Pablo',
+          familyName: 'Jimenez',
           dateOfBirth: {
             day: '01',
             month: '01',
@@ -123,8 +123,11 @@ module.exports = (req, res, next) => {
           completed: false
         },
         {
-          title: 'Some pages from the country report you submitted as evidence are missing',
-          description: 'Pages 5 to 7 from the country report are missing.\n\nPlease provide the missing pages below.',
+          title: 'Tell us more about your health issues',
+          description: `You said you have chronic back pain.\n\n
+            * How long have you suffered from this problem?
+            * How does it affect your daily life?
+            * What medicine, if any, do you take to treat the problem?`,
           completed: false
         }
       ],
@@ -150,10 +153,15 @@ module.exports = (req, res, next) => {
           evidence: [{ fileName: 'evidence.txt', description: 'description of the evidence' }]
         },
         {
-          title: 'Some pages from the country report you submitted as evidence are missing',
-          description: 'Pages 5 to 7 from the country report are missing.\n\nPlease provide the missing pages below.',
+          title: 'Tell us more about your health issues',
+          description: `You said you have chronic back pain.\n\n
+            * How long have you suffered from this problem?
+            * How does it affect your daily life?
+            * What medicine, if any, do you take to treat the problem?`,
           completed: true,
-          answer: 'I have attached the missing pages',
+          answer: `I have had chronic back pain since I was beaten up by a militia group
+            in 2016. The pain makes it difficult to work and affects my mobility. My
+            GP has prescribed pain killers to help manage the pain.`,
           evidence: [
             { fileName: 'page5.png', description: 'Page 5 of country report' },
             { fileName: 'page6.png', description: 'Page 6 of country report' },
