@@ -28,6 +28,8 @@ module.exports = {
   reasonsForAppeal: '/case-building/reasons-for-appeal',
   caseBuildingCheckAnswers: '/case-building/check-answers',
   caseBuildingSubmitted: '/case-building/submitted',
+  anythingElseToAdd: '/case-building/anything-else-to-add',
+  anythingElseToAddQuestion: '/case-building/anything-else-to-add-question',
   ccd: '/ccd',
   ccdCasesList: '/case/list',
   ccdCaseOverview: '/case/overview',

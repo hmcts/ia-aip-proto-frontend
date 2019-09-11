@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <form action="/case-building/anything-else-to-add" method="post">
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            idPrefix: "anythingElseToAdd",
+            name: "anythingElseToAdd",
+            fieldset: {
+                legend: {
+                    text: "Do you want to tell us anything else about your case?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
+                }
+            },
+            items: [
+                {
+                    value: "yes",
+                    text: "Yes",
+                    checked: true
+                },
+                {
+                    value: "no",
+                    text: "No"
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

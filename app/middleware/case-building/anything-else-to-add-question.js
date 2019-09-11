@@ -2,8 +2,8 @@ const { check } = require('express-validator');
 const { validationResult } = require('express-validator');
 const paths = require('../../paths');
 
-const template = 'case-building/question.html';
-const previousPage = paths.questionsFromTribunal;
+const template = 'case-building/anything-else-to-add-question.html';
+const previousPage = paths.anythingElseToAdd;
 
 function validation(locale) {
   return [ check('answer').isLength({ min: 1 }).withMessage(locale.questions.errors.tooShort) ];
@@ -19,20 +19,19 @@ function get(req, res) {
   res.render(template, {
     hideBackLink: false,
     previousPage,
-    question: req.session.appealData.questions[req.query.index],
-    questionIndex: req.query.index
+    formData: req.session.appealData.anythingElseToAdd
   });
 }
 
 function post(req, res) {
-  if (!req.session.appealData.questions[req.query.index].evidence) {
-    req.session.appealData.questions[req.query.index].evidence = [];
+  if (!req.session.appealData.anythingElseToAdd.evidence) {
+    req.session.appealData.anythingElseToAdd.evidence = [];
   }
-  if (req.body.delete && req.session.appealData.questions[req.query.index].evidence) {
+  if (req.body.delete && req.session.appealData.anythingElseToAdd.evidence) {
     const submittedFormData = extractBody(req);
-    Object.assign(req.session.appealData.questions[req.query.index], submittedFormData);
+    Object.assign(req.session.appealData.anythingElseToAdd, submittedFormData);
 
-    const evidence = req.session.appealData.questions[req.query.index].evidence;
+    const evidence = req.session.appealData.anythingElseToAdd.evidence;
     evidence.splice(req.body.delete, 1);
 
     get(req, res);
@@ -41,17 +40,17 @@ function post(req, res) {
     if (fileName) {
       const description = req.body.evidenceDescription;
       const evidence = { fileName, description };
-      req.session.appealData.questions[req.query.index].evidence.push(evidence);
+      req.session.appealData.anythingElseToAdd.evidence.push(evidence);
     }
     const formData = extractBody(req);
-    Object.assign(req.session.appealData.questions[req.query.index], formData);
+    Object.assign(req.session.appealData.anythingElseToAdd, formData);
 
     get(req, res);
   } else {
     const errors = validationResult(req);
 
     const formData = extractBody(req);
-    formData.evidence = req.session.appealData.questions[req.query.index].evidence;
+    formData.evidence = req.session.appealData.anythingElseToAdd.evidence;
 
     if (!errors.isEmpty()) {
       const fieldErrors = {};
@@ -74,8 +73,7 @@ function post(req, res) {
       res.render(template, Object.assign({
         hideBackLink: false,
         previousPage,
-        question: req.session.appealData.questions[req.query.index],
-        questionIndex: req.query.index,
+        formData: req.session.appealData.anythingElseToAdd,
         errors: {
           errorList,
           fieldErrors
@@ -84,11 +82,11 @@ function post(req, res) {
       return;
     }
 
-    Object.assign(req.session.appealData.questions[req.query.index], formData);
+    Object.assign(req.session.appealData.anythingElseToAdd, formData);
     if (req.body.saveForLater) {
-      req.session.appealData.questions[req.query.index].draft = true;
+      req.session.appealData.anythingElseToAdd.draft = true;
     } else {
-      req.session.appealData.questions[req.query.index].completed = true;
+      req.session.appealData.anythingElseToAdd.completed = true;
     }
 
     res.redirect(paths.questionsFromTribunal);

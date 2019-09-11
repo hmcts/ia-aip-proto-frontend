@@ -35,7 +35,7 @@
             {% if appealData.appealDetails.reasonsForAppeal.draft %}
                 <p></p>
                 {{ govukInsetText({
-                    text: "Reasons for appeal is draft"
+                    text: "Your answer has been saved"
                 }) }}
             {% endif %}
 
@@ -46,7 +46,7 @@
 
             {% if appealData.appealDetails.reasonsForAppeal.draft %}
                 {{ govukButton({
-                    text: "Complete response",
+                    text: "Continue",
                     href: "/case-building/reasons-for-appeal",
                     isStartButton: false
                 }) }}
@@ -59,8 +59,8 @@
             {% endif %}
 
         {% elseif not appealData.questions %}
-            <p>A case officer is now checking your response. You will receive an email soon of what to do next.</p>
-        {% else %}
+            <p>A case officer is looking at your answer. They will contact you soon to tell you what to do next.</p>
+        {% elseif not appealData.caseBuilding.completed %}
             <p class="govuk-body">We need some more information from you so we can complete your appeal.</p>
             <p class="govuk-body">What you'll need</p>
             <ul class="govuk-list govuk-list--bullet">
@@ -71,16 +71,37 @@
                 <li>Any evidence you submitted to the Tribunal</li>
                 <li>Any evidence that will support your appeal</li>
             </ul>
+
+            {% set hasAnsweredSomeQuestion = false %}
+            {% set hasAnsweredAllQuestion = true %}
+            {% for question in appealData.questions %}
+                {% set hasAnsweredSomeQuestion = hasAnsweredSomeQuestion or question.completed or question.draft%}
+                {% set hasAnsweredAllQuestion = hasAnsweredAllQuestion and question.completed %}
+            {% endfor %}
+            {% if hasAnsweredSomeQuestion %}
+                <p></p>
+                {{ govukInsetText({
+                    text: "Your answer has been saved"
+                }) }}
+            {% endif %}
+
             {{ govukWarningText({
                 html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
                 iconFallbackText: "Warning"
             }) }}
 
+            {% if hasAnsweredSomeQuestion %}
+                {% set questionButtonText = 'Continue' %}
+            {% else %}
+                {% set questionButtonText = 'Questions from the Tribunal' %}
+            {% endif %}
             {{ govukButton({
-                text: "Questions from the Tribunal",
+                text: questionButtonText,
                 href: "/case-building/questions-from-tribunal",
                 isStartButton: false
             }) }}
+        {% else %}
+            <p>A case worker is looking at your answer. They will contact you soon to tell you what to do next.</p>
         {% endif %}
     {% endset -%}
 
