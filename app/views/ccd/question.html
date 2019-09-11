@@ -1,0 +1,36 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+    <h1 class="govuk-heading-xl remove-bottom-margin">{{ i18n.tcw.additionalQuestion.title }}</h1>
+    <p class="govuk-body rich-text">{{ i18n.tcw.additionalQuestion.description }}</p>
+
+    <div class="tcw-question-container">
+        {% for question in questions %}
+            {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            value: question.description,
+            label: {
+                text: "Can you provide more detail?"
+            }
+            }) }}
+        {% endfor %}
+        <form action="/ccd/case/questions" method="post">
+            {{ govukTextarea({
+            name: "further-question",
+            id: "further-question",
+            label: {
+                text: "Can you provide more detail?"
+            }
+            }) }}
+
+            {{ govukButton({
+                text: "Add new"
+            }) }}
+        </form>
+    </div>
+
+{% endblock %}

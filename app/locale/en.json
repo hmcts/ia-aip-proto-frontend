@@ -63,5 +63,11 @@
       "header": "Sorry, we're experiencing technical difficulties",
       "content": "Please try again in a few minutes."
     }
+  },
+  "tcw": {
+    "additionalQuestion": {
+      "title": "Ask clarifying questions",
+      "description": "Ask questions to clarify information with the apellant. You can see these initial response here"
+    }
   }
 }
