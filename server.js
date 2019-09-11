@@ -5,6 +5,5 @@ const config = require('config');
 const logger = Logger.getLogger('server.js');
 const port = config.get('node.port');
 
-app.create().listen(port);
-
-logger.info(`Server listening on port: ${port}`);
+app.create().listen(port, () => logger.info(`Server listening on port: ${port}`))
+  .on('error', error => logger.error(`Unable to start server because of ${error.message}`));
