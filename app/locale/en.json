@@ -145,6 +145,11 @@
       "errors": {
         "enterADescription": "Enter a description of your vulnerability"
       }
+    },
+    "multimediaEvidence": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
     }
   }
 }

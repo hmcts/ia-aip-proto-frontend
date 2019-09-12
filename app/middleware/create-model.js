@@ -53,6 +53,9 @@ module.exports = (req, res, next) => {
         },
         vulnerabilities: {
           completed: false
+        },
+        multimediaEvidence: {
+          completed: false
         }
       }
     };
