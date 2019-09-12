@@ -109,6 +109,11 @@
       "errors": {
         "selectAnOption": "Select either yes or no"
       }
+    },
+    "witnesses": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
     }
   }
 }

@@ -38,6 +38,9 @@ module.exports = (req, res, next) => {
         },
         giveEvidence: {
           completed: false
+        },
+        witnesses: {
+          completed: false
         }
       }
     };

@@ -44,5 +44,6 @@ module.exports = {
 
   hearingAppellantTaskList: '/hearing-requirements/task-list',
   hearingAppellantComing: '/hearing-requirements/appellant-coming',
-  hearingGiveEvidence: '/hearing-requirements/give-evidence'
+  hearingGiveEvidence: '/hearing-requirements/give-evidence',
+  hearingWitnesses: '/hearing-requirements/witnesses'
 };
