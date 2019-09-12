@@ -50,6 +50,9 @@ module.exports = (req, res, next) => {
         },
         hearingLoop: {
           completed: false
+        },
+        vulnerabilities: {
+          completed: false
         }
       }
     };
