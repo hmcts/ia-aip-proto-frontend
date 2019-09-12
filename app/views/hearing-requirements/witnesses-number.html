@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
+
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+
+    <form action="/hearing-requirements/witnesses-number" method="post">
+
+        {{ govukSelect({
+            id: "number",
+            name: "number",
+            label: {
+                text: "How many witnesses will you bring?"
+            },
+            items: [
+                {
+                    value: "Select number",
+                    text: "Select number",
+                    selected: formData.number == 'Select number'
+                },
+                {
+                    value: "1",
+                    text: "1",
+                    selected: formData.number == '1'
+                },
+                {
+                    value: "2",
+                    text: "2",
+                    selected: formData.number == '2'
+                },
+                {
+                    value: "3",
+                    text: "3",
+                    selected: formData.number == '3'
+                },
+                {
+                    value: "4",
+                    text: "4",
+                    selected: formData.number == '4'
+                },
+                {
+                    value: "5",
+                    text: "5",
+                    selected: formData.number == '5'
+                },
+                {
+                    value: "6",
+                    text: "6",
+                    selected: formData.number == '6'
+                },
+                {
+                    value: "7",
+                    text: "7",
+                    selected: formData.number == '7'
+                },
+                {
+                    value: "8",
+                    text: "8",
+                    selected: formData.number == '8'
+                },
+                {
+                    value: "9",
+                    text: "9",
+                    selected: formData.number == '9'
+                },
+                {
+                    value: "10",
+                    text: "10",
+                    selected: formData.number == '10'
+                },
+                {
+                    value: "11",
+                    text: "11",
+                    selected: formData.number == '11'
+                },
+                {
+                    value: "12",
+                    text: "12",
+                    selected: formData.number == '12'
+                },
+                {
+                    value: "13",
+                    text: "13",
+                    selected: formData.number == '13'
+                },
+                {
+                    value: "14",
+                    text: "14",
+                    selected: formData.number == '14'
+                },
+                {
+                    value: "15",
+                    text: "15",
+                    selected: formData.number == '15'
+                },
+                {
+                    value: "16",
+                    text: "16",
+                    selected: formData.number == '16'
+                },
+                {
+                    value: "17",
+                    text: "17",
+                    selected: formData.number == '17'
+                },
+                {
+                    value: "18",
+                    text: "18",
+                    selected: formData.number == '18'
+                },
+                {
+                    value: "19",
+                    text: "19",
+                    selected: formData.number == '19'
+                },
+                {
+                    value: "20",
+                    text: "20",
+                    selected: formData.number == '20'
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Previous",
+            href: "/hearing-requirements/witnesses",
+            classes: "govuk-button--secondary"
+        }) }}
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

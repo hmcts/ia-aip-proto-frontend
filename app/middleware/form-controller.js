@@ -1,6 +1,10 @@
 const paths = require('../paths');
 const { validationResult } = require('express-validator');
 
+function isFunction(functionToCheck) {
+  return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+}
+
 function formController(
   template,
   sessionGroupName,
@@ -68,7 +72,8 @@ function formController(
       }
       Object.assign(req.session.appealData[sessionGroupName][sessionFieldName], formData);
 
-      res.redirect(nextPage);
+      const redirectTo = (isFunction(nextPage)) ? nextPage(formData) : nextPage;
+      res.redirect(redirectTo);
     }
   };
 }

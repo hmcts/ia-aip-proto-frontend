@@ -5,32 +5,28 @@ const paths = require('../../paths');
 function validation(locale) {
   return [
     // eslint-disable-next-line max-len
-    check('witnesses').not().isEmpty().withMessage(locale.hearingRequirements.witnesses.errors.selectAnOption)
+    check('number').not().isEmpty().withMessage(locale.hearingRequirements.witnesses.errors.selectHowMany),
+    check('number').isInt({ min: 1, max: 20 }).withMessage(locale.hearingRequirements.witnesses.errors.selectHowMany)
   ];
 }
 
 function extractBody(req) {
   return {
-    witnesses: req.body.witnesses
+    number: req.body.number
   };
 }
 
 function createFormController() {
   return formController(
-    'hearing-requirements/witnesses.html',
+    'hearing-requirements/witnesses-number.html',
     'hearingRequirements',
     'witnesses',
     validation,
     extractBody,
     false,
     false,
-    formData => {
-      if (formData.witnesses === 'yes') {
-        return paths.hearingWitnessesNumber;
-      }
-      return paths.hearingAppellantTaskList;
-    },
-    paths.hearingAppellantTaskList
+    paths.hearingAppellantTaskList,
+    paths.hearingWitnesses,
   );
 }
 

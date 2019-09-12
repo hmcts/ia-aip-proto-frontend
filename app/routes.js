@@ -16,6 +16,7 @@ const anythingElseToAddQuestionController = require('./middleware/case-building/
 const hearingAppellantComing = require('./middleware/hearing-requirements/appellant-coming');
 const hearingGiveEvidence = require('./middleware/hearing-requirements/give-evidence');
 const hearingWitnesses = require('./middleware/hearing-requirements/witnesses');
+const hearingWitnessesNumber = require('./middleware/hearing-requirements/witnesses-number');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -77,6 +78,7 @@ router.use(paths.hearingAppellantTaskList, require('./middleware/hearing-require
 setupFormController(paths.hearingAppellantComing, hearingAppellantComing);
 setupFormController(paths.hearingGiveEvidence, hearingGiveEvidence);
 setupFormController(paths.hearingWitnesses, hearingWitnesses);
+setupFormController(paths.hearingWitnessesNumber, hearingWitnessesNumber);
 
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));
