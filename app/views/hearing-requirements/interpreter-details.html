@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+
+    <form action="/hearing-requirements/interpreter-details" method="post">
+
+        {% call govukFieldset({
+            legend: {
+                text: "What language interpreter fo you need?"
+            }
+        }) %}
+
+            {{ govukSelect({
+                id: "name",
+                name: "name",
+                items: [
+                    {
+                        value: "Select language",
+                        text: "Select language",
+                        selected: formData.number == 'Select language'
+                    },
+                    {
+                        value: "French",
+                        text: "French",
+                        selected: formData.number == 'French'
+                    },
+                    {
+                        value: "German",
+                        text: "German",
+                        selected: formData.number == 'German'
+                    },
+                    {
+                        value: "Italian",
+                        text: "Italian",
+                        selected: formData.number == 'Italian'
+                    },
+                    {
+                        value: "Spanish",
+                        text: "Spanish",
+                        selected: formData.number == 'Spanish'
+                    }
+                ]
+            }) }}
+
+            {{ input("Dialect", "dialect", formData.dialect) }}
+            {{ govukButton({
+                text: "Add new",
+                name: "addNew",
+                value: "addNew"
+            }) }}
+
+            {% if formData.languages and formData.languages.length > 0 %}
+                {% set languages = [] %}
+                {% for language in formData.languages %}
+                    {% set languages = (languages.push([
+                        {
+                            text: language.name
+                        },
+                        {
+                            text: language.dialect
+                        },
+                        {
+                            html: "<button type='submit' name='delete' value='" + loop.index0 + "' class='button-link gov-details'>Delete</button>",
+                            format: "numeric"
+                        }
+                    ]), languages) %}
+                {% endfor %}
+
+                {{ govukTable({
+                    firstCellIsHeader: false,
+                    head: [
+                        {
+                            text: "Language"
+                        },
+                        {
+                            text: "Dialect"
+                        },
+                        {}
+                    ],
+                    rows: languages
+                }) }}
+            {% endif %}
+        {% endcall %}
+
+        {{ govukButton({
+            text: "Previous",
+            href: "/hearing-requirements/task-list",
+            classes: "govuk-button--secondary"
+        }) }}
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

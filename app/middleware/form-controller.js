@@ -67,7 +67,7 @@ function formController(
         return;
       }
 
-      const redirectTo = (isFunction(nextPage)) ? nextPage(formData) : nextPage;
+      const redirectTo = (isFunction(nextPage)) ? nextPage(formData, req) : nextPage;
       if (redirectTo === paths.taskList || redirectTo === paths.hearingAppellantTaskList) {
         formData.completed = true;
       }

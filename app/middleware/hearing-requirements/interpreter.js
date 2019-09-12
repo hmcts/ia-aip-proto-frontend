@@ -26,7 +26,7 @@ function createFormController() {
     false,
     formData => {
       if (formData.required === 'yes') {
-        return 'tbc';
+        return paths.hearingInterpreterDetails;
       }
       return paths.hearingAppellantTaskList;
     },

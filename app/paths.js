@@ -47,5 +47,6 @@ module.exports = {
   hearingGiveEvidence: '/hearing-requirements/give-evidence',
   hearingWitnesses: '/hearing-requirements/witnesses',
   hearingWitnessesNumber: '/hearing-requirements/witnesses-number',
-  hearingInterpreter: '/hearing-requirements/interpreter'
+  hearingInterpreter: '/hearing-requirements/interpreter',
+  hearingInterpreterDetails: '/hearing-requirements/interpreter-details'
 };
