@@ -5,7 +5,7 @@ const paths = require('../../paths');
 function validation(locale) {
   return [
     // eslint-disable-next-line max-len
-    check('vulnerabilities').not().isEmpty().withMessage(locale.hearingRequirements.interpreter.errors.selectAnOption)
+    check('vulnerabilities').not().isEmpty().withMessage(locale.hearingRequirements.vulnerabilities.errors.selectAnOption)
   ];
 }
 

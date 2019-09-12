@@ -51,5 +51,6 @@ module.exports = {
   hearingInterpreterDetails: '/hearing-requirements/interpreter-details',
   hearingStepFree: '/hearing-requirements/step-free',
   hearingHearingLoop: '/hearing-requirements/hearing-loop',
-  hearingVulnerabilities: '/hearing-requirements/vulnerabilities'
+  hearingVulnerabilities: '/hearing-requirements/vulnerabilities',
+  hearingVulnerabilitiesList: '/hearing-requirements/vulnerabilities-list'
 };

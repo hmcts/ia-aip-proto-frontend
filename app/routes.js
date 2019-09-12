@@ -22,6 +22,7 @@ const hearingInterpreterDetails = require('./middleware/hearing-requirements/int
 const hearingStepFree = require('./middleware/hearing-requirements/step-free');
 const hearingLoop = require('./middleware/hearing-requirements/hearing-loop');
 const hearingVulnerabilities = require('./middleware/hearing-requirements/vulnerabilities');
+const hearingVulnerabilitiesList = require('./middleware/hearing-requirements/vulnerabilities-list');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -89,6 +90,7 @@ setupFormController(paths.hearingInterpreterDetails, hearingInterpreterDetails);
 setupFormController(paths.hearingStepFree, hearingStepFree);
 setupFormController(paths.hearingHearingLoop, hearingLoop);
 setupFormController(paths.hearingVulnerabilities, hearingVulnerabilities);
+setupFormController(paths.hearingVulnerabilitiesList, hearingVulnerabilitiesList);
 
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));

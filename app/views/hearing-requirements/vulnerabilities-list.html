@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+
+    <form action="/hearing-requirements/vulnerabilities-list" method="post">
+        {{ govukCheckboxes({
+            idPrefix: "vulnerabilities-list",
+            name: "vulnerabilities-list",
+            fieldset: {
+                legend: {
+                    text: "Do you have any personal vulnerabilities that will impact you during the hearing?"
+                }
+            },
+            hint: {
+                text: 'Select all that apply'
+            },
+            errorMessage: errors.fieldErrors["vulnerabilities-list"],
+            items: [
+                {
+                    value: "Hearing impairment",
+                    text: "Hearing impairment",
+                    checked: formData.hearingImpairment
+                },
+                {
+                    value: "Physical disability",
+                    text: "Physical disability",
+                    checked: formData.physicalDisability
+                },
+                {
+                    value: "Ill health",
+                    text: "Ill health",
+                    checked: formData.illHealth
+                },
+                {
+                    value: "Cognitive impairment",
+                    text: "Cognitive impairment",
+                    checked: formData.cognitiveImpairment
+                },
+                {
+                    value: "Learning disability",
+                    text: "Learning disability",
+                    checked: formData.learningDisability
+                },
+                {
+                    value: "Mental health disorder",
+                    text: "Mental health disorder",
+                    checked: formData.mentalHealthDisorder
+                },
+                {
+                    value: "Experience if domestic violence, sexual abuse, trafficking or torture",
+                    text: "Experience if domestic violence, sexual abuse, trafficking or torture",
+                    checked: formData.domesticViolence
+                },
+                {
+                    value: "Other",
+                    text: "Other",
+                    checked: formData.other
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Previous",
+            href: "/hearing-requirements/vulnerabilities",
+            classes: "govuk-button--secondary"
+        }) }}
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

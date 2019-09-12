@@ -135,6 +135,11 @@
       "errors": {
         "selectAnOption": "Select either yes or no"
       }
+    },
+    "vulnerabilitiesList": {
+      "errors": {
+        "selectAnOption": "Select an option"
+      }
     }
   }
 }
