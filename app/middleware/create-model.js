@@ -41,6 +41,9 @@ module.exports = (req, res, next) => {
         },
         witnesses: {
           completed: false
+        },
+        interpreter: {
+          completed: false
         }
       }
     };

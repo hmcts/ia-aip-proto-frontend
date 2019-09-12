@@ -115,6 +115,11 @@
         "selectAnOption": "Select either yes or no",
         "selectHowMany":"Select how many witnesses"
       }
+    },
+    "interpreter": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
     }
   }
 }

@@ -67,12 +67,12 @@ function formController(
         return;
       }
 
-      if (nextPage === paths.taskList || nextPage === paths.hearingAppellantTaskList) {
+      const redirectTo = (isFunction(nextPage)) ? nextPage(formData) : nextPage;
+      if (redirectTo === paths.taskList || redirectTo === paths.hearingAppellantTaskList) {
         formData.completed = true;
       }
       Object.assign(req.session.appealData[sessionGroupName][sessionFieldName], formData);
 
-      const redirectTo = (isFunction(nextPage)) ? nextPage(formData) : nextPage;
       res.redirect(redirectTo);
     }
   };

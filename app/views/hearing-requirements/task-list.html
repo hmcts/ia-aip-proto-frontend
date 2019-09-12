@@ -7,7 +7,7 @@
     <ol class="app-task-list">
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">1. </span> Hearing requirements
+                <span class="app-task-list__section-number">1. </span> Who is coming to the hearing
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
@@ -37,6 +37,23 @@
                     </a>
                   </span>
                     {% if appealData.hearingRequirements.witnesses.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
+                    {% endif %}
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">2. </span> Hearing requirements
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="/hearing-requirements/interpreter" aria-describedby="home-office-details-completed">
+                        Do you need interpreter services at the hearing?
+                    </a>
+                  </span>
+                    {% if appealData.hearingRequirements.interpreter.completed %}
                         <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
                     {% endif %}
                 </li>
