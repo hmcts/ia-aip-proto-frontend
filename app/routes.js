@@ -20,6 +20,7 @@ const hearingWitnessesNumber = require('./middleware/hearing-requirements/witnes
 const hearingInterpreter = require('./middleware/hearing-requirements/interpreter');
 const hearingInterpreterDetails = require('./middleware/hearing-requirements/interpreter-details');
 const hearingStepFree = require('./middleware/hearing-requirements/step-free');
+const hearingLoop = require('./middleware/hearing-requirements/hearing-loop');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -85,6 +86,7 @@ setupFormController(paths.hearingWitnessesNumber, hearingWitnessesNumber);
 setupFormController(paths.hearingInterpreter, hearingInterpreter);
 setupFormController(paths.hearingInterpreterDetails, hearingInterpreterDetails);
 setupFormController(paths.hearingStepFree, hearingStepFree);
+setupFormController(paths.hearingHearingLoop, hearingLoop);
 
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));

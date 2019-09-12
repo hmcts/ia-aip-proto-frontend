@@ -47,6 +47,9 @@ module.exports = (req, res, next) => {
         },
         stepFree: {
           completed: false
+        },
+        hearingLoop: {
+          completed: false
         }
       }
     };

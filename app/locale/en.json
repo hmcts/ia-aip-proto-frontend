@@ -125,6 +125,11 @@
       "errors": {
         "selectAnOption": "Select either yes or no"
       }
+    },
+    "hearingLoop": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
     }
   }
 }

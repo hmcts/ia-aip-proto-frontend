@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <p>We can provide a hearing loop for the hearing.</p>
+    <form action="/hearing-requirements/hearing-loop" method="post">
+
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            idPrefix: "hearing-loop",
+            name: "hearing-loop",
+            fieldset: {
+                legend: {
+                    text: "Do you need a hearing loop?",
+                    isPageHeading: false
+                }
+            },
+            items: [
+                {
+                    value: "yes",
+                    text: "Yes",
+                    checked: formData.hearingLoop == 'yes'
+                },
+                {
+                    value: "no",
+                    text: "No",
+                    checked: formData.hearingLoop == 'no'
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Previous",
+            href: "/hearing-requirements/task-list",
+            classes: "govuk-button--secondary"
+        }) }}
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

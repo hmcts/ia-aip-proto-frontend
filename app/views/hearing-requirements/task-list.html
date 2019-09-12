@@ -67,6 +67,16 @@
                         <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
                     {% endif %}
                 </li>
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="/hearing-requirements/hearing-loop" aria-describedby="home-office-details-completed">
+                        Do you need a hearing loop?
+                    </a>
+                  </span>
+                    {% if appealData.hearingRequirements.hearingLoop.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
+                    {% endif %}
+                </li>
             </ul>
         </li>
     </ol>
