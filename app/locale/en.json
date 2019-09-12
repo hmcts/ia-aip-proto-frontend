@@ -140,6 +140,11 @@
       "errors": {
         "selectAnOption": "Select an option"
       }
+    },
+    "vulnerabilitiesDescription": {
+      "errors": {
+        "enterADescription": "Enter a description of your vulnerability"
+      }
     }
   }
 }

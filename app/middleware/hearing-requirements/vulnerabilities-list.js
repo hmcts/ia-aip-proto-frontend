@@ -34,7 +34,7 @@ function createFormController() {
     extractBody,
     false,
     false,
-    paths.hearingAppellantTaskList,
+    paths.hearingVulnerabilitiesDescription,
     paths.hearingVulnerabilities
   );
 }
