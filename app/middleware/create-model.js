@@ -44,6 +44,9 @@ module.exports = (req, res, next) => {
         },
         interpreter: {
           completed: false
+        },
+        stepFree: {
+          completed: false
         }
       }
     };

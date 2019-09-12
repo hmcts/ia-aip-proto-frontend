@@ -120,6 +120,11 @@
       "errors": {
         "selectAnOption": "Select either yes or no"
       }
+    },
+    "stepFree": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
     }
   }
 }
