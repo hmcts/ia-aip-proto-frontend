@@ -97,5 +97,13 @@
     "errors": {
       "emptyFurtherQuestions": "You have not entered a question. Enter the question you want the apellant to be presented with."
     }
+  },
+
+  "hearingRequirements": {
+    "appellantComing": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
+    }
   }
 }

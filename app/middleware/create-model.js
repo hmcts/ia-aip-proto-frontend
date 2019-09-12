@@ -31,7 +31,12 @@ module.exports = (req, res, next) => {
         }
       },
       // eslint-disable-next-line no-magic-numbers
-      respondByDate: moment.utc().add(4, 'weeks').format('D MMMM YYYY')
+      respondByDate: moment.utc().add(4, 'weeks').format('D MMMM YYYY'),
+      hearingRequirements: {
+        appellantComing: {
+          completed: false
+        }
+      }
     };
   }
 

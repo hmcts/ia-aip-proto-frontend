@@ -40,5 +40,8 @@ module.exports = {
   emailQuestions: '/email/questions',
   emailReasonsForAppeal: '/email/reasons-for-appeal',
   emailRegister: '/email/register',
-  flow: '/flow'
+  flow: '/flow',
+
+  hearingAppellantTaskList: '/hearing-requirements/task-list',
+  hearingAppellantComing: '/hearing-requirements/appellant-coming'
 };

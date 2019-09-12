@@ -13,6 +13,7 @@ const questionsController = require('./middleware/case-building/question');
 const ccdController = require('./ccd-routes');
 const anythingElseToAddController = require('./middleware/case-building/anything-else-to-add');
 const anythingElseToAddQuestionController = require('./middleware/case-building/anything-else-to-add-question');
+const hearingAppellantComing = require('./middleware/hearing-requirements/appellant-coming');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -69,6 +70,9 @@ router.use(paths.emailQuestions, require('./middleware/email/questions'));
 router.use(paths.emailReasonsForAppeal, require('./middleware/email/reasons-for-appeal'));
 router.use(paths.emailRegister, require('./middleware/email/regsiter'));
 router.use(paths.flow, require('./middleware/flow'));
+
+setupFormController(paths.hearingAppellantComing, hearingAppellantComing);
+
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));
 
