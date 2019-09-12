@@ -63,7 +63,7 @@ function formController(
         return;
       }
 
-      if (nextPage === paths.taskList) {
+      if (nextPage === paths.taskList || nextPage === paths.hearingAppellantTaskList) {
         formData.completed = true;
       }
       Object.assign(req.session.appealData[sessionGroupName][sessionFieldName], formData);

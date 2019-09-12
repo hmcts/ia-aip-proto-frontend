@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% from "components/enable-link.html" import enabledLink with context %}
+
+{% block content %}
+    <h1 class="govuk-heading-xl">{{ i18n.taskList.header }}</h1>
+
+    <ol class="app-task-list">
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">1. </span> Hearing requirements
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="/hearing-requirements/appellant-coming" aria-describedby="home-office-details-completed">
+                        Is the appellant coming to the appeal hearing?
+                    </a>
+                  </span>
+                    {% if appealData.hearingRequirements.appellantComing.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
+                    {% endif %}
+                </li>
+            </ul>
+        </li>
+    </ol>
+
+{% endblock %}

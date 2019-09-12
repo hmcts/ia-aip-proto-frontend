@@ -71,6 +71,7 @@ router.use(paths.emailReasonsForAppeal, require('./middleware/email/reasons-for-
 router.use(paths.emailRegister, require('./middleware/email/regsiter'));
 router.use(paths.flow, require('./middleware/flow'));
 
+router.use(paths.hearingAppellantTaskList, require('./middleware/hearing-requirements/task-list'));
 setupFormController(paths.hearingAppellantComing, hearingAppellantComing);
 
 router.use(paths.start, require('./middleware/start'));
