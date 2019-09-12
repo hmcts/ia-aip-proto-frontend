@@ -104,6 +104,11 @@
       "errors": {
         "selectAnOption": "Select either yes or no"
       }
+    },
+    "giveEvidence": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
     }
   }
 }

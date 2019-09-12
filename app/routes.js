@@ -14,6 +14,7 @@ const ccdController = require('./ccd-routes');
 const anythingElseToAddController = require('./middleware/case-building/anything-else-to-add');
 const anythingElseToAddQuestionController = require('./middleware/case-building/anything-else-to-add-question');
 const hearingAppellantComing = require('./middleware/hearing-requirements/appellant-coming');
+const hearingGiveEvidence = require('./middleware/hearing-requirements/give-evidence');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -73,6 +74,7 @@ router.use(paths.flow, require('./middleware/flow'));
 
 router.use(paths.hearingAppellantTaskList, require('./middleware/hearing-requirements/task-list'));
 setupFormController(paths.hearingAppellantComing, hearingAppellantComing);
+setupFormController(paths.hearingGiveEvidence, hearingGiveEvidence);
 
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));

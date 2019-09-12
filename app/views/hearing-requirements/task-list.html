@@ -20,6 +20,16 @@
                         <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
                     {% endif %}
                 </li>
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="/hearing-requirements/give-evidence" aria-describedby="home-office-details-completed">
+                        Will the appellant give evidence at the hearing?
+                    </a>
+                  </span>
+                    {% if appealData.hearingRequirements.giveEvidence.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
+                    {% endif %}
+                </li>
             </ul>
         </li>
     </ol>

@@ -43,5 +43,6 @@ module.exports = {
   flow: '/flow',
 
   hearingAppellantTaskList: '/hearing-requirements/task-list',
-  hearingAppellantComing: '/hearing-requirements/appellant-coming'
+  hearingAppellantComing: '/hearing-requirements/appellant-coming',
+  hearingGiveEvidence: '/hearing-requirements/give-evidence'
 };

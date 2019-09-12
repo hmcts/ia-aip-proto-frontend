@@ -35,6 +35,9 @@ module.exports = (req, res, next) => {
       hearingRequirements: {
         appellantComing: {
           completed: false
+        },
+        giveEvidence: {
+          completed: false
         }
       }
     };
