@@ -37,6 +37,7 @@ module.exports = {
   ccdClarifyingQuestionsReview: '/case/clarifying-questions/review',
   ccdClarifyingQuestionsEdit: '/case/clarifying-questions/edit',
   ccdClarifyingQuestionsConfirmation: '/case/clarifying-questions/confirmation',
+  ccdCaseManagementAppointment: '/case/management-appointment',
   emailQuestions: '/email/questions',
   emailReasonsForAppeal: '/email/reasons-for-appeal',
   emailRegister: '/email/register',
