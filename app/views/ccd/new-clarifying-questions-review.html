@@ -1,0 +1,58 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+
+{% block content %}
+	{{ errorSummary(errors) }}
+
+  <div class="govuk-grid-row">
+    <h1 class="govuk-heading-xl">{{ i18n.tcw.additionalQuestionReview.title }}</h1>
+    <form action="/ccd/case/clarifying-questions/" method="post">
+      {% for question in questions %}
+        {{ govukSummaryList({
+          rows: [
+            {
+              classes: 'no-underline',
+              key: {
+                text: "Question " + loop.index
+              },
+              value: {
+                text: question.title
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ccd/case/clarifying-questions/edit?question=" + loop.index0,
+                    text: "Change"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Description"
+              },
+              value: {
+                text: question.description
+              },
+              actions: {
+                items: []
+              }
+            }]
+          })
+        }}
+      {% endfor %}
+
+      <div class="buttons__container govuk-!-margin-top-9">
+        {{ govukButton({
+          text: "Next",
+          name: "next",
+          attributes: { id: 'cta-next' },
+          href: "/ccd/case/clarifying-questions/confirmation"
+        }) }}
+      </div>
+    </form>
+  </div>
+{% endblock %}

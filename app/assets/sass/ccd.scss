@@ -134,3 +134,9 @@
     margin-bottom: 0;
   }
 }
+
+.govuk-summary-list__row.no-underline {
+  dd, dt {
+    border-bottom: 0px;
+  }
+}

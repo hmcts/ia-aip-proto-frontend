@@ -1,0 +1,25 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% block content %}
+	{{ errorSummary(errors) }}
+
+  <h1 class="govuk-heading-m">{{ i18n.tcw.additionalQuestionConfirmation.title }}</h1>    
+
+  {{ govukPanel({
+    titleText: i18n.tcw.additionalQuestionConfirmation.panel
+  }) }}
+
+  <h3 class="govuk-heading-m">{{ i18n.tcw.additionalQuestionConfirmation.title }}</h3>
+  <p> {{ i18n.tcw.additionalQuestionConfirmation.nextSection.content }} </p>
+
+  <div class="buttons__container govuk-!-margin-top-9">
+    {{ govukButton({
+      text: i18n.tcw.additionalQuestionConfirmation.nextSection.cta,
+      name: "next",
+      href: "/ccd/case/overview"
+    }) }}
+  </div>
+
+{% endblock %}
