@@ -28,6 +28,9 @@ const hearingMultimediaEvidence = require('./middleware/hearing-requirements/mul
 // eslint-disable-next-line max-len
 const hearingMultimediaEvidenceDescription = require('./middleware/hearing-requirements/multimedia-evidence-description');
 const hearingAllMaleFemaleCourt = require('./middleware/hearing-requirements/all-male-female-court');
+const hearingAllMaleFemaleCourtSelection = require('./middleware/hearing-requirements/all-male-female-court-selection');
+// eslint-disable-next-line max-len
+const hearingAllMaleFemaleCourtDescription = require('./middleware/hearing-requirements/all-male-female-court-description');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -100,6 +103,8 @@ setupFormController(paths.hearingVulnerabilitiesDescription, hearingVulnerabilit
 setupFormController(paths.hearingMultimediaEvidence, hearingMultimediaEvidence);
 setupFormController(paths.hearingMultimediaEvidenceDescription, hearingMultimediaEvidenceDescription);
 setupFormController(paths.hearingAllMaleFemaleCourt, hearingAllMaleFemaleCourt);
+setupFormController(paths.hearingAllMaleFemaleCourtSelection, hearingAllMaleFemaleCourtSelection);
+setupFormController(paths.hearingAllMaleFemaleCourtDescription, hearingAllMaleFemaleCourtDescription);
 
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));

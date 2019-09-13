@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+
+    <form action="/hearing-requirements/all-male-female-court-description" method="post">
+        {{ govukTextarea({
+            name: "description",
+            id: "description",
+            value: formData.description,
+            errorMessage: errors.fieldErrors["description"],
+            rows: 12,
+            label: {
+                text: "Explain why you believe you need a single sex court"
+            }
+        }) }}
+
+        {{ govukButton({
+            text: "Previous",
+            href: "/hearing-requirements/all-male-female-court-selection",
+            classes: "govuk-button--secondary"
+        }) }}
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}
