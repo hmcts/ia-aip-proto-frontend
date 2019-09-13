@@ -5,32 +5,27 @@ const paths = require('../../paths');
 function validation(locale) {
   return [
     // eslint-disable-next-line max-len
-    check('multimedia-evidence').not().isEmpty().withMessage(locale.hearingRequirements.multimediaEvidence.errors.selectAnOption)
+    check('description').not().isEmpty().withMessage(locale.hearingRequirements.multimediaEvidenceDescription.errors.enterADescription)
   ];
 }
 
 function extractBody(req) {
   return {
-    multimediaEvidence: req.body['multimedia-evidence']
+    description: req.body.description
   };
 }
 
 function createFormController() {
   return formController(
-    'hearing-requirements/multimedia-evidence.html',
+    'hearing-requirements/multimedia-evidence-description.html',
     'hearingRequirements',
     'multimediaEvidence',
     validation,
     extractBody,
     false,
     false,
-    (formData, req) => {
-      if (req.body['multimedia-evidence'] === 'yes') {
-        return paths.hearingMultimediaEvidenceDescription;
-      }
-      return paths.hearingAppellantTaskList;
-    },
-    paths.hearingAppellantTaskList
+    paths.hearingAppellantTaskList,
+    paths.hearingMultimediaEvidence
   );
 }
 

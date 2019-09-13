@@ -150,6 +150,11 @@
       "errors": {
         "selectAnOption": "Select either yes or no"
       }
+    },
+    "multimediaEvidenceDescription": {
+      "errors": {
+        "enterADescription": "Enter a description of your evidence"
+      }
     }
   }
 }

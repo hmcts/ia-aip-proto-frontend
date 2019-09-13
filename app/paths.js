@@ -54,5 +54,6 @@ module.exports = {
   hearingVulnerabilities: '/hearing-requirements/vulnerabilities',
   hearingVulnerabilitiesList: '/hearing-requirements/vulnerabilities-list',
   hearingVulnerabilitiesDescription: '/hearing-requirements/vulnerabilities-description',
-  hearingMultimediaEvidence: '/hearing-requirements/multimedia-evidence'
+  hearingMultimediaEvidence: '/hearing-requirements/multimedia-evidence',
+  hearingMultimediaEvidenceDescription: '/hearing-requirements/multimedia-evidence-description'
 };
