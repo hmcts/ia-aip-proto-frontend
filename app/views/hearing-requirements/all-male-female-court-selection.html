@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+
+    <form action="/hearing-requirements/all-male-female-court-selection" method="post">
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            idPrefix: "male-or-Female",
+            name: "male-or-Female",
+            errorMessage: errors.fieldErrors["male-or-Female"],
+            fieldset: {
+                legend: {
+                    text: "What type of court do you need?",
+                    isPageHeading: false
+                }
+            },
+            items: [
+                {
+                    value: "male",
+                    text: "Male",
+                    checked: formData.maleOrFemale == 'male'
+                },
+                {
+                    value: "female",
+                    text: "Female",
+                    checked: formData.maleOrFemale == 'female'
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Previous",
+            href: "/hearing-requirements/all-male-female-court",
+            classes: "govuk-button--secondary"
+        }) }}
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

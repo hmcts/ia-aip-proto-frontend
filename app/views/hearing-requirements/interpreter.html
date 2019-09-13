@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+
+    <p>We can provide interpreters for you and any witnesses that need them.</p>
+    <form action="/hearing-requirements/interpreter" method="post">
+
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            idPrefix: "required",
+            name: "required",
+            errorMessage: errors.fieldErrors["required"],
+            fieldset: {
+                legend: {
+                    text: "Do you need interpreter services at the hearing?",
+                    isPageHeading: false
+                }
+            },
+            items: [
+                {
+                    value: "yes",
+                    text: "Yes",
+                    checked: formData.required == 'yes'
+                },
+                {
+                    value: "no",
+                    text: "No",
+                    checked: formData.required == 'no'
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Previous",
+            href: "/hearing-requirements/task-list",
+            classes: "govuk-button--secondary"
+        }) }}
+        {{ govukButton({
+            text: "Continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

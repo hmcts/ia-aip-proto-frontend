@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            {{ govukPanel({
+                titleText: "You have submitted your hearing requirements"
+            }) }}
+            <h2 class="govuk-heading-m">What happens next</h2>
+            <p>
+                A case office will review your hearing requirements. We'll try to acommodate your requests but we can't
+                guarantee we can fulfil all of them.
+            </p>
+
+            {{ govukButton({
+                text: "Dashboard",
+                href: "/case-building/overview"
+            }) }}
+        </div>
+    </div>
+{% endblock %}

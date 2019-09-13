@@ -97,5 +97,82 @@
     "errors": {
       "emptyFurtherQuestions": "You have not entered a question. Enter the question you want the apellant to be presented with."
     }
+  },
+
+  "hearingRequirements": {
+    "appellantComing": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
+    },
+    "giveEvidence": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
+    },
+    "witnesses": {
+      "errors": {
+        "selectAnOption": "Select either yes or no",
+        "selectHowMany":"Select how many witnesses"
+      }
+    },
+    "interpreter": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
+    },
+    "stepFree": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
+    },
+    "hearingLoop": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
+    },
+    "vulnerabilities": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
+    },
+    "vulnerabilitiesList": {
+      "errors": {
+        "selectAnOption": "Select an option"
+      }
+    },
+    "vulnerabilitiesDescription": {
+      "errors": {
+        "enterADescription": "Enter a description of your vulnerability"
+      }
+    },
+    "multimediaEvidence": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
+    },
+    "multimediaEvidenceDescription": {
+      "errors": {
+        "enterADescription": "Enter a description of your evidence"
+      }
+    },
+    "allMaleFemaleCourt": {
+      "errors": {
+        "selectAnOption": "Select either yes or no",
+        "enterADescription": "Enter a description of your vulnerability"
+      }
+    },
+    "inCameraCourt": {
+      "errors": {
+        "selectAnOption": "Select either yes or no",
+        "enterADescription": "Enter a description of your vulnerability"
+      }
+    },
+    "anythingElse": {
+      "errors": {
+        "selectAnOption": "Select either yes or no",
+        "enterADescription": "Enter a description of your vulnerability"
+      }
+    }
   }
 }

@@ -13,6 +13,28 @@ const questionsController = require('./middleware/case-building/question');
 const ccdController = require('./ccd-routes');
 const anythingElseToAddController = require('./middleware/case-building/anything-else-to-add');
 const anythingElseToAddQuestionController = require('./middleware/case-building/anything-else-to-add-question');
+const hearingAppellantComing = require('./middleware/hearing-requirements/appellant-coming');
+const hearingGiveEvidence = require('./middleware/hearing-requirements/give-evidence');
+const hearingWitnesses = require('./middleware/hearing-requirements/witnesses');
+const hearingWitnessesNumber = require('./middleware/hearing-requirements/witnesses-number');
+const hearingInterpreter = require('./middleware/hearing-requirements/interpreter');
+const hearingInterpreterDetails = require('./middleware/hearing-requirements/interpreter-details');
+const hearingStepFree = require('./middleware/hearing-requirements/step-free');
+const hearingLoop = require('./middleware/hearing-requirements/hearing-loop');
+const hearingVulnerabilities = require('./middleware/hearing-requirements/vulnerabilities');
+const hearingVulnerabilitiesList = require('./middleware/hearing-requirements/vulnerabilities-list');
+const hearingVulnerabilitiesDescription = require('./middleware/hearing-requirements/vulnerabilities-description');
+const hearingMultimediaEvidence = require('./middleware/hearing-requirements/multimedia-evidence');
+// eslint-disable-next-line max-len
+const hearingMultimediaEvidenceDescription = require('./middleware/hearing-requirements/multimedia-evidence-description');
+const hearingAllMaleFemaleCourt = require('./middleware/hearing-requirements/all-male-female-court');
+const hearingAllMaleFemaleCourtSelection = require('./middleware/hearing-requirements/all-male-female-court-selection');
+// eslint-disable-next-line max-len
+const hearingAllMaleFemaleCourtDescription = require('./middleware/hearing-requirements/all-male-female-court-description');
+const hearingInCameraCourt = require('./middleware/hearing-requirements/in-camera-court');
+const hearingInCameraCourtDescription = require('./middleware/hearing-requirements/in-camera-court-description');
+const hearingAnythingElse = require('./middleware/hearing-requirements/anything-else');
+const hearingAnythingElseDescription = require('./middleware/hearing-requirements/anything-else-description');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -69,6 +91,32 @@ router.use(paths.emailQuestions, require('./middleware/email/questions'));
 router.use(paths.emailReasonsForAppeal, require('./middleware/email/reasons-for-appeal'));
 router.use(paths.emailRegister, require('./middleware/email/regsiter'));
 router.use(paths.flow, require('./middleware/flow'));
+
+router.use(paths.hearingAppellantTaskList, require('./middleware/hearing-requirements/task-list'));
+setupFormController(paths.hearingAppellantComing, hearingAppellantComing);
+setupFormController(paths.hearingGiveEvidence, hearingGiveEvidence);
+setupFormController(paths.hearingWitnesses, hearingWitnesses);
+setupFormController(paths.hearingWitnessesNumber, hearingWitnessesNumber);
+setupFormController(paths.hearingInterpreter, hearingInterpreter);
+setupFormController(paths.hearingInterpreterDetails, hearingInterpreterDetails);
+setupFormController(paths.hearingStepFree, hearingStepFree);
+setupFormController(paths.hearingHearingLoop, hearingLoop);
+setupFormController(paths.hearingVulnerabilities, hearingVulnerabilities);
+setupFormController(paths.hearingVulnerabilitiesList, hearingVulnerabilitiesList);
+setupFormController(paths.hearingVulnerabilitiesDescription, hearingVulnerabilitiesDescription);
+setupFormController(paths.hearingMultimediaEvidence, hearingMultimediaEvidence);
+setupFormController(paths.hearingMultimediaEvidenceDescription, hearingMultimediaEvidenceDescription);
+setupFormController(paths.hearingAllMaleFemaleCourt, hearingAllMaleFemaleCourt);
+setupFormController(paths.hearingAllMaleFemaleCourtSelection, hearingAllMaleFemaleCourtSelection);
+setupFormController(paths.hearingAllMaleFemaleCourtDescription, hearingAllMaleFemaleCourtDescription);
+setupFormController(paths.hearingInCameraCourt, hearingInCameraCourt);
+setupFormController(paths.hearingInCameraCourtDescription, hearingInCameraCourtDescription);
+setupFormController(paths.hearingAnythingElse, hearingAnythingElse);
+setupFormController(paths.hearingAnythingElseDescription, hearingAnythingElseDescription);
+setupFormController(paths.hearingAnythingElseDescription, hearingAnythingElseDescription);
+router.use(paths.hearingCheckAnswers, require('./middleware/hearing-requirements/check-answers'));
+router.use(paths.hearingSubmitted, require('./middleware/hearing-requirements/submitted'));
+
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));
 

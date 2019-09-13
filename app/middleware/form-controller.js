@@ -1,6 +1,10 @@
 const paths = require('../paths');
 const { validationResult } = require('express-validator');
 
+function isFunction(functionToCheck) {
+  return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+}
+
 function formController(
   template,
   sessionGroupName,
@@ -63,12 +67,13 @@ function formController(
         return;
       }
 
-      if (nextPage === paths.taskList) {
+      const redirectTo = (isFunction(nextPage)) ? nextPage(formData, req) : nextPage;
+      if (redirectTo === paths.taskList || redirectTo === paths.hearingAppellantTaskList) {
         formData.completed = true;
       }
       Object.assign(req.session.appealData[sessionGroupName][sessionFieldName], formData);
 
-      res.redirect(nextPage);
+      res.redirect(redirectTo);
     }
   };
 }
