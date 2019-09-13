@@ -13,7 +13,7 @@
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
                     <a href="/hearing-requirements/appellant-coming" aria-describedby="home-office-details-completed">
-                        Is the appellant coming to the appeal hearing?
+                        Will you be attending the appeal hearing?
                     </a>
                   </span>
                     {% if appealData.hearingRequirements.appellantComing.completed %}
@@ -23,7 +23,7 @@
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
                     <a href="/hearing-requirements/give-evidence" aria-describedby="home-office-details-completed">
-                        Will the appellant give evidence at the hearing?
+                        Will you give oral evidence at the hearing?
                     </a>
                   </span>
                     {% if appealData.hearingRequirements.giveEvidence.completed %}
@@ -133,6 +133,18 @@
                     {% if appealData.hearingRequirements.anythingElse.completed %}
                         <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
                     {% endif %}
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">4. </span> Check and submit
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                      {{ enabledLink(true, 'Check and submit your appeal', '/hearing-requirements/check-answers') }}
+                  </span>
                 </li>
             </ul>
         </li>

@@ -1,0 +1,247 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <div class="govuk-grid-row">
+
+        <h1 class="govuk-heading-xl">Check your answers</h1>
+        {% set witnesses %}
+            {{ appealData.hearingRequirements.witnesses.witnesses }} <br /> {{ appealData.hearingRequirements.witnesses.number }}
+        {% endset %}
+
+        {% set interpreterServices %}
+            {% for language in appealData.hearingRequirements.interpreter.languages %}
+                {{ language.name }}{% if language.dialect %} - {{ language.dialect }}{% endif %}<br />
+            {% endfor %}
+        {% endset %}
+
+        {% set interpreter %}
+            {{ appealData.hearingRequirements.interpreter.required }} <br /> {{ interpreterServices | safe }}
+        {% endset %}
+
+            {% set vulnerabilitiesList %}
+                {% if appealData.hearingRequirements.vulnerabilities.hearingImpairment %}Hearing impairment<br />{% endif %}
+                {% if appealData.hearingRequirements.vulnerabilities.physicalDisability %}Physical disability<br />{% endif %}
+                {% if appealData.hearingRequirements.vulnerabilities.illHealth %}Ill health<br />{% endif %}
+                {% if appealData.hearingRequirements.vulnerabilities.cognitiveImpairment %}Cognitive impairment<br />{% endif %}
+                {% if appealData.hearingRequirements.vulnerabilities.learningDisability %}Learning disability<br />{% endif %}
+                {% if appealData.hearingRequirements.vulnerabilities.mentalHealthDisorder %}Mental health disorder<br />{% endif %}
+                {% if appealData.hearingRequirements.vulnerabilities.domesticViolence %}Experience if domestic violence, sexual abuse, trafficking or torture<br />{% endif %}
+                {% if appealData.hearingRequirements.vulnerabilities.other %}Other<br />{% endif %}
+            {% endset %}
+
+        {% set vulnerabilities %}
+            {{ appealData.hearingRequirements.vulnerabilities.vulnerabilities }} <br /> {{ vulnerabilitiesList | safe }} <br /> {{ appealData.hearingRequirements.vulnerabilities.description }}
+        {% endset %}
+
+        {% set multimediaEvidence %}
+            {{ appealData.hearingRequirements.multimediaEvidence.multimediaEvidence }} <br /> {{ appealData.hearingRequirements.multimediaEvidence.description }}
+        {% endset %}
+
+        {% set maleOrFemale %}
+            {{ appealData.hearingRequirements.allMaleFemaleCourt.allMaleFemaleCourt }} <br /> {{ appealData.hearingRequirements.allMaleFemaleCourt.maleOrFemale }} <br /> {{ appealData.hearingRequirements.allMaleFemaleCourt.description }}
+        {% endset %}
+
+        {% set cameraCourt %}
+            {{ appealData.hearingRequirements.inCameraCourt.inCameraCourt }} <br /> {{ appealData.hearingRequirements.inCameraCourt.description }}
+        {% endset %}
+
+        {% set anythingElse %}
+            {{ appealData.hearingRequirements.anythingElse.anythingElse }} <br /> {{ appealData.hearingRequirements.anythingElse.description }}
+        {% endset %}
+
+            {{ govukSummaryList({
+                classes: 'govuk-!-margin-bottom-9',
+                rows: [
+                    {
+                        key: {
+                            text: "Will you be attending the appeal hearing?"
+                        },
+                            value: {
+                            text: appealData.hearingRequirements.appellantComing.isComing
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/appellant-coming",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Will you give oral evidence at the hearing?"
+                        },
+                        value: {
+                            text: appealData.hearingRequirements.giveEvidence.giveEvidence
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/give-evidence",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Will you bring any other witnesses to the appeal hearing?"
+                        },
+                        value: {
+                            html: witnesses
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/witnesses",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Do you need interpreter services at the hearing?"
+                        },
+                        value: {
+                            html: interpreter
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/interpreter",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Do you need step free access?"
+                        },
+                        value: {
+                            html: appealData.hearingRequirements.stepFree.stepFree
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/step-free",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Do you need a hearing loop?"
+                        },
+                        value: {
+                            html: appealData.hearingRequirements.hearingLoop.hearingLoop
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/hearing-loop",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Do you have any personal vulnerabilities that will impact the hearing?"
+                        },
+                        value: {
+                            html: vulnerabilities
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/vulnerabilities",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                        text: "Do you have multimedia evidence?"
+                    },
+                        value: {
+                        html: multimediaEvidence
+                    },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/multimedia-evidence",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Do you need an all male or female court?"
+                        },
+                        value: {
+                            html: maleOrFemale
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/all-male-female-court",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Do you need an in camera court?"
+                        },
+                        value: {
+                            html: cameraCourt
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/in-camera-court",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        key: {
+                            text: "Is there anything else you would like to request?"
+                        },
+                        value: {
+                            html: anythingElse
+                        },
+                        actions: {
+                            items: [
+                                {
+                                    href: "/hearing-requirements/anything-else",
+                                    text: "Change"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }) }}
+
+            <form action="/hearing-requirements/submit" method="post" novalidate>
+                {{ govukButton({
+                    text: "Submit requirements"
+                }) }}
+            </form>
+
+    </div>
+{% endblock %}

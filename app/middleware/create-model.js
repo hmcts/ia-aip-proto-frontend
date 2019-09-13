@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-lines
 const moment = require('moment');
 
 module.exports = (req, res, next) => {
@@ -212,11 +213,78 @@ module.exports = (req, res, next) => {
       anythingElseToAdd: {
         completed: true,
         answer: 'Need content',
-        evidence: [ { fileName: 'extra evidence.txt', description: 'describe my evidence' }]
+        evidence: [{ fileName: 'extra evidence.txt', description: 'describe my evidence' }]
       }
     });
   }
 
+  if (req.query.hearingRequirements) {
+    Object.assign(req.session.appealData, {
+      hearingRequirements: {
+        appellantComing: { completed: true, isComing: 'yes' },
+        giveEvidence: { completed: true, giveEvidence: 'yes' },
+        witnesses: { completed: true, witnesses: 'yes', number: '19' },
+        interpreter: {
+          completed: true,
+          required: 'yes',
+          languages: [{ name: 'French', dialect: 'Dialect 1' }, { name: 'German', dialect: 'Dialect 2' }]
+        },
+        stepFree: { completed: true, stepFree: 'yes' },
+        hearingLoop: { completed: true, hearingLoop: 'yes' },
+        vulnerabilities: {
+          completed: true,
+          vulnerabilities: 'yes',
+          hearingImpairment: true,
+          physicalDisability: true,
+          illHealth: true,
+          cognitiveImpairment: true,
+          learningDisability: true,
+          mentalHealthDisorder: true,
+          domesticViolence: true,
+          other: true,
+          description: 'Description for vulnerability'
+        },
+        multimediaEvidence: {
+          completed: true,
+          multimediaEvidence: 'yes',
+          description: 'Description for multimedia'
+        },
+        allMaleFemaleCourt: {
+          completed: true,
+          allMaleFemaleCourt: 'yes',
+          maleOrFemale: 'male',
+          description: 'Description for male female court'
+        },
+        inCameraCourt: {
+          completed: true,
+          inCameraCourt: 'yes',
+          description: 'Description for in camera court'
+        },
+        anythingElse: {
+          completed: true,
+          anythingElse: 'yes',
+          description: 'Description for anything else'
+        }
+      }
+    });
+  }
 
+  if (req.query.hearingRequirementsNo) {
+    Object.assign(req.session.appealData, {
+      hearingRequirements: {
+        appellantComing: { completed: true, isComing: 'no' },
+        giveEvidence: { completed: true, giveEvidence: 'no' },
+        witnesses: { completed: true, witnesses: 'no' },
+        interpreter: { completed: true, required: 'no' },
+        stepFree: { completed: true, stepFree: 'no' },
+        hearingLoop: { completed: true, hearingLoop: 'no' },
+        vulnerabilities: { completed: true, vulnerabilities: 'no' },
+        multimediaEvidence: { completed: true, multimediaEvidence: 'no' },
+        allMaleFemaleCourt: { completed: true, allMaleFemaleCourt: 'no' },
+        inCameraCourt: { completed: true, inCameraCourt: 'no' },
+        anythingElse: { completed: true, anythingElse: 'no' }
+      }
+    });
+  }
   next();
 };

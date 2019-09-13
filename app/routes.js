@@ -113,6 +113,8 @@ setupFormController(paths.hearingInCameraCourt, hearingInCameraCourt);
 setupFormController(paths.hearingInCameraCourtDescription, hearingInCameraCourtDescription);
 setupFormController(paths.hearingAnythingElse, hearingAnythingElse);
 setupFormController(paths.hearingAnythingElseDescription, hearingAnythingElseDescription);
+setupFormController(paths.hearingAnythingElseDescription, hearingAnythingElseDescription);
+router.use(paths.hearingCheckAnswers, require('./middleware/hearing-requirements/check-answers'));
 
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));

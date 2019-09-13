@@ -62,5 +62,6 @@ module.exports = {
   hearingInCameraCourt: '/hearing-requirements/in-camera-court',
   hearingInCameraCourtDescription: '/hearing-requirements/in-camera-court-description',
   hearingAnythingElse: '/hearing-requirements/anything-else',
-  hearingAnythingElseDescription: '/hearing-requirements/anything-else-description'
+  hearingAnythingElseDescription: '/hearing-requirements/anything-else-description',
+  hearingCheckAnswers: '/hearing-requirements/check-answers'
 };
