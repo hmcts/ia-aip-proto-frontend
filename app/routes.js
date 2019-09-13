@@ -34,6 +34,7 @@ const hearingAllMaleFemaleCourtDescription = require('./middleware/hearing-requi
 const hearingInCameraCourt = require('./middleware/hearing-requirements/in-camera-court');
 const hearingInCameraCourtDescription = require('./middleware/hearing-requirements/in-camera-court-description');
 const hearingAnythingElse = require('./middleware/hearing-requirements/anything-else');
+const hearingAnythingElseDescription = require('./middleware/hearing-requirements/anything-else-description');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -111,6 +112,7 @@ setupFormController(paths.hearingAllMaleFemaleCourtDescription, hearingAllMaleFe
 setupFormController(paths.hearingInCameraCourt, hearingInCameraCourt);
 setupFormController(paths.hearingInCameraCourtDescription, hearingInCameraCourtDescription);
 setupFormController(paths.hearingAnythingElse, hearingAnythingElse);
+setupFormController(paths.hearingAnythingElseDescription, hearingAnythingElseDescription);
 
 router.use(paths.start, require('./middleware/start'));
 router.use(paths.index, require('./middleware/start'));
