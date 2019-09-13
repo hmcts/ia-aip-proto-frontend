@@ -12,7 +12,9 @@ function getCcdList(req, res) {
 }
 
 function getCcdCaseOverview(req, res) {
-  return res.render('ccd/overview.html', { stages });
+  const { tcw } = req.session.appealData || null;
+  const state = tcw && tcw.state ? tcw.state : null;
+  return res.render('ccd/overview.html', { stages, state });
 }
 
 function getCcdQuestions(req, res) {
@@ -90,6 +92,10 @@ function getConfirmationClarifyingQuestions(req, res) {
   res.render('ccd/new-clarifying-questions-confirmation.html');
 }
 
+function getCaseManagementAppointment(req, res) {
+  res.render('ccd/case-management-appointment.html');
+}
+
 module.exports = {
   getLandingPage,
   getCcdList,
@@ -99,5 +105,6 @@ module.exports = {
   getReviewClarifyingQuestions,
   getEditClarifyingQuestion,
   postEditClarifyingQuestion,
-  getConfirmationClarifyingQuestions
+  getConfirmationClarifyingQuestions,
+  getCaseManagementAppointment
 };

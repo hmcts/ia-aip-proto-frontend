@@ -11,7 +11,8 @@ const {
   getReviewClarifyingQuestions,
   getEditClarifyingQuestion,
   postEditClarifyingQuestion,
-  getConfirmationClarifyingQuestions
+  getConfirmationClarifyingQuestions,
+  getCaseManagementAppointment
 } = require('./controllers/ccdController');
 
 /* eslint-disable-next-line new-cap */
@@ -30,5 +31,6 @@ router.get(paths.ccdClarifyingQuestionsReview, getReviewClarifyingQuestions);
 router.get(paths.ccdClarifyingQuestionsEdit, getEditClarifyingQuestion);
 router.post(paths.ccdClarifyingQuestionsEdit, postEditClarifyingQuestion);
 router.get(paths.ccdClarifyingQuestionsConfirmation, getConfirmationClarifyingQuestions);
+router.get(paths.ccdCaseManagementAppointment, getCaseManagementAppointment);
 
 module.exports = router;

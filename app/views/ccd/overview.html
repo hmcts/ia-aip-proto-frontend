@@ -33,11 +33,15 @@
         </div>
 
         <h2 class="govuk-heading-s">Do this next</h2>
-        <p>{{ i18n.tcw.overview.nextSection.para1 | safe }}</p>
-        <p>{{ i18n.tcw.overview.nextSection.para2 | safe }}</p>
-        <p>{{ i18n.tcw.overview.nextSection.action1 | safe }}</p>
-        <p>{{ i18n.tcw.overview.nextSection.action2 | safe }}</p>
-        <p>{{ i18n.tcw.overview.nextSection.action3 | safe }}</p>
+        {% if not state %}
+          <p>{{ i18n.tcw.overview.nextSection.para1 | safe }}</p>
+          <p>{{ i18n.tcw.overview.nextSection.para2 | safe }}</p>
+          <p>{{ i18n.tcw.overview.nextSection.action1 | safe }}</p>
+          <p>{{ i18n.tcw.overview.nextSection.action2 | safe }}</p>
+          <p>{{ i18n.tcw.overview.nextSection.action3 | safe }}</p>
+        {% elif state == 'CLARIFYING_QUESTIONS_SENT' %}
+          <p>{{ i18n.tcw.overview.nextSection.appellantDirectedToQuestions }}</p>
+        {% endif %}
         
         {{ govukSummaryList({
           rows: [

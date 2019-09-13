@@ -1,5 +1,6 @@
 // eslint-disable-next-line max-lines
 const moment = require('moment');
+const { CLARIFYING_QUESTIONS_SENT } = require('../data/constants');
 
 module.exports = (req, res, next) => {
   if (!req.session.appealData) {
@@ -286,5 +287,13 @@ module.exports = (req, res, next) => {
       }
     });
   }
+  if (req.query.clarifyingQuestionsSent) {
+    Object.assign(req.session.appealData, {
+      tcw: {
+        state: CLARIFYING_QUESTIONS_SENT
+      }
+    });
+  }
+  
   next();
 };
