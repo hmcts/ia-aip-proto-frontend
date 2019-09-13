@@ -56,6 +56,9 @@ module.exports = (req, res, next) => {
         },
         multimediaEvidence: {
           completed: false
+        },
+        allMaleFemaleCourt: {
+          completed: false
         }
       }
     };

@@ -155,6 +155,11 @@
       "errors": {
         "enterADescription": "Enter a description of your evidence"
       }
+    },
+    "allMaleFemaleCourt": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
     }
   }
 }
