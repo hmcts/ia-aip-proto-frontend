@@ -1,0 +1,76 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block content %}
+	{{ errorSummary(errors) }}
+
+  <h1 class="govuk-heading-xl remove-bottom-margin">{{ i18n.tcw.additionalQuestion.title }}</h1>
+  <p class="govuk-body rich-text">{{ i18n.tcw.additionalQuestion.description }}</p>
+
+  <form action="/ccd/case/clarifying-questions" method="post">
+    <div class="tcw-question-container">
+      {% for question in questions %}
+        {{ govukInput({
+          label: {
+            text: "Question"
+          },
+          id: "question-title" + loop.index0,
+          name: "question-title" + loop.index0,
+          value: question.title
+        }) }}
+        {{ govukTextarea({
+          name: "question-description" + loop.index0,
+          id: "question-description" + loop.index0,
+          value: question.description,
+          label: {
+              text: "Can you provide more detail?"
+          }
+        }) }}
+		  {% endfor %}
+      
+      {{ govukInput({
+        id: "question-title",
+        name: "question-title",
+        label: {
+          text: "Question"
+        },
+        errorMessage:  {
+					text: errors.errorFields['question-title']
+				} if errors.errorFields['question-title']
+      }) }}
+
+			{{ govukTextarea({
+        name: "further-question",
+				id: "further-question",
+				errorMessage:  {
+					text: errors.errorFields['further-question']
+				} if errors.errorFields['further-question'],
+				label: {
+					text: "Can you provide more detail?"
+				}
+			}) }}
+
+			{{ govukButton({
+				text: "Add new",
+				name: "new",
+				attributes: { id: 'cta-new' }
+			}) }}
+    </div>
+
+    <div class="buttons__container govuk-!-margin-top-9">
+      {{ govukButton({
+        text: "Next",
+        name: "next",
+        attributes: { id: 'cta-next' }
+      }) }}
+    </div>
+  </form>
+	
+  <script>
+    var element = document.getElementById("cta-next");
+    element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+  </script>
+
+{% endblock %}

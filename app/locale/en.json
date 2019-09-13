@@ -68,6 +68,25 @@
     "additionalQuestion": {
       "title": "Ask clarifying questions",
       "description": "Ask questions to clarify information with the apellant. You can see these initial response here"
+    },
+    "additionalQuestionReview": {
+      "title": "Carefully check your answer below before clicking submit"
+    },
+    "additionalQuestionEdition": {
+      "title": "Edit clarifying questions",
+      "description": "Ask questions to clarify information with the apellant. You can see these initial response here"
+    },
+    "additionalQuestionConfirmation": {
+      "title": "Direct the appellant to answer clarifying questions",
+      "panel": "Your questions have been submitted",
+      "nextSection": {
+        "title": "What happens next",
+        "content": "The appellant will be directed to answer the questions. You will be notified when they are ready to review.",
+        "cta": "Close and return to case details"
+      }
+    },
+    "errors": {
+      "emptyFurtherQuestions": "You have not entered a question. Enter the question you want the apellant to be presented with."
     }
   }
 }

@@ -1,0 +1,54 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block content %}
+	{{ errorSummary(errors) }}
+
+  <h1 class="govuk-heading-xl remove-bottom-margin">{{ i18n.tcw.additionalQuestionEdition.title }}</h1>
+  <p class="govuk-body rich-text">{{ i18n.tcw.additionalQuestion.description }}</p>
+
+  <form action="/ccd/case/clarifying-questions/edit?question={{ question.questionId }}" method="post">
+    <div class="tcw-question-container">
+      {{ govukInput({
+        id: "question-title",
+        name: "question-title",
+        value: question.title,
+        label: {
+          text: "Question"
+        },
+        errorMessage:  {
+					text: errors.errorFields['question-title']
+				} if errors.errorFields['question-title']
+      }) }}
+
+			{{ govukTextarea({
+        name: "further-question",
+				id: "further-question",
+        value: question.description,
+				errorMessage:  {
+					text: errors.errorFields['further-question']
+				} if errors.errorFields['further-question'],
+				label: {
+					text: "Can you provide more detail?"
+				}
+      }) }}
+      
+    </div>
+
+    <div class="buttons__container govuk-!-margin-top-9">
+      {{ govukButton({
+        text: "Next",
+        name: "next",
+        attributes: { id: 'cta-next' }
+      }) }}
+    </div>
+  </form>
+	
+  <script>
+    var element = document.getElementById("cta-next");
+    element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+  </script>
+
+{% endblock %}
