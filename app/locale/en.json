@@ -161,6 +161,12 @@
         "selectAnOption": "Select either yes or no",
         "enterADescription": "Enter a description of your vulnerability"
       }
+    },
+    "inCameraCourt": {
+      "errors": {
+        "selectAnOption": "Select either yes or no",
+        "enterADescription": "Enter a description of your vulnerability"
+      }
     }
   }
 }

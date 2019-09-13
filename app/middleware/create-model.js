@@ -59,6 +59,9 @@ module.exports = (req, res, next) => {
         },
         allMaleFemaleCourt: {
           completed: false
+        },
+        inCameraCourt: {
+          completed: false
         }
       }
     };
