@@ -62,6 +62,9 @@ module.exports = (req, res, next) => {
         },
         inCameraCourt: {
           completed: false
+        },
+        anythingElse: {
+          completed: false
         }
       }
     };
