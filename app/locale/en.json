@@ -71,7 +71,7 @@
         "para2": "Once you've reviewed the case, you need to do one of the following",
         "action1": "<a href='#'>Direct the respondent to review the case</a>",
         "action2": "<a href='/ccd/case/clarifying-questions'>Direct the appellant to answer clarifying questions</a>",
-        "action3": "<a href=''>Directo both parties to attend a case management appointment</a>",
+        "action3": "<a href='/ccd/case/management-appointment'>Direct both parties to attend a case management appointment</a>",
         "appellantDirectedToQuestions": "The appellant has been directed to answer clarigying questions. You will be notified when their answers are ready to review."
       }
     },
@@ -95,8 +95,13 @@
         "cta": "Close and return to case details"
       }
     },
+    "managementAppointment": {
+      "title": "Direct both parties to attend a case management appointment",
+      "description": "Send a direction to both parties to attend a case management appointment"
+    },
     "errors": {
-      "emptyFurtherQuestions": "You have not entered a question. Enter the question you want the apellant to be presented with."
+      "question-title": "You have not entered a title for the question.",
+      "further-question": "You have not entered a question. Enter the question you want the apellant to be presented with."
     }
   },
 
