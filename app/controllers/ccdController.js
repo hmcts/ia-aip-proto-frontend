@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 const paths = require('../paths');
 const stages = require('../data/tcwStages');
 const i18n = require('../locale/en.json');
+const { CLARIFYING_QUESTIONS_SENT } = require('../data/constants');
 
 function getLandingPage(req, res) {
   return res.redirect(`${paths.ccd}${paths.ccdCasesList}`);
@@ -30,7 +31,7 @@ function getCcdQuestions(req, res) {
 function postCcdQuestions(req, res) {
   const errorFields = {};
   const errorFormatter = ({ param }) => {
-    const text = i18n.tcw.errors.emptyFurtherQuestions;
+    const text = i18n.tcw.errors[param];
     errorFields[param] = text;
     return {
       text,
@@ -39,7 +40,6 @@ function postCcdQuestions(req, res) {
   };
   const questions = req.session.appealData.questions || [];
   const errorList = validationResult(req).formatWith(errorFormatter);
-
   if (!errorList.isEmpty()) {
     return res.render('ccd/new-clarifying-questions.html',
       { questions, errors: { errorList: errorList.array(), errorFields } }
@@ -92,8 +92,21 @@ function getConfirmationClarifyingQuestions(req, res) {
   res.render('ccd/new-clarifying-questions-confirmation.html');
 }
 
+function postConfirmationClarifyingQuestions(req, res) {
+  Object.assign(req.session.appealData, {
+    tcw: {
+      state: CLARIFYING_QUESTIONS_SENT
+    }
+  });
+  res.redirect('/ccd/case/overview');
+}
+
 function getCaseManagementAppointment(req, res) {
   res.render('ccd/case-management-appointment.html');
+}
+
+function postCaseManagementAppointment(req, res) {
+  res.redirect('/ccd/case/overview');
 }
 
 module.exports = {
@@ -106,5 +119,7 @@ module.exports = {
   getEditClarifyingQuestion,
   postEditClarifyingQuestion,
   getConfirmationClarifyingQuestions,
-  getCaseManagementAppointment
+  postConfirmationClarifyingQuestions,
+  getCaseManagementAppointment,
+  postCaseManagementAppointment
 };

@@ -1,0 +1,62 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+
+{% block content %}
+	{{ errorSummary(errors) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">{{ i18n.tcw.managementAppointment.title }}</h1>
+
+      <p>{{ i18n.tcw.managementAppointment.description }}</p>
+      <form action="/ccd/case/management-appointment" method="post">
+        
+        {{ govukTextarea({
+          name: "appellant-direction",
+          id: "appellant-direction",
+          rows: 10,
+          label: {
+            text: "Explain the direction you are issuing to the appellant"
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "respondent-direction",
+          id: "respondent-direction",
+          rows: 10,
+          label: {
+            text: "Explain the direction you are issuing to the respondent"
+          }
+        }) }}
+
+        {{ govukDateInput({
+          id: "management-appointment-date",
+          namePrefix: "passport-issued",
+          fieldset: {
+            legend: {
+              text: "Enter a date and time",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          }
+        }) }}
+
+        <div class="buttons__container govuk-!-margin-top-9">
+          {{ govukButton({
+            text: "Previous",
+            name: "previous",
+            classes: "govuk-button--secondary"
+          }) }}
+
+          {{ govukButton({
+            text: "Continue",
+            name: "continue"
+          }) }}
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

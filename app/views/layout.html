@@ -70,7 +70,8 @@
     {% if not hideBackLink %}
         {{ govukBackLink({
             text: "Back",
-            href: previousPage
+            href: previousPage,
+            attributes : { onclick: "history.go(-1); return false;" }
         }) }}
     {% endif %}
 {% endblock %}
