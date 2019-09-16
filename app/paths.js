@@ -38,6 +38,8 @@ module.exports = {
   ccdClarifyingQuestionsEdit: '/case/clarifying-questions/edit',
   ccdClarifyingQuestionsConfirmation: '/case/clarifying-questions/confirmation',
   ccdCaseManagementAppointment: '/case/management-appointment',
+  ccdCaseManagementAppointmentReview: '/case/management-appointment/review',
+  ccdCaseManagementAppointmentConfirmation: '/case/management-appointment/confirmation',
   emailQuestions: '/email/questions',
   emailReasonsForAppeal: '/email/reasons-for-appeal',
   emailRegister: '/email/register',

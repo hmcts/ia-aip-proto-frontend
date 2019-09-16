@@ -1,6 +1,9 @@
 const express = require('express');
 const paths = require('./paths');
-const { clarifyingQuestionsValidations } = require('./utils/validators');
+const {
+  caseManagementAppointmentValidations,
+  clarifyingQuestionsValidations
+} = require('./utils/validators');
 
 const {
   getLandingPage,
@@ -14,7 +17,10 @@ const {
   getConfirmationClarifyingQuestions,
   postConfirmationClarifyingQuestions,
   getCaseManagementAppointment,
-  postCaseManagementAppointment
+  postCaseManagementAppointment,
+  getCaseManagementAppointmentReview,
+  postCaseManagementAppointmentReview,
+  getCaseManagementAppointmentConfirmation
 } = require('./controllers/ccdController');
 
 /* eslint-disable-next-line new-cap */
@@ -31,6 +37,9 @@ router.post(paths.ccdClarifyingQuestionsEdit, postEditClarifyingQuestion);
 router.get(paths.ccdClarifyingQuestionsConfirmation, getConfirmationClarifyingQuestions);
 router.post(paths.ccdClarifyingQuestionsConfirmation, postConfirmationClarifyingQuestions);
 router.get(paths.ccdCaseManagementAppointment, getCaseManagementAppointment);
-router.post(paths.ccdCaseManagementAppointment, postCaseManagementAppointment);
+router.post(paths.ccdCaseManagementAppointment, caseManagementAppointmentValidations(), postCaseManagementAppointment);
+router.get(paths.ccdCaseManagementAppointmentReview, getCaseManagementAppointmentReview);
+router.post(paths.ccdCaseManagementAppointmentReview, postCaseManagementAppointmentReview);
+router.get(paths.ccdCaseManagementAppointmentConfirmation, getCaseManagementAppointmentConfirmation);
 
 module.exports = router;

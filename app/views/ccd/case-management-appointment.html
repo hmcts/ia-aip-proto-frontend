@@ -1,7 +1,8 @@
 {% extends "../layout.html" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
 
 
 {% block content %}
@@ -17,34 +18,130 @@
         {{ govukTextarea({
           name: "appellant-direction",
           id: "appellant-direction",
-          rows: 10,
+          rows: 12,
+          value: directions.appellant | safe,
           label: {
             text: "Explain the direction you are issuing to the appellant"
-          }
+          },
+          errorMessage:  {
+            text: errors.errorFields['appellant-direction']
+          } if errors.errorFields['appellant-direction']
         }) }}
 
         {{ govukTextarea({
           name: "respondent-direction",
           id: "respondent-direction",
-          rows: 10,
+          rows: 12,
+          value: directions.respondent,
           label: {
             text: "Explain the direction you are issuing to the respondent"
-          }
+          },
+          errorMessage:  {
+            text: errors.errorFields['respondent-direction']
+          } if errors.errorFields['respondent-direction']
         }) }}
 
-        {{ govukDateInput({
-          id: "management-appointment-date",
-          namePrefix: "passport-issued",
-          fieldset: {
-            legend: {
-              text: "Enter a date and time",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          }
-        }) }}
+        <div class="ccd-datetime-container">
 
-        <div class="buttons__container govuk-!-margin-top-9">
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__day",
+            name: "date__day",
+            value: directions.date.day,
+            formGroup: {
+              classes: "ccd-input-width-s"
+            },
+            label: {
+              text: "Day"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__day']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__month",
+            name: "date__month",
+            value: directions.date.month,
+            formGroup: {
+              classes: "ccd-input-width-s"
+            },
+            label: {
+              text: "Month"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__month']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__year",
+            name: "date__year",
+            value: directions.date.year,
+            formGroup: {
+              classes: "ccd-input-width-s"
+            },
+            label: {
+              text: "Year"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__year']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__hours",
+            name: "date__hours",
+            value: directions.date.hours,
+            formGroup: {
+              classes: "ccd-input-width-xs"
+            },
+            label: {
+              text: "Hours"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__hours']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__minutes",
+            name: "date__minutes",
+            value: directions.date.minutes,
+            formGroup: {
+              classes: "ccd-input-width-xs"
+            },
+            label: {
+              text: "Minutes"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__minutes']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__seconds",
+            name: "date__seconds",
+            value: directions.date.seconds,
+            formGroup: {
+              classes: "ccd-input-width-xs"
+            },
+            label: {
+              classes: "bla bla",
+              text: "Seconds"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__seconds']
+          }) }}
+        </div>
+
+        <div class="buttons__container">
           {{ govukButton({
             text: "Previous",
             name: "previous",
