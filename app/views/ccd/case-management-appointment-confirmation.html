@@ -1,0 +1,24 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% block content %}
+	{{ errorSummary(errors) }}
+
+  <h1 class="govuk-heading-m">{{ i18n.tcw.managementAppointmentConfirmation.title }}</h1>    
+
+  {{ govukPanel({
+    titleText: i18n.tcw.managementAppointmentConfirmation.panel
+  }) }}
+
+  <p> {{ i18n.tcw.managementAppointmentConfirmation.nextSection.content | safe }} </p>
+
+  <div class="buttons__container govuk-!-margin-top-9">
+    {{ govukButton({
+      text: i18n.tcw.managementAppointmentConfirmation.nextSection.cta,
+      name: "next",
+      href: "/ccd/case/overview"
+    }) }}
+  </div>
+
+{% endblock %}

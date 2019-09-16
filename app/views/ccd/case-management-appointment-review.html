@@ -1,0 +1,75 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+
+{% block content %}
+  {{ errorSummary(errors) }}
+
+  dateObje {{ directions.date | dump }}
+
+  <div class="govuk-grid-row">
+    <h1 class="govuk-heading-xl">{{ i18n.tcw.additionalQuestionReview.title }}</h1>
+    {{ govukSummaryList({
+      rows: [
+        {
+          classes: 'no-underline',
+          key: {
+            text: "Explain the direction you are issuing to the appellant"
+          },
+          value: {
+            classes: "preserve-newlines",
+            html: directions.appellant
+          },
+          actions: {
+            items: [
+              {
+                href: "/ccd/case/management-appointment",
+                text: "Change"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Explain the direction you are issuing to the respondent"
+          },
+          value: {
+            classes: "preserve-newlines",
+            html: directions.respondent
+          },
+          actions: {
+            items: [{
+              href: "/ccd/case/management-appointment",
+              text: "Change"
+            }]
+          }
+        },
+        {
+          key: {
+            text: "Enter a date and time"
+          },
+          value: {
+            text: directions.date | dateFilter
+          },
+          actions: {
+            items: [{
+              href: "/ccd/case/management-appointment",
+              text: "Change"
+            }]
+          }
+        }
+        ]
+      })
+    }}
+    <form action="/ccd/case/management-appointment/review" method="POST">
+      <div class="buttons__container govuk-!-margin-top-9">
+        {{ govukButton({
+          text: "Next",
+          name: "next"
+        }) }}
+      </div>
+    </form>
+  </div>
+{% endblock %}

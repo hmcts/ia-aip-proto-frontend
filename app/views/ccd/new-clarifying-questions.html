@@ -6,15 +6,17 @@
 {% block content %}
 	{{ errorSummary(errors) }}
 
-  <h1 class="govuk-heading-xl remove-bottom-margin">{{ i18n.tcw.additionalQuestion.title }}</h1>
+  <h1 class="govuk-heading-l">{{ i18n.tcw.additionalQuestion.title }}</h1>
   <p class="govuk-body rich-text">{{ i18n.tcw.additionalQuestion.description }}</p>
 
   <form action="/ccd/case/clarifying-questions" method="post">
+    <h2 class="govuk-heading-s">Questions</h2>
     <div class="tcw-question-container">
+      {% set loopIndex = 1 %}
       {% for question in questions %}
         {{ govukInput({
           label: {
-            text: "Question"
+            text: "Question " + loop.index
           },
           id: "question-title" + loop.index0,
           name: "question-title" + loop.index0,
@@ -28,13 +30,14 @@
               text: "Can you provide more detail?"
           }
         }) }}
+        {% set loopIndex = loop.index + 1 %}
 		  {% endfor %}
       
       {{ govukInput({
         id: "question-title",
         name: "question-title",
         label: {
-          text: "Question"
+          text: "Question " + loopIndex
         },
         errorMessage:  {
 					text: errors.errorFields['question-title']
@@ -48,7 +51,7 @@
 					text: errors.errorFields['further-question']
 				} if errors.errorFields['further-question'],
 				label: {
-					text: "Can you provide more detail?"
+					text: "Description"
 				}
 			}) }}
 

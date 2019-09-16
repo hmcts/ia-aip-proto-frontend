@@ -68,23 +68,24 @@
     "overview": {
       "nextSection": {
         "para1": "Review the appellant's case in the <a href='#appeal'>appeal tab</a>",
-        "para2": "Once you've reviewed the case, you need to do one of the following",
+        "para2": "Once you've reviewed the case, you need to do one of the following:",
         "action1": "<a href='#'>Direct the respondent to review the case</a>",
         "action2": "<a href='/ccd/case/clarifying-questions'>Direct the appellant to answer clarifying questions</a>",
         "action3": "<a href='/ccd/case/management-appointment'>Direct both parties to attend a case management appointment</a>",
-        "appellantDirectedToQuestions": "The appellant has been directed to answer clarigying questions. You will be notified when their answers are ready to review."
+        "appellantDirectedToQuestions": "The appellant has been directed to answer clarifying questions. You will be notified when their answers are ready to review.",
+        "directedCaseManagementAppointment": "Both parties have been directed to attend a case management appointment on"
       }
     },
     "additionalQuestion": {
-      "title": "Ask clarifying questions",
-      "description": "Ask questions to clarify information with the apellant. You can see these initial response here"
+      "title": "Direct the appellant to answer clarifying questions",
+      "description": "Enter questions for the appellant below"
     },
     "additionalQuestionReview": {
-      "title": "Carefully check your answer below before clicking submit"
+      "title": "Check your answers"
     },
     "additionalQuestionEdition": {
-      "title": "Edit clarifying questions",
-      "description": "Ask questions to clarify information with the apellant. You can see these initial response here"
+      "title": "Direct the appellant to answer clarifying questions",
+      "description": "Enter questions for the appellant below"
     },
     "additionalQuestionConfirmation": {
       "title": "Direct the appellant to answer clarifying questions",
@@ -99,9 +100,26 @@
       "title": "Direct both parties to attend a case management appointment",
       "description": "Send a direction to both parties to attend a case management appointment"
     },
+    "managementAppointmentConfirmation": {
+      "title": "Send direction",
+      "panel": "Your directions have been sent",
+      "nextSection": {
+        "title": "What happens next",
+        "content": "You can see the status of the direction in the <a href='/ccd/case/overview#directions'>directions tab</a>.",
+        "cta": "Close and return to details"
+      }
+    },
     "errors": {
       "question-title": "You have not entered a title for the question.",
-      "further-question": "You have not entered a question. Enter the question you want the apellant to be presented with."
+      "further-question": "You have not entered a question. Enter the question you want the apellant to be presented with.",
+      "appellant-direction": "Please enter an appellant direction.",
+      "respondent-direction": "Please enter a respondent direction",
+      "date__day": "Please fill the day",
+      "date__month": "Please fill month",
+      "date__year": "Please fill year",
+      "date__hours": "Please fill hours",
+      "date__minutes": "Please fill minutes",
+      "date__seconds": "Please fill seconds"
     }
   },
 

@@ -2,7 +2,12 @@ const { validationResult } = require('express-validator');
 const paths = require('../paths');
 const stages = require('../data/tcwStages');
 const i18n = require('../locale/en.json');
-const { CLARIFYING_QUESTIONS_SENT } = require('../data/constants');
+const { directionsPrepopulated } = require('../data/prepopulatedData');
+
+const {
+  CLARIFYING_QUESTIONS_SENT,
+  DIRECTED_CASE_MANAGEMENT_APPOINTMENT
+} = require('../data/constants');
 
 function getLandingPage(req, res) {
   return res.redirect(`${paths.ccd}${paths.ccdCasesList}`);
@@ -13,9 +18,9 @@ function getCcdList(req, res) {
 }
 
 function getCcdCaseOverview(req, res) {
-  const { tcw } = req.session.appealData || null;
+  const { tcw, directions } = req.session.appealData || null;
   const state = tcw && tcw.state ? tcw.state : null;
-  return res.render('ccd/overview.html', { stages, state });
+  return res.render('ccd/overview.html', { stages, state, directions });
 }
 
 function getCcdQuestions(req, res) {
@@ -102,11 +107,63 @@ function postConfirmationClarifyingQuestions(req, res) {
 }
 
 function getCaseManagementAppointment(req, res) {
-  res.render('ccd/case-management-appointment.html');
+  const directions = req.session.appealData.directions || { ...directionsPrepopulated };
+  res.render('ccd/case-management-appointment.html', { directions });
 }
 
 function postCaseManagementAppointment(req, res) {
-  res.redirect('/ccd/case/overview');
+  const errorFields = {};
+  const errorFormatter = ({ param }) => {
+    const text = i18n.tcw.errors[param];
+    errorFields[param] = text;
+    return {
+      text,
+      href: `#${param}`
+    };
+  };
+  const directions = req.session.appealData.directions || { ...directionsPrepopulated };
+  const errorList = validationResult(req).formatWith(errorFormatter);
+  if (!errorList.isEmpty()) {
+    return res.render('ccd/case-management-appointment.html',
+      { directions, errors: { errorList: errorList.array(), errorFields } }
+    );
+  }
+  
+  req.session.appealData = {
+    directions: {
+      appellant: req.body['appellant-direction'],
+      respondent: req.body['respondent-direction'],
+      date: {
+        year: req.body.date__year,
+        month: req.body.date__month,
+        day: req.body.date__day,
+        hours: req.body.date__hours,
+        minutes: req.body.date__minutes,
+        seconds: req.body.date__seconds
+      }
+    }
+  };
+
+  return res.redirect(`${paths.ccd}${paths.ccdCaseManagementAppointmentReview}`);
+}
+
+function getCaseManagementAppointmentReview(req, res) {
+  const directions = req.session.appealData.directions || { ...directionsPrepopulated };
+  
+  res.render('ccd/case-management-appointment-review.html', { directions });
+}
+
+function postCaseManagementAppointmentReview(req, res) {
+  Object.assign(req.session.appealData, {
+    tcw: {
+      state: DIRECTED_CASE_MANAGEMENT_APPOINTMENT
+    }
+  });
+  res.redirect(`${paths.ccd}${paths.ccdCaseManagementAppointmentConfirmation}`);
+}
+
+function getCaseManagementAppointmentConfirmation(req, res) {
+  res.render('ccd/case-management-appointment-confirmation.html');
 }
 
 module.exports = {
@@ -121,5 +178,8 @@ module.exports = {
   getConfirmationClarifyingQuestions,
   postConfirmationClarifyingQuestions,
   getCaseManagementAppointment,
-  postCaseManagementAppointment
+  postCaseManagementAppointment,
+  getCaseManagementAppointmentReview,
+  postCaseManagementAppointmentReview,
+  getCaseManagementAppointmentConfirmation
 };

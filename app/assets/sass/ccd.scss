@@ -140,3 +140,21 @@
     border-bottom: 0px;
   }
 }
+
+.ccd-input-width-s {
+  width: 6rem;
+  margin-right: 1rem;
+}
+
+.govuk-form-group.ccd-input-width-xs {
+  width: 3rem;
+  margin-right: 1.5rem;
+}
+
+.ccd-datetime-container {
+  display: flex;
+}
+
+.preserve-newlines {
+  white-space: pre-line;
+}

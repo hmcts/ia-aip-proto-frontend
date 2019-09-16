@@ -22,6 +22,16 @@
             Appeal
           </a>
         </li>
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#documents">
+            Documents
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#directions">
+            Directions
+          </a>
+        </li>
       </ul>
 
       <section class="govuk-tabs__panel" id="overview">
@@ -41,8 +51,11 @@
           <p>{{ i18n.tcw.overview.nextSection.action3 | safe }}</p>
         {% elif state == 'CLARIFYING_QUESTIONS_SENT' %}
           <p>{{ i18n.tcw.overview.nextSection.appellantDirectedToQuestions }}</p>
+        {% elif state == 'DIRECTED_CASE_MANAGEMENT_APPOINTMENT' %}
+          <p>{{ i18n.tcw.overview.nextSection.directedCaseManagementAppointment }} {{ directions.date | dateFilter }}</p>
         {% endif %}
-        
+
+        <h2 class="govuk-heading-s">Case details</h2>
         {{ govukSummaryList({
           rows: [
             {
@@ -75,6 +88,12 @@
 
       <section class="govuk-tabs__panel" id="appeal">
         <h2 class="govuk-heading-m">Appeal</h2>
+      </section>
+      <section class="govuk-tabs__panel" id="documents">
+        <h2 class="govuk-heading-m">Documents</h2>
+      </section>
+      <section class="govuk-tabs__panel" id="directions">
+        <h2 class="govuk-heading-m">Directions</h2>
       </section>
     </div>
   </div>

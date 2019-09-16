@@ -6,10 +6,11 @@
 {% block content %}
 	{{ errorSummary(errors) }}
 
-  <h1 class="govuk-heading-xl remove-bottom-margin">{{ i18n.tcw.additionalQuestionEdition.title }}</h1>
+  <h1 class="govuk-heading-l">{{ i18n.tcw.additionalQuestionEdition.title }}</h1>
   <p class="govuk-body rich-text">{{ i18n.tcw.additionalQuestion.description }}</p>
 
   <form action="/ccd/case/clarifying-questions/edit?question={{ question.questionId }}" method="post">
+    <h2 class="govuk-heading-s">Questions</h2>
     <div class="tcw-question-container">
       {{ govukInput({
         id: "question-title",

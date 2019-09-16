@@ -15,12 +15,26 @@ const session = require('express-session');
 const config = require('config');
 const bodyParser = require('body-parser');
 const createModel = require('./app/middleware/create-model');
+const moment = require('moment');
 
 // const logger = Logger.getLogger('server.js');
 
 
 const notFoundHandler = require('./app/middleware/errors/404-not-found');
 const internalServerErrorHandler = require('./app/middleware/errors/500-internal-server-error');
+
+function dateFilter(dateObj) {
+  const {
+    day,
+    month,
+    year,
+    hours,
+    minutes,
+    seconds
+  } = dateObj;
+
+  return moment(`${day}-${month}-${year} ${hours}:${minutes}:${seconds}`).format('DD/MM/YYYY HH:mm:ss');
+}
 
 function create(options) {
   const opts = options || {};
@@ -67,7 +81,7 @@ function create(options) {
   ], {
     autoescape: true,
     express: app
-  });
+  }).addFilter('dateFilter', dateFilter);
 
   app.use(Express.accessLogger());
   app.use(createModel);
