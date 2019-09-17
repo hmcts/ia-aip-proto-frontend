@@ -11,9 +11,11 @@
     titleText: i18n.tcw.managementAppointmentConfirmation.panel
   }) }}
 
+  <h2 class="govuk-heading-s">What happens next</h2>
+
   <p> {{ i18n.tcw.managementAppointmentConfirmation.nextSection.content | safe }} </p>
 
-  <div class="buttons__container govuk-!-margin-top-9">
+  <div class="buttons__container">
     {{ govukButton({
       text: i18n.tcw.managementAppointmentConfirmation.nextSection.cta,
       name: "next",
