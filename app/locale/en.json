@@ -81,7 +81,9 @@
       "description": "Enter questions for the appellant below"
     },
     "additionalQuestionReview": {
-      "title": "Check your answers"
+      "title": "Instruct a case management appointment",
+      "subtitle": "Check your answers",
+      "description": "Check the information below before you send the direction. Both parties will receive a copy of the direction"
     },
     "additionalQuestionEdition": {
       "title": "Direct the appellant to answer clarifying questions",
