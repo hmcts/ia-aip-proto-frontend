@@ -45,6 +45,7 @@ module.exports = {
   emailRegister: '/email/register',
   flow: '/flow',
 
+  hearingAppellantOverview: '/hearing-requirements/overview',
   hearingAppellantTaskList: '/hearing-requirements/task-list',
   hearingAppellantComing: '/hearing-requirements/appellant-coming',
   hearingGiveEvidence: '/hearing-requirements/give-evidence',
