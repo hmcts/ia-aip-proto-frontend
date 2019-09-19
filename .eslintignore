@@ -1,3 +1,4 @@
 node_modules/
 public/
 test/coverage/
+app/middleware/hearing-requirements/check-answers.js

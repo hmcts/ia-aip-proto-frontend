@@ -66,129 +66,6 @@
                 </li>
             </ul>
         </li>
-
-
-        <li>
-            <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">1. </span> Witness
-            </h2>
-            <ul class="app-task-list__items">
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/give-evidence" aria-describedby="home-office-details-completed">
-                        Will you give oral evidence at the hearing?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.giveEvidence.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/witnesses" aria-describedby="home-office-details-completed">
-                        Will you bring any other witnesses to the appeal hearing?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.witnesses.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-            </ul>
-        </li>
-        <li>
-            <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">2. </span> Hearing requirements
-            </h2>
-            <ul class="app-task-list__items">
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/interpreter" aria-describedby="home-office-details-completed">
-                        Do you need interpreter services at the hearing?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.interpreter.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/step-free" aria-describedby="home-office-details-completed">
-                        Do you need step free access?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.stepFree.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/hearing-loop" aria-describedby="home-office-details-completed">
-                        Do you need a hearing loop?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.hearingLoop.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-            </ul>
-        </li>
-        <li>
-            <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">3. </span> Additional requirements
-            </h2>
-            <ul class="app-task-list__items">
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/vulnerabilities" aria-describedby="home-office-details-completed">
-                        Do you have any personal vulnerabilities that will impact the hearing?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.vulnerabilities.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/multimedia-evidence" aria-describedby="home-office-details-completed">
-                        Do you have multimedia evidence?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.multimediaEvidence.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/all-male-female-court" aria-describedby="home-office-details-completed">
-                        Do you need an all male or female court?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.allMaleFemaleCourt.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/in-camera-court" aria-describedby="home-office-details-completed">
-                        Do you need an in camera court?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.inCameraCourt.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    <a href="/hearing-requirements/anything-else" aria-describedby="home-office-details-completed">
-                        Is there anything else you would like to request?
-                    </a>
-                  </span>
-                    {% if appealData.hearingRequirements.anythingElse.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                    {% endif %}
-                </li>
-            </ul>
-        </li>
         <li>
             <h2 class="app-task-list__section">
                 <span class="app-task-list__section-number">4. </span> Check and submit
@@ -196,7 +73,7 @@
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(hasAnsweredAllQuestion, 'Check and submit your appeal', '/hearing-requirements/check-answers') }}
+                      {{ enabledLink(appealData.hearingRequirements.witnesses.completed and appealData.hearingRequirements.hearingLoop.completed and appealData.hearingRequirements.anythingElse.completed, 'Check and submit your appeal', '/hearing-requirements/check-answers') }}
                   </span>
                 </li>
             </ul>
