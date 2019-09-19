@@ -24,8 +24,10 @@ function createFormController() {
     extractBody,
     false,
     false,
-    formData => {
-      if (formData.required === 'yes') {
+    (formData, req) => {
+      if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
+      } else if (formData.required === 'yes') {
         return paths.hearingInterpreterDetails;
       }
       return paths.hearingAppellantTaskList;

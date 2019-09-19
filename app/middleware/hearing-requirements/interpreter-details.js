@@ -36,6 +36,8 @@ function createFormController() {
     (formData, req) => {
       if (req.body.addNew || req.body.delete) {
         return paths.hearingInterpreterDetails;
+      } else if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
       }
       return paths.hearingAppellantTaskList;
     },

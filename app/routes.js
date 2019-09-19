@@ -94,6 +94,7 @@ router.use(paths.flow, require('./middleware/flow'));
 
 router.use(paths.hearingAppellantOverview, require('./middleware/hearing-requirements/overview'));
 router.use(paths.hearingAppellantTaskList, require('./middleware/hearing-requirements/task-list'));
+router.use(paths.hearingAppellantYourHearingNeeds, require('./middleware/hearing-requirements/your-hearing-needs'));
 setupFormController(paths.hearingAppellantComing, hearingAppellantComing);
 setupFormController(paths.hearingGiveEvidence, hearingGiveEvidence);
 setupFormController(paths.hearingWitnesses, hearingWitnesses);

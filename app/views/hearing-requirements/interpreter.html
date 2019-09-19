@@ -6,9 +6,8 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-l">Will you or any witnesses need an interpreter at the hearing?</h1>
 
-    <p>We can provide interpreters for you and any witnesses that need them.</p>
     <form action="/hearing-requirements/interpreter" method="post">
 
         {{ govukRadios({
@@ -16,12 +15,6 @@
             idPrefix: "required",
             name: "required",
             errorMessage: errors.fieldErrors["required"],
-            fieldset: {
-                legend: {
-                    text: "Do you need interpreter services at the hearing?",
-                    isPageHeading: false
-                }
-            },
             items: [
                 {
                     value: "yes",
@@ -36,14 +29,7 @@
             ]
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/task-list",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}
