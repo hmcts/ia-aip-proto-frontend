@@ -24,8 +24,10 @@ function createFormController() {
     extractBody,
     false,
     false,
-    formData => {
-      if (formData.witnesses === 'yes') {
+    (formData, req) => {
+      if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
+      } else if (formData.witnesses === 'yes') {
         return paths.hearingWitnessesNumber;
       }
       return paths.hearingAppellantTaskList;

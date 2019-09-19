@@ -68,7 +68,9 @@ function formController(
       }
 
       const redirectTo = (isFunction(nextPage)) ? nextPage(formData, req) : nextPage;
-      if (redirectTo === paths.taskList || redirectTo === paths.hearingAppellantTaskList) {
+      if (req.body.saveForLater) {
+        formData.draft = true;
+      } else if (redirectTo === paths.taskList || redirectTo === paths.hearingAppellantTaskList) {
         formData.completed = true;
       }
       Object.assign(req.session.appealData[sessionGroupName][sessionFieldName], formData);

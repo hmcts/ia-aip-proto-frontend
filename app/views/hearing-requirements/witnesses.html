@@ -6,8 +6,6 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
-
     <form action="/hearing-requirements/witnesses" method="post">
 
         {{ govukRadios({
@@ -17,8 +15,9 @@
             errorMessage: errors.fieldErrors["witnesses"],
             fieldset: {
                 legend: {
-                    text: "Will you bring any other witnesses to the apeal haering?",
-                    isPageHeading: false
+                    text: "Will you bring any witnesses to the hearing?",
+                    isPageHeading: true,
+                    classes: "govuk-fieldset__legend--l"
                 }
             },
             items: [
@@ -35,14 +34,7 @@
             ]
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/task-list",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}

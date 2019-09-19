@@ -35,6 +35,19 @@
     }) }}
 {% endmacro %}
 
+{% macro saveButtons() %}
+    {{ govukButton({
+        text: "Save and continue"
+    }) }}
+
+    {{ govukButton({
+        text: "Save for later",
+        name: "saveForLater",
+        value: "saveForLater",
+        classes: "govuk-button--secondary"
+    }) }}
+{% endmacro %}
+
 {% block pageTitle %}
     {{ i18n.pageTitle }}
 {% endblock %}
