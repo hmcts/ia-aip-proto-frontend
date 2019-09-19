@@ -1,0 +1,23 @@
+{% extends "email/email-layout.html" %}
+
+{% block subject %}
+    Your immigration and asylum appeal: Questions from the Tribunal
+{% endblock %}
+
+{% block from %}
+    Immigration and asylum tribunal (I&Atribunal@justice.gov.uk)
+{% endblock %}
+
+{% block content %}
+    <p>
+        Your appeal is going to a hearing. You now need to tell us if there's anything you'll need at the hearing,
+        like an interpreter or step-free access.
+    </p>
+
+    <h2 class="govuk-heading-m">What you need to do next</h2>
+    <p>
+        <a href="/sign-in?signInLink=/hearing-requirements/overview">Go to your appeal</a>
+        to tell us your hearing information.
+    </p>
+    <p>You have until <b>{{ appealData.respondByDate }}</b> to give us this information.</p>
+{% endblock %}

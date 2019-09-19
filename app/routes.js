@@ -90,6 +90,7 @@ router.post(paths.anythingElseToAddQuestion, anythingElseToAddQuestionController
 router.use(paths.emailQuestions, require('./middleware/email/questions'));
 router.use(paths.emailReasonsForAppeal, require('./middleware/email/reasons-for-appeal'));
 router.use(paths.emailRegister, require('./middleware/email/regsiter'));
+router.use(paths.emailHearingDetails, require('./middleware/email/hearing-details'));
 router.use(paths.flow, require('./middleware/flow'));
 
 router.use(paths.hearingAppellantOverview, require('./middleware/hearing-requirements/overview'));

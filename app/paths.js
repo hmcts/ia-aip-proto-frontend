@@ -43,6 +43,7 @@ module.exports = {
   emailQuestions: '/email/questions',
   emailReasonsForAppeal: '/email/reasons-for-appeal',
   emailRegister: '/email/register',
+  emailHearingDetails: '/email/hearing-details',
   flow: '/flow',
 
   hearingAppellantOverview: '/hearing-requirements/overview',
