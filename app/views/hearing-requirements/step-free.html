@@ -6,20 +6,16 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-l">Will you need step-free access?</h1>
 
     <form action="/hearing-requirements/step-free" method="post">
-        <p>We can provide a hearing room with step free access.</p>
         {{ govukRadios({
             classes: "govuk-radios--inline",
             idPrefix: "step-free",
             name: "step-free",
             errorMessage: errors.fieldErrors["step-free"],
-            fieldset: {
-                legend: {
-                    text: "Do you need step free access?",
-                    isPageHeading: false
-                }
+            hint: {
+                text: "We can provide step-free access if you are in a wheelchair or have other mobility issues."
             },
             items: [
                 {
@@ -35,14 +31,7 @@
             ]
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/task-list",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}

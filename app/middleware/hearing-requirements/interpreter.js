@@ -30,9 +30,9 @@ function createFormController() {
       } else if (formData.required === 'yes') {
         return paths.hearingInterpreterDetails;
       }
-      return paths.hearingAppellantTaskList;
+      return paths.hearingStepFree;
     },
-    paths.hearingAppellantTaskList
+    paths.hearingAppellantYourHearingNeeds
   );
 }
 

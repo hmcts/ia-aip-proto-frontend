@@ -39,7 +39,7 @@ function createFormController() {
       } else if (req.body.saveForLater) {
         return paths.hearingAppellantTaskList;
       }
-      return paths.hearingAppellantTaskList;
+      return paths.hearingStepFree;
     },
     paths.hearingInterpreter
   );

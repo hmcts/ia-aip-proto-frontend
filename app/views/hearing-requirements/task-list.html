@@ -36,7 +36,7 @@
                         Will you need an interpreter, step-free access or a hearing loop?
                     </a>
                   </span>
-                    {% if appealData.hearingRequirements.interpreter.completed and appealData.hearingRequirements.stepFree.completed and appealData.hearingRequirements.hearingLoop.completed %}
+                    {% if appealData.hearingRequirements.hearingLoop.completed %}
                         <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
                     {% elseif appealData.hearingRequirements.interpreter.draft or appealData.hearingRequirements.stepFree.draft or appealData.hearingRequirements.hearingLoop.draft %}
                         <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>

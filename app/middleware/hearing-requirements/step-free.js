@@ -24,8 +24,13 @@ function createFormController() {
     extractBody,
     false,
     false,
-    paths.hearingAppellantTaskList,
-    paths.hearingAppellantTaskList
+    (formData, req) => {
+      if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
+      }
+      return paths.hearingHearingLoop;
+    },
+    paths.hearingInterpreterDetails
   );
 }
 
