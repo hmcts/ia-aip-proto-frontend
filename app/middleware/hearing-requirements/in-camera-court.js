@@ -25,12 +25,15 @@ function createFormController() {
     false,
     false,
     (formData, req) => {
+      if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
+      }
       if (req.body['in-camera-court'] === 'yes') {
         return paths.hearingInCameraCourtDescription;
       }
-      return paths.hearingAppellantTaskList;
+      return paths.hearingAnythingElse;
     },
-    paths.hearingAppellantTaskList
+    paths.hearingAllMaleFemaleCourtDescription
   );
 }
 

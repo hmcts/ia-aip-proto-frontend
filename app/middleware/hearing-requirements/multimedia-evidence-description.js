@@ -24,7 +24,12 @@ function createFormController() {
     extractBody,
     false,
     false,
-    paths.hearingAppellantTaskList,
+    (formData, req) => {
+      if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
+      }
+      return paths.hearingAllMaleFemaleCourt;
+    },
     paths.hearingMultimediaEvidence
   );
 }

@@ -6,7 +6,9 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-l">
+        Are there any issues that will affect you at the hearing, like ill health or a physical disability?
+    </h1>
 
     <form action="/hearing-requirements/vulnerabilities" method="post">
         {{ govukRadios({
@@ -14,12 +16,6 @@
             idPrefix: "vulnerabilities",
             name: "vulnerabilities",
             errorMessage: errors.fieldErrors["vulnerabilities"],
-            fieldset: {
-                legend: {
-                    text: "Do you have any personal vulnerabilities that will impact you during the hearing?",
-                    isPageHeading: false
-                }
-            },
             items: [
                 {
                     value: "yes",
@@ -34,14 +30,7 @@
             ]
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/task-list",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}

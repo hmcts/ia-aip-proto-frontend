@@ -69,5 +69,6 @@ module.exports = {
   hearingAnythingElse: '/hearing-requirements/anything-else',
   hearingAnythingElseDescription: '/hearing-requirements/anything-else-description',
   hearingCheckAnswers: '/hearing-requirements/check-answers',
+  hearingOtherNeeds: '/hearing-requirements/other-needs',
   hearingSubmitted: '/hearing-requirements/submitted'
 };

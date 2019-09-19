@@ -6,7 +6,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-l">Tell us about each need and why you need it</h1>
 
     <form action="/hearing-requirements/anything-else-description" method="post">
         {{ govukTextarea({
@@ -14,20 +14,10 @@
             id: "description",
             value: formData.description,
             errorMessage: errors.fieldErrors["description"],
-            rows: 12,
-            label: {
-                text: "Tell us what you need and why"
-            }
+            rows: 12
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/anything-else",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}

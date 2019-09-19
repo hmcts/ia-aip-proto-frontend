@@ -6,7 +6,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-l">Will you need a private hearing?</h1>
 
     <form action="/hearing-requirements/in-camera-court" method="post">
         {{ govukRadios({
@@ -14,14 +14,8 @@
             idPrefix: "in-camera-court",
             name: "in-camera-court",
             errorMessage: errors.fieldErrors["in-camera-court"],
-            fieldset: {
-                legend: {
-                    text: "Do you need an in camera court?",
-                    isPageHeading: false
-                }
-            },
             hint: {
-                text: "If a court is held 'in camera' it means the public won't be allowed into the hearing room"
+                text: "A private hearing means that the public will not be allowed into the hearing room."
             },
             items: [
                 {
@@ -37,14 +31,7 @@
             ]
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/task-list",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}

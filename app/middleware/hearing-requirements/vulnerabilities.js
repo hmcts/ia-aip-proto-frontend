@@ -24,13 +24,15 @@ function createFormController() {
     extractBody,
     false,
     false,
-    formData => {
-      if (formData.vulnerabilities === 'yes') {
-        return paths.hearingVulnerabilitiesList;
+    (formData, req) => {
+      if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
+      } else if (formData.vulnerabilities === 'yes') {
+        return paths.hearingVulnerabilitiesDescription;
       }
-      return paths.hearingAppellantTaskList;
+      return paths.hearingMultimediaEvidence;
     },
-    paths.hearingAppellantTaskList
+    paths.hearingOtherNeeds
   );
 }
 

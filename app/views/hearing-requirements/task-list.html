@@ -45,6 +45,28 @@
             </ul>
         </li>
 
+        <li>
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">3. </span> Other needs
+            </h2>
+            <ul class="app-task-list__items">
+                <li class="app-task-list__item">
+                  <span class="app-task-list__task-name">
+                    <a href="/hearing-requirements/other-needs" aria-describedby="home-office-details-completed">
+                        Will you need anything else at the hearing?
+                    </a>
+                  </span>
+                    {% if appealData.hearingRequirements.anythingElse.completed %}
+                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
+                    {% elseif appealData.hearingRequirements.vulnerabilities.draft or appealData.hearingRequirements.multimediaEvidence.draft or
+                        appealData.hearingRequirements.allMaleFemaleCourt.draft or appealData.hearingRequirements.inCameraCourt.draft or
+                        appealData.hearingRequirements.anythingElse.draft %}
+                        <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>
+                    {% endif %}
+                </li>
+            </ul>
+        </li>
+
 
         <li>
             <h2 class="app-task-list__section">

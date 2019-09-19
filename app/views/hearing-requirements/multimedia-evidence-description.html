@@ -6,7 +6,9 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-l">
+        Tell us what format the evidence is in (.mp3, .mov, etc.) and what equipment you will need to play it
+    </h1>
 
     <form action="/hearing-requirements/multimedia-evidence-description" method="post">
         {{ govukTextarea({
@@ -14,20 +16,10 @@
             id: "description",
             value: formData.description,
             errorMessage: errors.fieldErrors["description"],
-            rows: 12,
-            label: {
-                text: "Tell us what format this evidence is in and what equipment you need to play it"
-            }
+            rows: 12
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/multimedia-evidence",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}

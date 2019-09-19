@@ -6,7 +6,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-l">Tell us why you need a single-sex hearing?</h1>
 
     <form action="/hearing-requirements/all-male-female-court-description" method="post">
         {{ govukTextarea({
@@ -14,20 +14,10 @@
             id: "description",
             value: formData.description,
             errorMessage: errors.fieldErrors["description"],
-            rows: 12,
-            label: {
-                text: "Explain why you believe you need a single sex court"
-            }
+            rows: 12
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/all-male-female-court-selection",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}

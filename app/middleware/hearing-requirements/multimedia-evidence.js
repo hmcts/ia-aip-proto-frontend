@@ -25,10 +25,12 @@ function createFormController() {
     false,
     false,
     (formData, req) => {
-      if (req.body['multimedia-evidence'] === 'yes') {
+      if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
+      } else if (req.body['multimedia-evidence'] === 'yes') {
         return paths.hearingMultimediaEvidenceDescription;
       }
-      return paths.hearingAppellantTaskList;
+      return paths.hearingAllMaleFemaleCourt;
     },
     paths.hearingAppellantTaskList
   );

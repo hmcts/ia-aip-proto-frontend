@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block content %}
+    <h1 class="govuk-heading-l">Other needs</h1>
+    <p class="govuk-body">
+        If you have other needs, they will be considered but it might not be possible to provide for them at the hearing.
+    </p>
+
+    {{ govukButton({
+        text: "Continue",
+        href: "/hearing-requirements/vulnerabilities",
+        isStartButton: false
+    }) }}
+
+    {{ contactUs() }}
+{% endblock %}

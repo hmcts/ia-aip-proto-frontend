@@ -25,7 +25,9 @@ function createFormController() {
     false,
     false,
     (formData, req) => {
-      if (req.body['anything-else'] === 'yes') {
+      if (req.body.saveForLater) {
+        return paths.hearingAppellantTaskList;
+      } else if (req.body['anything-else'] === 'yes') {
         return paths.hearingAnythingElseDescription;
       }
       return paths.hearingAppellantTaskList;

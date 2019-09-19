@@ -6,7 +6,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-l">Do you need an all-female or all-male hearing?</h1>
 
     <form action="/hearing-requirements/all-male-female-court" method="post">
         {{ govukRadios({
@@ -14,12 +14,6 @@
             idPrefix: "all-male-female-court",
             name: "all-male-female-court",
             errorMessage: errors.fieldErrors["all-male-female-court"],
-            fieldset: {
-                legend: {
-                    text: "Do you need an all male or all female court?",
-                    isPageHeading: false
-                }
-            },
             items: [
                 {
                     value: "yes",
@@ -34,14 +28,7 @@
             ]
         }) }}
 
-        {{ govukButton({
-            text: "Previous",
-            href: "/hearing-requirements/task-list",
-            classes: "govuk-button--secondary"
-        }) }}
-        {{ govukButton({
-            text: "Continue"
-        }) }}
+        {{ saveButtons() }}
     </form>
 
     {{ contactUs() }}
