@@ -8,41 +8,41 @@
     {{ errorSummary(errors) }}
 
     <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">Carefully check your answers before clicking submit</h1>
 
-        <h1 class="govuk-heading-l">Carefully check your answers before clicking submit</h1>
 
 
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">1. </span> Witness
+            </h2>
+            {{ govukSummaryList({
+                classes: 'govuk-!-margin-bottom-9',
+                rows: checkListWitnessRows
+            }) }}
 
-        <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">1. </span> Witness
-        </h2>
-        {{ govukSummaryList({
-            classes: 'govuk-!-margin-bottom-9',
-            rows: checkListWitnessRows
-        }) }}
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">2. </span> Your hearing needs
+            </h2>
+            {{ govukSummaryList({
+                classes: 'govuk-!-margin-bottom-9',
+                rows: checkListhearingNeedsRows
+            }) }}
 
-        <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">2. </span> Your hearing needs
-        </h2>
-        {{ govukSummaryList({
-            classes: 'govuk-!-margin-bottom-9',
-            rows: checkListhearingNeedsRows
-        }) }}
-
-        <h2 class="app-task-list__section">
-            <span class="app-task-list__section-number">3. </span> Other needs
-        </h2>
-        {{ govukSummaryList({
-            classes: 'govuk-!-margin-bottom-9',
-            rows: checkListOtherNeedsRows
-        }) }}
-
+            <h2 class="app-task-list__section">
+                <span class="app-task-list__section-number">3. </span> Other needs
+            </h2>
+            {{ govukSummaryList({
+                classes: 'govuk-!-margin-bottom-9',
+                rows: checkListOtherNeedsRows
+            }) }}
 
             <form action="/hearing-requirements/submitted" method="post" novalidate>
                 {{ govukButton({
                     text: "Submit requirements"
                 }) }}
             </form>
+        </div>
 
     </div>
 {% endblock %}

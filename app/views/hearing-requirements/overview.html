@@ -18,6 +18,17 @@
 
         {{ statusBar(stages) }}
 
+        {% if appealData.hearingRequirements.witnesses.draft or appealData.hearingRequirements.interpreter.draft or
+            appealData.hearingRequirements.stepFree.draft or appealData.hearingRequirements.hearingLoop.draft or
+            appealData.hearingRequirements.vulnerabilities.draft or appealData.hearingRequirements.multimediaEvidence.draft or
+            appealData.hearingRequirements.allMaleFemaleCourt.draft or appealData.hearingRequirements.inCameraCourt.draft or
+            appealData.hearingRequirements.anythingElse.draft %}
+            <div class="blueWrapper govuk-!-width-one-third">
+                <p class="govuk-body blueText">Your answers have been saved</p>
+            </div>
+
+        {% endif %}
+
         <h2 class="govuk-heading-m">Do this next</h2>
 
         {%  if not appealData.hearingRequirements.anythingElse.completed %}
@@ -25,6 +36,11 @@
                 Your appeal is going to a hearing. You now need to tell us if there is anything you'll
                 need at the hearing, like an interpreter or step-free access.
             </p>
+
+            {{ govukWarningText({
+                html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
+                iconFallbackText: "Warning"
+            }) }}
 
             {{ govukButton({
                 text: "Tell us what you need",

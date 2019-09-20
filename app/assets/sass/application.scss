@@ -65,3 +65,17 @@ body {
     margin-right: 2rem;
   }
 }
+
+.blueText {
+  border-left: 5px solid #ffffff;
+  color:  #ffffff;
+  background-color: $govuk-brand-colour;
+  padding-left: 15px;
+  margin-bottom: 0px;
+}
+
+.blueWrapper {
+  border: 7px solid $govuk-brand-colour;
+  background-color: $govuk-brand-colour;
+  margin-bottom: 30px;
+}

@@ -13,23 +13,25 @@
         </div>
     </div>
     <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
 
-        <div>
-            <h2 class="govuk-heading-m">What happens next</h2>
-            <p>
-                A case worker will look at your hearing needs. If you have asked for an interpreter, step-free access
-                or a hearing loop, these will be provided. If you have asked for anything else , it will be
-                considered but not always provided.
-            </p>
-            <p>
-                You will be sent a Notice of Hearing soon. This will include details of what will be provided at the
-                hearing.
-            </p>
+            <div>
+                <h2 class="govuk-heading-m">What happens next</h2>
+                <p>
+                    A case worker will look at your hearing needs. If you have asked for an interpreter, step-free access
+                    or a hearing loop, these will be provided. If you have asked for anything else , it will be
+                    considered but not always provided.
+                </p>
+                <p>
+                    You will be sent a Notice of Hearing soon. This will include details of what will be provided at the
+                    hearing.
+                </p>
 
-            {{ govukButton({
-                text: "Back to appeal",
-                href: "/hearing-requirements/overview"
-            }) }}
+                {{ govukButton({
+                    text: "Back to appeal",
+                    href: "/hearing-requirements/overview"
+                }) }}
+            </div>
         </div>
     </div>
 {% endblock %}
