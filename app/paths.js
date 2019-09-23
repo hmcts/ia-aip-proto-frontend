@@ -40,6 +40,8 @@ module.exports = {
   ccdCaseManagementAppointment: '/case/management-appointment',
   ccdCaseManagementAppointmentReview: '/case/management-appointment/review',
   ccdCaseManagementAppointmentConfirmation: '/case/management-appointment/confirmation',
+  ccdsendDirectionOptions: '/case/direction/options',
+  ccdDirectionExplanation: '/case/direction/explain',
   emailQuestions: '/email/questions',
   emailReasonsForAppeal: '/email/reasons-for-appeal',
   emailRegister: '/email/register',

@@ -11,12 +11,12 @@ const stages = [
   },
   {
     title: 'Case building',
-    active: false,
-    ticked: false
+    active: true,
+    ticked: true
   },
   {
     title: 'Case under review',
-    active: false,
+    active: true,
     ticked: false
   },
   {

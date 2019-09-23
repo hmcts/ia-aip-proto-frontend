@@ -12,17 +12,6 @@
   <form action="/ccd/case/clarifying-questions/edit?question={{ question.questionId }}" method="post">
     <h2 class="govuk-heading-s">Questions</h2>
     <div class="tcw-question-container">
-      {{ govukInput({
-        id: "question-title",
-        name: "question-title",
-        value: question.title,
-        label: {
-          text: "Question"
-        },
-        errorMessage:  {
-					text: errors.errorFields['question-title']
-				} if errors.errorFields['question-title']
-      }) }}
 
 			{{ govukTextarea({
         name: "further-question",

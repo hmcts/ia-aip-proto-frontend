@@ -51,22 +51,22 @@ function postCcdQuestions(req, res) {
     );
   }
   
-  req.session.appealData = {
-    questions: [
-      ...questions,
-      {
-        title: req.body['question-title'], description: req.body['further-question'],
-        completed: false
-      }
-    ]
-  };
+  req.session.appealData.questions = [
+    ...questions,
+    {
+      description: req.body['further-question'],
+      completed: false
+    }
+  ];
   if (req.body.hasOwnProperty('new')) return res.redirect(`${paths.ccd}${paths.ccdClarifyingQuestions}`);
-  return res.redirect(`${paths.ccd}${paths.ccdClarifyingQuestionsReview}`);
+  // return res.redirect(`${paths.ccd}${paths.ccdClarifyingQuestionsReview}`);
+  return res.redirect(`${paths.ccd}${paths.ccdDirectionExplanation}`);
 }
 
 function getReviewClarifyingQuestions(req, res) {
   const questions = req.session.appealData.questions;
-  return res.render('ccd/new-clarifying-questions-review.html', { questions });
+  const directions = req.session.appealData.directions || {};
+  return res.render('ccd/new-clarifying-questions-review.html', { questions, directions });
 }
 
 function getEditClarifyingQuestion(req, res) {
@@ -81,7 +81,6 @@ function getEditClarifyingQuestion(req, res) {
 function postEditClarifyingQuestion(req, res) {
   const questionId = req.query.question;
   const question = {
-    title: req.body['question-title'],
     description: req.body['further-question']
   };
   const { questions } = req.session.appealData;
@@ -90,7 +89,8 @@ function postEditClarifyingQuestion(req, res) {
     question,
     ...questions.slice(parseInt(questionId) + 1)
   ];
-  return res.redirect(`${paths.ccd}${paths.ccdClarifyingQuestionsReview}`);
+  // return res.redirect(`${paths.ccd}${paths.ccdClarifyingQuestionsReview}`);
+  return res.redirect(`${paths.ccd}${paths.ccdDirectionExplanation}`);
 }
 
 function getConfirmationClarifyingQuestions(req, res) {
@@ -129,18 +129,16 @@ function postCaseManagementAppointment(req, res) {
     );
   }
   
-  req.session.appealData = {
-    directions: {
-      appellant: req.body['appellant-direction'],
-      respondent: req.body['respondent-direction'],
-      date: {
-        year: req.body.date__year,
-        month: req.body.date__month,
-        day: req.body.date__day,
-        hours: req.body.date__hours,
-        minutes: req.body.date__minutes,
-        seconds: req.body.date__seconds
-      }
+  req.session.appealData.directions = {
+    appellant: req.body['appellant-direction'],
+    respondent: req.body['respondent-direction'],
+    date: {
+      year: req.body.date__year,
+      month: req.body.date__month,
+      day: req.body.date__day,
+      hours: req.body.date__hours,
+      minutes: req.body.date__minutes,
+      seconds: req.body.date__seconds
     }
   };
 
@@ -166,6 +164,51 @@ function getCaseManagementAppointmentConfirmation(req, res) {
   res.render('ccd/case-management-appointment-confirmation.html');
 }
 
+function getDirectionOptions(req, res) {
+  res.render('ccd/direction-options.html');
+}
+
+function postDirectionOptions(req, res) {
+  res.redirect(`${paths}`);
+}
+
+function getDirectionExplanation(req, res) {
+  const directions = req.session.appealData.directions || { ...directionsPrepopulated };
+  res.render('ccd/direction-explanation.html', { directions });
+}
+
+function postDirectionExplanation(req, res) {
+  const errorFields = {};
+  const errorFormatter = ({ param }) => {
+    const text = i18n.tcw.errors[param];
+    errorFields[param] = text;
+    return {
+      text,
+      href: `#${param}`
+    };
+  };
+  const directions = req.session.appealData.directions || { ...directionsPrepopulated };
+  const errorList = validationResult(req).formatWith(errorFormatter);
+  if (!errorList.isEmpty()) {
+    return res.render('ccd/direction-explanation.html',
+      { directions, errors: { errorList: errorList.array(), errorFields } }
+    );
+  }
+  req.session.appealData.directions = {
+    appellant: req.body['appellant-direction'],
+    date: {
+      year: req.body.date__year,
+      month: req.body.date__month,
+      day: req.body.date__day,
+      hours: req.body.date__hours,
+      minutes: req.body.date__minutes,
+      seconds: req.body.date__seconds
+    }
+  };
+
+  return res.redirect(`${paths.ccd}${paths.ccdClarifyingQuestionsReview}`);
+}
+
 module.exports = {
   getLandingPage,
   getCcdList,
@@ -181,5 +224,9 @@ module.exports = {
   postCaseManagementAppointment,
   getCaseManagementAppointmentReview,
   postCaseManagementAppointmentReview,
-  getCaseManagementAppointmentConfirmation
+  getCaseManagementAppointmentConfirmation,
+  getDirectionOptions,
+  postDirectionOptions,
+  getDirectionExplanation,
+  postDirectionExplanation
 };

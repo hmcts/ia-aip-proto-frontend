@@ -14,35 +14,16 @@
     <div class="tcw-question-container">
       {% set loopIndex = 1 %}
       {% for question in questions %}
-        {{ govukInput({
-          label: {
-            text: "Question " + loop.index
-          },
-          id: "question-title" + loop.index0,
-          name: "question-title" + loop.index0,
-          value: question.title
-        }) }}
         {{ govukTextarea({
           name: "question-description" + loop.index0,
           id: "question-description" + loop.index0,
           value: question.description,
           label: {
-              text: "Can you provide more detail?"
+              text: "Question " + loop.index
           }
         }) }}
         {% set loopIndex = loop.index + 1 %}
 		  {% endfor %}
-      
-      {{ govukInput({
-        id: "question-title",
-        name: "question-title",
-        label: {
-          text: "Question " + loopIndex
-        },
-        errorMessage:  {
-					text: errors.errorFields['question-title']
-				} if errors.errorFields['question-title']
-      }) }}
 
 			{{ govukTextarea({
         name: "further-question",
@@ -51,7 +32,7 @@
 					text: errors.errorFields['further-question']
 				} if errors.errorFields['further-question'],
 				label: {
-					text: "Description"
+					text: "Question " + loopIndex
 				}
 			}) }}
 

@@ -1,0 +1,51 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% block content %}
+	{{ errorSummary(errors) }}
+
+  <div class="govuk-grid-row">
+    <form action="/ccd/case/direction/options" method="post">
+      {{ govukRadios({
+        idPrefix: "send-direction-options",
+        name: "send-direction-options",
+        fieldset: {
+          legend: {
+            text: "Send a direction",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "review-case",
+            text: "Direct the respondent to review the case"
+          },
+          {
+            value: "clarifying-questions",
+            text: "Direct the appellant to answer clarifying questions"
+          },
+          {
+            value: "submit-requirements",
+            text: "Direct the appellant to submit requirements for a case management appointment"
+          }
+        ]
+      }) }}
+
+      <div class="buttons__container govuk-!-margin-top-9">
+        {{ govukButton({
+          text: "Previous",
+          classes: "govuk-button--secondary"
+        }) }}
+
+        {{ govukButton({
+          text: "Next",
+          name: "next",
+          attributes: { id: 'cta-next' },
+          href: "/ccd/case/clarifying-questions"
+        }) }}
+      </div>
+    </form>
+  </div>
+{% endblock %}
