@@ -5,7 +5,7 @@
 
 {% block content %}
     {{ errorSummary(errors) }}
-    <h1 class="govuk-heading-xl remove-bottom-margin">{{ question.title }}</h1>
+    <h1 class="govuk-heading-xl remove-bottom-margin">Question {{ questionIndex | int + 1 }}</h1>
     <p class="govuk-body rich-text">
         {{ question.description }}
     </p>

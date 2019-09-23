@@ -17,12 +17,9 @@
                 {% for question in appealData.questions %}
                     <li class="app-task-list__item">
                         <span class="app-task-list__task-name">
-                            {% set enabledQuestionLink = loop.index0 === 0 or appealData.questions[loop.index0 -1].completed === true  %}
-                            {{ enabledLink(enabledQuestionLink, question.title, '/case-building/question?index=' + loop.index0) }}
+                             <a href="/case-building/question?index={{ loop.index0 }}">Answer question {{ loop.index }}</a>
                         </span>
-                        {% if question.completed %}
-                            <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
-                        {% elseif question.draft %}
+                        {% if question.draft or question.completed %}
                             <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>
                         {% endif %}
                     </li>
@@ -38,9 +35,7 @@
                   <span class="app-task-list__task-name">
                       {{ enabledLink(hasAnsweredAllQuestion, 'Do you want to tell us anything else about your case?', '/case-building/anything-else-to-add') }}
                   </span>
-                  {% if appealData.anythingElseToAdd.completed %}
-                      <strong class="govuk-tag app-task-list__task-completed">Done</strong>
-                  {% elseif appealData.anythingElseToAdd.draft %}
+                  {% if appealData.anythingElseToAdd.completed or appealData.anythingElseToAdd.draft %}
                       <strong class="govuk-tag app-task-list__task-draft">Saved</strong>
                   {% endif %}
                 </li>
@@ -53,7 +48,7 @@
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(appealData.anythingElseToAdd.completed, 'Check and submit your answers', '/case-building/questions-check-answers') }}
+                      {{ enabledLink(appealData.anythingElseToAdd.completed or appealData.anythingElseToAdd.draft, 'Check and submit your answers', '/case-building/questions-check-answers') }}
                   </span>
                 </li>
             </ul>
