@@ -87,11 +87,17 @@ function post(req, res) {
     Object.assign(req.session.appealData.questions[req.query.index], formData);
     if (req.body.saveForLater) {
       req.session.appealData.questions[req.query.index].draft = true;
+      res.redirect(paths.questionsFromTribunal);
     } else {
       req.session.appealData.questions[req.query.index].completed = true;
+      const numberOfQuestions = req.session.appealData.questions.length;
+      const nextQuestionIndex = parseInt(req.query.index) + 1;
+      if (nextQuestionIndex < numberOfQuestions) {
+        res.redirect(`${paths.question}?index=${nextQuestionIndex}`);
+      } else {
+        res.redirect(paths.anythingElseToAdd);
+      }
     }
-
-    res.redirect(paths.questionsFromTribunal);
   }
 }
 

@@ -85,11 +85,11 @@ function post(req, res) {
     Object.assign(req.session.appealData.anythingElseToAdd, formData);
     if (req.body.saveForLater) {
       req.session.appealData.anythingElseToAdd.draft = true;
+      res.redirect(paths.questionsFromTribunal);
     } else {
       req.session.appealData.anythingElseToAdd.completed = true;
+      res.redirect(paths.questionCheckAnswers);
     }
-
-    res.redirect(paths.questionsFromTribunal);
   }
 }
 

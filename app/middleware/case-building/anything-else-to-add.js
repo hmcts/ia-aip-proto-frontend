@@ -12,7 +12,7 @@ function post(req, res) {
     res.redirect(paths.anythingElseToAddQuestion);
   }
   req.session.appealData.anythingElseToAdd.completed = true;
-  res.redirect(paths.questionsFromTribunal);
+  res.redirect(paths.questionCheckAnswers);
 }
 
 module.exports = {

@@ -29,7 +29,7 @@
             {% set hasAnsweredSomeQuestion = hasAnsweredSomeQuestion or question.completed or question.draft%}
             {% set hasAnsweredAllQuestion = hasAnsweredAllQuestion and question.completed %}
         {% endfor %}
-        {% if hasAnsweredSomeQuestion %}
+        {% if not appealData.caseBuilding.completed and hasAnsweredSomeQuestion %}
             <div class="blueWrapper govuk-!-width-one-third">
                 <p class="govuk-body blueText">Your answers have been saved</p>
             </div>
@@ -103,7 +103,7 @@
                 isStartButton: false
             }) }}
         {% else %}
-            <p>A case Officer is now checking your response. You will receive an email soon of what to do next.</p>
+            <p>A case worker is looking at your answers and will contact you soon to tell you what to do next.</p>
         {% endif %}
     {% endset -%}
 
