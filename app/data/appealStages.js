@@ -10,6 +10,11 @@ const stages = [
     ticked: false
   },
   {
+    title: 'Case Office review',
+    active: false,
+    ticked: false
+  },
+  {
     title: 'Home Office review',
     active: false,
     ticked: false

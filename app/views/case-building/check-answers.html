@@ -3,6 +3,8 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
 
 {% block content %}
 
@@ -27,27 +29,26 @@
         }
     }), questionsArray) %}
 
+
+
     {% if appealData.appealDetails.reasonsForAppeal.evidence and appealData.appealDetails.reasonsForAppeal.evidence.length > 0 %}
-        {% for evidence in appealData.appealDetails.reasonsForAppeal.evidence %}
-            {% set questionsArray = (questionsArray.push({
-                key: {
-                    text: "Document"
-                },
-                value: {
-                    html: "<a href='#'>" + evidence.fileName + "</a>"
-                }
-            }), questionsArray) %}
-            {% if evidence.description %}
-                {% set questionsArray = (questionsArray.push({
-                    key: {
-                        text: "Description"
-                    },
-                    value: {
-                        text: evidence.description
-                    }
-                }), questionsArray) %}
-            {% endif %}
-        {% endfor %}
+        {% set documents %}
+            <table>
+                {% for evidence in appealData.appealDetails.reasonsForAppeal.evidence %}
+                    <tr><th align="left">Document</th> <th align="left">Description</th></tr>
+                    <tr><td><a href='#'>{{ evidence.fileName }}</a></td><td>{{ evidence.description }}</td></tr>
+                {% endfor %}
+            </table>
+        {% endset %}
+
+        {% set questionsArray = (questionsArray.push({
+            key: {
+                text: "Documents"
+            },
+            value: {
+                html: documents
+            }
+        }), questionsArray) %}
     {% endif %}
 
 
@@ -55,7 +56,7 @@
         classes: 'govuk-!-margin-bottom-9 govuk-summary-list--no-border',
         rows: questionsArray
     }) }}
-
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     {{ govukButton({
         text: "Submit",
         href: "/case-building/submitted",

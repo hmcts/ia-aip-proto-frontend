@@ -6,14 +6,16 @@
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
 {%  macro fileUpload(uploadedEvidence) %}
-    {% set fileUpload %}
-        <p>
-            You can upload evidence to support your answer such as letters, photos and documents. If you are taking
-            a picture of a letter, place it on a flat surface and take the picture from above.
-        </p>
-        <p>
-            If you want to provide evidence but don't have it right now, you can <a href="#">ask for more time.</a>
-        </p>
+
+    <h3>Provide evidence if you have any (optional)</h3>
+    <p>
+        You can upload evidence to support your answer such as letters, photos and documents. If you are taking
+        a picture of a letter, place it on a flat surface and take the picture from above.
+    </p>
+    <p>
+        If you want to provide evidence but don't have it right now, you can <a href="#">ask for more time.</a>
+    </p>
+    <div class="grey-background">
         {{ govukFileUpload({
             id: "evidenceUpload",
             name: "evidenceUpload",
@@ -25,9 +27,12 @@
             name: "evidenceDescription",
             id: "evidenceDescription",
             label: {
-                text: "Describe the document"
+                text: "What is the file?"
             },
-            rows: 2
+            rows: 1,
+            hint: {
+                text: "e.g. a country report or copy of birth certificate"
+            }
         }) }}
 
         {{ govukButton({
@@ -50,41 +55,22 @@
             ]), evidenceArray) %}
         {% endfor %}
 
-        {{ govukTable({
-            caption: "Uploaded files",
-            firstCellIsHeader: false,
-            rows: evidenceArray
-        }) }}
-    {% endset -%}
+        {% if evidenceArray and evidenceArray.length > 0 %}
+            {{ govukTable({
+                caption: "Uploaded files",
+                firstCellIsHeader: false,
+                rows: evidenceArray
+            }) }}
+         {% else %}
+             {{ govukTable({
+                 caption: "Uploaded files",
+                 firstCellIsHeader: false,
+                 rows: [[{
+                     html: '<p>No files uploaded</p>'
+                 }]]
+             }) }}
+        {% endif %}
 
-    {{ govukCheckboxes({
-        idPrefix: "uploadEvidence",
-        name: "uploadEvidence",
-        items: [
-            {
-                value: "uploadEvidence",
-                text: "I want to provide evidence",
-                checked: uploadedEvidence and uploadedEvidence.length > 0
-            }
-        ]
-    }) }}
-    <div id="uploadContent">
-    {{ govukInsetText({
-        html: fileUpload
-    }) }}
     </div>
-
-    <script>
-      function hideShowUploadEvidence() {
-        if (document.getElementById('uploadEvidence').checked) {
-          document.getElementById('uploadContent').style.display = 'block';
-        } else {
-          document.getElementById('uploadContent').style.display = 'none';
-        }
-      }
-
-      hideShowUploadEvidence();
-
-      document.getElementById('uploadEvidence').addEventListener("click", hideShowUploadEvidence);
-    </script>
+    <br />
 {% endmacro %}

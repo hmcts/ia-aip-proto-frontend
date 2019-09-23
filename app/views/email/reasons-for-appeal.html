@@ -10,18 +10,13 @@
 
 {% block content %}
     <p>
-        A case worker has looked at your appeal application and decided <b>you have the right to appeal</b> the Home Office
+        A Tribunal case worker has looked at your appeal application and decided <b>you have the right to appeal</b> the Home Office
         decision to refuse your claim.
     </p>
     <p>This means you can now start to build your appeal.</p>
 
     <h2 class="govuk-heading-m">What you need to do next</h2>
-    <p><a href="/sign-in?signInLink=/case-building/overview">Go to your appeal</a> to tell us why you're appealing the Home Office decision.</p>
+    <p>Go to your appeal to tell us why you're appealing the Home Office decision.</p>
+    <p><a href="/sign-in?signInLink=/case-building/overview">Go to your appeal</a></p>
     <p>You have until <b>{{ appealData.respondByDate }}</b> to give us this information.</p>
-    <p>It will help if you have:</p>
-    <ul class="govuk-list govuk-list--bullet">
-        <li>Your Home Office decision letter</li>
-        <li>Any evidence that will support your appeal</li>
-    </ul>
-    <p><a href="#">Find out more about evidence</a></p>
 {% endblock %}

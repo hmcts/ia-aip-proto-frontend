@@ -18,46 +18,48 @@
 
         {{ statusBar(stages) }}
 
-        <h2 class="govuk-heading-m">Do this next</h2>
+        {% if appealData.appealDetails.reasonsForAppeal.draft %}
+            <div class="blueWrapper govuk-!-width-one-third">
+                <p class="govuk-body blueText">Your answer has been saved</p>
+            </div>
+        {% endif %}
+
+        <h2 class="govuk-heading-m">What happens next</h2>
 
         {% if not reasonsForAppealCompleted %}
-            <p class="govuk-body">We are now going to ask you why you're appealing against the Home Office's decision.</p>
-            <p class="govuk-body">What you'll need</p>
-            <ul class="govuk-list govuk-list--bullet">
-                <li>
-                    The Home Office decision letter, which you can find in the Home Office bundle in the
-                    <a href="#documents" class="govuk-link" aria-describedby="documents-tab">documents tab</a>
-                </li>
-                <li>Any evidence that will support your appeal</li>
-            </ul>
-            <p class=""govuk-body><a href="#">Find out more about evidence</a></p>
-
             {% if appealData.appealDetails.reasonsForAppeal.draft %}
-                <p></p>
-                {{ govukInsetText({
-                    text: "Your answer has been saved"
+                <p>You need to finish telling us why the Home Office decision was wrong.</p>
+                {{ govukWarningText({
+                    html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
+                    iconFallbackText: "Warning"
                 }) }}
-            {% endif %}
-
-            {{ govukWarningText({
-                html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
-                iconFallbackText: "Warning"
-            }) }}
-
-            {% if appealData.appealDetails.reasonsForAppeal.draft %}
                 {{ govukButton({
                     text: "Continue",
                     href: "/case-building/reasons-for-appeal",
                     isStartButton: false
                 }) }}
             {% else %}
+                <p class="govuk-body">We are now going to ask you why you're appealing against the Home Office's decision.</p>
+                <p class="govuk-body">What you'll need</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>
+                        The Home Office decision letter, which you can find in the Home Office documents in the
+                        <a href="#documents" class="govuk-link" aria-describedby="documents-tab">documents tab</a>
+                    </li>
+                    <li>Any evidence that will support your appeal</li>
+                </ul>
+                <p class=""govuk-body><a href="#">Find out more about evidence</a></p>
+
+                {{ govukWarningText({
+                    html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
+                    iconFallbackText: "Warning"
+                }) }}
                 {{ govukButton({
                     text: "Tell us why you're appealing",
                     href: "/case-building/why-appealing-description",
                     isStartButton: false
                 }) }}
             {% endif %}
-
         {% elseif not appealData.questions %}
             <p>A case officer is looking at your answer. They will contact you soon to tell you what to do next.</p>
         {% elseif not appealData.caseBuilding.completed %}
@@ -118,7 +120,7 @@
                 }
                 },
                 {
-                    label: "Appeal",
+                    label: "Appeal details",
                     id: "appeal",
                     panel: {
                     html: appeal
@@ -132,7 +134,7 @@
                 }
                 },
                 {
-                    label: "Directions",
+                    label: "Instructions",
                     id: "directions",
                     panel: {
                     html: "Directions"
