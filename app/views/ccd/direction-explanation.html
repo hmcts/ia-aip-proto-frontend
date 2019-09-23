@@ -1,0 +1,146 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+
+
+{% block content %}
+	{{ errorSummary(errors) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">Direct the appellant to answer clarifying questions</h1>
+
+      <p>Review the direction and enter the due date.</p>
+      <form action="/ccd/case/direction/explain" method="post">
+        
+        {{ govukTextarea({
+          name: "appellant-direction",
+          id: "appellant-direction",
+          rows: 12,
+          value: directions.appellant | safe,
+          label: {
+            text: "Explain the direction you are issuing"
+          },
+          errorMessage:  {
+            text: errors.errorFields['appellant-direction']
+          } if errors.errorFields['appellant-direction']
+        }) }}
+
+        <div class="ccd-datetime-container">
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__day",
+            name: "date__day",
+            value: directions.date.day,
+            formGroup: {
+              classes: "ccd-input-width-s"
+            },
+            label: {
+              text: "Day"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__day']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__month",
+            name: "date__month",
+            value: directions.date.month,
+            formGroup: {
+              classes: "ccd-input-width-s"
+            },
+            label: {
+              text: "Month"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__month']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__year",
+            name: "date__year",
+            value: directions.date.year,
+            formGroup: {
+              classes: "ccd-input-width-s"
+            },
+            label: {
+              text: "Year"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__year']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__hours",
+            name: "date__hours",
+            value: directions.date.hours,
+            formGroup: {
+              classes: "ccd-input-width-xs"
+            },
+            label: {
+              text: "Hours"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__hours']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__minutes",
+            name: "date__minutes",
+            value: directions.date.minutes,
+            formGroup: {
+              classes: "ccd-input-width-xs"
+            },
+            label: {
+              text: "Minutes"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__minutes']
+          }) }}
+
+          {{ govukInput({
+            inputmode: "numeric",
+            id: "date__seconds",
+            name: "date__seconds",
+            value: directions.date.seconds,
+            formGroup: {
+              classes: "ccd-input-width-xs"
+            },
+            label: {
+              classes: "bla bla",
+              text: "Seconds"
+            },
+            errorMessage:  {
+              text: ''
+            } if errors.errorFields['date__seconds']
+          }) }}
+        </div>
+
+        <div class="buttons__container">
+          {{ govukButton({
+            text: "Previous",
+            name: "previous",
+            classes: "govuk-button--secondary"
+          }) }}
+
+          {{ govukButton({
+            text: "Continue",
+            name: "continue"
+          }) }}
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
