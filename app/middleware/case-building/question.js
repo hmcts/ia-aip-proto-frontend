@@ -46,7 +46,7 @@ function post(req, res) {
     const formData = extractBody(req);
     Object.assign(req.session.appealData.questions[req.query.index], formData);
 
-    get(req, res);
+    res.redirect(`${paths.question}?index=${req.query.index}#fileUpload`);
   } else {
     const errors = validationResult(req);
 

@@ -35,9 +35,8 @@
             </div>
         {% endif %}
 
-        <h2 class="govuk-heading-m">What happens next</h2>
-
         {% if not reasonsForAppealCompleted %}
+            <h2 class="govuk-heading-m">Do this next</h2>
             {% if appealData.appealDetails.reasonsForAppeal.draft %}
                 <p>You need to finish telling us why the Home Office decision was wrong.</p>
                 {{ govukWarningText({
@@ -72,8 +71,10 @@
                 }) }}
             {% endif %}
         {% elseif not appealData.questions %}
+            <h2 class="govuk-heading-m">What happens next</h2>
             <p>A case officer is looking at your answer. They will contact you soon to tell you what to do next.</p>
         {% elseif not appealData.caseBuilding.completed %}
+            <h2 class="govuk-heading-m">Do this next</h2>
             {% if hasAnsweredSomeQuestion %}
                 <p>You need to finish answering the questions from the Tribunal.</p>
             {% else %}
@@ -103,6 +104,7 @@
                 isStartButton: false
             }) }}
         {% else %}
+            <h2 class="govuk-heading-m">What happens next</h2>
             <p>A case worker is looking at your answers and will contact you soon to tell you what to do next.</p>
         {% endif %}
     {% endset -%}

@@ -10,7 +10,7 @@ const stages = [
     ticked: false
   },
   {
-    title: 'Case Office review',
+    title: 'Case worker review',
     active: false,
     ticked: false
   },
@@ -20,7 +20,7 @@ const stages = [
     ticked: false
   },
   {
-    title: 'Hearing requirements',
+    title: 'Hearing needs',
     active: false,
     ticked: false
   },

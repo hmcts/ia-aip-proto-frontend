@@ -8,7 +8,7 @@
 
 {% block content %}
 
-    <h1 class="govuk-heading-xl">Carefully check your answer below before clicking submit.</h1>
+    <h1 class="govuk-heading-xl">Carefully check your answer below before clicking send</h1>
 
     {% set questionsArray = [] %}
     {% set questionsArray = (questionsArray.push({
@@ -58,7 +58,7 @@
     }) }}
     <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     {{ govukButton({
-        text: "Submit",
+        text: "Send",
         href: "/case-building/submitted",
         isStartButton: false
     }) }}

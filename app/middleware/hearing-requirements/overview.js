@@ -7,6 +7,7 @@ module.exports = (req, res) => {
   stages[2].ticked = true;
   stages[3].active = true;
   stages[3].ticked = true;
+  stages[4].active = true;
 
   res.render('hearing-requirements/overview.html', {
     hideBackLink: true,

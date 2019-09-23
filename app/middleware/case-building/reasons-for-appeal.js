@@ -46,7 +46,7 @@ function post(req, res) {
     const formData = extractBody(req);
     Object.assign(req.session.appealData.appealDetails.reasonsForAppeal, formData);
 
-    get(req, res);
+    res.redirect(`${paths.reasonsForAppeal}#fileUpload`);
   } else {
     const errors = validationResult(req);
 

@@ -29,9 +29,10 @@
 
         {% endif %}
 
-        <h2 class="govuk-heading-m">Do this next</h2>
+
 
         {%  if not appealData.hearingRequirements.anythingElse.completed %}
+            <h2 class="govuk-heading-m">Do this next</h2>
             <p class="govuk-body">
                 Your appeal is going to a hearing. You now need to tell us if there is anything you'll
                 need at the hearing, like an interpreter or step-free access.
@@ -48,6 +49,7 @@
                 isStartButton: false
             }) }}
         {% else %}
+            <h2 class="govuk-heading-m">What happens next</h2>
             <p class="govuk-body">
                 A case worker is listing your hearing. You will be sent a Notice of Hearing soon that will tell you when
                 and where the hearing will be and will include details of what hearing needs will be provided.

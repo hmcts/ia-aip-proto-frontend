@@ -45,7 +45,7 @@ function post(req, res) {
     const formData = extractBody(req);
     Object.assign(req.session.appealData.anythingElseToAdd, formData);
 
-    get(req, res);
+    res.redirect(`${paths.anythingElseToAddQuestion}#fileUpload`);
   } else {
     const errors = validationResult(req);
 
