@@ -42,7 +42,9 @@
           <div class="govuk-grid-column-three-quarters">{{ statusBar(stages) }}</div>
         </div>
 
-        <h2 class="govuk-heading-s">Do this next</h2>
+        <h2 class="govuk-heading-s">
+          {{ 'Do this next' if not state else 'What happens next' }}  
+        </h2>
         {% if not state %}
           <p>{{ i18n.tcw.overview.nextSection.para1 | safe }}</p>
           <p>{{ i18n.tcw.overview.nextSection.para2 | safe }}</p>
@@ -72,7 +74,7 @@
             },
             {
               key: { text: "Appellant name", classes: "--font-weight-normal" },
-              value: { text: "José González" }
+              value: { text: "Pablina Jiménez" }
             },
             {
               key: { text: "Appellant nationalities", classes: "--font-weight-normal" },

@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 const paths = require('../paths');
-const stages = require('../data/tcwStages');
+const { caseReviewStage, caseBuildingStage } = require('../data/tcwStages');
 const i18n = require('../locale/en.json');
 const { directionsPrepopulated } = require('../data/prepopulatedData');
 
@@ -20,6 +20,12 @@ function getCcdList(req, res) {
 function getCcdCaseOverview(req, res) {
   const { tcw, directions } = req.session.appealData || null;
   const state = tcw && tcw.state ? tcw.state : null;
+  let stages = [];
+  if (state && state === CLARIFYING_QUESTIONS_SENT) {
+    stages = [ ...caseBuildingStage ];
+  } else {
+    stages = [ ...caseReviewStage ];
+  }
   return res.render('ccd/overview.html', { stages, state, directions });
 }
 

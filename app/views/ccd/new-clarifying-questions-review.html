@@ -8,7 +8,9 @@
 	{{ errorSummary(errors) }}
 
   <div class="govuk-grid-row">
-    <h1 class="govuk-heading-xl">{{ i18n.tcw.additionalQuestionReview.title }}</h1>
+    <h1 class="govuk-heading-m">{{ i18n.tcw.additionalQuestionReview.title }}</h1>
+    <h2 class="govuk-heading-s">Check your answers</h2>
+    <p>Carefully check the information below before submitting</p>
     <form action="/ccd/case/clarifying-questions/" method="post">
       {% for question in questions %}
         {{ govukSummaryList({
