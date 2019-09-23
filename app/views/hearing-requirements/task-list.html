@@ -18,7 +18,7 @@
                     </a>
                   </span>
                     {% if appealData.hearingRequirements.witnesses.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
+                        <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>
                     {% elseif appealData.hearingRequirements.witnesses.draft %}
                         <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>
                     {% endif %}
@@ -38,7 +38,7 @@
                     </a>
                   </span>
                     {% if appealData.hearingRequirements.hearingLoop.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
+                        <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>
                     {% elseif appealData.hearingRequirements.interpreter.draft or appealData.hearingRequirements.stepFree.draft or appealData.hearingRequirements.hearingLoop.draft %}
                         <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>
                     {% endif %}
@@ -58,7 +58,7 @@
                     </a>
                   </span>
                     {% if appealData.hearingRequirements.anythingElse.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
+                        <strong class="govuk-tag app-task-list__task-draft" id="home-office-details-completed">Saved</strong>
                     {% elseif appealData.hearingRequirements.vulnerabilities.draft or appealData.hearingRequirements.multimediaEvidence.draft or
                         appealData.hearingRequirements.allMaleFemaleCourt.draft or appealData.hearingRequirements.inCameraCourt.draft or
                         appealData.hearingRequirements.anythingElse.draft %}
@@ -69,12 +69,12 @@
         </li>
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">4. </span> Check and submit
+                <span class="app-task-list__section-number">4. </span> Check and send
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(appealData.hearingRequirements.witnesses.completed and appealData.hearingRequirements.hearingLoop.completed and appealData.hearingRequirements.anythingElse.completed, 'Check and submit your appeal', '/hearing-requirements/check-answers') }}
+                      {{ enabledLink(appealData.hearingRequirements.witnesses.completed and appealData.hearingRequirements.hearingLoop.completed and appealData.hearingRequirements.anythingElse.completed, 'Check and send your appeal', '/hearing-requirements/check-answers') }}
                   </span>
                 </li>
             </ul>
