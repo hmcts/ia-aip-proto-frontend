@@ -6,6 +6,13 @@
     {{ errorSummary(errors) }}
 
     <form action="/type-of-appeal" method="post">
+        {% set seeExamples %}
+            {{ govukDetails({
+                summaryText: "See examples",
+                text: "Some examples to go here"
+            }) }}
+        {% endset %}
+
         {{ govukCheckboxes({
             idPrefix: "appealType",
             name: "appealType",
@@ -23,42 +30,42 @@
             items: [
                 {
                     value: "protection",
-                    text: "Protection",
+                    html: "<b>Protection</b> (You will be persecuted or harmed in some way if you are removed from the UK)",
                     checked: formData.protection,
                     hint: {
-                        text: "You will be persecuted or harmed in some way if you are removed from the UK"
+                        html: seeExamples
                     }
                 },
                 {
                     value: "humanRights",
-                    text: "Human Rights",
+                    html: "<b>Human Rights</b> (You have a family and/or private life in the UK, or a serious medical condition)",
                     checked: formData.humanRights,
                     hint: {
-                        text: "You have a family and/or private life in the UK, or a serious medical condition"
+                        html: seeExamples
                     }
                 },
                 {
                     value: "eea",
-                    text: "European Economic Area (EEA)",
+                    html: "<b>European Economic Area (EEA)</b> (You are, or a family member is, an EEA/Swiss national)",
                     checked: formData.eea,
                     hint: {
-                        text: "You are, or a family member is, an EEA/Swiss national"
+                    html: seeExamples
                     }
                 },
                 {
                     value: "revocationOfProtection",
-                    text: "Revocation of Protection Status",
+                    text: "Revocation of Protection Status (Your protection status was taken away)",
                     checked: formData.revocationOfProtection,
                     hint: {
-                        text: "Your protection status was taken away"
+                        html: seeExamples
                     }
                 },
                 {
                     value: "deprivationOfCitizenship",
-                    text: "Deprivation of Citizenship",
+                    text: "Deprivation of Citizenship (Your British citizenship was taken away)",
                     checked: formData.deprivationOfCitizenship,
                     hint: {
-                        text: "Your British citizenship was taken away"
+                        html: seeExamples
                     }
                 }
             ]

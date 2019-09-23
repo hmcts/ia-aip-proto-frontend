@@ -10,7 +10,7 @@
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds-from-desktop">
 
-            <h1 class="govuk-heading-xl">Check your answers before submitting your appeal</h1>
+            <h1 class="govuk-heading-xl">Check your answers before clicking send</h1>
 
             {% set contactDetails %}
                 {% if appealData.yourDetails.contactDetails.email.selected %}
@@ -169,7 +169,7 @@
                 }) }}
 
                 {{ govukButton({
-                    text: "Submit appeal"
+                    text: "Send"
                 }) }}
 
             </form>

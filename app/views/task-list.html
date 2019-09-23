@@ -9,77 +9,60 @@
     <ol class="app-task-list">
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">1. </span> Create Account
+                <span class="app-task-list__section-number">1. </span> Your details
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    <a href="/register" aria-describedby="home-office-details-completed">
-                        Create an HMCTS account
-                    </a>
-                  </span>
-                    {% if accountCreated %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
-                    {% endif %}
-                </li>
-            </ul>
-        </li>
-        <li>
-            <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">2. </span> Your details
-            </h2>
-            <ul class="app-task-list__items">
-                <li class="app-task-list__item">
-                  <span class="app-task-list__task-name">
-                    {{ enabledLink(accountCreated, 'Your Home Office details', '/home-office-details') }}
+                      <a href="/home-office-details">Your Home Office details</a>
                   </span>
                     {% if appealData.yourDetails.homeOffice.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Completed</strong>
+                        <strong class="govuk-tag app-task-list__task-completed" id="home-office-details-completed">Done</strong>
                     {% endif %}
                 </li>
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    {{ enabledLink(accountCreated, 'Your personal details', '/personal-details') }}
+                      <a href="/personal-details">Your personal details</a>
                   </span>
                     {% if appealData.yourDetails.personalDetails.completed %}
-                        <strong class="govuk-tag app-task-list__task-completed" id="personal-details-completed">Completed</strong>
+                        <strong class="govuk-tag app-task-list__task-completed" id="personal-details-completed">Done</strong>
                     {% endif %}
                 </li>
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    {{ enabledLink(accountCreated, 'Your contact details', '/your-contact-details') }}
+                      <a href="/your-contact-details">Your contact details</a>
                   </span>
                     {% if appealData.yourDetails.contactDetails.completed %}
                         <strong class="govuk-tag app-task-list__task-completed"
-                                id="contact-details-completed">Completed</strong>
+                                id="contact-details-completed">Done</strong>
                     {% endif %}
                 </li>
             </ul>
         </li>
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">3. </span> Appeal details
+                <span class="app-task-list__section-number">2. </span> Appeal details
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                    {{ enabledLink(accountCreated, 'Type of appeal', '/type-of-appeal') }}
+                       <a href="/type-of-appeal">Type of appeal</a>
                   </span>
                     {% if appealData.appealDetails.typeOfAppeal.completed %}
                         <strong class="govuk-tag app-task-list__task-completed"
-                                id="type-of-appeal-completed">Completed</strong>
+                                id="type-of-appeal-completed">Done</strong>
                     {% endif %}
                 </li>
             </ul>
         </li>
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">4. </span> Check and submit
+                <span class="app-task-list__section-number">3. </span> Check and send
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(hasAnsweredAllQuestion, 'Check and submit your appeal', '/check-answers') }}
+                      {{ enabledLink(hasAnsweredAllQuestion, 'Check and send your appeal', '/check-answers') }}
                   </span>
                 </li>
             </ul>
