@@ -1,5 +1,5 @@
 infrastructure_env  = "preprod"
-additional_hostname = "ia-api-frontend.nonprod.platform.hmcts.net"
+additional_hostname = "ia-aip-frontend-tmp.nonprod.platform.hmcts.net"
 s2s_url = "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
 idam_url = "http://idam-api.aat.platform.hmcts.net"
 idam_systemupdate_user = "ia.legalrep.a.ccd@gmail.com"
