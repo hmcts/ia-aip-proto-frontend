@@ -24,6 +24,9 @@ function get(req, res) {
 }
 
 function post(req, res) {
+  if (!req.session.appealData.anythingElseToAdd) {
+    req.session.appealData.anythingElseToAdd = {};
+  }
   if (!req.session.appealData.anythingElseToAdd.evidence) {
     req.session.appealData.anythingElseToAdd.evidence = [];
   }
