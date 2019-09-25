@@ -10,7 +10,10 @@
 
     <h1 class="govuk-heading-xl">What is your Home Office reference number and send date?</h1>
 
-    <p>Look for the reference number and the date the letter was sent on the Home Office decision letter.</p>
+    <p>
+      The reference number is on the first page of the Home Office decision letter. The send date is on the
+      envelope the letter was sent in.
+    </p>
     <img src="/public/images/home_office_letter.png" alt="Where to find reference and data issued on Home Office decision letter."/>
     <form action="/home-office-details" method="post">
         {{ input("Home Office reference number", "home-office-ref-number", formData.refNumber) }}

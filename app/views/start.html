@@ -3,9 +3,12 @@
 
 {% block content %}
     <h1 class="govuk-heading-xl">{{ i18n.start.header }}</h1>
-    <p>We need to ask you a few questions before you can submit your appeal. It will only take a few minutes.</p>
-    <p>You will be asked to create an account if you haven't already got one.</p>
-    <p>You will also need to have the decision letter that you received from the Home Office with you to answer some of the questions.</p>
+    <p>We need to ask you a few questions to start your appeal.</p>
+    <p class="govuk-body govuk-!-font-weight-bold">You will need to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>create an account if you haven't already got one</li>
+      <li>have your Home Office decision letter with you</li>
+    </ul>
 
     {{ govukButton({
     text: "Start now",

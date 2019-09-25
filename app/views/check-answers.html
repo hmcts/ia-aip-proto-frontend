@@ -14,9 +14,11 @@
 
             {% set contactDetails %}
                 {% if appealData.yourDetails.contactDetails.email.selected %}
-                    {{ appealData.yourDetails.contactDetails.email.emailAddress  }}<br />
+                    <strong>Email</strong><br />
+                    {{ appealData.yourDetails.contactDetails.email.emailAddress }}<br />
                 {% endif %}
                 {% if appealData.yourDetails.contactDetails.text.selected %}
+                    <strong>Phone number</strong><br />
                     {{ appealData.yourDetails.contactDetails.text.phoneNumber }}<br />
                 {% endif %}
                 {% if appealData.yourDetails.contactDetails.post.selected %}
@@ -40,6 +42,15 @@
                 {% if appealData.appealDetails.typeOfAppeal.deprivationOfCitizenship %}
                     Deprivation of Citizenship<br />
                 {% endif %}
+            {% endset %}
+
+            {% set appellantName %}
+                <strong>Title</strong><br />
+                {{ appealData.yourDetails.personalDetails.title }}<br />
+                <strong>Given names</strong><br />
+                {{ appealData.yourDetails.personalDetails.givenNames }}<br />
+                <strong>Family name</strong><br />
+                {{ appealData.yourDetails.personalDetails.familyName }}
             {% endset %}
 
             {{ govukSummaryList({
@@ -84,8 +95,8 @@
                         text: "Name"
                     },
                         value: {
-                        text: appealData.yourDetails.personalDetails.title + ' ' + appealData.yourDetails.personalDetails.givenNames + ' ' + appealData.yourDetails.personalDetails.familyName
-                    },
+                            html: appellantName
+                        },
                         actions: {
                             items: [
                                 {
@@ -101,8 +112,8 @@
                         text: "Date of birth"
                     },
                         value: {
-                        text: appealData.yourDetails.personalDetails.dateOfBirth.day + ' ' + appealData.yourDetails.personalDetails.dateOfBirth.month + ' ' + appealData.yourDetails.personalDetails.dateOfBirth.year
-                    },
+                            text: appealData.yourDetails.personalDetails.dateOfBirth.day + ' ' + appealData.yourDetails.personalDetails.dateOfBirth.month + ' ' + appealData.yourDetails.personalDetails.dateOfBirth.year
+                        },
                         actions: {
                             items: [
                                 {
@@ -150,6 +161,7 @@
                 ]
             }) }}
 
+            <h2 class="govuk-heading-m">Statement of truth</h2>
             <form action="/check-answers" method="post" novalidate>
                 {{ govukCheckboxes({
                     idPrefix: "confirm",
@@ -163,7 +175,7 @@
                     items: [
                         {
                             value: "confirm",
-                            text: "I believe the facts stated in this appeal form are true"
+                            text: "I believe the information I have given is true"
                         }
                     ]
                 }) }}

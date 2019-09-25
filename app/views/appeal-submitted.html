@@ -14,16 +14,23 @@
             <div >
                 <ul>
                     <li class="govuk-body">You will receive a notification to confirm that the tribunal has received your appeal application</li>
-                    <li class="govuk-body">A case worker will read your application and check you have the right to appeal</li>
-                    <li class="govuk-body">A case worker will then get in touch within 14 days to tell you to start building your appeal argument</li>
+                    <li class="govuk-body">A Tribunal case worker will contact you within 14 days to tell you what to do next</li>
+                    <li class="govuk-body">
+                        If you haven't heard from us in 14 days, call <strong>0330 123 1234</strong> or 
+                        email <a href="mailto:email.support@hmcts.net">email.support@hmcts.net</a>
+                    </li>
                 </ul>
             </div>
 
             <h2 class="govuk-heading-m">Things you can do</h2>
             <ul>
-                <li class="govuk-body"><a href="#">Find organisations that can help you with your appeal</a></li>
+                <li class="govuk-body"><a href="#">Find organisations</a> that can help you with your appeal</li>
                 <li class="govuk-body">Call <b>0330 123 1234</b> or email <a href="#">support@hmcts.net</a> if you have any questions about your appeal</li>
             </ul>
+            {{ govukButton({
+                text: "Go to your appeal",
+                href: "#"
+            }) }}
         </div>
     </div>
 {% endblock %}
