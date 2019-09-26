@@ -1,32 +1,33 @@
-const { check } = require('express-validator');
 const { validationResult } = require('express-validator');
 const paths = require('../../paths');
 
-const template = 'case-building/anything-else-to-add-question.html';
-const previousPage = paths.anythingElseToAdd;
+const template = 'case-building/upload-evidence.html';
+// change
+const previousPage = paths.caseBuildingDoYouWantToUploadEvidence;
 
-function validation(locale) {
-  return [ check('answer').isLength({ min: 1 }).withMessage(locale.questions.errors.tooShort) ];
+
+function validation() {
+  return [ ];
 }
 
-function extractBody(req) {
-  return {
-    answer: req.body.answer
-  };
+function extractBody() {
+  return {};
 }
 
 function get(req, res) {
-  res.render(template, {
-    hideBackLink: false,
+  // change
+  const formData = req.session.appealData.anythingElseToAdd;
+
+  const model = Object.assign({
+    formData,
     previousPage,
-    formData: req.session.appealData.anythingElseToAdd
+    action: paths.caseBuildingUploadEvidenceAnythingElse
   });
+
+  res.render(template, model);
 }
 
 function post(req, res) {
-  if (!req.session.appealData.anythingElseToAdd) {
-    req.session.appealData.anythingElseToAdd = {};
-  }
   if (!req.session.appealData.anythingElseToAdd.evidence) {
     req.session.appealData.anythingElseToAdd.evidence = [];
   }
@@ -48,7 +49,8 @@ function post(req, res) {
     const formData = extractBody(req);
     Object.assign(req.session.appealData.anythingElseToAdd, formData);
 
-    res.redirect(`${paths.anythingElseToAddQuestion}#fileUpload`);
+    // change
+    res.redirect(paths.caseBuildingUploadEvidenceAnythingElse);
   } else {
     const errors = validationResult(req);
 
@@ -74,9 +76,8 @@ function post(req, res) {
       });
 
       res.render(template, Object.assign({
-        hideBackLink: false,
+        formData,
         previousPage,
-        formData: req.session.appealData.anythingElseToAdd,
         errors: {
           errorList,
           fieldErrors
@@ -88,9 +89,12 @@ function post(req, res) {
     Object.assign(req.session.appealData.anythingElseToAdd, formData);
     if (req.body.saveForLater) {
       req.session.appealData.anythingElseToAdd.draft = true;
+      // change
       res.redirect(paths.questionsFromTribunal);
     } else {
-      res.redirect(paths.caseBuildingDoYouWantToUploadEvidenceAnythingElse);
+      req.session.appealData.anythingElseToAdd.completed = true;
+      // change
+      res.redirect(paths.questionCheckAnswers);
     }
   }
 }

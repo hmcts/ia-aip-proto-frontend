@@ -18,7 +18,11 @@ function get(req, res) {
   // change
   const formData = req.session.appealData.appealDetails.reasonsForAppeal;
 
-  const model = Object.assign({ formData, previousPage });
+  const model = Object.assign({
+    formData,
+    previousPage,
+    action: '/case-building/upload-evidence'
+  });
 
   res.render(template, model);
 }

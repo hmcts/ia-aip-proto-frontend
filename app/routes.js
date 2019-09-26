@@ -36,6 +36,8 @@ const hearingInCameraCourtDescription = require('./middleware/hearing-requiremen
 const hearingAnythingElse = require('./middleware/hearing-requirements/anything-else');
 const hearingAnythingElseDescription = require('./middleware/hearing-requirements/anything-else-description');
 const uploadController = require('./middleware/case-building/upload-evidence');
+const uploadQuestionController = require('./middleware/case-building/upload-evidence-question');
+const uploadAnythingElseController = require('./middleware/case-building/upload-evidence-anything-else');
 const getAppealOverview = require('./middleware/appeal-overview');
 
 /* eslint-disable new-cap */
@@ -84,9 +86,22 @@ router.use(paths.questionSubmitted, require('./middleware/case-building/question
 router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
 // eslint-disable-next-line max-len
 setupFormController(paths.caseBuildingDoYouWantToUploadEvidence, require('./middleware/case-building/do-you-want-to-upload-evidence'));
+// eslint-disable-next-line max-len
+setupFormController(paths.caseBuildingDoYouWantToUploadEvidenceQuestions, require('./middleware/case-building/do-you-want-to-upload-evidence-question'));
 
 router.get(paths.caseBuildingUploadEvidence, uploadController.get);
 router.post(paths.caseBuildingUploadEvidence, uploadController.validation(locale), uploadController.post);
+
+router.get(paths.caseBuildingUploadEvidenceQuestions, uploadQuestionController.get);
+// eslint-disable-next-line max-len
+router.post(paths.caseBuildingUploadEvidenceQuestions, uploadQuestionController.validation(locale), uploadQuestionController.post);
+
+// eslint-disable-next-line max-len
+setupFormController(paths.caseBuildingDoYouWantToUploadEvidenceAnythingElse, require('./middleware/case-building/do-you-want-to-upload-evidence-anything-else'));
+
+router.get(paths.caseBuildingUploadEvidenceAnythingElse, uploadAnythingElseController.get);
+// eslint-disable-next-line max-len
+router.post(paths.caseBuildingUploadEvidenceAnythingElse, uploadAnythingElseController.validation(locale), uploadAnythingElseController.post);
 
 router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
 router.use(paths.caseBuildingCheckAnswers, require('./middleware/case-building/check-answers'));

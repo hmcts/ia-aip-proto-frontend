@@ -1,25 +1,24 @@
-const { check } = require('express-validator');
 const { validationResult } = require('express-validator');
 const paths = require('../../paths');
 
-const template = 'case-building/question.html';
-const previousPage = paths.questionsFromTribunal;
+const template = 'case-building/upload-evidence.html';
+const previousPage = paths.question;
 
-function validation(locale) {
-  return [ check('answer').isLength({ min: 1 }).withMessage(locale.questions.errors.tooShort) ];
+function validation() {
+  return [ ];
 }
 
-function extractBody(req) {
-  return {
-    answer: req.body.answer
-  };
+function extractBody() {
+  return {};
 }
 
 function get(req, res) {
+  const formData = req.session.appealData.questions[req.query.index];
+
   res.render(template, {
-    hideBackLink: false,
+    formData,
     previousPage,
-    question: req.session.appealData.questions[req.query.index],
+    action: `/case-building/upload-evidence-questions?index=${req.query.index}`,
     questionIndex: req.query.index
   });
 }
@@ -46,7 +45,7 @@ function post(req, res) {
     const formData = extractBody(req);
     Object.assign(req.session.appealData.questions[req.query.index], formData);
 
-    res.redirect(`${paths.question}?index=${req.query.index}#fileUpload`);
+    res.redirect(`/case-building/upload-evidence-questions?index=${req.query.index}`);
   } else {
     const errors = validationResult(req);
 
@@ -90,8 +89,14 @@ function post(req, res) {
       res.redirect(paths.questionsFromTribunal);
     } else {
       req.session.appealData.questions[req.query.index].completed = true;
+
+      const numberOfQuestions = req.session.appealData.questions.length;
+      const nextQuestionIndex = parseInt(req.query.index) + 1;
+      const nextPath = (nextQuestionIndex < numberOfQuestions) ?
+        `${paths.question}?index=${nextQuestionIndex}` :
+        paths.anythingElseToAdd;
       // eslint-disable-next-line max-len
-      res.redirect(`${paths.caseBuildingDoYouWantToUploadEvidenceQuestions}?index=${req.query.index}`);
+      res.redirect(nextPath);
     }
   }
 }

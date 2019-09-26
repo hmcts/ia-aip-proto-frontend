@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <h1 class="govuk-heading-xl">Questions from the tribunal</h1>
+    <h1 class="govuk-heading-xl">Questions about your appeal</h1>
 
     <ol class="app-task-list">
         <li>
@@ -43,12 +43,12 @@
         </li>
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">3. </span> Check and submit
+                <span class="app-task-list__section-number">3. </span> Check and send
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(appealData.anythingElseToAdd.completed or appealData.anythingElseToAdd.draft, 'Check and submit your answers', '/case-building/questions-check-answers') }}
+                      {{ enabledLink(appealData.anythingElseToAdd.completed or appealData.anythingElseToAdd.draft, 'Check and send your answers', '/case-building/questions-check-answers') }}
                   </span>
                 </li>
             </ul>
@@ -56,7 +56,7 @@
     </ol>
 
     {{ govukButton({
-        text: "Save and exit",
+        text: "Back to your appeal",
         href: "/case-building/overview",
         isStartButton: false,
         classes: "govuk-button--secondary"

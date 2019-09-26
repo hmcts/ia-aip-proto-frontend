@@ -6,6 +6,18 @@
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
+{%set respondBy %}
+    {{ govukWarningText({
+        html: "You need to respond by " + appealData.respondByDate + ".",
+        iconFallbackText: "Warning",
+        classes: "govuk-!-margin-bottom-2"
+    }) }}
+    <div class="govuk-!-margin-bottom-7">
+        <a href="#" class=\"govuk-link\">Ask for more time</a>
+    </div>
+{% endset %}
+
+
 {% block content %}
         <div id="appeal-details">
             <h2 class="govuk-heading-m">{{ appealData.yourDetails.personalDetails.givenNames }} {{ appealData.yourDetails.personalDetails.familyName }}</h2>
@@ -62,14 +74,8 @@
                     isStartButton: false,
                     classes: "govuk-!-margin-bottom-8"
                 }) }}
-                {{ govukWarningText({
-                    html: "You need to respond by " + appealData.respondByDate + ".",
-                    iconFallbackText: "Warning",
-                    classes: "govuk-!-margin-bottom-2"
-                }) }}
-                <div class="govuk-!-margin-bottom-7">
-                    <a href=\"#\" class=\"govuk-link\">Ask for more time</a>
-                </div>
+
+                {{ respondBy | safe }}
 
                 <div class="grey-background">
                     <h3>What you'll need</h3>
@@ -88,33 +94,33 @@
         {% elseif not appealData.caseBuilding.completed %}
             <h2 class="govuk-heading-m">Do this next</h2>
             {% if hasAnsweredSomeQuestion %}
-                <p>You need to finish answering the questions from the Tribunal.</p>
+                <p>You need to finish answering the questions about your appeal.</p>
+                {{ govukButton({
+                    text: 'Continue',
+                    href: "/case-building/questions-from-tribunal",
+                    isStartButton: false
+                }) }}
+                {{ respondBy | safe }}
             {% else %}
-                <p class="govuk-body">We need some more information from you so we can complete your appeal.</p>
-                <p class="govuk-body">What you'll need</p>
-                <ul class="govuk-list govuk-list--bullet">
-                    <li>
-                        The Home Office decision letter, which you can find in the Home Office documents in the
-                        <a href="#documents" class="govuk-link" aria-describedby="documents-tab">documents tab</a>
-                    </li>
-                    <li>Any evidence that will support your appeal</li>
-                </ul>
-                <p><a href="#">Find out more about evidence</a> </p>
+                <p class="govuk-body">You need to answer some questions about your appeal.</p>
+                {{ govukButton({
+                    text: 'Continue',
+                    href: "/case-building/questions-from-tribunal",
+                    isStartButton: false
+                }) }}
+                {{ respondBy | safe }}
+
+                <div class="grey-background">
+                    <h3>Before you start</h3>
+                    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                        <li>
+                            It may be helpful to look at the information you already sent the Tribunal in the
+                            <a href="#">appeal history</a> tab
+                        </li>
+                    </ul>
+                </div>
             {% endif %}
-            {{ govukWarningText({
-                html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
-                iconFallbackText: "Warning"
-            }) }}
-            {% if hasAnsweredSomeQuestion %}
-                {% set questionButtonText = 'Continue' %}
-            {% else %}
-                {% set questionButtonText = 'Questions from the Tribunal' %}
-            {% endif %}
-            {{ govukButton({
-                text: questionButtonText,
-                href: "/case-building/questions-from-tribunal",
-                isStartButton: false
-            }) }}
+
         {% else %}
             <h2 class="govuk-heading-m">What happens next</h2>
             <p>A case worker is looking at your answers and will contact you soon to tell you what to do next.</p>

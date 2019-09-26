@@ -7,7 +7,7 @@
     {{ errorSummary(errors) }}
 
     <h1 class="govuk-heading-l">Provide supporting evidence</h1>
-    <form action="/case-building/upload-evidence" method="post">
+    <form action="{{ action }}" method="post">
 
         {{ fileUpload(formData.evidence) }}
 
