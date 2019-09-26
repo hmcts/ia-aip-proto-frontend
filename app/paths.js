@@ -9,6 +9,7 @@ module.exports = {
   typeOfAppeal: '/type-of-appeal',
   checkAnswers: '/check-answers',
   appealSubmitted: '/appeal-submitted',
+  appealOverview: '/appeal-overview',
   health: '/health',
   readiness: '/readiness',
   liveness: '/liveness',
