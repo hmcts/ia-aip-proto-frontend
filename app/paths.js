@@ -26,6 +26,8 @@ module.exports = {
   questionSubmitted: '/case-building/questions-submitted',
   whyAppealingDescription: '/case-building/why-appealing-description',
   reasonsForAppeal: '/case-building/reasons-for-appeal',
+  caseBuildingDoYouWantToUploadEvidence: '/case-building/do-you-want-to-upload-evidence',
+  caseBuildingUploadEvidence: '/case-building/upload-evidence',
   caseBuildingCheckAnswers: '/case-building/check-answers',
   caseBuildingSubmitted: '/case-building/submitted',
   anythingElseToAdd: '/case-building/anything-else-to-add',

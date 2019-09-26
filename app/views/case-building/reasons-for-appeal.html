@@ -5,10 +5,7 @@
 
 {% block content %}
     {{ errorSummary(errors) }}
-    <h1 class="govuk-heading-xl">Why do you think the Home Office decision is wrong?</h1>
-    <p class="govuk-body">
-        Tell us the reason or reasons you think the Home Office was wrong to refuse your asylum or immigration claim.
-    </p>
+    <h1 class="govuk-heading-l">Why do you think the Home Office decision is wrong?</h1>
     <p>
         It may be helpful to look at the <a href="#">Home Office documents</a>. They include your decision letter and
         other information about your case.
@@ -26,7 +23,20 @@
             }
         }) }}
 
-        {{ fileUpload(formData.evidence) }}
+        <div class="grey-background govuk-list--bullet govuk-!-margin-bottom-7">
+            <h3>How to answer this question</h3>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Carefully read your Home Office decision letter</li>
+                <li>Try to understand the parts of your claim the Home Office disagrees with</li>
+                <li>Respond to some or all the things the Home Office disagrees with</li>
+                <li>Tell us about anything <b>new</b> that will affect your case since you made your claim</li>
+                <li>Include eviudence where you can. <b>You can do this on the next page</b></li>
+            </ul>
+            <h3>If you need help</h3>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                <li><a href="#">Find organisations that can help you with your appeal</a></li>
+            </ul>
+        </div>
 
         <div class="buttons__container">
             {{ govukButton({

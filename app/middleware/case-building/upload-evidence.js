@@ -1,22 +1,21 @@
-const { check } = require('express-validator');
 const { validationResult } = require('express-validator');
 const paths = require('../../paths');
 
-const template = 'case-building/reasons-for-appeal.html';
-const previousPage = paths.caseBuildingOverview;
+const template = 'case-building/upload-evidence.html';
+// change
+const previousPage = paths.caseBuildingDoYouWantToUploadEvidence;
 
 
-function validation(locale) {
-  return [ check('why').isLength({ min: 1 }).withMessage(locale.reasonsForAppeal.errors.tooShort) ];
+function validation() {
+  return [ ];
 }
 
-function extractBody(req) {
-  return {
-    why: req.body.why
-  };
+function extractBody() {
+  return {};
 }
 
 function get(req, res) {
+  // change
   const formData = req.session.appealData.appealDetails.reasonsForAppeal;
 
   const model = Object.assign({ formData, previousPage });
@@ -46,7 +45,8 @@ function post(req, res) {
     const formData = extractBody(req);
     Object.assign(req.session.appealData.appealDetails.reasonsForAppeal, formData);
 
-    res.redirect(`${paths.reasonsForAppeal}#fileUpload`);
+    // change
+    res.redirect(paths.caseBuildingUploadEvidence);
   } else {
     const errors = validationResult(req);
 
@@ -85,9 +85,12 @@ function post(req, res) {
     Object.assign(req.session.appealData.appealDetails.reasonsForAppeal, formData);
     if (req.body.saveForLater) {
       req.session.appealData.appealDetails.reasonsForAppeal.draft = true;
+      // change
       res.redirect(paths.caseBuildingOverview);
     } else {
-      res.redirect(paths.caseBuildingDoYouWantToUploadEvidence);
+      req.session.appealData.appealDetails.reasonsForAppeal.completed = true;
+      // change
+      res.redirect(paths.caseBuildingCheckAnswers);
     }
   }
 }

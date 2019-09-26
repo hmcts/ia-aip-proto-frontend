@@ -14,7 +14,7 @@
         <div class="divider"></div>
 
     {% set overview %}
-            <h2 class="govuk-heading-m">Current progress of the case</h2>
+            <h2 class="govuk-heading-m">Your appeal progress</h2>
 
         {{ statusBar(stages) }}
 
@@ -39,40 +39,52 @@
             <h2 class="govuk-heading-m">Do this next</h2>
             {% if appealData.appealDetails.reasonsForAppeal.draft %}
                 <p>You need to finish telling us why the Home Office decision was wrong.</p>
-                {{ govukWarningText({
-                    html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
-                    iconFallbackText: "Warning"
-                }) }}
                 {{ govukButton({
                     text: "Continue",
                     href: "/case-building/reasons-for-appeal",
-                    isStartButton: false
+                    isStartButton: false,
+                    classes: "govuk-!-margin-bottom-8"
                 }) }}
-            {% else %}
-                <p class="govuk-body">We are now going to ask you why you're appealing against the Home Office's decision.</p>
-                <p class="govuk-body">What you'll need</p>
-                <ul class="govuk-list govuk-list--bullet">
-                    <li>
-                        The Home Office decision letter, which you can find in the Home Office documents in the
-                        <a href="#documents" class="govuk-link" aria-describedby="documents-tab">documents tab</a>
-                    </li>
-                    <li>Any evidence that will support your appeal</li>
-                </ul>
-                <p class=""govuk-body><a href="#">Find out more about evidence</a></p>
-
                 {{ govukWarningText({
-                    html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
-                    iconFallbackText: "Warning"
+                    html: "You need to respond by " + appealData.respondByDate + ".",
+                    iconFallbackText: "Warning",
+                    classes: "govuk-!-margin-bottom-2"
                 }) }}
+                <div class="govuk-!-margin-bottom-7">
+                    <a href=\"#\" class=\"govuk-link\">Ask for more time</a>
+                </div>
+            {% else %}
+                <p class="govuk-body">Tell us why you're appealing the Home Office decision.</p>
+
                 {{ govukButton({
-                    text: "Tell us why you're appealing",
-                    href: "/case-building/why-appealing-description",
-                    isStartButton: false
+                    text: "Continue",
+                    href: "/case-building/reasons-for-appeal",
+                    isStartButton: false,
+                    classes: "govuk-!-margin-bottom-8"
                 }) }}
+                {{ govukWarningText({
+                    html: "You need to respond by " + appealData.respondByDate + ".",
+                    iconFallbackText: "Warning",
+                    classes: "govuk-!-margin-bottom-2"
+                }) }}
+                <div class="govuk-!-margin-bottom-7">
+                    <a href=\"#\" class=\"govuk-link\">Ask for more time</a>
+                </div>
+
+                <div class="grey-background">
+                    <h3>What you'll need</h3>
+                    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+                        <li>
+                            The Home Office decision letter, which you can find in the Home Office documents in the
+                            <a href="#documents" class="govuk-link" aria-describedby="documents-tab">documents tab</a>
+                        </li>
+                    </ul>
+                </div>
             {% endif %}
         {% elseif not appealData.questions %}
             <h2 class="govuk-heading-m">What happens next</h2>
-            <p>A case officer is looking at your answer. They will contact you soon to tell you what to do next.</p>
+            <p>A case worker is looking at your answer. They will contact you soon to tell you what to do next.</p>
+            {{ contactUs() }}
         {% elseif not appealData.caseBuilding.completed %}
             <h2 class="govuk-heading-m">Do this next</h2>
             {% if hasAnsweredSomeQuestion %}
@@ -106,6 +118,7 @@
         {% else %}
             <h2 class="govuk-heading-m">What happens next</h2>
             <p>A case worker is looking at your answers and will contact you soon to tell you what to do next.</p>
+            {{ contactUs() }}
         {% endif %}
     {% endset -%}
 
@@ -116,14 +129,14 @@
         {{ govukTabs({
             items: [
                 {
-                    label: "Overview",
+                    label: "Your appeal",
                     id: "overview",
                     panel: {
                     html: overview
                 }
                 },
                 {
-                    label: "Appeal details",
+                    label: "Appeal history",
                     id: "appeal",
                     panel: {
                     html: appeal

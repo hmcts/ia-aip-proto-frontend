@@ -1,0 +1,37 @@
+{% extends "../layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "components/file-upload.html" import fileUpload with context %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-l">Provide supporting evidence</h1>
+    <form action="/case-building/upload-evidence" method="post">
+
+        {{ fileUpload(formData.evidence) }}
+
+        <div class="grey-background govuk-!-margin-bottom-7">
+            <h3>Need more time?</h3>
+            <p class="govuk-!-margin-bottom-0">
+                If you want to provide evidence but don't have it right now, you can <a href="#">ask for more time.</a>
+            </p>
+        </div>
+
+        <div class="buttons__container">
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
+
+            {{ govukButton({
+                text: "Save for later",
+                name: "saveForLater",
+                value: "saveForLater",
+                classes: "govuk-button--secondary"
+            }) }}
+        </div>
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

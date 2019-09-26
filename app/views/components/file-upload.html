@@ -7,20 +7,20 @@
 
 {%  macro fileUpload(uploadedEvidence) %}
     <a id="fileUpload"></a>
-    <h3>Provide evidence if you have any (optional)</h3>
     <p>
         You can upload evidence to support your answer such as letters, photos and documents. If you are taking
         a picture of a letter, place it on a flat surface and take the picture from above.
     </p>
     <p>
-        If you want to provide evidence but don't have it right now, you can <a href="#">ask for more time.</a>
+        <a href="#">Find out more about evidence to support your appeal</a>
     </p>
-    <div class="grey-background">
+
+    {% set uploadFormFields %}
         {{ govukFileUpload({
             id: "evidenceUpload",
             name: "evidenceUpload",
             label: {
-                text: "Upload a file"
+                html: "<h3 class='govuk-!-margin-top-0'>Upload a file</h3>"
             }
         }) }}
         {{ govukTextarea({
@@ -41,36 +41,39 @@
             name: "upload",
             value: "upload"
         }) }}
+    {% endset %}
 
-        {% set evidenceArray = [] %}
-        {% for evidence in uploadedEvidence %}
-            {% set evidenceArray = (evidenceArray.push([
-                {
-                    html: '<p>' + evidence.fileName + '</p><p class="govuk-body-s">' + evidence.description + '</p>'
-                },
-                {
-                    html: "<button type='submit' name='delete' value='" + loop.index0 + "' class='button-link gov-details'>Delete</button>",
-                    format: "numeric"
-                }
-            ]), evidenceArray) %}
-        {% endfor %}
+    {{ govukInsetText({
+        html: uploadFormFields
+    }) }}
 
-        {% if evidenceArray and evidenceArray.length > 0 %}
-            {{ govukTable({
-                caption: "Uploaded files",
-                firstCellIsHeader: false,
-                rows: evidenceArray
-            }) }}
-         {% else %}
-             {{ govukTable({
-                 caption: "Uploaded files",
-                 firstCellIsHeader: false,
-                 rows: [[{
-                     html: '<p>No files uploaded</p>'
-                 }]]
-             }) }}
-        {% endif %}
+    {% set evidenceArray = [] %}
+    {% for evidence in uploadedEvidence %}
+        {% set evidenceArray = (evidenceArray.push([
+            {
+                html: '<p>' + evidence.fileName + '</p><p class="govuk-body-s">' + evidence.description + '</p>'
+            },
+            {
+                html: "<button type='submit' name='delete' value='" + loop.index0 + "' class='button-link gov-details'>Delete</button>",
+                format: "numeric"
+            }
+        ]), evidenceArray) %}
+    {% endfor %}
 
-    </div>
+    {% if evidenceArray and evidenceArray.length > 0 %}
+        {{ govukTable({
+            caption: "Uploaded files",
+            firstCellIsHeader: false,
+            rows: evidenceArray
+        }) }}
+     {% else %}
+         {{ govukTable({
+             caption: "Uploaded files",
+             firstCellIsHeader: false,
+             rows: [[{
+                 html: '<p>No files uploaded</p>'
+             }]]
+         }) }}
+    {% endif %}
     <br />
 {% endmacro %}

@@ -4,17 +4,15 @@
 
 {% block content %}
     {{ govukPanel({
-        titleText: "Your answer has been successfully sent"
+        titleText: "Your answer has been sent"
     }) }}
 
     <h2 class="govuk-heading-m">What happens next</h2>
     <ul class="govuk-list govuk-list--bullet">
+        <li>A case worker will look at your answer</li>
         <li>
-            A case worker will contact you by <b>{{ appealData.respondByDate }}</b>. You may be asked to answer more questions
-            if the case worker needs more information
+            A case worker will contact you by <b>{{ appealData.respondByDate }}</b> to tell you what to do next
         </li>
-        <li>When the case worker has all the information they need, they will ask the Home Office to look at your case</li>
-        <li>A case worker will then contact you to let you know what to do next</li>
     </ul>
     <p class="govuk-body">
         If you have any questions about the appeal process, call the Tribunal on <b>0300 123 1711</b> or email
@@ -22,7 +20,7 @@
     </p>
 
     {{ govukButton({
-        text: "Back to overview",
+        text: "Back to your appeal",
         href: "/case-building/overview",
         isStartButton: false
     }) }}

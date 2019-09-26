@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-l">Do you want to provide supporting evidence?</h1>
+
+    <form action="{{ formData.action }}" method="post">
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            idPrefix: "provide-evidence",
+            name: "provide-evidence",
+            errorMessage: errors.fieldErrors["provide-evidence"],
+            items: [
+                {
+                    value: "yes",
+                    text: "Yes",
+                    checked: formData["provide-evidence"] == 'yes'
+                },
+                {
+                    value: "no",
+                    text: "No",
+                    checked: formData["provide-evidence"] == 'no'
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Continue",
+            isStartButton: false
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

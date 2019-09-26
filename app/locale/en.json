@@ -198,6 +198,11 @@
         "selectAnOption": "Select either yes or no",
         "enterADescription": "Enter a description of your vulnerability"
       }
+    },
+    "provideEvidence": {
+      "errors": {
+        "selectAnOption": "Select either yes or no"
+      }
     }
   }
 }

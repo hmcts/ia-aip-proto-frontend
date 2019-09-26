@@ -35,6 +35,7 @@ const hearingInCameraCourt = require('./middleware/hearing-requirements/in-camer
 const hearingInCameraCourtDescription = require('./middleware/hearing-requirements/in-camera-court-description');
 const hearingAnythingElse = require('./middleware/hearing-requirements/anything-else');
 const hearingAnythingElseDescription = require('./middleware/hearing-requirements/anything-else-description');
+const uploadController = require('./middleware/case-building/upload-evidence');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -78,6 +79,13 @@ router.use(paths.caseBuildingOverview, require('./middleware/case-building/overv
 router.use(paths.questionsFromTribunal, require('./middleware/case-building/questions-from-tribunal'));
 router.use(paths.questionCheckAnswers, require('./middleware/case-building/questions-check-answers'));
 router.use(paths.questionSubmitted, require('./middleware/case-building/questions-submitted'));
+router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
+// eslint-disable-next-line max-len
+setupFormController(paths.caseBuildingDoYouWantToUploadEvidence, require('./middleware/case-building/do-you-want-to-upload-evidence'));
+
+router.get(paths.caseBuildingUploadEvidence, uploadController.get);
+router.post(paths.caseBuildingUploadEvidence, uploadController.validation(locale), uploadController.post);
+
 router.use(paths.whyAppealingDescription, require('./middleware/case-building/why-appealing-description'));
 router.use(paths.caseBuildingCheckAnswers, require('./middleware/case-building/check-answers'));
 router.use(paths.caseBuildingSubmitted, require('./middleware/case-building/submitted'));
