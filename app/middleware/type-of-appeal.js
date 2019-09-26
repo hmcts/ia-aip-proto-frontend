@@ -1,5 +1,6 @@
 const { formController } = require('./form-controller');
 const { check } = require('express-validator');
+const paths = require('../paths');
 
 function validation(locale) {
   return [ check('appealType').not().isEmpty().withMessage(locale.typeOfAppeal.errors.selectOne) ];
@@ -17,9 +18,22 @@ function extractBody(req) {
   };
 }
 
+// eslint-disable-next-line no-unused-vars
+function saveAndRedirect(formData = null, req) {
+  if (req.body.hasOwnProperty('save-continue')) return paths.checkAnswers;
+  return paths.taskList;
+}
+
 function createFormController() {
   return formController(
-    'type-of-appeal.html', 'appealDetails', 'typeOfAppeal', validation, extractBody
+    'type-of-appeal.html',
+    'appealDetails',
+    'typeOfAppeal',
+    validation,
+    extractBody,
+    false,
+    false,
+    saveAndRedirect
   );
 }
 

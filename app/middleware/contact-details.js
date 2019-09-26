@@ -1,5 +1,6 @@
 const { formController } = require('./form-controller');
 const { check } = require('express-validator');
+const paths = require('../paths');
 
 function validation(locale) {
   function validateEmail(email) {
@@ -42,9 +43,22 @@ function extractBody(req) {
   };
 }
 
+// eslint-disable-next-line no-unused-vars
+function saveAndRedirect(formData = null, req) {
+  if (req.body.hasOwnProperty('save-continue')) return paths.typeOfAppeal;
+  return paths.taskList;
+}
+
 function createFormController() {
   return formController(
-    'your-contact-details.html', 'yourDetails', 'contactDetails', validation, extractBody
+    'your-contact-details.html',
+    'yourDetails',
+    'contactDetails',
+    validation,
+    extractBody,
+    false,
+    false,
+    saveAndRedirect
   );
 }
 

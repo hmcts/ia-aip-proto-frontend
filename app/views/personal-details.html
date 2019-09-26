@@ -8,16 +8,21 @@
 
     <form action="/personal-details" method="post">
         {{ input("Title", "title", formData.title) }}
-
         {{ input("Given names", "given-names", formData.givenNames) }}
-
         {{ input("Family names", "family-name", formData.familyName) }}
 
-        {{ govukButton({
-            text: "Next"
-        }) }}
+        <div class="buttons__container">
+            {{ govukButton({
+                text: "Save and continue",
+                name: "save-continue"
+            }) }}
+
+            {{ govukButton({
+                text: "Save for later",
+                name: "save-return",
+                classes: "govuk-button--secondary"
+            }) }}
+        </div>
     </form>
-
     {{ contactUs() }}
-
 {% endblock %}
