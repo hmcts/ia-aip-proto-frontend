@@ -1,5 +1,6 @@
 const { check } = require('express-validator');
 const { formController } = require('./form-controller');
+const paths = require('../paths');
 
 function validation(locale) {
   const dateLetterSentError = locale.homeOfficeDetails.errors.dateLetterSent;
@@ -35,9 +36,22 @@ function extraFieldErrors(fieldErrors) {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
+function saveAndRedirect(formData = null, req) {
+  if (req.body.hasOwnProperty('save-continue')) return paths.personalDetails;
+  return paths.taskList;
+}
+
 function createFormController() {
   return formController(
-    'home-office-details.html', 'yourDetails', 'homeOffice', validation, extractBody, extraFieldErrors
+    'home-office-details.html',
+    'yourDetails',
+    'homeOffice',
+    validation,
+    extractBody,
+    extraFieldErrors,
+    false,
+    saveAndRedirect
   );
 }
 

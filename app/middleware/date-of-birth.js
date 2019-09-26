@@ -33,6 +33,12 @@ function extraFieldErrors(fieldErrors) {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
+function saveAndRedirect(formData = null, req) {
+  if (req.body.hasOwnProperty('save-continue')) return paths.contactDetails;
+  return paths.taskList;
+}
+
 function createFormController() {
   return formController(
     'date-of-birth.html',
@@ -42,7 +48,7 @@ function createFormController() {
     extractBody,
     extraFieldErrors,
     false,
-    paths.taskList,
+    saveAndRedirect,
     paths.personalDetails
   );
 }

@@ -19,9 +19,22 @@ function extractBody(req) {
   };
 }
 
+// eslint-disable-next-line no-unused-vars
+function saveAndRedirect(formData = null, req) {
+  if (req.body.hasOwnProperty('save-continue')) return paths.dateOfBirth;
+  return paths.taskList;
+}
+
 function createFormController() {
   return formController(
-    'personal-details.html', 'yourDetails', 'personalDetails', validation, extractBody, false, false, paths.dateOfBirth
+    'personal-details.html',
+    'yourDetails',
+    'personalDetails',
+    validation,
+    extractBody,
+    false,
+    false,
+    saveAndRedirect
   );
 }
 
