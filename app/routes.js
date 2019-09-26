@@ -36,6 +36,7 @@ const hearingInCameraCourtDescription = require('./middleware/hearing-requiremen
 const hearingAnythingElse = require('./middleware/hearing-requirements/anything-else');
 const hearingAnythingElseDescription = require('./middleware/hearing-requirements/anything-else-description');
 const uploadController = require('./middleware/case-building/upload-evidence');
+const getAppealOverview = require('./middleware/appeal-overview');
 
 /* eslint-disable new-cap */
 const router = express.Router({});
@@ -65,6 +66,7 @@ router.get(paths.question, questionsController.get);
 router.post(paths.question, questionsController.validation(locale), questionsController.post);
 
 router.use(paths.appealSubmitted, require('./middleware/appeal-submitted'));
+router.get(paths.appealOverview, getAppealOverview);
 router.use(paths.health, require('./middleware/health'));
 router.use(paths.readiness, (req, res) => res.json({}));
 router.use(paths.liveness, (req, res) => res.json({}));
