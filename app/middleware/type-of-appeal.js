@@ -20,7 +20,6 @@ function extractBody(req) {
 
 // eslint-disable-next-line no-unused-vars
 function saveAndRedirect(formData = null, req) {
-  if (req.body.hasOwnProperty('save-continue')) return paths.checkAnswers;
   return paths.taskList;
 }
 
