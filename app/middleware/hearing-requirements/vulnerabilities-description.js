@@ -28,7 +28,7 @@ function createFormController() {
       if (req.body.saveForLater) {
         return paths.hearingAppellantTaskList;
       }
-      return paths.hearingMultimediaEvidence;
+      return paths.hearingPastExperiences;
     },
     paths.hearingVulnerabilities
   );

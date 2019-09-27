@@ -6,7 +6,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">Will you have multimedia evidence, like video or sound recordings?</h1>
+    <h1 class="govuk-heading-l">Will you bring any multimedia evidence, like video or sounds recordings, to the hearing?</h1>
 
     <form action="/hearing-requirements/multimedia-evidence" method="post">
         {{ govukRadios({
@@ -28,7 +28,9 @@
             ]
         }) }}
 
-        {{ saveButtons() }}
+        {{ govukButton({
+            text: "Save and continue"
+        }) }}
     </form>
 
     {{ contactUs() }}

@@ -5,21 +5,21 @@ const paths = require('../../paths');
 function validation(locale) {
   return [
     // eslint-disable-next-line max-len
-    check('vulnerabilities').not().isEmpty().withMessage(locale.hearingRequirements.vulnerabilities.errors.selectAnOption)
+    check('description').not().isEmpty().withMessage(locale.hearingRequirements.pastExperiences.errors.enterADescription)
   ];
 }
 
 function extractBody(req) {
   return {
-    vulnerabilities: req.body.vulnerabilities
+    description: req.body.description
   };
 }
 
 function createFormController() {
   return formController(
-    'hearing-requirements/vulnerabilities.html',
+    'hearing-requirements/past-experiences-description.html',
     'hearingRequirements',
-    'vulnerabilities',
+    'pastExperiences',
     validation,
     extractBody,
     false,
@@ -27,12 +27,10 @@ function createFormController() {
     (formData, req) => {
       if (req.body.saveForLater) {
         return paths.hearingAppellantTaskList;
-      } else if (formData.vulnerabilities === 'yes') {
-        return paths.hearingVulnerabilitiesDescription;
       }
-      return paths.hearingPastExperiences;
+      return paths.hearingAnythingElse;
     },
-    paths.hearingOtherNeeds
+    paths.hearingPastExperiences
   );
 }
 

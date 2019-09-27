@@ -6,9 +6,9 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">Tell us what you will need and why you need it</h1>
+    <h1 class="govuk-heading-l">Tell us how any past experiences will affect you at the hearing</h1>
 
-    <form action="/hearing-requirements/anything-else-description" method="post">
+    <form action="/hearing-requirements/past-experiences-description" method="post">
         {{ govukTextarea({
             name: "description",
             id: "description",

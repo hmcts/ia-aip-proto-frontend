@@ -6,6 +6,17 @@
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
+{%set respondBy %}
+    {{ govukWarningText({
+        html: "You need to respond by " + appealData.respondByDate + ".",
+        iconFallbackText: "Warning",
+        classes: "govuk-!-margin-bottom-2"
+    }) }}
+    <div class="govuk-!-margin-bottom-7">
+        <a href="#" class=\"govuk-link\">Ask for more time</a>
+    </div>
+{% endset %}
+
 {% block content %}
     <div id="appeal-details">
         <h2 class="govuk-heading-m">{{ appealData.yourDetails.personalDetails.givenNames }} {{ appealData.yourDetails.personalDetails.familyName }}</h2>
@@ -18,36 +29,33 @@
 
         {{ statusBar(stages) }}
 
-        {% if appealData.hearingRequirements.witnesses.draft or appealData.hearingRequirements.interpreter.draft or
-            appealData.hearingRequirements.stepFree.draft or appealData.hearingRequirements.hearingLoop.draft or
-            appealData.hearingRequirements.vulnerabilities.draft or appealData.hearingRequirements.multimediaEvidence.draft or
-            appealData.hearingRequirements.allMaleFemaleCourt.draft or appealData.hearingRequirements.inCameraCourt.draft or
-            appealData.hearingRequirements.anythingElse.draft %}
-            <div class="blueWrapper govuk-!-width-one-third">
-                <p class="govuk-body blueText">Your answers have been saved</p>
-            </div>
-
-        {% endif %}
-
-
-
         {%  if not appealData.hearingRequirements.anythingElse.completed %}
-            <h2 class="govuk-heading-m">Do this next</h2>
-            <p class="govuk-body">
-                Your appeal is going to a hearing. You now need to tell us if there is anything you'll
-                need at the hearing, like an interpreter or step-free access.
-            </p>
-
-            {{ govukWarningText({
-                html: "You need to respond by " + appealData.respondByDate + ". <a href=\"#\" class=\"govuk-link\">Ask for more time</a>",
-                iconFallbackText: "Warning"
-            }) }}
-
+            {% if appealData.hearingRequirements.witnesses.draft or appealData.hearingRequirements.interpreter.draft or
+                appealData.hearingRequirements.stepFree.draft or appealData.hearingRequirements.hearingLoop.draft or
+                appealData.hearingRequirements.vulnerabilities.draft or appealData.hearingRequirements.multimediaEvidence.draft or
+                appealData.hearingRequirements.allMaleFemaleCourt.draft or appealData.hearingRequirements.inCameraCourt.draft or
+                appealData.hearingRequirements.anythingElse.draft %}
+                <div class="blueWrapper govuk-!-width-one-third">
+                    <p class="govuk-body blueText">Your answers have been saved</p>
+                </div>
+                <h2 class="govuk-heading-m">Do this next</h2>
+                <p class="govuk-body">
+                    You need to finish telling us if there is anything you will need at the hearing
+                </p>
+            {% else %}
+                <h2 class="govuk-heading-m">Do this next</h2>
+                <p class="govuk-body">
+                    Your appeal is going to a hearing. You now need to tell us if there is anything you'll
+                    need at the hearing, like an interpreter or step-free access.
+                </p>
+            {% endif %}
             {{ govukButton({
-                text: "Tell us what you need",
+                text: "Continue",
                 href: "/hearing-requirements/task-list",
                 isStartButton: false
             }) }}
+
+            {{ respondBy | safe }}
         {% else %}
             <h2 class="govuk-heading-m">What happens next</h2>
             <p class="govuk-body">
@@ -64,14 +72,14 @@
     {{ govukTabs({
         items: [
             {
-                label: "Overview",
+                label: "Your appeal",
                 id: "overview",
                 panel: {
                 html: overview
             }
             },
             {
-                label: "Appeal details",
+                label: "Appeal history",
                 id: "appeal",
                 panel: {
                 html: appeal

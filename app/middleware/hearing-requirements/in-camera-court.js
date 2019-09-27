@@ -31,7 +31,7 @@ function createFormController() {
       if (req.body['in-camera-court'] === 'yes') {
         return paths.hearingInCameraCourtDescription;
       }
-      return paths.hearingAnythingElse;
+      return paths.hearingVulnerabilities;
     },
     paths.hearingAllMaleFemaleCourtDescription
   );

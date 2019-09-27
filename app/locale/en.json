@@ -199,6 +199,12 @@
         "enterADescription": "Enter a description of your vulnerability"
       }
     },
+    "pastExperiences": {
+      "errors": {
+        "selectAnOption": "Select either yes or no",
+        "enterADescription": "Enter a description of your past experiences"
+      }
+    },
     "provideEvidence": {
       "errors": {
         "selectAnOption": "Select either yes or no"

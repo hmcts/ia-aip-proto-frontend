@@ -7,7 +7,7 @@
     {{ errorSummary(errors) }}
 
     <h1 class="govuk-heading-l">
-        Are there any issues that will affect you at the hearing, like ill health or a physical disability?
+        Do you have any physical or mental health issues that will affect you at the hearing?
     </h1>
 
     <form action="/hearing-requirements/vulnerabilities" method="post">
@@ -30,7 +30,9 @@
             ]
         }) }}
 
-        {{ saveButtons() }}
+        {{ govukButton({
+            text: "Save and continue"
+        }) }}
     </form>
 
     {{ contactUs() }}

@@ -6,25 +6,27 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">Will you or any witnesses need an interpreter at the hearing?</h1>
+    <h1 class="govuk-heading-l">Have you had any past experiences that will affect you at the hearing?</h1>
 
-    <form action="/hearing-requirements/interpreter" method="post">
-
+    <form action="/hearing-requirements/past-experiences" method="post">
         {{ govukRadios({
             classes: "govuk-radios--inline",
-            idPrefix: "required",
-            name: "required",
-            errorMessage: errors.fieldErrors["required"],
+            idPrefix: "past-experiences",
+            name: "past-experiences",
+            hint: {
+                text: "This might be experience of physical or sexual abuse, trafficking or torture."
+            },
+            errorMessage: errors.fieldErrors["past-experiences"],
             items: [
                 {
                     value: "yes",
                     text: "Yes",
-                    checked: formData.required == 'yes'
+                    checked: formData.pastExperiences == 'yes'
                 },
                 {
                     value: "no",
                     text: "No",
-                    checked: formData.required == 'no'
+                    checked: formData.pastExperiences == 'no'
                 }
             ]
         }) }}

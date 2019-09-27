@@ -1,4 +1,4 @@
-// eslint-disable-next-line max-lines
+/* eslint-disable max-lines */
 const moment = require('moment');
 const { CLARIFYING_QUESTIONS_SENT } = require('../data/constants');
 
@@ -63,6 +63,9 @@ module.exports = (req, res, next) => {
           completed: false
         },
         inCameraCourt: {
+          completed: false
+        },
+        pastExperiences: {
           completed: false
         },
         anythingElse: {
@@ -261,6 +264,11 @@ module.exports = (req, res, next) => {
           inCameraCourt: 'yes',
           description: 'Description for in camera court'
         },
+        pastExperiences: {
+          completed: true,
+          pastExperiences: 'yes',
+          description: 'Description for past experiences'
+        },
         anythingElse: {
           completed: true,
           anythingElse: 'yes',
@@ -294,6 +302,6 @@ module.exports = (req, res, next) => {
       }
     });
   }
-  
+
   next();
 };

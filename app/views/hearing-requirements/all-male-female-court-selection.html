@@ -6,7 +6,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">What type of hearing do you need?</h1>
+    <h1 class="govuk-heading-l">What type of hearing will you need?</h1>
 
     <form action="/hearing-requirements/all-male-female-court-selection" method="post">
         {{ govukRadios({
@@ -28,7 +28,9 @@
             ]
         }) }}
 
-        {{ saveButtons() }}
+        {{ govukButton({
+            text: "Save and continue"
+        }) }}
     </form>
 
     {{ contactUs() }}

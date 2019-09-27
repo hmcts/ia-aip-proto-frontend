@@ -15,7 +15,7 @@
             name: "in-camera-court",
             errorMessage: errors.fieldErrors["in-camera-court"],
             hint: {
-                text: "A private hearing means that the public will not be allowed into the hearing room."
+                text: "A private hearing means that the public will not be allowed into the hearing."
             },
             items: [
                 {
@@ -31,7 +31,9 @@
             ]
         }) }}
 
-        {{ saveButtons() }}
+        {{ govukButton({
+            text: "Save and continue"
+        }) }}
     </form>
 
     {{ contactUs() }}

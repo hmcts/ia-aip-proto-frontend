@@ -6,7 +6,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">Tell us why you need a single-sex hearing?</h1>
+    <h1 class="govuk-heading-l">Tell us why you need an all-{{ formData.maleOrFemale }} hearing?</h1>
 
     <form action="/hearing-requirements/all-male-female-court-description" method="post">
         {{ govukTextarea({

@@ -11,45 +11,63 @@
 
     <form action="/hearing-requirements/interpreter-details" method="post">
 
-        {% call govukFieldset({
-            legend: {
-                text: "What language interpreter fo you need?"
-            }
-        }) %}
-
-            {{ govukSelect({
-                id: "name",
-                name: "name",
-                items: [
-                    {
-                        value: "Select language",
-                        text: "Select language",
-                        selected: formData.number == 'Select language'
-                    },
-                    {
-                        value: "French",
-                        text: "French",
-                        selected: formData.number == 'French'
-                    },
-                    {
-                        value: "German",
-                        text: "German",
-                        selected: formData.number == 'German'
-                    },
-                    {
-                        value: "Italian",
-                        text: "Italian",
-                        selected: formData.number == 'Italian'
-                    },
-                    {
-                        value: "Spanish",
-                        text: "Spanish",
-                        selected: formData.number == 'Spanish'
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+                {% call govukFieldset({
+                    legend: {
+                        text: "Language"
                     }
-                ]
-            }) }}
+                }) %}
 
-            {{ input("Dialect", "dialect", formData.dialect) }}
+                {{ govukSelect({
+                    id: "name",
+                    name: "name",
+                    classes: "full-width",
+                    items: [
+                        {
+                            value: "Select language",
+                            text: "Select language",
+                            selected: formData.number == 'Select language'
+                        },
+                        {
+                            value: "French",
+                            text: "French",
+                            selected: formData.number == 'French'
+                        },
+                        {
+                            value: "German",
+                            text: "German",
+                            selected: formData.number == 'German'
+                        },
+                        {
+                            value: "Italian",
+                            text: "Italian",
+                            selected: formData.number == 'Italian'
+                        },
+                        {
+                            value: "Spanish",
+                            text: "Spanish",
+                            selected: formData.number == 'Spanish'
+                        }
+                    ]
+                }) }}
+            </div>
+        </div>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+
+                {{ govukInput({
+                    label: {
+                        text: 'Dialect'
+                    },
+                    id: 'dialect',
+                    name: 'dialect',
+                    classes: "full-width",
+                    value: value,
+                    errorMessage: errors.fieldErrors[id]
+                }) }}
+            </div>
+        </div>
             {{ govukButton({
                 text: "Add new",
                 name: "addNew",
@@ -89,6 +107,10 @@
                 }) }}
             {% endif %}
         {% endcall %}
+
+        <div class="grey-background govuk-!-margin-bottom-7">
+            <p class="govuk-!-margin-bottom-0">A dialect is a form of a language that is spoken in a part of a country or by groups of people in a country.</p>
+        </div>
 
         {{ saveButtons() }}
     </form>

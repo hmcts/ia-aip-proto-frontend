@@ -56,13 +56,14 @@ module.exports = (req, res) => {
       }
     });
   if (appealData.hearingRequirements.interpreter.required === 'yes') {
-    const details = appealData.hearingRequirements.interpreter.languages.map(language => {
-      let langaugeString = `<b>Language</b> ${language.name}`;
+    const details = '<table>' + appealData.hearingRequirements.interpreter.languages.map(language => {
+      let langaugeString = `<tr><td>${language.name}</td>`;
       if (language.dialect) {
-        langaugeString += ` <b>Dialect</b> ${language.dialect}`;
+        langaugeString += `<td>${language.dialect}</td>`;
       }
+      langaugeString += '</tr>';
       return langaugeString;
-    }).join('<br />');
+    }).join('') + '</table>';
     checkListhearingNeedsRows.push(
       {
         key: {
@@ -113,43 +114,13 @@ module.exports = (req, res) => {
       ]
     }
   });
+
+
+
+
   checkListOtherNeedsRows.push({
     key: {
-      text: 'Are there any issues that will affect you at the hearing, like ill health or a physical disability?'
-    },
-    value: {
-      html: appealData.hearingRequirements.vulnerabilities.vulnerabilities
-    },
-    actions: {
-      items: [
-        {
-          href: '/hearing-requirements/vulnerabilities',
-          text: 'Change'
-        }
-      ]
-    }
-  });
-  if (appealData.hearingRequirements.vulnerabilities.vulnerabilities === 'yes') {
-    checkListOtherNeedsRows.push({
-      key: {
-        text: 'Tell us about any issues you have and how they will affect you at the hearing'
-      },
-      value: {
-        html: appealData.hearingRequirements.vulnerabilities.description
-      },
-      actions: {
-        items: [
-          {
-            href: '/hearing-requirements/vulnerabilities',
-            text: 'Change'
-          }
-        ]
-      }
-    });
-  }
-  checkListOtherNeedsRows.push({
-    key: {
-      text: 'Will you have multimedia evidence, like video or sound recordings?'
+      text: 'Will you bring any multimedia evidence, like video recordings, to the hearing?'
     },
     value: {
       html: appealData.hearingRequirements.multimediaEvidence.multimediaEvidence
@@ -166,7 +137,7 @@ module.exports = (req, res) => {
   if (appealData.hearingRequirements.multimediaEvidence.multimediaEvidence === 'yes') {
     checkListOtherNeedsRows.push({
       key: {
-        text: 'Tell us what format the evidence in in (.mp3, .mov, etc.) and what equipment you will need to play it'
+        text: 'Tell us what format the evidence in in (for example, .mov, .mp3) and what equipment you will need to play it'
       },
       value: {
         html: appealData.hearingRequirements.multimediaEvidence.description
@@ -200,7 +171,7 @@ module.exports = (req, res) => {
   if (appealData.hearingRequirements.allMaleFemaleCourt.allMaleFemaleCourt === 'yes') {
     checkListOtherNeedsRows.push({
       key: {
-        text: 'What type of hearing do you need?'
+        text: 'What type of hearing will you need?'
       },
       value: {
         html: appealData.hearingRequirements.allMaleFemaleCourt.maleOrFemale
@@ -216,7 +187,7 @@ module.exports = (req, res) => {
     });
     checkListOtherNeedsRows.push({
       key: {
-        text: 'Tell us why you need a single-sec hearing?'
+        text: `Tell us why you need an all-${appealData.hearingRequirements.allMaleFemaleCourt.maleOrFemale}  hearing?`
       },
       value: {
         html: appealData.hearingRequirements.allMaleFemaleCourt.description
@@ -267,6 +238,74 @@ module.exports = (req, res) => {
   }
   checkListOtherNeedsRows.push({
     key: {
+      text: 'Do you have any physical or mental health issues that will affect you at the hearing?'
+    },
+    value: {
+      html: appealData.hearingRequirements.vulnerabilities.vulnerabilities
+    },
+    actions: {
+      items: [
+        {
+          href: '/hearing-requirements/vulnerabilities',
+          text: 'Change'
+        }
+      ]
+    }
+  });
+  if (appealData.hearingRequirements.vulnerabilities.vulnerabilities === 'yes') {
+    checkListOtherNeedsRows.push({
+      key: {
+        text: 'Tell us how any physical or mental health issues you have will affect you at the hearing'
+      },
+      value: {
+        html: appealData.hearingRequirements.vulnerabilities.description
+      },
+      actions: {
+        items: [
+          {
+            href: '/hearing-requirements/vulnerabilities',
+            text: 'Change'
+          }
+        ]
+      }
+    });
+  }
+  checkListOtherNeedsRows.push({
+    key: {
+      text: 'Have you had any past experiences that will affect you at the hearing?'
+    },
+    value: {
+      html: appealData.hearingRequirements.pastExperiences.pastExperiences
+    },
+    actions: {
+      items: [
+        {
+          href: '/hearing-requirements/past-experiences',
+          text: 'Change'
+        }
+      ]
+    }
+  });
+  if (appealData.hearingRequirements.pastExperiences.pastExperiences === 'yes') {
+    checkListOtherNeedsRows.push({
+      key: {
+        text: 'Tell us how any past experiences will affect you at the hearing'
+      },
+      value: {
+        html: appealData.hearingRequirements.pastExperiences.description
+      },
+      actions: {
+        items: [
+          {
+            href: '/hearing-requirements/past-experiences-description',
+            text: 'Change'
+          }
+        ]
+      }
+    });
+  }
+  checkListOtherNeedsRows.push({
+    key: {
       text: 'Will you need anything else at the hearing?'
     },
     value: {
@@ -284,7 +323,7 @@ module.exports = (req, res) => {
   if (appealData.hearingRequirements.anythingElse.anythingElse === 'yes') {
     checkListOtherNeedsRows.push({
       key: {
-        text: 'Tell us about each need and why you need it'
+        text: 'Tell us what you will need and why you need it'
       },
       value: {
         html: appealData.hearingRequirements.anythingElse.description

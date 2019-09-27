@@ -142,7 +142,10 @@ setupFormController(paths.hearingInCameraCourt, hearingInCameraCourt);
 setupFormController(paths.hearingInCameraCourtDescription, hearingInCameraCourtDescription);
 setupFormController(paths.hearingAnythingElse, hearingAnythingElse);
 setupFormController(paths.hearingAnythingElseDescription, hearingAnythingElseDescription);
-setupFormController(paths.hearingAnythingElseDescription, hearingAnythingElseDescription);
+setupFormController(paths.hearingPastExperiences, require('./middleware/hearing-requirements/past-experiences'));
+// eslint-disable-next-line max-len
+setupFormController(paths.hearingPastExperiencesDescription, require('./middleware/hearing-requirements/past-experiences-description'));
+
 router.use(paths.hearingCheckAnswers, require('./middleware/hearing-requirements/check-answers'));
 router.use(paths.hearingSubmitted, require('./middleware/hearing-requirements/submitted'));
 

@@ -76,6 +76,8 @@ module.exports = {
   hearingAllMaleFemaleCourtDescription: '/hearing-requirements/all-male-female-court-description',
   hearingInCameraCourt: '/hearing-requirements/in-camera-court',
   hearingInCameraCourtDescription: '/hearing-requirements/in-camera-court-description',
+  hearingPastExperiences: '/hearing-requirements/past-experiences',
+  hearingPastExperiencesDescription: '/hearing-requirements/past-experiences-description',
   hearingAnythingElse: '/hearing-requirements/anything-else',
   hearingAnythingElseDescription: '/hearing-requirements/anything-else-description',
   hearingCheckAnswers: '/hearing-requirements/check-answers',
