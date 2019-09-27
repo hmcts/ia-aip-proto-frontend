@@ -100,7 +100,8 @@ function postEditClarifyingQuestion(req, res) {
 }
 
 function getConfirmationClarifyingQuestions(req, res) {
-  res.render('ccd/new-clarifying-questions-confirmation.html');
+  const date = req.session.appealData.directions.date;
+  res.render('ccd/new-clarifying-questions-confirmation.html', { date });
 }
 
 function postConfirmationClarifyingQuestions(req, res) {

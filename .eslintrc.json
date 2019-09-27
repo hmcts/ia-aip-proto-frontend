@@ -11,6 +11,7 @@
     "ecmaVersion": 2018
   },
   "rules": {
+    "max-lines": "off",
     "no-process-env": "off",
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "multiline-ternary": ["error", "always-multiline"],

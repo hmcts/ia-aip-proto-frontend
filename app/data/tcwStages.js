@@ -7,7 +7,7 @@ const caseReviewStage = [
   {
     title: 'Awaiting respondent evidence',
     active: true,
-    ticked: false
+    ticked: true
   },
   {
     title: 'Case building',
@@ -65,7 +65,7 @@ const caseBuildingStage = [
   {
     title: 'Awaiting respondent evidence',
     active: true,
-    ticked: false
+    ticked: true
   },
   {
     title: 'Case building',

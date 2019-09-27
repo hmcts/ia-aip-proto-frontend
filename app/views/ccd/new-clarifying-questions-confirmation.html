@@ -14,6 +14,7 @@
   <h2 class="govuk-heading-s">What happens next</h2>
 
   <p> {{ i18n.tcw.additionalQuestionConfirmation.nextSection.content }} </p>
+  <p>The direction due date is {{ date | dateFilter }}</p>
 
   <form action="/ccd/case/clarifying-questions/confirmation" method="POST">
     <div class="buttons__container">
