@@ -35,7 +35,6 @@ function extraFieldErrors(fieldErrors) {
 
 // eslint-disable-next-line no-unused-vars
 function saveAndRedirect(formData = null, req) {
-  if (req.body.hasOwnProperty('save-continue')) return paths.contactDetails;
   return paths.taskList;
 }
 

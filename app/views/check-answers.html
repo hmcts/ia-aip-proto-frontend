@@ -14,11 +14,9 @@
 
             {% set contactDetails %}
                 {% if appealData.yourDetails.contactDetails.email.selected %}
-                    <strong>Email</strong><br />
                     {{ appealData.yourDetails.contactDetails.email.emailAddress }}<br />
                 {% endif %}
                 {% if appealData.yourDetails.contactDetails.text.selected %}
-                    <strong>Phone number</strong><br />
                     {{ appealData.yourDetails.contactDetails.text.phoneNumber }}<br />
                 {% endif %}
                 {% if appealData.yourDetails.contactDetails.post.selected %}
@@ -45,11 +43,8 @@
             {% endset %}
 
             {% set appellantName %}
-                <strong>Title</strong><br />
-                {{ appealData.yourDetails.personalDetails.title }}<br />
-                <strong>Given names</strong><br />
-                {{ appealData.yourDetails.personalDetails.givenNames }}<br />
-                <strong>Family name</strong><br />
+                {{ appealData.yourDetails.personalDetails.title }}
+                {{ appealData.yourDetails.personalDetails.givenNames }}
                 {{ appealData.yourDetails.personalDetails.familyName }}
             {% endset %}
 
