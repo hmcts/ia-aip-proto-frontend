@@ -11,12 +11,15 @@ function extractBody(req) {
     languages = [];
   }
 
-  if (req.body.addNew) {
-    languages.push({
-      name: req.body.name,
-      dialect: req.body.dialect
-    });
-  } else if (req.body.delete) {
+  // eslint-disable-next-line no-undefined
+  if (req.body.delete === undefined) {
+    if (req.body.name !== 'Select language') {
+      languages.push({
+        name: req.body.name,
+        dialect: req.body.dialect
+      });
+    }
+  } else {
     languages.splice(req.body.delete, 1);
   }
   return {
@@ -34,7 +37,8 @@ function createFormController() {
     false,
     false,
     (formData, req) => {
-      if (req.body.addNew || req.body.delete) {
+      // eslint-disable-next-line no-undefined
+      if (req.body.addNew || req.body.delete !== undefined) {
         return paths.hearingInterpreterDetails;
       } else if (req.body.saveForLater) {
         return paths.hearingAppellantTaskList;

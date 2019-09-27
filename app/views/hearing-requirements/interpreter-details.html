@@ -7,10 +7,133 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-xl" xmlns="http://www.w3.org/1999/html">Submit hearing requirements</h1>
 
     <form action="/hearing-requirements/interpreter-details" method="post">
+        {% if formData.languages and formData.languages.length > 0 %}
+            {% for language in formData.languages %}
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-half">
+                        <h3 class="govuk-!-margin-bottom-0">Language details {{ loop.index }}
+                            {{ govukButton({
+                                text: "Remove",
+                                name: "delete",
+                                value: loop.index0,
+                                classes: "govuk-button--secondary govuk-!-margin-bottom-0 float-right"
+                            }) }}
+                        </h3>
+                    </div>
+                </div>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-half">
+                        {% call govukFieldset({
+                            legend: {
+                                text: "Language"
+                            }
+                        }) %}
 
+                        {% endcall %}
+                        {{ govukSelect({
+                            id: "name" + loop.index0,
+                            name: "name" + loop.index0,
+                            classes: "full-width",
+
+                            items: [
+                                {
+                                    value: "Select language",
+                                    text: "Select language",
+                                    selected: language.name == 'Select language'
+                                },
+                                {
+                                    value: "Afrikaans",
+                                    text: "Afrikaans",
+                                    selected: language.name == 'Afrikaans'
+                                },
+                                {
+                                    value: "Albanian",
+                                    text: "Albanian",
+                                    selected: language.name == 'Albanian'
+                                },{
+                                    value: "Arabic",
+                                    text: "Arabic",
+                                    selected: language.name == 'Arabic'
+                                },{
+                                    value: "Bengali",
+                                    text: "Bengali",
+                                    selected: language.name == 'Bengali'
+                                },{
+                                    value: "French",
+                                    text: "French",
+                                    selected: language.name == 'French'
+                                },{
+                                    value: "Hindi",
+                                    text: "Hindi",
+                                    selected: language.name == 'Hindi'
+                                },{
+                                    value: "Kazakh",
+                                    text: "Kazakh",
+                                    selected: language.name == 'Kazakh'
+                                },{
+                                    value: "Somali",
+                                    text: "Somali",
+                                    selected: language.name == 'Somali'
+                                },{
+                                    value: "Spanish",
+                                    text: "Spanish",
+                                    selected: language.name == 'Spanish'
+                                },{
+                                    value: "Turkish",
+                                    text: "Turkish",
+                                    selected: language.name == 'Turkish'
+                                },
+                                {
+                                    value: "Urdu",
+                                    text: "Urdu",
+                                    selected: language.name == 'Urdu'
+                                },
+                                {
+                                    value: "Welsh",
+                                    text: "Welsh",
+                                    selected: language.name == 'Welsh'
+                                },{
+                                    value: "Zulu",
+                                    text: "Zulu",
+                                    selected: language.name == 'Zulu'
+                                }
+                            ]
+                        }) }}
+                    </div>
+                </div>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-one-half">
+
+                        {{ govukInput({
+                            label: {
+                                text: 'Dialect'
+                            },
+                            id: 'dialect' + loop.index0,
+                            name: 'dialect' + loop.index0,
+                            classes: "full-width",
+                            value: language.dialect,
+                            errorMessage: errors.fieldErrors[id]
+                        }) }}
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+                {% if formData.languages %}
+                    {% set languagesLength = formData.languages.length + 1 %}
+                {% else %}
+                    {% set languagesLength = 1 %}
+                {% endif %}
+
+                <h3 class="govuk-!-margin-bottom-0">Language details {{ languagesLength }}</h3>
+            </div>
+        </div>
         <div class="govuk-grid-row">
             <div class="govuk-grid-column-one-half">
                 {% call govukFieldset({
@@ -18,6 +141,8 @@
                         text: "Language"
                     }
                 }) %}
+
+                {% endcall %}
 
                 {{ govukSelect({
                     id: "name",
@@ -27,27 +152,61 @@
                         {
                             value: "Select language",
                             text: "Select language",
-                            selected: formData.number == 'Select language'
+                            selected: language.name == 'Select language'
                         },
                         {
+                            value: "Afrikaans",
+                            text: "Afrikaans",
+                            selected: language.name == 'Afrikaans'
+                        },
+                        {
+                            value: "Albanian",
+                            text: "Albanian",
+                            selected: language.name == 'Albanian'
+                        },{
+                            value: "Arabic",
+                            text: "Arabic",
+                            selected: language.name == 'Arabic'
+                        },{
+                            value: "Bengali",
+                            text: "Bengali",
+                            selected: language.name == 'Bengali'
+                        },{
                             value: "French",
                             text: "French",
-                            selected: formData.number == 'French'
-                        },
-                        {
-                            value: "German",
-                            text: "German",
-                            selected: formData.number == 'German'
-                        },
-                        {
-                            value: "Italian",
-                            text: "Italian",
-                            selected: formData.number == 'Italian'
-                        },
-                        {
+                            selected: language.name == 'French'
+                        },{
+                            value: "Hindi",
+                            text: "Hindi",
+                            selected: language.name == 'Hindi'
+                        },{
+                            value: "Kazakh",
+                            text: "Kazakh",
+                            selected: language.name == 'Kazakh'
+                        },{
+                            value: "Somali",
+                            text: "Somali",
+                            selected: language.name == 'Somali'
+                        },{
                             value: "Spanish",
                             text: "Spanish",
-                            selected: formData.number == 'Spanish'
+                            selected: language.name == 'Spanish'
+                        },{
+                            value: "Turkish",
+                            text: "Turkish",
+                            selected: language.name == 'Turkish'
+                        },{
+                            value: "Urdu",
+                            text: "Urdu",
+                            selected: language.name == 'Urdu'
+                        },{
+                            value: "Welsh",
+                            text: "Welsh",
+                            selected: language.name == 'Welsh'
+                        },{
+                            value: "Zulu",
+                            text: "Zulu",
+                            selected: language.name == 'Zulu'
                         }
                     ]
                 }) }}
@@ -74,39 +233,6 @@
                 value: "addNew",
                 classes: "govuk-button--secondary"
             }) }}
-
-            {% if formData.languages and formData.languages.length > 0 %}
-                {% set languages = [] %}
-                {% for language in formData.languages %}
-                    {% set languages = (languages.push([
-                        {
-                            text: language.name
-                        },
-                        {
-                            text: language.dialect
-                        },
-                        {
-                            html: "<button type='submit' name='delete' value='" + loop.index0 + "' class='button-link gov-details'>Delete</button>",
-                            format: "numeric"
-                        }
-                    ]), languages) %}
-                {% endfor %}
-
-                {{ govukTable({
-                    firstCellIsHeader: false,
-                    head: [
-                        {
-                            text: "Language"
-                        },
-                        {
-                            text: "Dialect"
-                        },
-                        {}
-                    ],
-                    rows: languages
-                }) }}
-            {% endif %}
-        {% endcall %}
 
         <div class="grey-background govuk-!-margin-bottom-7">
             <p class="govuk-!-margin-bottom-0">A dialect is a form of a language that is spoken in a part of a country or by groups of people in a country.</p>

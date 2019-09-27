@@ -231,7 +231,7 @@ module.exports = (req, res, next) => {
         interpreter: {
           completed: true,
           required: 'yes',
-          languages: [{ name: 'French', dialect: 'Dialect 1' }, { name: 'German', dialect: 'Dialect 2' }]
+          languages: [{ name: 'French', dialect: 'Dialect 1' }, { name: 'Urdu', dialect: 'Dakhini' }]
         },
         stepFree: { completed: true, stepFree: 'yes' },
         hearingLoop: { completed: true, hearingLoop: 'yes' },
