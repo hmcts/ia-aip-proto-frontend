@@ -1,6 +1,6 @@
-/* eslint-disable max-lines */
 const moment = require('moment');
 const { CLARIFYING_QUESTIONS_SENT } = require('../data/constants');
+const { directionsPrepopulated } = require('../data/prepopulatedData');
 
 module.exports = (req, res, next) => {
   if (!req.session.appealData) {
@@ -154,7 +154,6 @@ module.exports = (req, res, next) => {
     Object.assign(req.session.appealData, {
       questions: [
         {
-          title: 'Tell us more about your children',
           description: 'You said you had three children in your appeal. ' +
             'Please can you give us some more information about them:\n\n' +
             '* What are their names?\n' +
@@ -163,7 +162,6 @@ module.exports = (req, res, next) => {
           completed: false
         },
         {
-          title: 'Tell us more about your health issues',
           description: `You said you have chronic back pain.\n\n
             * How long have you suffered from this problem?
             * How does it affect your daily life?
@@ -173,6 +171,17 @@ module.exports = (req, res, next) => {
       ],
       anythingElseToAdd: {
         completed: false
+      },
+      directions: {
+        appellant: directionsPrepopulated.appellant,
+        date: {
+          year: '2019',
+          month: '11',
+          day: '01',
+          hours: '10',
+          minutes: '30',
+          seconds: '00'
+        }
       }
     });
   }
@@ -302,6 +311,5 @@ module.exports = (req, res, next) => {
       }
     });
   }
-
   next();
 };

@@ -48,11 +48,14 @@
         {% if not state %}
           <p>{{ i18n.tcw.overview.nextSection.para1 | safe }}</p>
           <p>{{ i18n.tcw.overview.nextSection.para2 | safe }}</p>
-          <p>{{ i18n.tcw.overview.nextSection.action1 | safe }}</p>
-          <p>{{ i18n.tcw.overview.nextSection.action2 | safe }}</p>
-          <p>{{ i18n.tcw.overview.nextSection.action3 | safe }}</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>{{ i18n.tcw.overview.nextSection.action1 | safe }}</li>
+            <li>{{ i18n.tcw.overview.nextSection.action2 | safe }}</li>
+            <li>{{ i18n.tcw.overview.nextSection.action3 | safe }}</li>
+          </ul>
         {% elif state == 'CLARIFYING_QUESTIONS_SENT' %}
           <p>{{ i18n.tcw.overview.nextSection.appellantDirectedToQuestions }}</p>
+          <p><p>The direction due date is {{ directions.date | dateFilter }}</p></p>
         {% elif state == 'DIRECTED_CASE_MANAGEMENT_APPOINTMENT' %}
           <p>{{ i18n.tcw.overview.nextSection.directedCaseManagementAppointment }} {{ directions.date | dateFilter }}</p>
         {% endif %}
