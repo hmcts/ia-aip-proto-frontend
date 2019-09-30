@@ -7,7 +7,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-xl" xmlns="http://www.w3.org/1999/html">Submit hearing requirements</h1>
+    <h1 class="govuk-heading-xl" xmlns="http://www.w3.org/1999/html">Add language details</h1>
 
     <form action="/hearing-requirements/interpreter-details" method="post">
         {% if formData.languages and formData.languages.length > 0 %}
