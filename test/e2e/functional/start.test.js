@@ -20,8 +20,8 @@ describe('Hello world page', () => {
     startPage.verifyPath();
   });
 
-  it('has Hello world heading', async() => {
+  it('has Appeal an immigration or asylum decision heading', async() => {
     await startPage.captureScreenshot('start');
-    expect(await startPage.getHeading()).to.equal('Start your appeal');
+    expect(await startPage.getHeading()).to.equal('Appeal an immigration or asylum decision');
   });
 });
