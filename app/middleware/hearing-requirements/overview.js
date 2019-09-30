@@ -2,16 +2,17 @@ const stages = require('../../data/appealStages');
 
 module.exports = (req, res) => {
   const reasonsForAppealCompleted = req.session.appealData.appealDetails.reasonsForAppeal.completed;
-  stages[1].ticked = true;
-  stages[2].active = true;
-  stages[2].ticked = true;
-  stages[3].active = true;
-  stages[3].ticked = true;
-  stages[4].active = true;
+  const userStages = JSON.parse(JSON.stringify(stages));
+  userStages[1].ticked = true;
+  userStages[2].active = true;
+  userStages[2].ticked = true;
+  userStages[3].active = true;
+  userStages[3].ticked = true;
+  userStages[4].active = true;
 
   res.render('hearing-requirements/overview.html', {
     hideBackLink: true,
-    stages,
+    stages: userStages,
     reasonsForAppealCompleted,
     appealData: req.session.appealData
   });
