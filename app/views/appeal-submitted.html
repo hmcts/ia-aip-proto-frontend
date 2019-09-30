@@ -14,10 +14,10 @@
             <div >
                 <ul>
                     <li class="govuk-body">You will receive a notification to confirm that the tribunal has received your appeal application</li>
-                    <li class="govuk-body">A Tribunal case worker will contact you within 14 days to tell you what to do next</li>
+                    <li class="govuk-body">A Tribunal case worker will contact you by <strong>{{ appealData.respondByDate }}</strong> to tell you what to do next</li>
                     <li class="govuk-body">
-                        If you haven't heard from us in 14 days, call <strong>0330 123 1234</strong> or 
-                        email <a href="mailto:email.support@hmcts.net">email.support@hmcts.net</a>
+                        If you haven't heard from us by <strong>{{ appealData.respondByDate }}</strong>, call <strong>0330 123 1234</strong> or
+                        email <a href="mailto:email.support@hmcts.net">support@hmcts.net</a>
                     </li>
                 </ul>
             </div>

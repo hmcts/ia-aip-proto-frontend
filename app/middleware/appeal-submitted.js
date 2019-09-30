@@ -11,5 +11,6 @@ module.exports = (req, res) => {
   //     () => res.render('appeal-submitted.html', { hideBackLink: true }), error => res.status(errorStatus).send(`Something went wrong!!\n${error}`)
   //   );
   // }).catch(createHeaderError => res.status(errorStatus).send(`Something went wrong!!\n${createHeaderError}`));
-  res.render('appeal-submitted.html', { hideBackLink: true });
+  const appealData = req.session.appealData;
+  res.render('appeal-submitted.html', { hideBackLink: true, appealData });
 };
