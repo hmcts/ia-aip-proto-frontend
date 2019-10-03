@@ -58,7 +58,7 @@ function create(options) {
   const sessionSecret = config.get('session.redis.secret');
   // app.use(session({
   //   secret: sessionSecret,
-  //   name: 'ia-aip-frontend',
+  //   name: 'ia-aip-proto-frontend',
   //   resave: false,
   //   saveUninitialized: true,
   //   cookie: { secure: false },

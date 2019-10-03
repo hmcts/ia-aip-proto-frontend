@@ -1,13 +1,13 @@
 #!groovy
 properties(
-        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ia-aip-frontend'],
+        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ia-aip-proto-frontend'],
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
 @Library("Infrastructure")
 
 def product = "ia"
-def component = "aip-frontend"
+def component = "aip-proto-frontend"
 
 def secrets = [
         'sscs-${env}': [
