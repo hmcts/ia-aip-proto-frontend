@@ -42,7 +42,7 @@ data "azurerm_key_vault_secret" "idam-secret" {
   vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
 }
 
-module "ia_aip_frontend" {
+module "ia_aip_proto_frontend" {
   source               = "git@github.com:hmcts/cnp-module-webapp?ref=master"
   product              = "${var.product}-${var.component}"
   location             = "${var.location}"
