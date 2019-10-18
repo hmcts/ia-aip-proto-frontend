@@ -16,6 +16,10 @@ function extraFormData(req) {
 
 function checkDate(date) {
   const EXPIRATION = 14;
+  const HOURS = 24;
+  const MINUTES = 1000;
+  const SECONDS = 3600;
+
   const currentDay = new Date().getDate();
   const currentMonth = new Date().getUTCMonth() + 1;
   const currentYear = new Date().getFullYear();
@@ -24,17 +28,13 @@ function checkDate(date) {
   const dateEntered = new Date(`${date.year}
   /${date.month}/${date.day}`);
 
-  const difference = ((currentDate.getTime() - dateEntered.getTime()) / (1000 * 3600 * 24));
+  const difference = ((currentDate.getTime() - dateEntered.getTime()) / (MINUTES * SECONDS * HOURS));
 
   return difference >= EXPIRATION;
 }
 
 // eslint-disable-next-line no-unused-vars
 function submitNextPage(formData = null, req) {
-  console.log(req.session.appealData);
-  console.log(req.session.appealData.yourDetails.homeOffice.formData);
-  console.log(req.session.appealData.yourDetails.personalDetails);
-  console.log(req.session.appealData.yourDetails.contactDetails.text);
   if (checkDate(req.session.appealData.yourDetails.homeOffice.letterDate)) return paths.appealOutOfTimeSubmission;
   return paths.appealSubmitted;
   // text: appealData.yourDetails.homeOffice.letterDate.day + '

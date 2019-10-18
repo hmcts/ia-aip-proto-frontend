@@ -2,7 +2,7 @@ const express = require('express');
 const paths = require('./paths');
 const locale = require('./locale/en.json');
 
-const outOfTimeAppealSubmission = require('./middleware/out-of-time-appeal-submitted')
+const outOfTimeAppealSubmission = require('./middleware/out-of-time-appeal-submitted');
 const homeOfficeController = require('./middleware/home-office-details');
 const appealOutOfTime = require('./middleware/appeal-out-of-time-form');
 const dateLetterSentController = require('./middleware/date-letter-sent');

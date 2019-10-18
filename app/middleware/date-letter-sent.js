@@ -36,6 +36,9 @@ function extraFieldErrors(fieldErrors) {
 
 function checkDate(date) {
   const EXPIRATION = 14;
+  const HOURS = 24;
+  const MINUTES = 1000;
+  const SECONDS = 3600;
   const currentDay = new Date().getDate();
   const currentMonth = new Date().getUTCMonth() + 1;
   const currentYear = new Date().getFullYear();
@@ -44,7 +47,7 @@ function checkDate(date) {
   const dateEntered = new Date(`${date['date-letter-sent-year']}
   /${date['date-letter-sent-month']}/${date['date-letter-sent-day']}`);
 
-  const difference = ((currentDate.getTime() - dateEntered.getTime()) / (1000 * 3600 * 24));
+  const difference = ((currentDate.getTime() - dateEntered.getTime()) / (MINUTES * SECONDS * HOURS));
 
   return difference >= EXPIRATION;
 }
