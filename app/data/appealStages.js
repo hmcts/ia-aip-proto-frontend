@@ -1,46 +1,26 @@
 const stages = [
   {
-    title: 'Appeal submitted',
+    title: 'Start your appeal',
     active: true,
     ticked: true
   },
   {
-    title: 'Building your case',
+    title: 'Tell us more',
     active: true,
     ticked: false
   },
   {
-    title: 'Case worker review',
+    title: 'Prepare for your hearing',
     active: false,
     ticked: false
   },
   {
-    title: 'Home Office review',
+    title: 'Go to your hearing',
     active: false,
     ticked: false
   },
   {
-    title: 'Hearing needs',
-    active: false,
-    ticked: false
-  },
-  {
-    title: 'Hearing booked',
-    active: false,
-    ticked: false
-  },
-  {
-    title: 'Prepare for hearing',
-    active: false,
-    ticked: false
-  },
-  {
-    title: 'Hearing',
-    active: false,
-    ticked: false
-  },
-  {
-    title: 'Decision',
+    title: 'Get your decision',
     active: false,
     ticked: false
   }

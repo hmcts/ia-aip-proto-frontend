@@ -6,11 +6,39 @@
     {{ errorSummary(errors) }}
 
     <form action="/type-of-appeal" method="post">
-        {% set seeExamples %}
+        {% set Protection %}
             {{ govukDetails({
                 summaryText: "What does this mean?",
-                text: "Some examples to go here"
+                text: "You might be afraid of the government, police or other groups in your home country because of your nationality, race, religion, political opinion or other reason. "
             }) }}
+        {% endset %}
+
+        {% set HR %}
+        {{ govukDetails({
+        summaryText: "What does this mean?",
+        text: "You might have a partner or children living in the UK, have lived and worked in the UK for a long time or be receiving long-term medical treatment in the UK."
+        }) }}
+        {% endset %}
+
+        {% set EEA %}
+        {{ govukDetails({
+        summaryText: "What does this mean?",
+        text: "You might be, or have been, a family member or carer of an EEA/Swiss national, or have lived in another EEA country with a British family member, and want to either come to or stay in the UK."
+        }) }}
+        {% endset %}
+
+        {% set RVoP %}
+        {{ govukDetails({
+        summaryText: "What does this mean?",
+        text: "Your protection status might have been taken away if it is believed you no longer need it, you don't tell the truth in your claim or you have committed a serious crime."
+        }) }}
+        {% endset %}
+
+        {% set DoC %}
+        {{ govukDetails({
+        summaryText: "What does this mean?",
+        text: "Your British citizenship might have been taken away if it is believed you were involved in behaviours including terrorism, espionage or serious organised crime."
+        }) }}
         {% endset %}
 
         {{ govukCheckboxes({
@@ -33,7 +61,7 @@
                     html: "<b>Protection</b> (You will be persecuted or harmed in some way if you are removed from the UK)",
                     checked: formData.protection,
                     hint: {
-                        html: seeExamples
+                        html: Protection
                 }
 
                 },
@@ -42,7 +70,7 @@
                     html: "<b>Human Rights</b> (You have a family and/or private life in the UK, or a serious medical condition)",
                     checked: formData.humanRights,
                     hint: {
-                        html: seeExamples
+                        html: HR
                     }
                 },
                 {
@@ -50,7 +78,7 @@
                     html: "<b>European Economic Area (EEA)</b> (You are, or a family member is, an EEA/Swiss national)",
                     checked: formData.eea,
                     hint: {
-                    html: seeExamples
+                    html: EEA
                     }
                 },
                 {
@@ -58,7 +86,7 @@
                     html: "<b>Revocation of Protection Status</b> (Your protection status was taken away)",
                     checked: formData.revocationOfProtection,
                     hint: {
-                        html: seeExamples
+                        html: RVoP
                     }
                 },
                 {
@@ -66,7 +94,7 @@
                     html: "<b>Deprivation of Citizenship</b> (Your British citizenship was taken away)",
                     checked: formData.deprivationOfCitizenship,
                     hint: {
-                        html: seeExamples
+                        html: DoC
                     }
                 }
             ]
