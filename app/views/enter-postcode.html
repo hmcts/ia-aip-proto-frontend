@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% block content %}
+{{ errorSummary(errors) }}
+
+<h1 class="govuk-heading-xl">What is your address?</h1>
+
+<form action="/enter-postcode" method="post">
+    {{ govukInput({
+    label: {
+    text: "Enter a UK postcode"
+    },
+    classes: "govuk-input--width-20",
+    id: "postcode",
+    name: "postcode"
+    }) }}
+
+
+    <div class="buttons__container">
+        {{ govukButton({
+        text: "Find Address",
+        name: "save-continue"
+        }) }}
+    </div>
+</form>
+
+{{ contactUs() }}
+
+{% endblock %}

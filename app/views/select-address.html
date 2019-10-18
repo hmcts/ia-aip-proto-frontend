@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
+
+{% block content %}
+{{ errorSummary(errors) }}
+
+<h1 class="govuk-heading-xl">What is your address?</h1>
+
+<form action="/select-address" method="post">
+
+    <p>Postcode</p>
+    {{ govukSelect({
+    id: "address",
+    name: "address",
+    label: {
+    text: "Select an address"
+    },
+    items: [
+    {
+    value: "N/A",
+    text: "Pick address from the list",
+    selected: true
+    },
+    {
+    value: "Somewhere at your home address",
+    text: "Home"
+    },
+    {
+    value: "Somewhere at a friends address",
+    text: "Friends"
+    },
+    {
+    value: "Somewhere at a work address",
+    text: "Work"
+    }
+    ]
+    }) }}
+    <p><a href="/manual-address">I can't find my address in the list</a></p>
+
+
+    <div class="buttons__container">
+        {{ govukButton({
+        text: "Save and continue",
+        name: "save-continue"
+        }) }}
+
+        {{ govukButton({
+        text: "Save for later",
+        name: "save-return",
+        classes: "govuk-button--secondary"
+        }) }}
+    </div>
+</form>
+{{ contactUs() }}
+{% endblock %}

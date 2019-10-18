@@ -24,6 +24,12 @@
       "dateOfBirth": "Must set date of birth"
     }
   },
+  "yourNationality": {
+    "errors": {
+      "selectOne": "Please select one",
+      "cantSelectBoth": "One need to be selected"
+    }
+  },
   "contactDetails": {
     "errors": {
       "selectAnOption": "Must select a contact option",

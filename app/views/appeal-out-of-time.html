@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+
+
+{% block content %}
+{{ errorSummary(errors) }}
+
+{% set files %}
+    No Files
+{% endset %}
+
+<h1 class="govuk-heading-xl">Your appeal is out of time</h1>
+
+<p class="govuk-body">
+   You have missed the 14-day deadline for making an appeal.
+    You may still be able to appeal. Please tell us why your appeal is late below, and provide any supporting evidence.
+</p>
+<form action="/appeal-out-of-time" method="post">
+
+    {{ govukTextarea({
+    name: "reason",
+    id: "reason"
+    }) }}
+
+    <h1 class="govuk-heading-s">Supporting evidence</h1>
+
+
+    {{ govukFileUpload({
+    id: "file-upload",
+    name: "file-upload",
+    label: {
+    text: "Upload a file"
+    },
+    value: "This File"
+    }) }}
+
+
+    {{ govukInput({
+    label: {
+    text: "What is the file?"
+    },
+    classes: "govuk-input--width-20",
+    id: "file",
+    name: "file",
+    hint: "e.g a country report or a copy of birth certificate"
+    }) }}
+
+
+    {{ govukButton({
+    text: "Upload file",
+    name: "upload-file",
+    classes: "govuk-button--secondary"
+    }) }}
+
+    <h1 class="govuk-heading-s">Uploaded Files</h1>
+    <hr>
+    <p class="govuk-body">{{files}}</p>
+    <hr>
+    <div class="buttons__container">
+        {{ govukButton({
+        text: "Save and continue",
+        name: "save-continue"
+        }) }}
+
+        {{ govukButton({
+        text: "Save for later",
+        name: "save-return",
+        classes: "govuk-button--secondary"
+        }) }}
+    </div>
+
+</form>
+
+{{ contactUs() }}
+
+{% endblock %}

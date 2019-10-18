@@ -8,7 +8,7 @@
     <form action="/type-of-appeal" method="post">
         {% set seeExamples %}
             {{ govukDetails({
-                summaryText: "See examples",
+                summaryText: "What does this mean?",
                 text: "Some examples to go here"
             }) }}
         {% endset %}
@@ -34,7 +34,8 @@
                     checked: formData.protection,
                     hint: {
                         html: seeExamples
-                    }
+                }
+
                 },
                 {
                     value: "humanRights",

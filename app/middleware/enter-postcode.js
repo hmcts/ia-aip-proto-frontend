@@ -4,29 +4,25 @@ const paths = require('../paths');
 
 function validation(locale) {
   const errors = locale.personalDetails.errors;
-  return [
-    check('given-names').not().isEmpty().withMessage(errors.givenName),
-    check('family-name').not().isEmpty().withMessage(errors.familyName)
-  ];
+  return [check('postcode').not().isEmpty().withMessage(errors.givenName)];
 }
 
 function extractBody(req) {
   return {
-    givenNames: req.body['given-names'],
-    familyName: req.body['family-name']
+    postcode: req.body.postcode
   };
 }
 
 // eslint-disable-next-line no-unused-vars
 function saveAndRedirect(formData = null, req) {
   console.log(req.body);
-  if (req.body.hasOwnProperty('save-continue')) return paths.dateOfBirth;
+  if (req.body.hasOwnProperty('save-continue')) return paths.selectAddress;
   return paths.taskList;
 }
 
 function createFormController() {
   return formController(
-    'personal-details.html',
+    'enter-postcode.html',
     'yourDetails',
     'personalDetails',
     validation,

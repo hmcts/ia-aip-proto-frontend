@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
+
+{% block content %}
+{{ errorSummary(errors) }}
+
+<h1 class="govuk-heading-xl">What is your nationality?</h1>
+
+<form action="/your-nationality" method="post">
+    {{ govukSelect({
+    id: "nationality",
+    name: "nationality",
+    items: [
+    {
+    value: "",
+    text: "Please select a nationality",
+    selected: true
+    },
+    {
+    value: "UK",
+    text: "United Kingdom"
+    },
+    {
+    value: "USA",
+    text: "United States"
+    },
+    {
+    value: "Other",
+    text: "Other"
+    }
+    ]
+    }) }}
+
+
+    {{ govukCheckboxes({
+    idPrefix: "stateless",
+    name: "stateless",
+    fieldset: {
+    legend: {
+    isPageHeading: false,
+    classes: "govuk-fieldset__legend--xl"
+    }
+    },
+    items: [
+    {
+    value: "stateless",
+    text: "I am stateless (A stateless person is not a citizen of any country)."
+    }
+    ]
+    }) }}
+    <div class="buttons__container">
+        {{ govukButton({
+        text: "Save and continue",
+        name: "save-continue"
+        }) }}
+
+        {{ govukButton({
+        text: "Save for later",
+        name: "save-return",
+        classes: "govuk-button--secondary"
+        }) }}
+    </div>
+
+</form>
+
+{{ contactUs() }}
+
+{% endblock %}

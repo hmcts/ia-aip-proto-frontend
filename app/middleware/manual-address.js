@@ -4,36 +4,36 @@ const paths = require('../paths');
 
 function validation(locale) {
   const errors = locale.personalDetails.errors;
-  return [
-    check('given-names').not().isEmpty().withMessage(errors.givenName),
-    check('family-name').not().isEmpty().withMessage(errors.familyName)
-  ];
+  return [check('addressline1').not().isEmpty().withMessage(errors.givenName)];
 }
 
 function extractBody(req) {
   return {
-    givenNames: req.body['given-names'],
-    familyName: req.body['family-name']
+    addressline1: req.body.addressline1,
+    addressline2: req.body.addressline2,
+    addresstown: req.body.addresstown,
+    addresscounty: req.body.addresscounty,
+    addresspostcode: req.body.addresspostcode
   };
 }
 
 // eslint-disable-next-line no-unused-vars
 function saveAndRedirect(formData = null, req) {
   console.log(req.body);
-  if (req.body.hasOwnProperty('save-continue')) return paths.dateOfBirth;
   return paths.taskList;
 }
 
 function createFormController() {
   return formController(
-    'personal-details.html',
+    'manual-address.html',
     'yourDetails',
     'personalDetails',
     validation,
     extractBody,
     false,
     false,
-    saveAndRedirect
+    saveAndRedirect,
+
   );
 }
 

@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% block content %}
+{{ errorSummary(errors) }}
+
+<h1 class="govuk-heading-xl">What date was the letter sent?</h1>
+
+
+<p>
+   You can usually find this stamped on the envelope of the decision letter. If you don't have the envelope, you can enter the date on the
+    first page of the decision letter.
+</p>
+<img src="/public/images/home_office_letter.png" alt="Where to find reference and data issued on Home Office decision letter."/>
+<form action="/date-letter-sent" method="post">
+    {{ govukDateInput({
+         id: "date-letter-sent",
+        namePrefix: "date-letter-sent",
+    fieldset: {
+    legend: {
+    text: "Date letter sent",
+    isPageHeading: false
+    }
+    },
+    hint: {
+    text: "For example, 27 3 2007"
+    },
+    errorMessage: errors.fieldErrors['date-letter-sent'],
+    items: [
+    {
+    classes: "govuk-input--width-2 " + errors.fieldErrors['date-letter-sent-day'].class,
+    name: "day",
+    value: formData.letterDate.day
+    },
+    {
+    classes: "govuk-input--width-2 "  + errors.fieldErrors['date-letter-sent-month'].class,
+    name: "month",
+    value: formData.letterDate.month
+    },
+    {
+    classes: "govuk-input--width-4 " + errors.fieldErrors['date-letter-sent-year'].class,
+    name: "year",
+    value: formData.letterDate.year
+    }
+    ]
+    }) }}
+    <div class="buttons__container">
+        {{ govukButton({
+        text: "Save and continue",
+        name: "save-continue"
+        }) }}
+
+        {{ govukButton({
+        text: "Save for later",
+        name: "save-return",
+        classes: "govuk-button--secondary"
+        }) }}
+    </div>
+</form>
+
+{{ contactUs() }}
+
+{% endblock %}

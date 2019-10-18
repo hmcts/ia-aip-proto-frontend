@@ -2,33 +2,28 @@ const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 const paths = require('../paths');
 
-function validation(locale) {
-  const errors = locale.personalDetails.errors;
-  return [
-    check('given-names').not().isEmpty().withMessage(errors.givenName),
-    check('family-name').not().isEmpty().withMessage(errors.familyName)
-  ];
+function validation() {
+  return [check('reason').not().isEmpty().withMessage('Enter the reason your appeal is late')];
 }
 
 function extractBody(req) {
   return {
-    givenNames: req.body['given-names'],
-    familyName: req.body['family-name']
+    reason: req.body.reason,
+    fileUpload: req.body['file-upload'],
+    file: req.body.file
   };
 }
 
 // eslint-disable-next-line no-unused-vars
 function saveAndRedirect(formData = null, req) {
-  console.log(req.body);
-  if (req.body.hasOwnProperty('save-continue')) return paths.dateOfBirth;
   return paths.taskList;
 }
 
 function createFormController() {
   return formController(
-    'personal-details.html',
+    'appeal-out-of-time.html',
     'yourDetails',
-    'personalDetails',
+    'homeOffice',
     validation,
     extractBody,
     false,

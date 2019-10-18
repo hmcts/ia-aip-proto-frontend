@@ -19,9 +19,12 @@
                 {% if appealData.yourDetails.contactDetails.text.selected %}
                     {{ appealData.yourDetails.contactDetails.text.phoneNumber }}<br />
                 {% endif %}
-                {% if appealData.yourDetails.contactDetails.post.selected %}
-                    By post
+                {% if appealData.yourDetails.personalDetails.address %}
+                    {{ appealData.yourDetails.personalDetails.address }}<br />
                 {% endif %}
+                {% if appealData.yourDetails.personalDetails.postcode %}
+                     {{ appealData.yourDetails.personalDetails.postcode }}<br />
+                 {% endif %}
             {% endset %}
 
             {% set decisionType %}
@@ -43,7 +46,6 @@
             {% endset %}
 
             {% set appellantName %}
-                {{ appealData.yourDetails.personalDetails.title }}
                 {{ appealData.yourDetails.personalDetails.givenNames }}
                 {{ appealData.yourDetails.personalDetails.familyName }}
             {% endset %}
@@ -56,7 +58,7 @@
                             text: "Home Office reference number"
                         },
                             value: {
-                            text: appealData.yourDetails.homeOffice.refNumber
+                            text: appealData.yourDetails.homeOffice.formData.refNumber
                         },
                             actions: {
                             items: [
@@ -119,6 +121,23 @@
                             ]
                         }
                     },
+            {
+            key: {
+            text: "Nationality"
+            },
+            value: {
+            text: appealData.yourDetails.personalDetails.nationality
+            },
+            actions: {
+            items: [
+            {
+            href: "/date-of-birth",
+            text: "Change",
+            visuallyHiddenText: "Change date of birth"
+            }
+            ]
+            }
+            },
                     {
                         key: {
                         text: "Contact details"

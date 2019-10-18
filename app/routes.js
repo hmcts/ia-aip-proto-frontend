@@ -2,7 +2,10 @@ const express = require('express');
 const paths = require('./paths');
 const locale = require('./locale/en.json');
 
+const outOfTimeAppealSubmission = require('./middleware/out-of-time-appeal-submitted')
 const homeOfficeController = require('./middleware/home-office-details');
+const appealOutOfTime = require('./middleware/appeal-out-of-time-form');
+const dateLetterSentController = require('./middleware/date-letter-sent');
 const personalDetailsController = require('./middleware/persoanl-details');
 const dateOfBirthController = require('./middleware/date-of-birth');
 const contactDetailsController = require('./middleware/contact-details');
@@ -38,6 +41,11 @@ const hearingAnythingElseDescription = require('./middleware/hearing-requirement
 const uploadController = require('./middleware/case-building/upload-evidence');
 const uploadQuestionController = require('./middleware/case-building/upload-evidence-question');
 const uploadAnythingElseController = require('./middleware/case-building/upload-evidence-anything-else');
+const yourNationality = require('./middleware/your-nationality');
+const enterPostcode = require('./middleware/enter-postcode');
+const selectAddress = require('./middleware/select-address');
+const uploadFile = require('./middleware/uploadFile');
+const manualAddress = require('./middleware/manual-address');
 const getAppealOverview = require('./middleware/appeal-overview');
 
 /* eslint-disable new-cap */
@@ -55,11 +63,17 @@ router.use(paths.ccd, ccdController);
 router.use(paths.taskList, require('./middleware/task-list'));
 
 setupFormController(paths.homeOfficeDetails, homeOfficeController);
+setupFormController(paths.selectAddress, selectAddress);
+setupFormController(paths.enterPostcode, enterPostcode);
+setupFormController(paths.yourNationality, yourNationality);
+setupFormController(paths.appealOutOfTime, appealOutOfTime);
+setupFormController(paths.dateLetterSent, dateLetterSentController);
 setupFormController(paths.personalDetails, personalDetailsController);
 setupFormController(paths.dateOfBirth, dateOfBirthController);
 setupFormController(paths.contactDetails, contactDetailsController);
 setupFormController(paths.typeOfAppeal, typeOfAppealController);
 setupFormController(paths.checkAnswers, checkAnswersController);
+setupFormController(paths.manualAddress, manualAddress);
 
 router.get(paths.reasonsForAppeal, reasonsForAppealController.get);
 router.post(paths.reasonsForAppeal, reasonsForAppealController.validation(locale), reasonsForAppealController.post);
@@ -68,6 +82,9 @@ router.get(paths.question, questionsController.get);
 router.post(paths.question, questionsController.validation(locale), questionsController.post);
 
 router.use(paths.appealSubmitted, require('./middleware/appeal-submitted'));
+router.use(paths.appealOutOfTimeSubmission, outOfTimeAppealSubmission);
+router.post(paths.uploadFile, uploadFile);
+
 router.get(paths.appealOverview, getAppealOverview);
 router.use(paths.health, require('./middleware/health'));
 router.use(paths.readiness, (req, res) => res.json({}));
