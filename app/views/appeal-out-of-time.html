@@ -12,9 +12,6 @@
 {% block content %}
 {{ errorSummary(errors) }}
 
-{% set files %}
-    No Files
-{% endset %}
 
 <h1 class="govuk-heading-xl">Your appeal is late</h1>
 
@@ -22,13 +19,14 @@
    Appeals should be made within 14 days from the date the decision letter was sent. You may still be able to appeal. Please
     tell us why your appeal is late below, and provide supporting evidence if you have it.
 </p>
-<form action="/appeal-out-of-time" method="post">
-
+<form id="Form1" action="/appeal-out-of-time" method="post">
     {{ govukTextarea({
     name: "reason",
     id: "reason"
     }) }}
+</form>
 
+<form action="/upload-file" method="post">
     <h1 class="govuk-heading-s">Provide supporting evidence</h1>
 
 <div style="border-left: 7px solid darkgrey;" >
@@ -62,16 +60,20 @@
     classes: "govuk-button--secondary"
     }) }}
     </div>
-</div>
+
+    </div>
 
     <h1 class="govuk-heading-s">Uploaded Files</h1>
     <hr>
-    <p class="govuk-body">{{files}}</p>
+    <p class="govuk-body">{{file}} - {{whatIsIt}}</p>
     <hr>
     <div class="buttons__container">
         {{ govukButton({
         text: "Save and continue",
-        name: "save-continue"
+        name: "save-continue",
+        attributes: {
+        form: "Form1"
+        }
         }) }}
 
         {{ govukButton({
@@ -80,8 +82,8 @@
         classes: "govuk-button--secondary"
         }) }}
     </div>
-
 </form>
+
 
 {{ contactUs() }}
 
