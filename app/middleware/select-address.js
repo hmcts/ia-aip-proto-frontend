@@ -3,7 +3,7 @@ const { formController } = require('./form-controller');
 const paths = require('../paths');
 
 function validation() {
-  return [check('address')];
+  return [check('address').isEmpty().withMessage('Select your address')];
 }
 
 function extractBody(req) {

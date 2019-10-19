@@ -3,8 +3,11 @@ const { formController } = require('./form-controller');
 const paths = require('../paths');
 
 function validation(locale) {
-  const errors = locale.personalDetails.errors;
-  return [check('addressline1').not().isEmpty().withMessage(errors.givenName)];
+  const errors = locale.manualAddress.errors;
+  return [
+    check('addressline1').not().isEmpty().withMessage(errors.addressOne),
+    check('addresspostcode').not().isEmpty().withMessage(errors.postcode)
+  ];
 }
 
 function extractBody(req) {

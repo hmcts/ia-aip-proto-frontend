@@ -2,9 +2,10 @@ const { check } = require('express-validator');
 const { formController } = require('./form-controller');
 const paths = require('../paths');
 
+// eslint-disable-next-line consistent-return
 function validation(locale) {
-  const errors = locale.personalDetails.errors;
-  return [check('postcode').not().isEmpty().withMessage(errors.givenName)];
+  const errors = locale.postcode;
+  return [check('postcode').not().isEmpty().withMessage(errors.noEntry)];
 }
 
 function extractBody(req) {

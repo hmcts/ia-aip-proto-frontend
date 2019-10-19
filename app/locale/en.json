@@ -16,6 +16,16 @@
       "dateLetterSent": "Must set date letter sent"
     }
   },
+  "manualAddress": {
+    "errors": {
+      "addressOne": "Enter your building and street details ",
+     "postcode":"Enter your postcode"
+    }
+  },
+  "postcode": {
+    "noEntry": "Enter your postcode ",
+    "wrongFormat": "Enter a real postcode"
+  },
   "personalDetails": {
     "errors": {
       "title": "Must enter title",
