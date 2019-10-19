@@ -4,6 +4,8 @@
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
 
 {%  macro fileUpload(uploadedEvidence) %}
     <a id="fileUpload"></a>
@@ -15,33 +17,36 @@
         <a href="#">Find out more about evidence to support your appeal</a>
     </p>
 
-    {% set uploadFormFields %}
-        {{ govukFileUpload({
-            id: "evidenceUpload",
-            name: "evidenceUpload",
-            label: {
-                html: "<h3 class='govuk-!-margin-top-0'>Upload a file</h3>"
-            }
-        }) }}
-        {{ govukTextarea({
-            name: "evidenceDescription",
-            id: "evidenceDescription",
-            label: {
-                text: "What is the file?"
-            },
-            rows: 1,
-            hint: {
-                text: "e.g. a country report or copy of birth certificate"
-            }
-        }) }}
+<form action="/upload-file" method="post">
+{% set uploadFormFields %}
+{{ govukFileUpload({
+    id: "evidenceUpload",
+    name: "evidenceUpload",
+    label: {
+        html: "<h3 class='govuk-!-margin-top-0'>Upload a file</h3>"
+    }
+}) }}
+    {{ govukTextarea({
+        name: "evidenceDescription",
+        id: "evidenceDescription",
+        label: {
+            text: "What is the file?"
+        },
+        rows: 1,
+        hint: {
+            text: "e.g. a country report or copy of birth certificate"
+        }
+    }) }}
 
-        {{ govukButton({
-            text: "Upload document",
-            classes: "govuk-button--secondary",
-            name: "upload",
-            value: "upload"
-        }) }}
-    {% endset %}
+    {{ govukButton({
+        text: "Upload document",
+        classes: "govuk-button--secondary",
+        name: "upload",
+        value: "upload"
+    }) }}
+    </form>
+
+{% endset %}
 
     {{ govukInsetText({
         html: uploadFormFields

@@ -6,6 +6,9 @@
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "components/file-upload.njk" import fileUpload  %}
+
+
 
 
 
@@ -13,78 +16,37 @@
 {{ errorSummary(errors) }}
 
 
+
 <h1 class="govuk-heading-xl">Your appeal is late</h1>
 
 <p class="govuk-body">
-   Appeals should be made within 14 days from the date the decision letter was sent. You may still be able to appeal. Please
-    tell us why your appeal is late below, and provide supporting evidence if you have it.
+ Appeals should be made within 14 days from the date the decision letter was sent. You may still be able to appeal. Please
+ tell us why your appeal is late below, and provide supporting evidence if you have it.
 </p>
 <form id="Form1" action="/appeal-out-of-time" method="post">
-    {{ govukTextarea({
-    name: "reason",
-    id: "reason"
-    }) }}
+ {{ govukTextarea({
+ name: "reason",
+ id: "reason"
+ }) }}
 </form>
 
-<form action="/upload-file" method="post">
-    <h1 class="govuk-heading-s">Provide supporting evidence</h1>
+{{ fileUpload(arr)}}
+<h1 class="govuk-heading-s">Uploaded Files</h1>
+<div class="buttons__container">
+ {{ govukButton({
+ text: "Save and continue",
+ name: "save-continue",
+ attributes: {
+ form: "Form1"
+ }
+ }) }}
 
-<div style="border-left: 7px solid darkgrey;" >
-    <div style="margin-left: 10px; margin-bottom: 40px;">
-    {{ govukFileUpload({
-    id: "file-upload",
-    name: "file-upload",
-    label: {
-    text: "Upload a file"
-    }
-    }) }}
-
-
-    {{ govukInput({
-    label: {
-    text: "What is the file?"
-    },
-    classes: "govuk-input--width-20",
-    id: "file",
-    name: "file",
-    hint: {
-        text: "e.g a country report or a copy of birth certificate"
-        }
-
-    }) }}
-
-
-    {{ govukButton({
-    text: "Upload file",
-    name: "upload-file",
-    classes: "govuk-button--secondary"
-    }) }}
-    </div>
-
-    </div>
-
-    <h1 class="govuk-heading-s">Uploaded Files</h1>
-    <hr>
-    <p class="govuk-body">{{file}} - {{whatIsIt}}</p>
-    <hr>
-    <div class="buttons__container">
-        {{ govukButton({
-        text: "Save and continue",
-        name: "save-continue",
-        attributes: {
-        form: "Form1"
-        }
-        }) }}
-
-        {{ govukButton({
-        text: "Save for later",
-        name: "save-return",
-        classes: "govuk-button--secondary"
-        }) }}
-    </div>
+ {{ govukButton({
+ text: "Save for later",
+ name: "save-return",
+ classes: "govuk-button--secondary"
+ }) }}
+</div>
 </form>
-
-
-{{ contactUs() }}
 
 {% endblock %}

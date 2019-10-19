@@ -1,12 +1,6 @@
 module.exports = (req, res) => {
-  req.session.appealData.testWork = {
-    file: req.body.file,
-    whatIsIt: req.body['file-upload']
-  };
-
   const obj = {
-    file: req.session.appealData.testWork.file,
-    whatIsIt: req.session.appealData.testWork.whatIsIt
+    arr: [{ fileName: req.body.evidenceUpload, description: req.body.evidenceDescription}]
   };
   res.render('appeal-out-of-time.html', obj);
 };

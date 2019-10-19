@@ -6,12 +6,8 @@ const paths = require('../paths');
 function validation() {
   // const errors = locale.yourNationality.errors;
   return oneOf([
-
-    [check('stateless').not().isEmpty().withMessage('One')],
-    [check('nationality').equals('').withMessage('One')],
-    [check('stateless').not().isEmpty().withMessage('Two')],
-    [check('nationality').not().isEmpty().withMessage('Two')],
-    [check('stateless').not().isEmpty().withMessage('Three')]
+    [check('nationality').not().isEmpty().withMessage('One')],
+    [check('stateless').not().isEmpty().withMessage('One')]
   ]);
 }
 
