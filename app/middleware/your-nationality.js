@@ -8,9 +8,9 @@ function validation() {
   return oneOf([
     [check('nationality').not().isEmpty().withMessage('One')],
     [check('stateless').not().isEmpty().withMessage('One')]
+    // eslint-disable-next-line no-unused-vars
   ]);
 }
-
 function extractBody(req) {
   if (req.body.nationality === '') {
     return {

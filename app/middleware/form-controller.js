@@ -42,7 +42,7 @@ function formController(
             class: ' govuk-input--error'
           };
           return {
-            text: msg,
+            text: msg === 'Invalid value(s)' ? 'Please select a one value' : msg,
             href: `#${param}`
           };
         }).array().filter(v => {
