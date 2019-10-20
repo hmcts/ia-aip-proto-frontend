@@ -12,7 +12,7 @@
     <h2 class="govuk-heading-m">
       {{ appealData.yourDetails.personalDetails.givenNames }} {{ appealData.yourDetails.personalDetails.familyName }}
     </h2>
-    <p class="govuk-body">Appeal reference: {{ appealData.yourDetails.homeOffice.refNumber }}</p>
+    <p class="govuk-body">Appeal reference: {{ appealData.yourDetails.homeOffice.formData.refNumber }}</p>
   </div>
   <div class="divider"></div>
 
@@ -29,8 +29,8 @@
       text: "Continue"
     }) }}
 
-    <div style="background-color: #b1b4b6">
-      <p>What you'll need</p>
+    <div style="background-color: #f3f2f1; padding: 3px 5px 3px 5px;">
+      <h4 style="margin-left: 30px">What you'll need</h4>
       <ul><li>The Home Office decision letter, which you can find in the Home Office documents in the <a href="/">documents tab</a></li></ul>
     </div>
   {% endset -%}
