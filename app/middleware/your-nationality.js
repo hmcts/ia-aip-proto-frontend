@@ -12,18 +12,12 @@ function validation() {
   ]);
 }
 function extractBody(req) {
-  if (req.body.nationality === '') {
-    return {
-      nationality: req.body.nationality
-    };
-  }
-  if (req.body.stateless === 'stateless') {
-    return {
-      nationality: 'req.body.nationality'
-    };
-  }
-  return 0;
+  return {
+    nationality: req.body.nationality,
+    stateless: req.body.stateless
+  };
 }
+
 
 // eslint-disable-next-line no-unused-vars,consistent-return
 function saveAndRedirect(formData = null, req) {

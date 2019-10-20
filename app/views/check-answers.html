@@ -50,6 +50,15 @@
                 {{ appealData.yourDetails.personalDetails.familyName }}
             {% endset %}
 
+            {% set nationality %}
+                 {% if appealData.yourDetails.personalDetails.nationality %}
+                     {{ appealData.yourDetails.personalDetails.nationality }}
+                 {% endif %}
+                {% if appealData.yourDetails.personalDetails.stateless  %}
+                     {{ appealData.yourDetails.personalDetails.stateless }}
+                {% endif %}
+            {% endset %}
+
             {{ govukSummaryList({
                 classes: 'govuk-!-margin-bottom-9',
                 rows: [
@@ -126,7 +135,7 @@
             text: "Nationality"
             },
             value: {
-            text: appealData.yourDetails.personalDetails.nationality
+            text: nationality
             },
             actions: {
             items: [
