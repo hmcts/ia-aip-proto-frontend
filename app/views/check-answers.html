@@ -19,12 +19,21 @@
                 {% if appealData.yourDetails.contactDetails.text.selected %}
                     {{ appealData.yourDetails.contactDetails.text.phoneNumber }}<br />
                 {% endif %}
-                {% if appealData.yourDetails.personalDetails.address %}
-                    {{ appealData.yourDetails.personalDetails.address }}<br />
+                {% if appealData.yourDetails.personalDetails.addressline1 %}
+                    {{ appealData.yourDetails.personalDetails.addressline1 }}<br />
                 {% endif %}
-                {% if appealData.yourDetails.personalDetails.postcode %}
-                     {{ appealData.yourDetails.personalDetails.postcode }}<br />
+                 {% if appealData.yourDetails.personalDetails.addressline2 %}
+                    {{ appealData.yourDetails.personalDetails.addressline2 }}<br />
+                {% endif %}
+                {% if appealData.yourDetails.personalDetails.addresstown %}
+                     {{ appealData.yourDetails.personalDetails.addresstown }}<br />
+                {% endif %}
+                {% if appealData.yourDetails.personalDetails.addresscounty %}
+                     {{ appealData.yourDetails.personalDetails.addresscounty }}<br />
                  {% endif %}
+                {% if appealData.yourDetails.personalDetails.addresspostcode %}
+                     {{ appealData.yourDetails.personalDetails.addresspostcode }}<br />
+                {% endif %}
             {% endset %}
 
             {% set decisionType %}
