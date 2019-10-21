@@ -7,8 +7,14 @@
 {% block content %}
 {{ errorSummary(errors) }}
 
+{% set addressOne  %}
+{% if appealData.yourDetails.personalDetails.address  %}
+    {{ appealData.yourDetails.personalDetails.address }}
+{% endif %}
+{% endset %}
 
-<form action="/manual-address" method="post">
+
+<form action="/check-address" method="post">
     {% call govukFieldset({
     legend: {
     text: "What is your address?",
@@ -22,7 +28,8 @@
     html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
     },
     id: "addressline1",
-    name: "addressline1"
+    name: "addressline1",
+    value: "60"
     }) }}
 
     {{ govukInput({
@@ -30,7 +37,8 @@
     html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
     },
     id: "addressline2",
-    name: "addressline2"
+    name: "addressline2",
+    value: "Great Portland Street"
     }) }}
 
     {{ govukInput({
@@ -39,7 +47,9 @@
     },
     classes: "govuk-!-width-two-thirds",
     id: "addresstown",
-    name: "addresstown"
+    name: "addresstown",
+    value: "London"
+
     }) }}
 
     {{ govukInput({
@@ -57,7 +67,9 @@
     },
     classes: "govuk-input--width-10",
     id: "addresspostcode",
-    name: "addresspostcode"
+    name: "addresspostcode",
+    value: "W1W 7RT"
+
     }) }}
 
     {% endcall %}

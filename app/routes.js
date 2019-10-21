@@ -46,6 +46,7 @@ const enterPostcode = require('./middleware/enter-postcode');
 const selectAddress = require('./middleware/select-address');
 const uploadFile = require('./middleware/uploadFile');
 const manualAddress = require('./middleware/manual-address');
+const checkAddress = require('./middleware/check-address');
 const getAppealOverview = require('./middleware/appeal-overview');
 
 /* eslint-disable new-cap */
@@ -74,6 +75,7 @@ setupFormController(paths.contactDetails, contactDetailsController);
 setupFormController(paths.typeOfAppeal, typeOfAppealController);
 setupFormController(paths.checkAnswers, checkAnswersController);
 setupFormController(paths.manualAddress, manualAddress);
+setupFormController(paths.checkAddress, checkAddress);
 
 router.get(paths.reasonsForAppeal, reasonsForAppealController.get);
 router.post(paths.reasonsForAppeal, reasonsForAppealController.validation(locale), reasonsForAppealController.post);

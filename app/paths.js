@@ -18,6 +18,7 @@ module.exports = {
   robots: '/robots.txt',
   endSession: '/end-session',
   signIn: '/sign-in',
+  checkAddress: '/check-address',
   register: '/register',
   createPassword: '/create-password',
   accountCreated: '/account-created',
