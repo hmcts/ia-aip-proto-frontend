@@ -1,7 +1,7 @@
 {% extends "../layout.html" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-{% from "components/file-upload.html" import fileUpload with context %}
+{% from "components/file-upload.njk" import fileUpload with context %}
 
 {% block content %}
     {{ errorSummary(errors) }}
