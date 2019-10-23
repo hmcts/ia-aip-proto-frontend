@@ -13,9 +13,6 @@
         You can upload evidence to support your answer such as letters, photos and documents. If you are taking
         a picture of a letter, place it on a flat surface and take the picture from above.
     </p>
-    <p>
-        <a href="#">Find out more about evidence to support your appeal</a>
-    </p>
 
 <form action="/upload-file" method="post">
 {% set uploadFormFields %}
@@ -39,7 +36,7 @@
     }) }}
 
     {{ govukButton({
-        text: "Upload document",
+        text: "Upload file",
         classes: "govuk-button--secondary",
         name: "upload",
         value: "upload"
