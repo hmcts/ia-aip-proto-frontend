@@ -20,19 +20,12 @@
     <h2 class="govuk-heading-m">Your appeal progress</h2>
     {{ statusBar(stages) }}
 
-    <h2 class="govuk-heading-m">Do this next</h2>
+    <h2 class="govuk-heading-m">What happens next</h2>
     <p>
-      Tell us why you think the Home Office decision to refuse your claim is wrong.
+      A case worker will contact you by <b>14 October 2019</b> to tell you what to do next
     </p>
-
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-
-    <div style="background-color: #f3f2f1; padding: 3px 5px 3px 5px;">
-      <h4 style="margin-left: 30px">What you'll need</h4>
-      <ul><li>The Home Office decision letter, which you can find in the Home Office documents in the <a href="/">documents tab</a></li></ul>
-    </div>
+</br>
+{{ contactUs()}}
   {% endset -%}
 
   {% set appealHistory %}
