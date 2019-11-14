@@ -8,13 +8,13 @@
     <ol class="app-task-list">
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">1. </span> Witness
+                <span class="app-task-list__section-number">1. </span> Witnesses
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
                     <a href="/hearing-requirements/witnesses" aria-describedby="home-office-details-completed">
-                        Will you bring any witnesses to the hearing?
+                        Will any witnesses come to the hearing?
                     </a>
                   </span>
                     {% if appealData.hearingRequirements.witnesses.completed %}
@@ -28,13 +28,13 @@
 
         <li>
             <h2 class="app-task-list__section">
-                <span class="app-task-list__section-number">2. </span> Your hearing needs
+                <span class="app-task-list__section-number">2. </span> Access needs
             </h2>
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
                     <a href="/hearing-requirements/your-hearing-needs" aria-describedby="home-office-details-completed">
-                        Will you need an interpreter, step-free access or a hearing loop?
+                        Will you or any witnesses need an interpreter, step-free access or a hearing loop?
                     </a>
                   </span>
                     {% if appealData.hearingRequirements.hearingLoop.completed %}
@@ -74,7 +74,7 @@
             <ul class="app-task-list__items">
                 <li class="app-task-list__item">
                   <span class="app-task-list__task-name">
-                      {{ enabledLink(appealData.hearingRequirements.witnesses.completed and appealData.hearingRequirements.hearingLoop.completed and appealData.hearingRequirements.anythingElse.completed, 'Check and send your appeal', '/hearing-requirements/check-answers') }}
+                      {{ enabledLink(appealData.hearingRequirements.witnesses.completed and appealData.hearingRequirements.hearingLoop.completed and appealData.hearingRequirements.anythingElse.completed, 'Check and send us your hearing needs', '/hearing-requirements/check-answers') }}
                   </span>
                 </li>
             </ul>
