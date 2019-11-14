@@ -3,7 +3,6 @@
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/details/macro.njk" import govukDetails %}
 {% from "govuk/components/footer/macro.njk" import govukFooter %}
 
 {% macro errorSummary(errors) %}
@@ -25,13 +24,6 @@
         classes: "govuk-input--width-20",
         value: value,
         errorMessage: errors.fieldErrors[id]
-    }) }}
-{% endmacro %}
-
-{%  macro contactUs() %}
-    {{ govukDetails({
-        summaryText: "Contact us for help",
-        html: "<div><h2>Telephone</h2><p>0330 123 1234</p><h2>Email</h2><p>support@hmcts.net</p></div>"
     }) }}
 {% endmacro %}
 

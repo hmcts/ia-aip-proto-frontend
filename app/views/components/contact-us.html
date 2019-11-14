@@ -1,0 +1,26 @@
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{%  macro contactUs() %}
+  {% set content %}
+    <p>Contact us if you want to:</p>
+    <ul>
+      <li>Ask a question about your appeal</li>
+      <li>Get help with your appeal in your language</li>
+      <li>Get help making your appeal online</li>
+    </ul>
+    <p>
+      Telephone: 0300 123 1142</br>
+      Email: <a href="mailto:support@hmcts.net">support@hmcts.net</a>
+    </p>
+    <p>
+      Lines open Monday to Friday, 8:30am to 5pm</br>
+      <a href="#">Find out about call charges</a>
+    </p>
+  {% endset -%}
+  <div class="contact-us">
+    {{ govukDetails({
+      summaryText: "Contact us for help",
+      html: content
+    }) }}
+  </div>
+{% endmacro %}
