@@ -36,6 +36,10 @@ function dateFilter(dateObj) {
   return moment(`${day}-${month}-${year} ${hours}:${minutes}:${seconds}`).format('DD/MM/YYYY HH:mm:ss');
 }
 
+function isString(obj) {
+  return typeof obj === 'string';
+}
+
 function create(options) {
   const opts = options || {};
   if (!opts.disableAppInsights) {
@@ -81,7 +85,9 @@ function create(options) {
   ], {
     autoescape: true,
     express: app
-  }).addFilter('dateFilter', dateFilter);
+  })
+    .addFilter('dateFilter', dateFilter)
+    .addFilter('is_string', isString);
 
   app.use(Express.accessLogger());
   app.use(createModel);

@@ -1,10 +1,11 @@
 {% extends "layout.html" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "components/contact-us.html" import contactUs %}
 
 {% block content %}
-    <h1 class="govuk-heading-l">Your hearing needs</h1>
+    <h1 class="govuk-heading-l">Your access needs</h1>
     <p class="govuk-body">
-        If you need an interpreter, step-free access or a hearing loop, they will be provided for you at the hearing.
+        If you or any of your witnesses needs an interpreter, step-free access or a hearing loop, they will be provided at the hearing.
     </p>
 
     {{ govukButton({
