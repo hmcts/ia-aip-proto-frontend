@@ -154,7 +154,8 @@
     "witnesses": {
       "errors": {
         "selectAnOption": "Select either yes or no",
-        "selectHowMany":"Select how many witnesses"
+        "selectHowMany":"Select how many witnesses",
+        "enterWitnessName": "Enter a witness name"
       }
     },
     "interpreter": {

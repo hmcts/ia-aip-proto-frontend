@@ -1,19 +1,37 @@
 const { formController } = require('../form-controller');
-const { check } = require('express-validator');
+const { check, oneOf } = require('express-validator');
 const paths = require('../../paths');
 
 function validation(locale) {
   return [
-    // eslint-disable-next-line max-len
-    check('number').not().isEmpty().withMessage(locale.hearingRequirements.witnesses.errors.selectHowMany),
-    check('number').isInt({ min: 1, max: 20 }).withMessage(locale.hearingRequirements.witnesses.errors.selectHowMany)
+    oneOf([
+      check('witness')
+        .not()
+        .isEmpty()
+        .withMessage(locale.hearingRequirements.witnesses.errors.enterWitnessName),
+      check('delete')
+        .not()
+        .isEmpty()
+    ])
   ];
 }
 
 function extractBody(req) {
-  return {
-    number: req.body.number
-  };
+  const { witness } = req.session.appealData.hearingRequirements.witnesses;
+  if (req.body.delete) {
+    return {
+      witness: witness.filter(curr => Object.keys(req.body.delete)[0] !== curr)
+    };
+  }
+  if (req.body.witness) {
+    return {
+      witness: [
+        ...req.session.appealData.hearingRequirements.witnesses.witness || [],
+        req.body.witness
+      ]
+    };
+  }
+  return { witness };
 }
 
 function createFormController() {
@@ -25,7 +43,12 @@ function createFormController() {
     extractBody,
     false,
     false,
-    paths.hearingAppellantTaskList,
+    (formData, req) => {
+      if (req.body.addAnotherWitness || req.body.delete) {
+        return paths.hearingWitnessesNumber;
+      }
+      return paths.hearingAppellantTaskList;
+    },
     paths.hearingWitnesses,
   );
 }
