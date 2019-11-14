@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
+{% from "components/contact-us.html" import contactUs %}
 
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">Will you need a hearing loop?</h1>
+    <h1 class="govuk-heading-l">Will you or any witnesses need a hearing loop?</h1>
     <form action="/hearing-requirements/hearing-loop" method="post">
 
         {{ govukRadios({
