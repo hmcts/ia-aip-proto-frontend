@@ -41,7 +41,7 @@ function createFormController() {
       if (req.body.addNew || req.body.delete !== undefined) {
         return paths.hearingInterpreterDetails;
       } else if (req.body.saveForLater) {
-        return paths.hearingAppellantTaskList;
+        return paths.hearingAppellantOverview;
       }
       return paths.hearingStepFree;
     },

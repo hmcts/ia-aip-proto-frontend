@@ -104,6 +104,12 @@ body {
 .guide-box {
   background-color: #f3f2f1;
   padding: 1rem;
+  margin-bottom: 1rem;
+  p {
+    margin: 0;
+    padding: .5rem;
+    border-left: .5rem solid #00703c;
+  }
 }
 
 // Contact-us component

@@ -26,7 +26,7 @@ function createFormController() {
     false,
     (formData, req) => {
       if (req.body.saveForLater) {
-        return paths.hearingAppellantTaskList;
+        return paths.hearingAppellantOverview;
       }
       if (req.body['in-camera-court'] === 'yes') {
         return paths.hearingInCameraCourtDescription;

@@ -26,7 +26,7 @@ function createFormController() {
     false,
     (formData, req) => {
       if (req.body.saveForLater) {
-        return paths.hearingAppellantTaskList;
+        return paths.hearingAppellantOverview;
       } else if (req.body['multimedia-evidence'] === 'yes') {
         return paths.hearingMultimediaEquipment;
       }
