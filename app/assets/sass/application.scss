@@ -124,3 +124,10 @@ body {
     color: govuk-colour("light-blue");
   }
 }
+
+// summary list
+.govuk-summary-list__value.no-border-bottom,
+.govuk-summary-list__key.no-border-bottom,
+.govuk-summary-list__actions.no-border-bottom {
+  border-bottom: none;
+}

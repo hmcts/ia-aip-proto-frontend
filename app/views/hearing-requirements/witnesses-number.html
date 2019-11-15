@@ -30,7 +30,7 @@
       }) }}
 
       {{ saveButtons() }}
-      {{ itemList('Added witnesses', formData.witness, 'delete') if formData.witness | length }}
+      {{ itemList('Added witnesses', formData.names, 'delete') if formData.names | length }}
     </form>
 
     {{ contactUs() }}

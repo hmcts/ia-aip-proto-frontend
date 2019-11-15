@@ -11,7 +11,7 @@ function validation(locale) {
 
 function extractBody(req) {
   return {
-    multimediaEquipment: req.body['multimedia-equipment']
+    equipment: req.body['multimedia-equipment']
   };
 }
 

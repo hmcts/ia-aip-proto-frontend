@@ -1,12 +1,24 @@
 const paths = require('../../paths');
 module.exports = (req, res) => {
   const appealData = req.session.appealData;
+  console.log('hearingRequirements', appealData.hearingRequirements);
   const checkListWitnessRows = [];
   const checkListhearingNeedsRows = [];
+  const checkStepFreeNeedsRows = [];
+  const checkHearingLoopNeedsRows = [];
+
   const checkListOtherNeedsRows = [];
   checkListWitnessRows.push({
     key: {
-      text: 'Will you bring any witnesses to the hearing?'
+      text: 'Question'
+    },
+    value: {
+      text: 'Will any witnesses come to the hearing?'
+    }
+  });
+  checkListWitnessRows.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.witnesses.witnesses
@@ -26,7 +38,7 @@ module.exports = (req, res) => {
         text: 'Witnesses'
       },
       value: {
-        html: appealData.hearingRequirements.witnesses.number
+        html: appealData.hearingRequirements.witnesses.names.join('<br/>')
       },
       actions: {
         items: [
@@ -38,10 +50,18 @@ module.exports = (req, res) => {
       }
     });
   }
+  checkListhearingNeedsRows.push({
+    key: {
+      text: 'Question'
+    },
+    value: {
+      text: 'Will you or any witnesses need an interpreter at the hearing?'
+    }
+  });
   checkListhearingNeedsRows.push(
     {
       key: {
-        text: 'Will you or any witnesses need an interpreter at the hearing?'
+        text: 'Answer'
       },
       value: {
         html: appealData.hearingRequirements.interpreter.required
@@ -56,35 +76,64 @@ module.exports = (req, res) => {
       }
     });
   if (appealData.hearingRequirements.interpreter.required === 'yes') {
-    const details = '<table>' + appealData.hearingRequirements.interpreter.languages.map(language => {
-      let langaugeString = `<tr><td>${language.name}</td>`;
-      if (language.dialect) {
-        langaugeString += `<td>${language.dialect}</td>`;
-      }
-      langaugeString += '</tr>';
-      return langaugeString;
-    }).join('') + '</table>';
-    checkListhearingNeedsRows.push(
-      {
-        key: {
-          text: 'Interpreter details'
+    appealData.hearingRequirements.interpreter.languages.forEach(language => {
+      const languageRow = {
+        key: { 
+          text: 'Language',
+          classes: 'no-border-bottom'
         },
         value: {
-          html: details
+          text: language.name,
+          classes: 'no-border-bottom'
         },
         actions: {
           items: [
             {
               href: '/hearing-requirements/interpreter',
-              text: 'Change'
+              text: 'Change',
+              classes: 'no-border-bottom'
             }
-          ]
+          ],
+          classes: 'no-border-bottom'
         }
-      });
+      }
+      const dialectRow = language.dialect ? {
+        key: { 
+          text: 'Dialect',
+          classes: 'no-border-bottom'
+        },
+        value: {
+          text: language.dialect,
+          classes: 'no-border-bottom'
+        },
+        actions: {
+          items: [
+            {
+              href: '',
+              text: '',
+              classes: 'no-border-bottom'
+            }
+          ],
+          classes: 'no-border-bottom'
+        }
+      } : {}
+      checkListhearingNeedsRows.push(languageRow);
+      checkListhearingNeedsRows.push(dialectRow);
+    })
   }
-  checkListhearingNeedsRows.push({
+
+  checkStepFreeNeedsRows.push({
     key: {
-      text: 'Will you need step-free access?'
+      text: 'Question'
+    },
+    value: {
+      html: 'Will you need step-free access?'
+    }
+  });
+  
+  checkStepFreeNeedsRows.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.stepFree.stepFree
@@ -98,9 +147,22 @@ module.exports = (req, res) => {
       ]
     }
   });
-  checkListhearingNeedsRows.push({
+
+  // Hearing Loop
+  const hearingLoopNeeds = [];
+
+  hearingLoopNeeds.push({
     key: {
-      text: 'Will you need a hearing loop?'
+      text: 'Question'
+    },
+    value: {
+      html: 'Will you or any witnesses need a hearing loop?'
+    }
+  });
+  
+  hearingLoopNeeds.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.hearingLoop.hearingLoop
@@ -115,12 +177,21 @@ module.exports = (req, res) => {
     }
   });
 
+  // Multimedia Evidence
+  const multimediaEvidence = []
 
-
-
-  checkListOtherNeedsRows.push({
+  multimediaEvidence.push({
     key: {
-      text: 'Will you bring any multimedia evidence, like video recordings, to the hearing?'
+      text: 'Question'
+    },
+    value: {
+      html: 'Will you bring any multimedia evidence?'
+    }
+  });
+
+  multimediaEvidence.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.multimediaEvidence.multimediaEvidence
@@ -134,27 +205,78 @@ module.exports = (req, res) => {
       ]
     }
   });
+
   if (appealData.hearingRequirements.multimediaEvidence.multimediaEvidence === 'yes') {
-    checkListOtherNeedsRows.push({
+    multimediaEvidence.push({
       key: {
-        text: 'Tell us what format the evidence in in (for example, .mov, .mp3) and what equipment you will need to play it'
+        text: 'Question'
       },
       value: {
-        html: appealData.hearingRequirements.multimediaEvidence.description
+        html: 'Will you bring the equipment to play this evidence?'
+      }
+    });
+
+    multimediaEvidence.push({
+      key: {
+        text: 'Answer'
+      },
+      value: {
+        html: appealData.hearingRequirements.multimediaEvidence.equipment
       },
       actions: {
         items: [
           {
-            href: '/hearing-requirements/multimedia-evidence',
+            href: '/hearing-requirements/multimedia-equipment',
             text: 'Change'
           }
         ]
       }
     });
+
+    if (appealData.hearingRequirements.multimediaEvidence.equipment === 'no') {
+      multimediaEvidence.push({
+        key: {
+          text: 'Question'
+        },
+        value: {
+          html: 'Tell us why it is not possible to bring the equipment to play this evidence and what you will need to play it.'
+        }
+      });
+
+      multimediaEvidence.push({
+        key: {
+          text: 'Answer'
+        },
+        value: {
+          html: appealData.hearingRequirements.multimediaEvidence.description
+        },
+        actions: {
+          items: [
+            {
+              href: '/hearing-requirements/multimedia-equipment-description',
+              text: 'Change'
+            }
+          ]
+        }
+      });
+    }
+
   }
-  checkListOtherNeedsRows.push({
+
+  const oneGenreHearing = []
+
+  oneGenreHearing.push({
     key: {
-      text: 'Do you need an all-female or all-male Hearing?'
+      text: 'Question'
+    },
+    value: {
+      html: 'Will you need an all-female or all-male hearing?'
+    }
+  });
+
+  oneGenreHearing.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.allMaleFemaleCourt.allMaleFemaleCourt
@@ -169,12 +291,21 @@ module.exports = (req, res) => {
     }
   });
   if (appealData.hearingRequirements.allMaleFemaleCourt.allMaleFemaleCourt === 'yes') {
-    checkListOtherNeedsRows.push({
+    oneGenreHearing.push({
       key: {
-        text: 'What type of hearing will you need?'
+        text: 'Question'
       },
       value: {
-        html: appealData.hearingRequirements.allMaleFemaleCourt.maleOrFemale
+        html: 'What type of hearing will you need?'
+      }
+    });
+
+    oneGenreHearing.push({
+      key: {
+        text: 'Answer'
+      },
+      value: {
+        html: `All-${appealData.hearingRequirements.allMaleFemaleCourt.maleOrFemale}`
       },
       actions: {
         items: [
@@ -185,9 +316,19 @@ module.exports = (req, res) => {
         ]
       }
     });
-    checkListOtherNeedsRows.push({
+
+    oneGenreHearing.push({
       key: {
-        text: `Tell us why you need an all-${appealData.hearingRequirements.allMaleFemaleCourt.maleOrFemale}  hearing?`
+        text: 'Question'
+      },
+      value: {
+        html: `Tell us why you need an all-${appealData.hearingRequirements.allMaleFemaleCourt.maleOrFemale}  hearing?`
+      }
+    });
+
+    oneGenreHearing.push({
+      key: {
+        text: `Answer`
       },
       value: {
         html: appealData.hearingRequirements.allMaleFemaleCourt.description
@@ -202,9 +343,21 @@ module.exports = (req, res) => {
       }
     });
   }
-  checkListOtherNeedsRows.push({
+
+  const privateHearing = [];
+
+  privateHearing.push({
     key: {
-      text: 'Will you need a private hearing?'
+      text: 'Question'
+    },
+    value: {
+      html: `Will you need a private hearing?`
+    }
+  });
+
+  privateHearing.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.inCameraCourt.inCameraCourt
@@ -219,9 +372,17 @@ module.exports = (req, res) => {
     }
   });
   if (appealData.hearingRequirements.inCameraCourt.inCameraCourt === 'yes') {
-    checkListOtherNeedsRows.push({
+    privateHearing.push({
       key: {
-        text: 'Tell us why you need a private hearing'
+        text: 'Question'
+      },
+      value: {
+        html: `Tell us why you need a private hearing`
+      }
+    });
+    privateHearing.push({
+      key: {
+        text: 'Answer'
       },
       value: {
         html: appealData.hearingRequirements.inCameraCourt.description
@@ -236,9 +397,21 @@ module.exports = (req, res) => {
       }
     });
   }
-  checkListOtherNeedsRows.push({
+
+  const healthIssues = [];
+
+  healthIssues.push({
     key: {
-      text: 'Do you have any physical or mental health issues that will affect you at the hearing?'
+      text: 'Question'
+    },
+    value: {
+      html: `Do you have any physical or mental health issues that may affect you at the hearing?`
+    }
+  });
+
+  healthIssues.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.vulnerabilities.vulnerabilities
@@ -253,9 +426,18 @@ module.exports = (req, res) => {
     }
   });
   if (appealData.hearingRequirements.vulnerabilities.vulnerabilities === 'yes') {
-    checkListOtherNeedsRows.push({
+    healthIssues.push({
       key: {
-        text: 'Tell us how any physical or mental health issues you have will affect you at the hearing'
+        text: 'Question'
+      },
+      value: {
+        html: `Tell us how any physical or mental health issues you have will affect you at the hearing`
+      }
+    });
+
+    healthIssues.push({
+      key: {
+        text: 'Answer'
       },
       value: {
         html: appealData.hearingRequirements.vulnerabilities.description
@@ -270,9 +452,21 @@ module.exports = (req, res) => {
       }
     });
   }
-  checkListOtherNeedsRows.push({
+
+  const pastExperiences = [];
+
+  pastExperiences.push({
     key: {
-      text: 'Have you had any past experiences that will affect you at the hearing?'
+      text: 'Question'
+    },
+    value: {
+      html: `Have you had any past experiences that will affect you at the hearing?`
+    }
+  });
+
+  pastExperiences.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.pastExperiences.pastExperiences
@@ -287,9 +481,18 @@ module.exports = (req, res) => {
     }
   });
   if (appealData.hearingRequirements.pastExperiences.pastExperiences === 'yes') {
-    checkListOtherNeedsRows.push({
+    pastExperiences.push({
       key: {
-        text: 'Tell us how any past experiences will affect you at the hearing'
+        text: 'Question'
+      },
+      value: {
+        html: `Tell us how any past experiences may affect you at the hearing`
+      }
+    });
+
+    pastExperiences.push({
+      key: {
+        text: 'Answer'
       },
       value: {
         html: appealData.hearingRequirements.pastExperiences.description
@@ -304,9 +507,19 @@ module.exports = (req, res) => {
       }
     });
   }
-  checkListOtherNeedsRows.push({
+
+  const anythingElse = []
+  anythingElse.push({
     key: {
-      text: 'Will you need anything else at the hearing?'
+      text: 'Question'
+    },
+    value: {
+      html: `Will you need anything else at the hearing?`
+    }
+  });
+  anythingElse.push({
+    key: {
+      text: 'Answer'
     },
     value: {
       html: appealData.hearingRequirements.anythingElse.anythingElse
@@ -321,9 +534,18 @@ module.exports = (req, res) => {
     }
   });
   if (appealData.hearingRequirements.anythingElse.anythingElse === 'yes') {
-    checkListOtherNeedsRows.push({
+    anythingElse.push({
       key: {
-        text: 'Tell us what you will need and why you need it'
+        text: 'Question'
+      },
+      value: {
+        html: `Tell us what you will need and why you need it`
+      }
+    });
+
+    anythingElse.push({
+      key: {
+        text: 'Answer'
       },
       value: {
         html: appealData.hearingRequirements.anythingElse.description
@@ -344,6 +566,13 @@ module.exports = (req, res) => {
     previousPage: paths.hearingAppellantTaskList,
     checkListWitnessRows,
     checkListhearingNeedsRows,
-    checkListOtherNeedsRows
+    checkStepFreeNeedsRows,
+    hearingLoopNeeds,
+    multimediaEvidence,
+    oneGenreHearing,
+    privateHearing,
+    healthIssues,
+    pastExperiences,
+    anythingElse
   });
 };

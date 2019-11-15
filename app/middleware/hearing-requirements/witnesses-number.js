@@ -20,13 +20,13 @@ function extractBody(req) {
   const { witness } = req.session.appealData.hearingRequirements.witnesses;
   if (req.body.delete) {
     return {
-      witness: witness.filter(curr => Object.keys(req.body.delete)[0] !== curr)
+      names: witness.filter(curr => Object.keys(req.body.delete)[0] !== curr)
     };
   }
   if (req.body.witness) {
     return {
-      witness: [
-        ...req.session.appealData.hearingRequirements.witnesses.witness || [],
+      names: [
+        ...req.session.appealData.hearingRequirements.witnesses.names || [],
         req.body.witness
       ]
     };

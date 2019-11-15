@@ -236,7 +236,7 @@ module.exports = (req, res, next) => {
       hearingRequirements: {
         appellantComing: { completed: true, isComing: 'yes' },
         giveEvidence: { completed: true, giveEvidence: 'yes' },
-        witnesses: { completed: true, witnesses: 'yes', number: '19' },
+        witnesses: { completed: true, witnesses: 'yes', names: ['witness 1', 'witness 2'] },
         interpreter: {
           completed: true,
           required: 'yes',
@@ -260,6 +260,7 @@ module.exports = (req, res, next) => {
         multimediaEvidence: {
           completed: true,
           multimediaEvidence: 'yes',
+          equipment: 'no',
           description: 'Description for multimedia'
         },
         allMaleFemaleCourt: {
