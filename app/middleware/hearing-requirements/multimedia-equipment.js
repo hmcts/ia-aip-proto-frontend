@@ -5,19 +5,19 @@ const paths = require('../../paths');
 function validation(locale) {
   return [
     // eslint-disable-next-line max-len
-    check('multimedia-evidence').not().isEmpty().withMessage(locale.hearingRequirements.multimediaEvidence.errors.selectAnOption)
+    check('multimedia-equipment').not().isEmpty().withMessage(locale.hearingRequirements.multimediaEvidence.errors.selectAnOption)
   ];
 }
 
 function extractBody(req) {
   return {
-    multimediaEvidence: req.body['multimedia-evidence']
+    multimediaEquipment: req.body['multimedia-equipment']
   };
 }
 
 function createFormController() {
   return formController(
-    'hearing-requirements/multimedia-evidence.html',
+    'hearing-requirements/multimedia-equipment.html',
     'hearingRequirements',
     'multimediaEvidence',
     validation,
@@ -27,8 +27,8 @@ function createFormController() {
     (formData, req) => {
       if (req.body.saveForLater) {
         return paths.hearingAppellantTaskList;
-      } else if (req.body['multimedia-evidence'] === 'yes') {
-        return paths.hearingMultimediaEquipment;
+      } else if (req.body['multimedia-equipment'] === 'no') {
+        return paths.hearingMultimediaEvidenceDescription;
       }
       return paths.hearingAllMaleFemaleCourt;
     },

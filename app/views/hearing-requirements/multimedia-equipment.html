@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "components/contact-us.html" import contactUs %}
+
+{% block content %}
+    {{ errorSummary(errors) }}
+
+    <h1 class="govuk-heading-l">Will you bring the equipment to play this evidence?</h1>
+    <p>For example, a laptop computer or DVD player</p>
+
+    <form action="/hearing-requirements/multimedia-equipment" method="post">
+        {{ govukRadios({
+            classes: "govuk-radios--inline",
+            idPrefix: "multimedia-equipment",
+            name: "multimedia-equipment",
+            errorMessage: errors.fieldErrors["multimedia-equipment"],
+            items: [
+                {
+                    value: "yes",
+                    text: "Yes",
+                    checked: formData.multimediaEvidence == 'yes'
+                },
+                {
+                    value: "no",
+                    text: "No",
+                    checked: formData.multimediaEvidence == 'no'
+                }
+            ]
+        }) }}
+
+        {{ govukButton({
+            text: "Save and continue"
+        }) }}
+    </form>
+
+    {{ contactUs() }}
+
+{% endblock %}

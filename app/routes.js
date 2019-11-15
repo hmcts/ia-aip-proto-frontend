@@ -28,6 +28,7 @@ const hearingVulnerabilities = require('./middleware/hearing-requirements/vulner
 const hearingVulnerabilitiesList = require('./middleware/hearing-requirements/vulnerabilities-list');
 const hearingVulnerabilitiesDescription = require('./middleware/hearing-requirements/vulnerabilities-description');
 const hearingMultimediaEvidence = require('./middleware/hearing-requirements/multimedia-evidence');
+const hearingMultimediaEquipment = require('./middleware/hearing-requirements/multimedia-equipment');
 // eslint-disable-next-line max-len
 const hearingMultimediaEvidenceDescription = require('./middleware/hearing-requirements/multimedia-evidence-description');
 const hearingAllMaleFemaleCourt = require('./middleware/hearing-requirements/all-male-female-court');
@@ -153,6 +154,7 @@ setupFormController(paths.hearingVulnerabilities, hearingVulnerabilities);
 setupFormController(paths.hearingVulnerabilitiesList, hearingVulnerabilitiesList);
 setupFormController(paths.hearingVulnerabilitiesDescription, hearingVulnerabilitiesDescription);
 setupFormController(paths.hearingMultimediaEvidence, hearingMultimediaEvidence);
+setupFormController(paths.hearingMultimediaEquipment, hearingMultimediaEquipment);
 setupFormController(paths.hearingMultimediaEvidenceDescription, hearingMultimediaEvidenceDescription);
 setupFormController(paths.hearingAllMaleFemaleCourt, hearingAllMaleFemaleCourt);
 setupFormController(paths.hearingAllMaleFemaleCourtSelection, hearingAllMaleFemaleCourtSelection);
