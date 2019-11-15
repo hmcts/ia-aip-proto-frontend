@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
+{% from "components/contact-us.html" import contactUs %}
 
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">Will you bring any multimedia evidence, like video or sounds recordings, to the hearing?</h1>
+    <h1 class="govuk-heading-l">Will you bring any multimedia evidence?</h1>
+    <p>For example, video or sound recordings</p>
 
     <form action="/hearing-requirements/multimedia-evidence" method="post">
         {{ govukRadios({
