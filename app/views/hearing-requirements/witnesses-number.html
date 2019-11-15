@@ -7,7 +7,7 @@
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">How many witnesses will you bring?</h1>
+    <h1 class="govuk-heading-l">Add witness name</h1>
 
     <form action="/hearing-requirements/witnesses-number" method="post">
       {{ govukInput({
@@ -30,7 +30,7 @@
       }) }}
 
       {{ saveButtons() }}
-      {{ itemList('title', formData.witness, 'delete') if formData.witness | length }}
+      {{ itemList('Added witnesses', formData.witness, 'delete') if formData.witness | length }}
     </form>
 
     {{ contactUs() }}

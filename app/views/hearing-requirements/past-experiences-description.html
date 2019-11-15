@@ -2,11 +2,12 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "components/contact-us.html" import contactUs %}
 
 {% block content %}
     {{ errorSummary(errors) }}
 
-    <h1 class="govuk-heading-l">Tell us how any past experiences will affect you at the hearing</h1>
+    <h1 class="govuk-heading-l">Tell us how any past experiences may affect you at the hearing</h1>
 
     <form action="/hearing-requirements/past-experiences-description" method="post">
         {{ govukTextarea({

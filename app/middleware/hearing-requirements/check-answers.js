@@ -23,7 +23,7 @@ module.exports = (req, res) => {
   if (appealData.hearingRequirements.witnesses.witnesses === 'yes') {
     checkListWitnessRows.push({
       key: {
-        text: 'How many witnesses will you bring?'
+        text: 'Witnesses'
       },
       value: {
         html: appealData.hearingRequirements.witnesses.number
