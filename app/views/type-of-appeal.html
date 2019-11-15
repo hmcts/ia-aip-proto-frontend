@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "components/contact-us.html" import contactUs %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
 
 {% block content %}
     {{ errorSummary(errors) }}
