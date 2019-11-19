@@ -9,33 +9,16 @@
 {% endblock %}
 
 {% block content %}
+    <p>Your appeal is going to a hearing.</p> 
     <p>
-        Your appeal is going to a hearing. You now need to tell us if there's anything you'll need at the hearing,
-        like an interpreter or step-free access.
+      You now need to tell us if there's anything you'll need at the hearing,
+      like an interpreter or step-free access.
     </p>
-
-    <h2 class="govuk-heading-m">What you need to do next</h2>
+    <p>Sign in to your account to do this:</p>
     <p>
-        Go to your appeal to tell us your hearing needs.
+      <a href="/sign-in?signInLink=/hearing-requirements/overview">
+        https://www.appeal-immigration-asylum-decision.service.gov.uk/
+      </a>
     </p>
-    <p>
-        <a href="/sign-in?signInLink=/hearing-requirements/overview">Go to your appeal</a>
-    </p>
-    <p>You have until <b>{{ appealData.respondByDate }}</b> to give us this information.</p>
-{% endblock %}
-
-{% block footer %}
-    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-    <p>
-      If you're unsure an email is from HM Courts & Tribunals Service:
-    </p>
-    <ul>
-      <li>
-        Do not reply to it or click on any links.
-      </li>
-      <li>
-        Report the suspicious email to HM Courts & Tribunals Service  - find out how to report internet scams and phishing
-        <a href="#">https://www.gov.uk/report-suspicious-emails-websites-phishing</a>
-      </li>
-    </ul>
+    <p>You have until <b>{{ appealData.respondByDate }}</b> to provide this information.</p>
 {% endblock %}

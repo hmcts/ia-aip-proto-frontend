@@ -16,13 +16,16 @@
             <div class="email-image"> <img src="/public/images/hmcts-logo.png" alt="Her Majesty's Court and Tribunal Service logo"></div>
 
             <div class="panel panel-border-wide">
-                <p class="remove-bottom-margin">Appeal reference number: {{ appealData.yourDetails.homeOffice.refNumber }}</p>
+                {% block reference %}
+                    <p class="remove-bottom-margin">Appeal reference number: {{ appealData.yourDetails.homeOffice.refNumber }}</p>
+                    <p class="remove-bottom-margin">Home Office reference: {{ appealData.yourDetails.homeOffice.refNumber }}</p>
+                {% endblock %}
             </div>
             <br>
             <p>
                 Dear
                 {% block dear %}
-                    {{  appealData.yourDetails.personalDetails.givenNames }} {{ appealData.yourDetails.personalDetails.familyName }}
+                    {{  appealData.yourDetails.personalDetails.givenNames }} {{ appealData.yourDetails.personalDetails.familyName }},
                 {% endblock %}
             </p>
 
@@ -30,12 +33,14 @@
 
             <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-            <p>Contact the Tribunal if you have any questions</p>
+            {% block contact %}
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">How to contact the Tribunal</h2>
             <p>
-                Telephone: 0300 123 1711<br />
-                Monday to Friday 8:30am to 5pm<br />
+                Telephone: 0300 123 1711 (Monday to Friday, 8.30am to 5pm)<br />
                 Email: <a href="#">customer.services@justice.gov.uk</a>
             </p>
+            <p>This is an automated message. Please do not reply to this email.</p>
+            {% endblock %}
 
             {% block footer %}{% endblock %}
         </div>
