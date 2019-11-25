@@ -4,7 +4,6 @@ const paths = require('../../paths');
 
 function validation(locale) {
   return [
-    // eslint-disable-next-line max-len
     check('witnesses')
       .not()
       .isEmpty()

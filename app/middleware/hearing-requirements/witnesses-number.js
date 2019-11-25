@@ -6,6 +6,13 @@ function validation(locale) {
   return [
     oneOf([
       check('witness')
+        .if((value, { req }) => {
+          const { witnesses } = req.session.appealData.hearingRequirements;
+          if (witnesses.names && witnesses.names.length > 0) {
+            return false;
+          }
+          return true;
+        })
         .not()
         .isEmpty()
         .withMessage(locale.hearingRequirements.witnesses.errors.enterWitnessName),
