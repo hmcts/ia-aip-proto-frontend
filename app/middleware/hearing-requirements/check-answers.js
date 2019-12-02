@@ -82,41 +82,37 @@ module.exports = (req, res) => {
       const languageRow = {
         key: { 
           text: 'Language',
-          classes: 'no-border-bottom'
+          classes: language.dialect ? 'no-border-bottom' : ''
         },
         value: {
           text: language.name,
-          classes: 'no-border-bottom'
+          classes: language.dialect ? 'no-border-bottom' : ''
         },
         actions: {
           items: [
             {
               href: '/hearing-requirements/interpreter',
               text: 'Change',
-              classes: 'no-border-bottom'
+              classes: language.dialect ? 'no-border-bottom' : ''
             }
           ],
-          classes: 'no-border-bottom'
+          classes: language.dialect ? 'no-border-bottom' : ''
         }
       }
       const dialectRow = language.dialect ? {
         key: { 
-          text: 'Dialect',
-          classes: 'no-border-bottom'
+          text: 'Dialect'
         },
         value: {
-          text: language.dialect,
-          classes: 'no-border-bottom'
+          text: language.dialect
         },
         actions: {
           items: [
             {
               href: '',
-              text: '',
-              classes: 'no-border-bottom'
+              text: ''
             }
-          ],
-          classes: 'no-border-bottom'
+          ]
         }
       } : {}
       checkListhearingNeedsRows.push(languageRow);
