@@ -24,10 +24,10 @@ function validation(locale) {
 }
 
 function extractBody(req) {
-  const { witness } = req.session.appealData.hearingRequirements.witnesses;
+  const { names } = req.session.appealData.hearingRequirements.witnesses;
   if (req.body.delete) {
     return {
-      names: witness.filter(curr => Object.keys(req.body.delete)[0] !== curr)
+      names: names.filter(curr => Object.keys(req.body.delete)[0] !== curr)
     };
   }
   if (req.body.witness) {
@@ -38,7 +38,7 @@ function extractBody(req) {
       ]
     };
   }
-  return { witness };
+  return { names };
 }
 
 function createFormController() {
