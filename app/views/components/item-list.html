@@ -11,9 +11,15 @@
         {% set name = item %}
       {% else %}
         {% set name = item.name %}
+        {% set dialect = item.dialect if item.dialect else null %}
       {% endif %}
       <tr class="govuk-table__row item">
-        <td class="govuk-table__cell">{{ name }}</td>
+        <td class="govuk-table__cell">
+          {{ name }}
+          {% if dialect %}
+            <br/> {{ dialect }}
+          {% endif %}
+        </td>
         <td class="govuk-table__cell">
           <input type="submit" name="delete[{{ name }}]" value="Remove" class="item-list__link">
         </td>
