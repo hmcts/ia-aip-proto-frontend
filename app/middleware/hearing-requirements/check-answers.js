@@ -21,7 +21,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.witnesses.witnesses
+      html: appealData.hearingRequirements.witnesses.witnesses,
+      classes: '--capitalize'
     },
     actions: {
       items: [
@@ -64,7 +65,8 @@ module.exports = (req, res) => {
         text: 'Answer'
       },
       value: {
-        html: appealData.hearingRequirements.interpreter.required
+        html: appealData.hearingRequirements.interpreter.required,
+        classes: '--capitalize'
       },
       actions: {
         items: [
@@ -127,7 +129,7 @@ module.exports = (req, res) => {
       text: 'Question'
     },
     value: {
-      html: 'Will you need step-free access?'
+      html: 'Will you or any witnesses need step-free access?'
     }
   });
   
@@ -136,7 +138,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.stepFree.stepFree
+      html: appealData.hearingRequirements.stepFree.stepFree,
+      classes: '--capitalize'
     },
     actions: {
       items: [
@@ -165,7 +168,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.hearingLoop.hearingLoop
+      html: appealData.hearingRequirements.hearingLoop.hearingLoop,
+      classes: '--capitalize'
     },
     actions: {
       items: [
@@ -194,7 +198,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.multimediaEvidence.multimediaEvidence
+      html: appealData.hearingRequirements.multimediaEvidence.multimediaEvidence,
+      classes: '--capitalize'
     },
     actions: {
       items: [
@@ -221,7 +226,8 @@ module.exports = (req, res) => {
         text: 'Answer'
       },
       value: {
-        html: appealData.hearingRequirements.multimediaEvidence.equipment
+        html: appealData.hearingRequirements.multimediaEvidence.equipment,
+        classes: '--capitalize'
       },
       actions: {
         items: [
@@ -279,7 +285,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.allMaleFemaleCourt.allMaleFemaleCourt
+      html: appealData.hearingRequirements.allMaleFemaleCourt.allMaleFemaleCourt,
+      classes: '--capitalize'
     },
     actions: {
       items: [
@@ -360,7 +367,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.inCameraCourt.inCameraCourt
+      html: appealData.hearingRequirements.inCameraCourt.inCameraCourt,
+      classes: '--capitalize'
     },
     actions: {
       items: [
@@ -414,7 +422,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.vulnerabilities.vulnerabilities
+      html: appealData.hearingRequirements.vulnerabilities.vulnerabilities,
+      classes: '--capitalize'
     },
     actions: {
       items: [
@@ -469,7 +478,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.pastExperiences.pastExperiences
+      html: appealData.hearingRequirements.pastExperiences.pastExperiences,
+      classes: '--capitalize'
     },
     actions: {
       items: [
@@ -522,7 +532,8 @@ module.exports = (req, res) => {
       text: 'Answer'
     },
     value: {
-      html: appealData.hearingRequirements.anythingElse.anythingElse
+      html: appealData.hearingRequirements.anythingElse.anythingElse,
+      classes: '--capitalize'
     },
     actions: {
       items: [

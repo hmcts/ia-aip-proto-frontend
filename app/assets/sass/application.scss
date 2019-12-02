@@ -137,3 +137,7 @@ body {
 .govuk-summary-list__actions.no-border-bottom {
   border-bottom: none;
 }
+
+.--capitalize {
+  text-transform: capitalize;
+}
