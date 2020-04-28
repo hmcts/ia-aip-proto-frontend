@@ -1,6 +1,6 @@
 #!groovy
 properties(
-        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ia-aip-proto-frontend'],
+        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ia-aip-proto-frontend.git'],
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
