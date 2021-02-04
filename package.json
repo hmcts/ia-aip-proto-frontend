@@ -43,7 +43,7 @@
     "express-session": "^1.16.2",
     "express-validator": "^6.1.1",
     "govuk-frontend": "^3.0.0",
-    "helmet": "^3.10.0",
+    "helmet": "^3.23.3",
     "http-status-codes": "^1.1.6",
     "istanbul": "^0.4.5",
     "joi": "^13.0.1",
