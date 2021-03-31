@@ -1,6 +1,6 @@
 # ia-aip-proto-frontend
 
-
+Repository is not used anymore and it is going to be archived, please see active one https://github.com/hmcts/ia-appeal-frontend
 
 ## Purpose
 
